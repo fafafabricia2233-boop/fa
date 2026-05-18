@@ -14,5 +14,8 @@ degree: 6
 - 🔵 **POSSUI** → [[Raciocínio]]
 - 🔵 **POSSUI** → [[Síntese]]
 
+## Conexões de entrada
+- 🔵 [[New Hair FUE]] → **LIDERA**
+
 ## Grau de conexão
-Este nó possui **6 saídas** e **0 entradas** (total: 6).
+Este nó possui **6 saídas** e **1 entrada** (total: 7).

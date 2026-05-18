@@ -197,6 +197,12 @@
       "label": "Serendipidade",
       "community": "conexoes",
       "degree": 2
+    },
+    {
+      "id": "New Hair FUE",
+      "label": "New Hair FUE",
+      "community": "identidade",
+      "degree": 5
     }
   ],
   "edges": [
@@ -505,6 +511,36 @@
       "target": "Dados",
       "label": "SUPERA",
       "type": "EXTRACTED"
+    },
+    {
+      "source": "New Hair FUE",
+      "target": "Identidade",
+      "label": "LIDERA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "New Hair FUE",
+      "target": "Conhecimento",
+      "label": "APLICA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "New Hair FUE",
+      "target": "Comunicação",
+      "label": "REQUER",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "New Hair FUE",
+      "target": "Conexões",
+      "label": "GERA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "New Hair FUE",
+      "target": "Memória",
+      "label": "MOLDA",
+      "type": "INFERRED"
     }
   ]
 }
