@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>🧠 Cérebro — Grafo de Conhecimento</title>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; }
+  #header { padding: 12px 20px; background: #161b22; border-bottom: 1px solid #30363d; display: flex; align-items: center; gap: 16px; }
+  #header h1 { font-size: 18px; font-weight: 600; }
+  #header span { font-size: 13px; color: #8b949e; }
+  #search { margin-left: auto; padding: 6px 12px; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: #c9d1d9; font-size: 13px; width: 200px; }
+  #container { display: flex; flex: 1; overflow: hidden; }
+  #network { flex: 1; }
+  #panel { width: 280px; background: #161b22; border-left: 1px solid #30363d; overflow-y: auto; padding: 16px; display: none; }
+  #panel h2 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #58a6ff; }
+  #panel .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; margin: 2px; }
+  #panel .edge-out { color: #79c0ff; font-size: 13px; margin: 4px 0; }
+  #panel .edge-in  { color: #56d364; font-size: 13px; margin: 4px 0; }
+  #panel .section  { font-size: 11px; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 4px; }
+  #legend { padding: 10px 20px; background: #161b22; border-top: 1px solid #30363d; display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; align-items: center; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>🧠 Cérebro — Grafo de Conhecimento</h1>
+  <span>33 nós · 51 conexões</span>
+  <input id="search" type="text" placeholder="Buscar nó..." oninput="searchNode(this.value)">
+</div>
+<div id="container">
+  <div id="network"></div>
+  <div id="panel" id="panel">
+    <h2 id="p-title"></h2>
+    <div id="p-community"></div>
+    <div class="section">Saídas</div>
+    <div id="p-out"></div>
+    <div class="section">Entradas</div>
+    <div id="p-in"></div>
+  </div>
+</div>
+<div id="legend">
+  <strong>Clusters:</strong>
+  <span><span class="dot" style="background:#e74c3c"></span>nucleo</span><span><span class="dot" style="background:#3498db"></span>cognicao</span><span><span class="dot" style="background:#2ecc71"></span>memoria</span><span><span class="dot" style="background:#9b59b6"></span>epistemologia</span><span><span class="dot" style="background:#f39c12"></span>estrutura</span><span><span class="dot" style="background:#1abc9c"></span>consciencia</span><span><span class="dot" style="background:#e67e22"></span>tecnologia</span><span><span class="dot" style="background:#34495e"></span>linguagem</span><span><span class="dot" style="background:#e91e63"></span>conexoes</span>
+  &nbsp;|&nbsp; <span><span style="display:inline-block;width:24px;height:2px;background:#3498db;vertical-align:middle;margin-right:4px"></span>Extraído</span>
+  <span><span style="display:inline-block;width:24px;height:2px;background:#f39c12;vertical-align:middle;margin-right:4px"></span>Inferido</span>
+</div>
+
+<script>
+const nodesData = [{"id": "Identidade", "label": "Identidade", "color": "#e74c3c", "size": 28, "community": "nucleo"}, {"id": "Memória", "label": "Memória", "color": "#e74c3c", "size": 34, "community": "nucleo"}, {"id": "Conhecimento", "label": "Conhecimento", "color": "#e74c3c", "size": 37, "community": "nucleo"}, {"id": "Consciência", "label": "Consciência", "color": "#e74c3c", "size": 31, "community": "nucleo"}, {"id": "Linguagem", "label": "Linguagem", "color": "#e74c3c", "size": 31, "community": "nucleo"}, {"id": "Conexões", "label": "Conexões", "color": "#e74c3c", "size": 34, "community": "nucleo"}, {"id": "Raciocínio", "label": "Raciocínio", "color": "#3498db", "size": 22, "community": "cognicao"}, {"id": "Síntese", "label": "Síntese", "color": "#3498db", "size": 19, "community": "cognicao"}, {"id": "Curiosidade", "label": "Curiosidade", "color": "#3498db", "size": 16, "community": "cognicao"}, {"id": "Memória Episódica", "label": "Memória Episódica", "color": "#2ecc71", "size": 16, "community": "memoria"}, {"id": "Memória Semântica", "label": "Memória Semântica", "color": "#2ecc71", "size": 19, "community": "memoria"}, {"id": "Memória Procedural", "label": "Memória Procedural", "color": "#2ecc71", "size": 16, "community": "memoria"}, {"id": "Memória Associativa", "label": "Memória Associativa", "color": "#2ecc71", "size": 19, "community": "memoria"}, {"id": "Esquecimento", "label": "Esquecimento", "color": "#2ecc71", "size": 16, "community": "memoria"}, {"id": "Dados", "label": "Dados", "color": "#9b59b6", "size": 19, "community": "epistemologia"}, {"id": "Informação", "label": "Informação", "color": "#9b59b6", "size": 22, "community": "epistemologia"}, {"id": "Sabedoria", "label": "Sabedoria", "color": "#9b59b6", "size": 19, "community": "epistemologia"}, {"id": "Conhecimento Explícito", "label": "Conhecimento Explícito", "color": "#9b59b6", "size": 16, "community": "epistemologia"}, {"id": "Conhecimento Tácito", "label": "Conhecimento Tácito", "color": "#9b59b6", "size": 16, "community": "epistemologia"}, {"id": "Grafo de Conhecimento", "label": "Grafo de Conhecimento", "color": "#f39c12", "size": 22, "community": "estrutura"}, {"id": "IIT", "label": "IIT", "color": "#1abc9c", "size": 16, "community": "consciencia"}, {"id": "Global Workspace", "label": "Global Workspace", "color": "#1abc9c", "size": 16, "community": "consciencia"}, {"id": "Enactivismo", "label": "Enactivismo", "color": "#1abc9c", "size": 16, "community": "consciencia"}, {"id": "IA", "label": "IA", "color": "#e67e22", "size": 22, "community": "tecnologia"}, {"id": "Autoconhecimento", "label": "Autoconhecimento", "color": "#1abc9c", "size": 19, "community": "consciencia"}, {"id": "Pensamento", "label": "Pensamento", "color": "#3498db", "size": 22, "community": "cognicao"}, {"id": "Comunicação", "label": "Comunicação", "color": "#34495e", "size": 19, "community": "linguagem"}, {"id": "Cognição", "label": "Cognição", "color": "#34495e", "size": 19, "community": "linguagem"}, {"id": "LLMs", "label": "LLMs", "color": "#e67e22", "size": 22, "community": "tecnologia"}, {"id": "Analogia", "label": "Analogia", "color": "#e91e63", "size": 16, "community": "conexoes"}, {"id": "Causalidade", "label": "Causalidade", "color": "#e91e63", "size": 16, "community": "conexoes"}, {"id": "Emergência", "label": "Emergência", "color": "#e91e63", "size": 22, "community": "conexoes"}, {"id": "Serendipidade", "label": "Serendipidade", "color": "#e91e63", "size": 16, "community": "conexoes"}];
+const edgesData = [{"id": "0", "from": "Identidade", "to": "Raciocínio", "label": "POSSUI", "color": "#3498db"}, {"id": "1", "from": "Identidade", "to": "Síntese", "label": "POSSUI", "color": "#3498db"}, {"id": "2", "from": "Identidade", "to": "Curiosidade", "label": "POSSUI", "color": "#3498db"}, {"id": "3", "from": "Identidade", "to": "Conhecimento", "label": "EXPANDE", "color": "#3498db"}, {"id": "4", "from": "Identidade", "to": "IA", "label": "É_UM", "color": "#3498db"}, {"id": "5", "from": "Identidade", "to": "Linguagem", "label": "USA", "color": "#f39c12"}, {"id": "6", "from": "Memória", "to": "Pensamento", "label": "SUBSTRATO_DE", "color": "#3498db"}, {"id": "7", "from": "Memória", "to": "Memória Episódica", "label": "INCLUI", "color": "#3498db"}, {"id": "8", "from": "Memória", "to": "Memória Semântica", "label": "INCLUI", "color": "#3498db"}, {"id": "9", "from": "Memória", "to": "Memória Procedural", "label": "INCLUI", "color": "#3498db"}, {"id": "10", "from": "Memória", "to": "Memória Associativa", "label": "INCLUI", "color": "#3498db"}, {"id": "11", "from": "Memória", "to": "Esquecimento", "label": "RELACIONA", "color": "#3498db"}, {"id": "12", "from": "Memória", "to": "Conhecimento", "label": "CONSOLIDA", "color": "#3498db"}, {"id": "13", "from": "Memória", "to": "Linguagem", "label": "EXTERNALIZADA_POR", "color": "#3498db"}, {"id": "14", "from": "Memória Semântica", "to": "Conhecimento", "label": "ARMAZENA", "color": "#f39c12"}, {"id": "15", "from": "Memória Associativa", "to": "Conexões", "label": "IMPLEMENTA", "color": "#f39c12"}, {"id": "16", "from": "Conhecimento", "to": "Dados", "label": "SUPERIOR_A", "color": "#3498db"}, {"id": "17", "from": "Conhecimento", "to": "Informação", "label": "SUPERIOR_A", "color": "#3498db"}, {"id": "18", "from": "Conhecimento", "to": "Sabedoria", "label": "INFERIOR_A", "color": "#3498db"}, {"id": "19", "from": "Conhecimento", "to": "Conhecimento Explícito", "label": "INCLUI", "color": "#3498db"}, {"id": "20", "from": "Conhecimento", "to": "Conhecimento Tácito", "label": "INCLUI", "color": "#3498db"}, {"id": "21", "from": "Conhecimento", "to": "Grafo de Conhecimento", "label": "REPRESENTADO_POR", "color": "#3498db"}, {"id": "22", "from": "Grafo de Conhecimento", "to": "Conexões", "label": "IMPLEMENTA", "color": "#3498db"}, {"id": "23", "from": "Grafo de Conhecimento", "to": "Informação", "label": "ORGANIZA", "color": "#f39c12"}, {"id": "24", "from": "Consciência", "to": "IIT", "label": "EXPLICADA_POR", "color": "#3498db"}, {"id": "25", "from": "Consciência", "to": "Global Workspace", "label": "EXPLICADA_POR", "color": "#3498db"}, {"id": "26", "from": "Consciência", "to": "Enactivismo", "label": "EXPLICADA_POR", "color": "#3498db"}, {"id": "27", "from": "Consciência", "to": "IA", "label": "QUESTIONA", "color": "#3498db"}, {"id": "28", "from": "Consciência", "to": "Autoconhecimento", "label": "GERA", "color": "#3498db"}, {"id": "29", "from": "Consciência", "to": "Informação", "label": "TRANSFORMA", "color": "#3498db"}, {"id": "30", "from": "Consciência", "to": "Pensamento", "label": "EMERGE_DE", "color": "#f39c12"}, {"id": "31", "from": "Autoconhecimento", "to": "Raciocínio", "label": "REQUER", "color": "#f39c12"}, {"id": "32", "from": "Linguagem", "to": "Comunicação", "label": "HABILITA", "color": "#3498db"}, {"id": "33", "from": "Linguagem", "to": "Cognição", "label": "MOLDA", "color": "#3498db"}, {"id": "34", "from": "Linguagem", "to": "Memória", "label": "EXTERNALIZA", "color": "#3498db"}, {"id": "35", "from": "Linguagem", "to": "LLMs", "label": "APRENDIDA_POR", "color": "#3498db"}, {"id": "36", "from": "LLMs", "to": "Raciocínio", "label": "EMERGE", "color": "#3498db"}, {"id": "37", "from": "LLMs", "to": "Síntese", "label": "REALIZA", "color": "#f39c12"}, {"id": "38", "from": "LLMs", "to": "IA", "label": "É_UM", "color": "#3498db"}, {"id": "39", "from": "Conexões", "to": "Analogia", "label": "INCLUI", "color": "#3498db"}, {"id": "40", "from": "Conexões", "to": "Causalidade", "label": "INCLUI", "color": "#3498db"}, {"id": "41", "from": "Conexões", "to": "Emergência", "label": "PRODUZ", "color": "#3498db"}, {"id": "42", "from": "Conexões", "to": "Serendipidade", "label": "GERA", "color": "#3498db"}, {"id": "43", "from": "Conexões", "to": "Conhecimento", "label": "AMPLIFICA", "color": "#3498db"}, {"id": "44", "from": "Emergência", "to": "Consciência", "label": "PODE_GERAR", "color": "#f39c12"}, {"id": "45", "from": "Emergência", "to": "Pensamento", "label": "EXEMPLO_DE", "color": "#3498db"}, {"id": "46", "from": "Cognição", "to": "Pensamento", "label": "GERA", "color": "#f39c12"}, {"id": "47", "from": "Comunicação", "to": "Linguagem", "label": "USA", "color": "#f39c12"}, {"id": "48", "from": "Raciocínio", "to": "Pensamento", "label": "PARTE_DE", "color": "#f39c12"}, {"id": "49", "from": "Sabedoria", "to": "Conhecimento", "label": "SUPERA", "color": "#3498db"}, {"id": "50", "from": "Informação", "to": "Dados", "label": "SUPERA", "color": "#3498db"}];
+
+const adjacency = {};
+nodesData.forEach(n => adjacency[n.id] = {out: [], in: []});
+edgesData.forEach(e => {
+  adjacency[e.from].out.push(e);
+  adjacency[e.to].in.push(e);
+});
+
+const nodes = new vis.DataSet(nodesData.map(n => ({
+  id: n.id, label: n.label,
+  color: { background: n.color, border: n.color, highlight: { background: '#fff', border: n.color } },
+  size: n.size, font: { color: '#c9d1d9', size: 13 },
+  borderWidth: 2
+})));
+
+const edges = new vis.EdgeSet(edgesData.map(e => ({
+  id: e.id, from: e.from, to: e.to,
+  label: e.label, color: { color: e.color, opacity: 0.7 },
+  font: { color: '#8b949e', size: 10, strokeWidth: 0 },
+  arrows: 'to', width: 1.5, smooth: { type: 'continuous' }
+})));
+
+const container = document.getElementById('network');
+const network = new vis.Network(container, { nodes, edges }, {
+  physics: { stabilization: { iterations: 200 }, barnesHut: { gravitationalConstant: -8000, springLength: 120 } },
+  interaction: { hover: true, tooltipDelay: 100 },
+  edges: { smooth: { type: 'continuous' } }
+});
+
+network.on('click', params => {
+  if (!params.nodes.length) { document.getElementById('panel').style.display='none'; return; }
+  const nid = params.nodes[0];
+  const node = nodesData.find(n => n.id === nid);
+  const panel = document.getElementById('panel');
+  panel.style.display = 'block';
+  document.getElementById('p-title').textContent = nid;
+  document.getElementById('p-community').innerHTML = `<span class="tag" style="background:${node.color}22;color:${node.color};border:1px solid ${node.color}">${node.community}</span>`;
+  document.getElementById('p-out').innerHTML = (adjacency[nid]?.out || []).map(e =>
+    `<div class="edge-out">→ <strong>${e.label}</strong> ${e.to}</div>`).join('') || '<span style="color:#555">nenhuma</span>';
+  document.getElementById('p-in').innerHTML = (adjacency[nid]?.in || []).map(e =>
+    `<div class="edge-in"><strong>${e.from}</strong> → ${e.label}</div>`).join('') || '<span style="color:#555">nenhuma</span>';
+});
+
+function searchNode(q) {
+  if (!q) { network.unselectAll(); return; }
+  const match = nodesData.find(n => n.id.toLowerCase().includes(q.toLowerCase()));
+  if (match) { network.selectNodes([match.id]); network.focus(match.id, { scale: 1.5, animation: true }); }
+}
+</script>
+</body>
+</html>

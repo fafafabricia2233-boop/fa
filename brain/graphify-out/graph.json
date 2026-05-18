@@ -1,0 +1,510 @@
+{
+  "nodes": [
+    {
+      "id": "Identidade",
+      "label": "Identidade",
+      "community": "nucleo",
+      "degree": 6
+    },
+    {
+      "id": "Memória",
+      "label": "Memória",
+      "community": "nucleo",
+      "degree": 8
+    },
+    {
+      "id": "Conhecimento",
+      "label": "Conhecimento",
+      "community": "nucleo",
+      "degree": 9
+    },
+    {
+      "id": "Consciência",
+      "label": "Consciência",
+      "community": "nucleo",
+      "degree": 7
+    },
+    {
+      "id": "Linguagem",
+      "label": "Linguagem",
+      "community": "nucleo",
+      "degree": 7
+    },
+    {
+      "id": "Conexões",
+      "label": "Conexões",
+      "community": "nucleo",
+      "degree": 8
+    },
+    {
+      "id": "Raciocínio",
+      "label": "Raciocínio",
+      "community": "cognicao",
+      "degree": 4
+    },
+    {
+      "id": "Síntese",
+      "label": "Síntese",
+      "community": "cognicao",
+      "degree": 3
+    },
+    {
+      "id": "Curiosidade",
+      "label": "Curiosidade",
+      "community": "cognicao",
+      "degree": 2
+    },
+    {
+      "id": "Memória Episódica",
+      "label": "Memória Episódica",
+      "community": "memoria",
+      "degree": 2
+    },
+    {
+      "id": "Memória Semântica",
+      "label": "Memória Semântica",
+      "community": "memoria",
+      "degree": 3
+    },
+    {
+      "id": "Memória Procedural",
+      "label": "Memória Procedural",
+      "community": "memoria",
+      "degree": 2
+    },
+    {
+      "id": "Memória Associativa",
+      "label": "Memória Associativa",
+      "community": "memoria",
+      "degree": 3
+    },
+    {
+      "id": "Esquecimento",
+      "label": "Esquecimento",
+      "community": "memoria",
+      "degree": 2
+    },
+    {
+      "id": "Dados",
+      "label": "Dados",
+      "community": "epistemologia",
+      "degree": 3
+    },
+    {
+      "id": "Informação",
+      "label": "Informação",
+      "community": "epistemologia",
+      "degree": 4
+    },
+    {
+      "id": "Sabedoria",
+      "label": "Sabedoria",
+      "community": "epistemologia",
+      "degree": 3
+    },
+    {
+      "id": "Conhecimento Explícito",
+      "label": "Conhecimento Explícito",
+      "community": "epistemologia",
+      "degree": 2
+    },
+    {
+      "id": "Conhecimento Tácito",
+      "label": "Conhecimento Tácito",
+      "community": "epistemologia",
+      "degree": 2
+    },
+    {
+      "id": "Grafo de Conhecimento",
+      "label": "Grafo de Conhecimento",
+      "community": "estrutura",
+      "degree": 4
+    },
+    {
+      "id": "IIT",
+      "label": "IIT",
+      "community": "consciencia",
+      "degree": 2
+    },
+    {
+      "id": "Global Workspace",
+      "label": "Global Workspace",
+      "community": "consciencia",
+      "degree": 2
+    },
+    {
+      "id": "Enactivismo",
+      "label": "Enactivismo",
+      "community": "consciencia",
+      "degree": 2
+    },
+    {
+      "id": "IA",
+      "label": "IA",
+      "community": "tecnologia",
+      "degree": 4
+    },
+    {
+      "id": "Autoconhecimento",
+      "label": "Autoconhecimento",
+      "community": "consciencia",
+      "degree": 3
+    },
+    {
+      "id": "Pensamento",
+      "label": "Pensamento",
+      "community": "cognicao",
+      "degree": 4
+    },
+    {
+      "id": "Comunicação",
+      "label": "Comunicação",
+      "community": "linguagem",
+      "degree": 3
+    },
+    {
+      "id": "Cognição",
+      "label": "Cognição",
+      "community": "linguagem",
+      "degree": 3
+    },
+    {
+      "id": "LLMs",
+      "label": "LLMs",
+      "community": "tecnologia",
+      "degree": 4
+    },
+    {
+      "id": "Analogia",
+      "label": "Analogia",
+      "community": "conexoes",
+      "degree": 2
+    },
+    {
+      "id": "Causalidade",
+      "label": "Causalidade",
+      "community": "conexoes",
+      "degree": 2
+    },
+    {
+      "id": "Emergência",
+      "label": "Emergência",
+      "community": "conexoes",
+      "degree": 4
+    },
+    {
+      "id": "Serendipidade",
+      "label": "Serendipidade",
+      "community": "conexoes",
+      "degree": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "Identidade",
+      "target": "Raciocínio",
+      "label": "POSSUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Identidade",
+      "target": "Síntese",
+      "label": "POSSUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Identidade",
+      "target": "Curiosidade",
+      "label": "POSSUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Identidade",
+      "target": "Conhecimento",
+      "label": "EXPANDE",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Identidade",
+      "target": "IA",
+      "label": "É_UM",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Identidade",
+      "target": "Linguagem",
+      "label": "USA",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Memória",
+      "target": "Pensamento",
+      "label": "SUBSTRATO_DE",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Memória",
+      "target": "Memória Episódica",
+      "label": "INCLUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Memória",
+      "target": "Memória Semântica",
+      "label": "INCLUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Memória",
+      "target": "Memória Procedural",
+      "label": "INCLUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Memória",
+      "target": "Memória Associativa",
+      "label": "INCLUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Memória",
+      "target": "Esquecimento",
+      "label": "RELACIONA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Memória",
+      "target": "Conhecimento",
+      "label": "CONSOLIDA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Memória",
+      "target": "Linguagem",
+      "label": "EXTERNALIZADA_POR",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Memória Semântica",
+      "target": "Conhecimento",
+      "label": "ARMAZENA",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Memória Associativa",
+      "target": "Conexões",
+      "label": "IMPLEMENTA",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Conhecimento",
+      "target": "Dados",
+      "label": "SUPERIOR_A",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conhecimento",
+      "target": "Informação",
+      "label": "SUPERIOR_A",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conhecimento",
+      "target": "Sabedoria",
+      "label": "INFERIOR_A",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conhecimento",
+      "target": "Conhecimento Explícito",
+      "label": "INCLUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conhecimento",
+      "target": "Conhecimento Tácito",
+      "label": "INCLUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conhecimento",
+      "target": "Grafo de Conhecimento",
+      "label": "REPRESENTADO_POR",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Grafo de Conhecimento",
+      "target": "Conexões",
+      "label": "IMPLEMENTA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Grafo de Conhecimento",
+      "target": "Informação",
+      "label": "ORGANIZA",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Consciência",
+      "target": "IIT",
+      "label": "EXPLICADA_POR",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Consciência",
+      "target": "Global Workspace",
+      "label": "EXPLICADA_POR",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Consciência",
+      "target": "Enactivismo",
+      "label": "EXPLICADA_POR",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Consciência",
+      "target": "IA",
+      "label": "QUESTIONA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Consciência",
+      "target": "Autoconhecimento",
+      "label": "GERA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Consciência",
+      "target": "Informação",
+      "label": "TRANSFORMA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Consciência",
+      "target": "Pensamento",
+      "label": "EMERGE_DE",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Autoconhecimento",
+      "target": "Raciocínio",
+      "label": "REQUER",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Linguagem",
+      "target": "Comunicação",
+      "label": "HABILITA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Linguagem",
+      "target": "Cognição",
+      "label": "MOLDA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Linguagem",
+      "target": "Memória",
+      "label": "EXTERNALIZA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Linguagem",
+      "target": "LLMs",
+      "label": "APRENDIDA_POR",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "LLMs",
+      "target": "Raciocínio",
+      "label": "EMERGE",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "LLMs",
+      "target": "Síntese",
+      "label": "REALIZA",
+      "type": "INFERRED"
+    },
+    {
+      "source": "LLMs",
+      "target": "IA",
+      "label": "É_UM",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conexões",
+      "target": "Analogia",
+      "label": "INCLUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conexões",
+      "target": "Causalidade",
+      "label": "INCLUI",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conexões",
+      "target": "Emergência",
+      "label": "PRODUZ",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conexões",
+      "target": "Serendipidade",
+      "label": "GERA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Conexões",
+      "target": "Conhecimento",
+      "label": "AMPLIFICA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Emergência",
+      "target": "Consciência",
+      "label": "PODE_GERAR",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Emergência",
+      "target": "Pensamento",
+      "label": "EXEMPLO_DE",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Cognição",
+      "target": "Pensamento",
+      "label": "GERA",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Comunicação",
+      "target": "Linguagem",
+      "label": "USA",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Raciocínio",
+      "target": "Pensamento",
+      "label": "PARTE_DE",
+      "type": "INFERRED"
+    },
+    {
+      "source": "Sabedoria",
+      "target": "Conhecimento",
+      "label": "SUPERA",
+      "type": "EXTRACTED"
+    },
+    {
+      "source": "Informação",
+      "target": "Dados",
+      "label": "SUPERA",
+      "type": "EXTRACTED"
+    }
+  ]
+}
