@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>@newhair_fue — Viabilidade Folicular</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #050505;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 60px 20px;
+}
+
+.slide {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* S01 HERO */
+.slide-hero {
+  background: linear-gradient(160deg, #0a0a0a 0%, #1a1008 40%, #0d0d0d 100%);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.60) 0%,
+    rgba(0,0,0,0.12) 40%,
+    rgba(0,0,0,0.25) 65%,
+    rgba(0,0,0,0.82) 100%);
+}
+
+.hero-tag {
+  position: absolute;
+  top: 60px;
+  left: 72px;
+  z-index: 25;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  color: #C9A96E;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.hero-block {
+  position: absolute;
+  top: 120px;
+  left: 72px;
+  right: 72px;
+  z-index: 20;
+}
+
+.hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 88px;
+  line-height: 0.94;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.70), 2px 2px 0 rgba(0,0,0,0.35);
+}
+
+.hero-title span { color: #C9A96E; }
+
+.hero-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.3;
+  color: rgba(255,255,255,0.82);
+  font-style: italic;
+  margin-top: 24px;
+}
+
+/* StatBar */
+.statbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: #0D0D0D;
+  padding: 22px 72px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid #C9A96E;
+}
+
+.statbar-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 52px;
+  color: #E74C3C;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.statbar-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.2;
+}
+
+/* SLIDES TEXTO */
+.slide-text {
+  background-color: #0a0a0a;
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 80px 140px;
+  gap: 52px;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
+}
+
+.avatar-pic {
+  width: 112px;
+  height: 112px;
+  flex-shrink: 0;
+  display: block;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #C9A96E, #8B6914);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-pic-inner {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 42px;
+  color: #fff;
+}
+
+.avatar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.avatar-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.avatar-handle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 23px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  gap: 32px;
+}
+
+.t-main {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 1.26;
+  color: #ffffff;
+  text-align: center;
+}
+.t-main b { font-weight: 900; color: #ffffff; }
+.t-main .gold { color: #C9A96E; font-weight: 900; }
+.t-main .red { color: #E74C3C; font-weight: 900; }
+.t-main .yellow { color: #FFD700; font-weight: 900; }
+
+.t-main-sm {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 1.30;
+  color: #ffffff;
+  text-align: center;
+}
+.t-main-sm b { font-weight: 900; }
+.t-main-sm .gold { color: #C9A96E; font-weight: 900; }
+.t-main-sm .red { color: #E74C3C; font-weight: 900; }
+.t-main-sm .yellow { color: #FFD700; font-weight: 900; }
+
+/* Rodapé científico */
+.sci-footer {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: #C9A96E;
+  opacity: 0.75;
+  text-align: center;
+  letter-spacing: 0.04em;
+  position: absolute;
+  bottom: 52px;
+  left: 80px;
+  right: 80px;
+}
+
+/* Overlay estudo */
+.study-overlay {
+  position: absolute;
+  bottom: 100px;
+  right: 72px;
+  width: 400px;
+  background: rgba(201,169,110,0.08);
+  border: 1px solid rgba(201,169,110,0.35);
+  border-radius: 8px;
+  padding: 24px 28px;
+  z-index: 20;
+}
+
+.study-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #C9A96E;
+  margin-bottom: 8px;
+}
+
+.study-data {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: rgba(255,255,255,0.80);
+  line-height: 1.4;
+}
+
+.swipe {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 92px;
+  color: #C9A96E;
+  letter-spacing: -0.04em;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  line-height: 1;
+}
+
+/* S06 CTA */
+.cta-inner {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+  gap: 52px;
+}
+
+.cta-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 120px;
+  line-height: 0.88;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.cta-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.cta-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  text-align: left;
+}
+
+.cta-arrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.cta-row-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.cta-row-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 27px;
+  color: rgba(255,255,255,0.44);
+  margin-top: 5px;
+}
+
+/* DL BAR */
+.dl-bar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(5,5,5,0.96);
+  border: 1px solid #C9A96E;
+  padding: 14px 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #C9A96E;
+  cursor: pointer;
+  z-index: 9999;
+  border-radius: 6px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Linha decorativa */
+.gold-line {
+  width: 80px;
+  height: 3px;
+  background: #C9A96E;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+
+<div class="dl-bar" onclick="downloadAll()">&#8595; Baixar ZIP com 6 slides</div>
+
+<!-- S01 HERO -->
+<section class="slide slide-hero" data-slide="01">
+  <div class="vignette"></div>
+  <div class="hero-tag">@newhair_fue</div>
+  <div class="hero-block">
+    <div class="hero-title">SEU FOLÍCULO<br><span>MORRE</span><br>A CADA HORA.</div>
+    <div class="hero-sub">o que ninguém te conta sobre viabilidade folicular</div>
+  </div>
+</section>
+
+<!-- S02 DADO TÉCNICO -->
+<section class="slide slide-text" data-slide="02">
+  <div class="statbar">
+    <div class="statbar-num">↓1%</div>
+    <div class="statbar-label">de sobrevivência<br>por hora fora do corpo</div>
+  </div>
+  <div class="content" style="justify-content:center; padding-top:160px;">
+    <div class="avatar">
+      <div class="avatar-pic"><div class="avatar-pic-inner">F</div></div>
+      <div class="avatar-info">
+        <div class="avatar-name">Fabricia</div>
+        <div class="avatar-handle">@newhair_fue</div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="t-main">
+        Em <span class="red">6 horas</span> sem protocolo:<br>
+        até <span class="red">40% de perda</span><br>
+        silenciosa de folículos.<br><br>
+        <span class="gold">Antes mesmo do implante.</span>
+      </div>
+    </div>
+  </div>
+  <div class="sci-footer">Limmer · Graft Survival Rate · PMC Review</div>
+  <div class="swipe">&#187;</div>
+</section>
+
+<!-- S03 ESTUDO CIENTÍFICO -->
+<section class="slide slide-text" data-slide="03">
+  <div class="content">
+    <div class="avatar">
+      <div class="avatar-pic"><div class="avatar-pic-inner">F</div></div>
+      <div class="avatar-info">
+        <div class="avatar-name">Fabricia</div>
+        <div class="avatar-handle">@newhair_fue</div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="t-main-sm">
+        A ciência tem resposta.<br><br>
+        A <span class="gold">5°C</span>, o consumo de oxigênio<br>
+        do folículo cai para apenas<br>
+        <span class="yellow">6% do normal.</span><br><br>
+        O gelox não é detalhe.<br>
+        <b>É o que separa boa cirurgia<br>de resultado excelente.</b>
+      </div>
+    </div>
+  </div>
+  <div class="study-overlay">
+    <div class="study-title">Q10 Cold Protocol</div>
+    <div class="study-data">A 5°C · O₂ = 6% do normal<br>forhair.com</div>
+  </div>
+  <div class="sci-footer">Q10 Cold Protocol · forhair.com</div>
+  <div class="swipe">&#187;</div>
+</section>
+
+<!-- S04 ESPAÇO NEGATIVO -->
+<section class="slide slide-text" data-slide="04">
+  <div class="content">
+    <div class="avatar">
+      <div class="avatar-pic"><div class="avatar-pic-inner">F</div></div>
+      <div class="avatar-info">
+        <div class="avatar-name">Fabricia</div>
+        <div class="avatar-handle">@newhair_fue</div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="gold-line"></div>
+      <div class="t-main">
+        Com protocolo correto,<br>
+        a viabilidade pode ser<br>
+        mantida por até<br>
+        <span class="gold">14 horas.</span><br><br>
+        Sem ele — não existe<br>
+        técnica que compense<br>
+        <b>o que foi perdido<br>na bancada.</b>
+      </div>
+      <div class="gold-line"></div>
+    </div>
+  </div>
+  <div class="sci-footer">Int J Trichology 2025 · PMC12646520</div>
+  <div class="swipe">&#187;</div>
+</section>
+
+<!-- S05 PROTOCOLO NEW HAIR -->
+<section class="slide slide-text" data-slide="05">
+  <div class="content">
+    <div class="avatar">
+      <div class="avatar-pic"><div class="avatar-pic-inner">F</div></div>
+      <div class="avatar-info">
+        <div class="avatar-name">Fabricia</div>
+        <div class="avatar-handle">@newhair_fue</div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="t-main-sm">
+        O <span class="gold">Protocolo de<br>Viabilidade Folicular™</span><br>
+        da New Hair define:<br><br>
+        temperatura · tempo de<br>
+        exposição ao ar · posição<br>
+        do gelox · troca ativa.<br><br>
+        <b>Não por intuição.<br>Por dado.</b>
+      </div>
+    </div>
+  </div>
+  <div class="sci-footer">New Hair FUE · Instrumentação em Transplante Capilar · BH e todo o Brasil</div>
+  <div class="swipe">&#187;</div>
+</section>
+
+<!-- S06 CTA -->
+<section class="slide slide-text" data-slide="06">
+  <div class="cta-inner">
+    <div class="cta-title">A NEW HAIR<br>ESCOLHE.</div>
+    <div class="cta-rows">
+      <div class="cta-row">
+        <div class="cta-arrow" style="color:#C9A96E;">&#8595;</div>
+        <div>
+          <div class="cta-row-text">Comenta <b style="color:#C9A96E;">"PROTOCOLO"</b></div>
+          <div class="cta-row-desc">te mostro como funciona na prática</div>
+        </div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-arrow" style="color:#FFD700;">&#8599;</div>
+        <div>
+          <div class="cta-row-text">Segue <b style="color:#FFD700;">@newhair_fue</b></div>
+          <div class="cta-row-desc">conteúdo assim todo dia, de graça</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+async function downloadAll() {
+  const bar = document.querySelector('.dl-bar');
+  const slides = document.querySelectorAll('.slide');
+  const zip = new JSZip();
+  const slug = document.title.replace(/.*— /, '').replace(/\s+/g, '-').toLowerCase();
+  bar.style.pointerEvents = 'none';
+  for (let i = 0; i < slides.length; i++) {
+    bar.textContent = 'Renderizando ' + (i+1) + ' de ' + slides.length + '...';
+    bar.style.display = 'none';
+    const canvas = await html2canvas(slides[i], { scale: 2, useCORS: true, allowTaint: true, logging: false, backgroundColor: '#0c0c0e' });
+    bar.style.display = 'block';
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+    zip.file('carrossel-' + slug + '-0' + (i+1) + '.png', blob);
+  }
+  bar.textContent = 'Empacotando ZIP...';
+  const zipBlob = await zip.generateAsync({ type: 'blob' });
+  const link = document.createElement('a');
+  link.download = 'carrossel-' + slug + '.zip';
+  link.href = URL.createObjectURL(zipBlob);
+  link.click();
+  bar.textContent = 'ZIP baixado!';
+  setTimeout(() => { bar.textContent = 'Baixar ZIP com 6 slides'; bar.style.pointerEvents = 'auto'; }, 3000);
+}
+</script>
+</body>
+</html>
