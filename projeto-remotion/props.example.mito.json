@@ -1,0 +1,55 @@
+{
+  "_comment": "MitoVerdade — exemplo com thumbnail intro + title cards Nippard. Frames @ 30fps.",
+  "videoSrc": "meu-reel/main.mp4",
+  "captionsJson": "meu-reel/captions.json",
+  "duration": 65,
+  "musicSrc": "new sfx/music.mp3",
+  "musicVolume": 0.08,
+
+  "colorOverrides": {
+    "FALHA": "#FFD700",
+    "FUNCIONA": "#FFD700"
+  },
+
+  "sfxCues": [
+    { "frame": 0,   "sfx": "grind_intro" },
+    { "frame": 188, "sfx": "title_card" },
+    { "frame": 532, "sfx": "selection" }
+  ],
+
+  "thumbnails": [
+    { "src": "legday/thumb_agachamento.jpg", "sets": "2 × FALHAR", "exercise": "AGACHAMENTO" },
+    { "src": "legday/thumb_extensora.jpg",   "sets": "3 × FALHAR", "exercise": "EXTENSORA"   },
+    { "src": "legday/thumb_flexora.jpg",     "sets": "3 × FALHAR", "exercise": "FLEXORA"     },
+    { "src": "legday/thumb_stiff.jpg",       "sets": "2 × FALHAR", "exercise": "STIFF"       },
+    { "src": "legday/thumb_panturrilha.jpg", "sets": "3 × SÉRIES", "exercise": "PANTURRILHA" }
+  ],
+  "thumbnailDurationFrames": 170,
+
+  "titleCards": [
+    {
+      "start": 188,
+      "end": 302,
+      "line1": "2 SÉRIES × 6-10 REPS",
+      "line2": "AGACHAMENTO",
+      "position": "center-bottom",
+      "exerciseDelayFrames": 27
+    },
+    {
+      "start": 672,
+      "end": 786,
+      "line1": "3 SÉRIES × 6-10 REPS",
+      "line2": "EXTENSORA",
+      "position": "top-left",
+      "top": 540,
+      "left": 60,
+      "width": 600,
+      "exerciseDelayFrames": 27
+    }
+  ],
+
+  "zoomSegments": [
+    { "start": 0.0, "end": 0.3, "from": 1.0,  "to": 1.15 },
+    { "start": 0.3, "end": 0.8, "from": 1.15, "to": 1.0  }
+  ]
+}

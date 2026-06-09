@@ -1,0 +1,45 @@
+{
+  "_comment": "DadoCientifico — exemplo de props para reel educativo com gráfico. Frames @ 30fps.",
+  "videoSrc": "meu-reel/main.mp4",
+  "captionsJson": "meu-reel/captions.json",
+  "duration": 32,
+  "musicSrc": "new sfx/Chill.MP3",
+  "musicVolume": 0.07,
+
+  "colorOverrides": {
+    "INSULINA": "#FFD700",
+    "AÇÚCAR": "#FFD700",
+    "30": "#FFD700"
+  },
+
+  "sfxCues": [
+    { "frame": 48,  "sfx": "card" },
+    { "frame": 52,  "sfx": "selection" },
+    { "frame": 94,  "sfx": "error" },
+    { "frame": 539, "sfx": "estiramento" },
+    { "frame": 894, "sfx": "card" }
+  ],
+
+  "titleCards": [
+    {
+      "start": 368,
+      "end": 445,
+      "line1": "INSULINA ALTA =",
+      "line2": "MODO ESTOQUE",
+      "top": 200,
+      "left": 40,
+      "width": 1000
+    }
+  ],
+
+  "chartCues": [
+    {
+      "start": 770,
+      "end": 890,
+      "type": "SonoBarChart",
+      "top": 666,
+      "left": 141,
+      "width": 735
+    }
+  ]
+}

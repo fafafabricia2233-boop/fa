@@ -1,0 +1,43 @@
+{
+  "_comment": "HistoriaPessoal — exemplo de reel de trajetória com BeforeAfterCard. Frames @ 30fps.",
+  "videoSrc": "minha-historia/main.mp4",
+  "captionsJson": "minha-historia/captions.json",
+  "duration": 60,
+
+  "colorOverrides": {
+    "DÉFICIT": "#FFD700",
+    "CONSTÂNCIA": "#FFD700",
+    "PROVA": "#FFD700"
+  },
+
+  "sfxCues": [
+    { "frame": 30,  "sfx": "pop" },
+    { "frame": 60,  "sfx": "whoosh" },
+    { "frame": 600, "sfx": "bass" }
+  ],
+
+  "titleCards": [
+    {
+      "start": 240,
+      "end": 360,
+      "line1": "3 ANOS DEPOIS",
+      "line2": "84KG",
+      "position": "top-left",
+      "withSfx": true
+    }
+  ],
+
+  "beforeAfter": {
+    "start": 670,
+    "end": 800,
+    "leftSrc": "minha-historia/antes.jpg",
+    "rightSrc": "minha-historia/depois.jpg",
+    "leftLabel": "EU ANTES · 145KG",
+    "rightLabel": "EU AGORA · 84KG",
+    "yOffset": 560,
+    "leftZoom": 1.4,
+    "rightZoom": 1.1,
+    "leftObjectPosition": "center 30%",
+    "rightObjectPosition": "center 20%"
+  }
+}
