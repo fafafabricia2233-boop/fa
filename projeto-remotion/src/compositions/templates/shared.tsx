@@ -17,16 +17,13 @@ import {
   useCurrentFrame,
   useDelayRender,
 } from "remotion";
-import { loadFont as loadMontserrat } from "@remotion/google-fonts/Montserrat";
+import { loadMontserratLocal } from "../../lib/localFonts";
 import { DevDraggable } from "../../components/DevDraggable";
 import { loadCaptionFile } from "../../lib/whisper";
 import type { SfxCue, SfxName, TitleCardCue } from "./types";
 
 // ─── Fonts ───────────────────────────────────────────────────────────────────
-const { fontFamily: montserrat } = loadMontserrat("normal", {
-  weights: ["700", "900"],
-  subsets: ["latin"],
-});
+const { fontFamily: montserrat } = loadMontserratLocal();
 export { montserrat };
 
 // ─── SFX map (path relativo a public/) ───────────────────────────────────────

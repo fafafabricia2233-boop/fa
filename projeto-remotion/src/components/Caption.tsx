@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import type { Caption as RemotionCaption } from "@remotion/captions";
-import { loadFont } from "@remotion/google-fonts/Anton";
+import { loadAnton as loadFont } from "../lib/localFonts";
 import {
   AbsoluteFill,
   Easing,

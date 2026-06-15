@@ -5,6 +5,10 @@ import { MonsterReel, type MonsterReelProps } from "./compositions/MonsterReel";
 import { NippardReel, type NippardReelProps } from "./compositions/NippardReel";
 import { PerderPesoReel, type PerderPesoReelProps } from "./compositions/PerderPesoReel";
 import { LegDayReel, type LegDayReelProps } from "./compositions/LegDayReel";
+import { EquipeCapacitada, type EquipeCapacitadaProps } from "./compositions/EquipeCapacitada";
+import equipeCapacitadaPropsRaw from "../props.equipe-capacitada.json";
+
+const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
 import { InsulinaBarChart } from "./components/InsulinaBarChart";
 import { InsulinaBarChartVertical } from "./components/InsulinaBarChartVertical";
 import { SonoBarChart } from "./components/SonoBarChart";
@@ -206,6 +210,18 @@ export const RemotionRoot: React.FC = () => {
           ║  📺  REELS  —  Composições completas 1080x1920                  ║
           ╚══════════════════════════════════════════════════════════════════╝ */}
       <Folder name="REELS">
+
+        <Folder name="NewHair-EquipeCapacitada">
+          <Composition
+            id="EquipeCapacitada"
+            component={EquipeCapacitada}
+            durationInFrames={Math.ceil(equipeCapacitadaProps.duration * 30)}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={equipeCapacitadaProps}
+          />
+        </Folder>
 
         <Folder name="Reel11-Ganley">
           <Composition

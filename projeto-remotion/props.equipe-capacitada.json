@@ -1,0 +1,106 @@
+{
+  "_comment": "EquipeCapacitada — Reel New Hair FUE. Frames @ 30fps. Caso real de alopecia frontal fibrosante.",
+  "videoSrc": "equipe-capacitada/video.mp4",
+  "captionsJson": "equipe-capacitada/captions.json",
+  "duration": 82.04,
+  "musicSrc": "new sfx/Chill.MP3",
+  "musicVolume": 0.06,
+  "colorOverrides": {
+    "FOLÍCULO": "#FFD700",
+    "COURO": "#FFD700",
+    "CABELUDO": "#FFD700",
+    "ALOPECIA": "#FFD700",
+    "FRONTAL": "#FFD700",
+    "FIBROSANTE": "#FFD700",
+    "TRICOLOGIA": "#FFD700",
+    "DIAGNÓSTICO": "#FFD700",
+    "RUMO": "#FFD700",
+    "SEGURANÇA": "#FFD700",
+    "ANTES": "#FFD700",
+    "DURANTE": "#FFD700",
+    "DEPOIS": "#FFD700",
+    "BIO": "#FFD700"
+  },
+  "sfxCues": [
+    {
+      "frame": 282,
+      "sfx": "pop"
+    },
+    {
+      "frame": 1005,
+      "sfx": "whoosh"
+    },
+    {
+      "frame": 1785,
+      "sfx": "whoosh"
+    }
+  ],
+  "titleCards": [
+    {
+      "start": 168,
+      "end": 276,
+      "line1": "A EQUIPE ENXERGA",
+      "line2": "ALÉM DO FOLÍCULO",
+      "position": "top-left",
+      "top": 720,
+      "left": 60,
+      "width": 760,
+      "withSfx": true
+    },
+    {
+      "start": 1130,
+      "end": 1244,
+      "line1": "CASO REAL · DIAGNÓSTICO",
+      "line2": "ALOPECIA FIBROSANTE",
+      "position": "top-left",
+      "top": 720,
+      "left": 60,
+      "width": 880,
+      "withSfx": true
+    },
+    {
+      "start": 1248,
+      "end": 1392,
+      "line1": "AQUELE DIAGNÓSTICO",
+      "line2": "MUDOU O RUMO",
+      "position": "top-left",
+      "top": 720,
+      "left": 60,
+      "width": 720,
+      "withSfx": true
+    },
+    {
+      "start": 1788,
+      "end": 1944,
+      "line1": "NÃO É LUXO.",
+      "line2": "É SEGURANÇA.",
+      "position": "top-left",
+      "top": 720,
+      "left": 60,
+      "width": 640,
+      "withSfx": true
+    },
+    {
+      "start": 2208,
+      "end": 2322,
+      "line1": "SAÚDE DO COURO CABELUDO",
+      "line2": "ANTES · DURANTE · DEPOIS",
+      "position": "top-left",
+      "top": 720,
+      "left": 60,
+      "width": 900,
+      "withSfx": true
+    },
+    {
+      "start": 2340,
+      "end": 2458,
+      "line1": "QUER OPERAR ASSIM?",
+      "line2": "LINK NA BIO",
+      "position": "top-left",
+      "top": 720,
+      "left": 60,
+      "width": 640,
+      "withSfx": true
+    }
+  ]
+}
