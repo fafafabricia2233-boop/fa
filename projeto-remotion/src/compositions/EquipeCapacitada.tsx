@@ -102,17 +102,60 @@ export const EquipeCapacitada: React.FC<EquipeCapacitadaProps> = ({
   sfxCues = [],
   titleCards = [],
 }) => {
+  const frame = useCurrentFrame();
   const captions = useCaptions(captionsJson, "Loading EquipeCapacitada captions");
+
+  // ── Zoom estratégico nos beats da fala ──────────────────────────────────
+  // 8 momentos-chave sincronizados com as legendas.
+  // Scale máximo 1.068 (~7%) — sutil mas perceptível.
+  // Origin 50% 38%: ancora no rosto (terço superior do quadro portrait).
+  const ZF = [
+    0,   80,  108, 130, 170, 250,   // beat 1: "mudam tudo"
+    410, 545, 600, 640, 700,         // beat 2: "entende de verdade"
+    770, 800, 900, 970,              // beat 3: "saúde do couro" (leve)
+    1068,1095,1140,1180,             // beat 4: "alopecia frontal fibrosante"
+    1190,1204,1221,1260,1400,        // beat 5: "mudou tudo" (pico máximo)
+    1500,1765,1788,1830,1870,        // beat 6: "é segurança"
+    1954,1979,2050,2100,             // beat 7: "New Hair não é só"
+    2200,2261,2299,2360,             // beat 8: "atenção ao paciente"
+    2425,2443,2455,2462,             // CTA "operar com você"
+  ];
+  const ZS = [
+    1.000,1.000,1.000,1.048,1.048,1.000,  // beat 1
+    1.000,1.030,1.042,1.042,1.000,         // beat 2
+    1.000,1.028,1.028,1.000,               // beat 3
+    1.000,1.052,1.052,1.000,               // beat 4
+    1.000,1.035,1.068,1.068,1.000,         // beat 5
+    1.000,1.000,1.045,1.045,1.000,         // beat 6
+    1.000,1.050,1.050,1.000,               // beat 7
+    1.000,1.035,1.055,1.055,               // beat 8
+    1.055,1.055,1.000,1.000,               // CTA
+  ];
+
+  const videoScale = interpolate(frame, ZF, ZS, {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.bezier(0.25, 0.46, 0.45, 0.94),
+  });
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#06080c", overflow: "hidden" }}>
       <DevDraggableProvider>
-        {/* Vídeo base — sempre visível */}
-        <AbsoluteFill>
-          <Video
-            src={staticFile(videoSrc)}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+        {/* Vídeo base com zoom estratégico */}
+        <AbsoluteFill style={{ overflow: "hidden" }}>
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              transform: `scale(${videoScale})`,
+              transformOrigin: "50% 38%",
+            }}
+          >
+            <Video
+              src={staticFile(videoSrc)}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
         </AbsoluteFill>
 
         {/* Vinheta leve para legibilidade (topo + base) */}
