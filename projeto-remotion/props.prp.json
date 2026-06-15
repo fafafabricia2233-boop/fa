@@ -4,7 +4,7 @@
   "captionsJson": "prp/captions.json",
   "duration": 47.11,
   "musicSrc": "new sfx/Chill.MP3",
-  "musicVolume": 0.05,
+  "musicVolume": 0.10,
   "colorOverrides": {
     "PRP": "#FFD700",
     "PRP.": "#FFD700",
