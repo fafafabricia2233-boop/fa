@@ -21,19 +21,6 @@
     "DEPOIS": "#FFD700",
     "BIO": "#FFD700"
   },
-  "sfxCues": [
-    {
-      "frame": 282,
-      "sfx": "pop"
-    },
-    {
-      "frame": 1005,
-      "sfx": "whoosh"
-    },
-    {
-      "frame": 1785,
-      "sfx": "whoosh"
-    }
-  ],
+  "sfxCues": [],
   "titleCards": []
 }

@@ -26,7 +26,7 @@ import { loadMontserratLocal } from "../lib/localFonts";
 import { Caption } from "../components/Caption";
 import { DevDraggableProvider } from "../components/DevDraggable";
 import { StudioOverlayTools } from "../components/StudioOverlayEditor";
-import { GoldCornerAccent, GoldFlare, GoldPop, GoldSweep } from "../components/NewHairMotions";
+import { GoldCornerAccent } from "../components/NewHairMotions";
 import { renderSfxCues, renderTitleCards, useCaptions } from "./templates/shared";
 import type { CommonProps } from "./templates/types";
 
@@ -135,23 +135,6 @@ export const EquipeCapacitada: React.FC<EquipeCapacitadaProps> = ({
 
         {/* Title cards Nippard nos beats-chave */}
         {renderTitleCards(titleCards)}
-
-        {/* ── Custom motions New Hair — abaixo da zona do rosto ── */}
-
-        {/* Frame 282 "pop": ponto dourado com anel expansivo */}
-        <Sequence from={282} durationInFrames={22}>
-          <GoldPop durationFrames={22} />
-        </Sequence>
-
-        {/* Frame 1005 "whoosh": linha dourada varrendo esquerda→direita */}
-        <Sequence from={1005} durationInFrames={28}>
-          <GoldSweep durationFrames={28} />
-        </Sequence>
-
-        {/* Frame 1785 "whoosh": flare deslizante anuncia o title card (frame 1788) */}
-        <Sequence from={1785} durationInFrames={20}>
-          <GoldFlare durationFrames={20} />
-        </Sequence>
 
         {/* L-brackets dourados persistentes nos cantos inferiores */}
         <GoldCornerAccent />

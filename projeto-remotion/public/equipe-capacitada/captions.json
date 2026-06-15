@@ -91,17 +91,10 @@
     "confidence": null
   },
   {
-    "text": " o",
+    "text": " tudo,",
     "startMs": 4100,
-    "endMs": 4340,
-    "timestampMs": 4100,
-    "confidence": null
-  },
-  {
-    "text": " rumo,",
-    "startMs": 4340,
     "endMs": 4840,
-    "timestampMs": 4340,
+    "timestampMs": 4100,
     "confidence": null
   },
   {
@@ -700,14 +693,14 @@
     "confidence": null
   },
   {
-    "text": " O",
+    "text": " No",
     "startMs": 37820,
     "endMs": 37821,
     "timestampMs": 37820,
     "confidence": null
   },
   {
-    "text": " aumento",
+    "text": " momento",
     "startMs": 37820,
     "endMs": 37980,
     "timestampMs": 37820,
@@ -721,7 +714,7 @@
     "confidence": null
   },
   {
-    "text": " procedimento,",
+    "text": " procedimento",
     "startMs": 38160,
     "endMs": 38820,
     "timestampMs": 38160,
@@ -749,14 +742,7 @@
     "confidence": null
   },
   {
-    "text": " o",
-    "startMs": 40500,
-    "endMs": 40720,
-    "timestampMs": 40500,
-    "confidence": null
-  },
-  {
-    "text": " rumo,",
+    "text": " tudo",
     "startMs": 40720,
     "endMs": 41060,
     "timestampMs": 40720,
