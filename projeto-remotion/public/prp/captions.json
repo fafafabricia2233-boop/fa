@@ -1,0 +1,617 @@
+[
+  {
+    "text": " Você",
+    "startMs": 0,
+    "endMs": 180
+  },
+  {
+    "text": " deixaria",
+    "startMs": 180,
+    "endMs": 720
+  },
+  {
+    "text": " alguém",
+    "startMs": 720,
+    "endMs": 1160
+  },
+  {
+    "text": " aplicar",
+    "startMs": 1160,
+    "endMs": 1660
+  },
+  {
+    "text": " o",
+    "startMs": 1660,
+    "endMs": 1800
+  },
+  {
+    "text": " seu",
+    "startMs": 1800,
+    "endMs": 1900
+  },
+  {
+    "text": " próprio",
+    "startMs": 1900,
+    "endMs": 2240
+  },
+  {
+    "text": " sangue",
+    "startMs": 2240,
+    "endMs": 2740
+  },
+  {
+    "text": " no",
+    "startMs": 2740,
+    "endMs": 2960
+  },
+  {
+    "text": " seu",
+    "startMs": 2960,
+    "endMs": 3100
+  },
+  {
+    "text": " couro",
+    "startMs": 3100,
+    "endMs": 3340
+  },
+  {
+    "text": " cabeludo?",
+    "startMs": 3340,
+    "endMs": 3880
+  },
+  {
+    "text": " Pode",
+    "startMs": 4180,
+    "endMs": 4500
+  },
+  {
+    "text": " parecer",
+    "startMs": 4500,
+    "endMs": 4840
+  },
+  {
+    "text": " estranho,",
+    "startMs": 4840,
+    "endMs": 5560
+  },
+  {
+    "text": " mas",
+    "startMs": 5600,
+    "endMs": 5780
+  },
+  {
+    "text": " é",
+    "startMs": 5780,
+    "endMs": 5920
+  },
+  {
+    "text": " exatamente",
+    "startMs": 5920,
+    "endMs": 6340
+  },
+  {
+    "text": " assim",
+    "startMs": 6340,
+    "endMs": 6840
+  },
+  {
+    "text": " que",
+    "startMs": 6840,
+    "endMs": 7200
+  },
+  {
+    "text": " funciona",
+    "startMs": 7200,
+    "endMs": 7680
+  },
+  {
+    "text": " o",
+    "startMs": 7680,
+    "endMs": 8060
+  },
+  {
+    "text": " plasma",
+    "startMs": 8060,
+    "endMs": 8320
+  },
+  {
+    "text": " rica",
+    "startMs": 8320,
+    "endMs": 8680
+  },
+  {
+    "text": " em",
+    "startMs": 8680,
+    "endMs": 8760
+  },
+  {
+    "text": " plaquetas,",
+    "startMs": 8760,
+    "endMs": 9380
+  },
+  {
+    "text": " mais",
+    "startMs": 9480,
+    "endMs": 9780
+  },
+  {
+    "text": " conhecido",
+    "startMs": 9780,
+    "endMs": 10300
+  },
+  {
+    "text": " como",
+    "startMs": 10300,
+    "endMs": 10580
+  },
+  {
+    "text": " PRP.",
+    "startMs": 10580,
+    "endMs": 11320
+  },
+  {
+    "text": " E",
+    "startMs": 11440,
+    "endMs": 11540
+  },
+  {
+    "text": " aqui",
+    "startMs": 11540,
+    "endMs": 11720
+  },
+  {
+    "text": " que",
+    "startMs": 11720,
+    "endMs": 11860
+  },
+  {
+    "text": " eu",
+    "startMs": 11860,
+    "endMs": 11920
+  },
+  {
+    "text": " vou",
+    "startMs": 11920,
+    "endMs": 12020
+  },
+  {
+    "text": " te",
+    "startMs": 12020,
+    "endMs": 12100
+  },
+  {
+    "text": " explicar",
+    "startMs": 12100,
+    "endMs": 12340
+  },
+  {
+    "text": " como",
+    "startMs": 12340,
+    "endMs": 12840
+  },
+  {
+    "text": " que",
+    "startMs": 12840,
+    "endMs": 13000
+  },
+  {
+    "text": " funciona",
+    "startMs": 13000,
+    "endMs": 13420
+  },
+  {
+    "text": " o",
+    "startMs": 13420,
+    "endMs": 13580
+  },
+  {
+    "text": " PRP.",
+    "startMs": 13580,
+    "endMs": 14160
+  },
+  {
+    "text": " Primeiro",
+    "startMs": 14220,
+    "endMs": 14420
+  },
+  {
+    "text": " de",
+    "startMs": 14420,
+    "endMs": 14600
+  },
+  {
+    "text": " tudo,",
+    "startMs": 14600,
+    "endMs": 14940
+  },
+  {
+    "text": " a",
+    "startMs": 15180,
+    "endMs": 15260
+  },
+  {
+    "text": " gente",
+    "startMs": 15260,
+    "endMs": 15440
+  },
+  {
+    "text": " coleta",
+    "startMs": 15440,
+    "endMs": 15840
+  },
+  {
+    "text": " uma",
+    "startMs": 15840,
+    "endMs": 16079
+  },
+  {
+    "text": " pequena",
+    "startMs": 16079,
+    "endMs": 16440
+  },
+  {
+    "text": " quantidade",
+    "startMs": 16440,
+    "endMs": 16860
+  },
+  {
+    "text": " de",
+    "startMs": 16860,
+    "endMs": 17160
+  },
+  {
+    "text": " sangue",
+    "startMs": 17160,
+    "endMs": 17600
+  },
+  {
+    "text": " do",
+    "startMs": 17600,
+    "endMs": 17720
+  },
+  {
+    "text": " próprio",
+    "startMs": 17720,
+    "endMs": 17960
+  },
+  {
+    "text": " paciente",
+    "startMs": 17960,
+    "endMs": 18680
+  },
+  {
+    "text": " e",
+    "startMs": 18680,
+    "endMs": 19100
+  },
+  {
+    "text": " esse",
+    "startMs": 19100,
+    "endMs": 19300
+  },
+  {
+    "text": " sangue",
+    "startMs": 19300,
+    "endMs": 19780
+  },
+  {
+    "text": " passa",
+    "startMs": 19780,
+    "endMs": 20060
+  },
+  {
+    "text": " pelo",
+    "startMs": 20060,
+    "endMs": 20340
+  },
+  {
+    "text": " processo",
+    "startMs": 20340,
+    "endMs": 20740
+  },
+  {
+    "text": " de",
+    "startMs": 20740,
+    "endMs": 21040
+  },
+  {
+    "text": " centrifugação.",
+    "startMs": 21040,
+    "endMs": 22240
+  },
+  {
+    "text": " Após",
+    "startMs": 22400,
+    "endMs": 22640
+  },
+  {
+    "text": " esse",
+    "startMs": 22640,
+    "endMs": 22920
+  },
+  {
+    "text": " processo",
+    "startMs": 22920,
+    "endMs": 23260
+  },
+  {
+    "text": " de",
+    "startMs": 23260,
+    "endMs": 23560
+  },
+  {
+    "text": " centrifugação,",
+    "startMs": 23560,
+    "endMs": 24320
+  },
+  {
+    "text": " nós",
+    "startMs": 24600,
+    "endMs": 24700
+  },
+  {
+    "text": " conseguimos",
+    "startMs": 24700,
+    "endMs": 25240
+  },
+  {
+    "text": " concentrar",
+    "startMs": 25240,
+    "endMs": 25980
+  },
+  {
+    "text": " uma",
+    "startMs": 25980,
+    "endMs": 26180
+  },
+  {
+    "text": " fração",
+    "startMs": 26180,
+    "endMs": 26700
+  },
+  {
+    "text": " que",
+    "startMs": 26700,
+    "endMs": 26840
+  },
+  {
+    "text": " rica",
+    "startMs": 26840,
+    "endMs": 27260
+  },
+  {
+    "text": " em",
+    "startMs": 27260,
+    "endMs": 27400
+  },
+  {
+    "text": " plaquetas",
+    "startMs": 27400,
+    "endMs": 28040
+  },
+  {
+    "text": " e",
+    "startMs": 28040,
+    "endMs": 28260
+  },
+  {
+    "text": " fatores",
+    "startMs": 28260,
+    "endMs": 28800
+  },
+  {
+    "text": " de",
+    "startMs": 28800,
+    "endMs": 29000
+  },
+  {
+    "text": " crescimento.",
+    "startMs": 29000,
+    "endMs": 29560
+  },
+  {
+    "text": " Como",
+    "startMs": 29560,
+    "endMs": 30200
+  },
+  {
+    "text": " o",
+    "startMs": 30200,
+    "endMs": 30320
+  },
+  {
+    "text": " material",
+    "startMs": 30320,
+    "endMs": 30760
+  },
+  {
+    "text": " vem",
+    "startMs": 30760,
+    "endMs": 31060
+  },
+  {
+    "text": " do",
+    "startMs": 31060,
+    "endMs": 31200
+  },
+  {
+    "text": " próprio",
+    "startMs": 31200,
+    "endMs": 31440
+  },
+  {
+    "text": " paciente,",
+    "startMs": 31440,
+    "endMs": 32240
+  },
+  {
+    "text": " nós",
+    "startMs": 32460,
+    "endMs": 32540
+  },
+  {
+    "text": " estamos",
+    "startMs": 32540,
+    "endMs": 32860
+  },
+  {
+    "text": " utilizando",
+    "startMs": 32860,
+    "endMs": 33680
+  },
+  {
+    "text": " recursos",
+    "startMs": 33680,
+    "endMs": 34240
+  },
+  {
+    "text": " já",
+    "startMs": 34240,
+    "endMs": 34660
+  },
+  {
+    "text": " existentes",
+    "startMs": 34660,
+    "endMs": 35360
+  },
+  {
+    "text": " no",
+    "startMs": 35360,
+    "endMs": 35820
+  },
+  {
+    "text": " próprio",
+    "startMs": 35820,
+    "endMs": 36140
+  },
+  {
+    "text": " organismo.",
+    "startMs": 36140,
+    "endMs": 36940
+  },
+  {
+    "text": " É",
+    "startMs": 37120,
+    "endMs": 37240
+  },
+  {
+    "text": " por",
+    "startMs": 37240,
+    "endMs": 37480
+  },
+  {
+    "text": " isso",
+    "startMs": 37480,
+    "endMs": 37760
+  },
+  {
+    "text": " que",
+    "startMs": 37760,
+    "endMs": 37960
+  },
+  {
+    "text": " o",
+    "startMs": 37960,
+    "endMs": 38020
+  },
+  {
+    "text": " PRP",
+    "startMs": 38020,
+    "endMs": 38380
+  },
+  {
+    "text": " tem",
+    "startMs": 38380,
+    "endMs": 38540
+  },
+  {
+    "text": " despertado",
+    "startMs": 38540,
+    "endMs": 39160
+  },
+  {
+    "text": " tanto",
+    "startMs": 39160,
+    "endMs": 39540
+  },
+  {
+    "text": " interesse",
+    "startMs": 39540,
+    "endMs": 40340
+  },
+  {
+    "text": " na",
+    "startMs": 40340,
+    "endMs": 40620
+  },
+  {
+    "text": " medicina",
+    "startMs": 40620,
+    "endMs": 41080
+  },
+  {
+    "text": " regenerativa",
+    "startMs": 41080,
+    "endMs": 42100
+  },
+  {
+    "text": " e",
+    "startMs": 42100,
+    "endMs": 42360
+  },
+  {
+    "text": " nos",
+    "startMs": 42360,
+    "endMs": 42460
+  },
+  {
+    "text": " tratamentos",
+    "startMs": 42460,
+    "endMs": 42980
+  },
+  {
+    "text": " capilares.",
+    "startMs": 42980,
+    "endMs": 43760
+  },
+  {
+    "text": " Se",
+    "startMs": 43920,
+    "endMs": 43980
+  },
+  {
+    "text": " você",
+    "startMs": 43980,
+    "endMs": 44280
+  },
+  {
+    "text": " me",
+    "startMs": 44280,
+    "endMs": 44480
+  },
+  {
+    "text": " conta,",
+    "startMs": 44480,
+    "endMs": 44860
+  },
+  {
+    "text": " já",
+    "startMs": 45280,
+    "endMs": 45380
+  },
+  {
+    "text": " conhecia",
+    "startMs": 45380,
+    "endMs": 45920
+  },
+  {
+    "text": " o",
+    "startMs": 45920,
+    "endMs": 46020
+  },
+  {
+    "text": " PRP?",
+    "startMs": 46020,
+    "endMs": 46600
+  }
+]

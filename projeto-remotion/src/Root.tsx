@@ -7,8 +7,11 @@ import { PerderPesoReel, type PerderPesoReelProps } from "./compositions/PerderP
 import { LegDayReel, type LegDayReelProps } from "./compositions/LegDayReel";
 import { EquipeCapacitada, type EquipeCapacitadaProps } from "./compositions/EquipeCapacitada";
 import equipeCapacitadaPropsRaw from "../props.equipe-capacitada.json";
+import { PRP, type PRPProps } from "./compositions/PRP";
+import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
+const prpProps = prpPropsRaw as PRPProps;
 import { InsulinaBarChart } from "./components/InsulinaBarChart";
 import { InsulinaBarChartVertical } from "./components/InsulinaBarChartVertical";
 import { SonoBarChart } from "./components/SonoBarChart";
@@ -220,6 +223,18 @@ export const RemotionRoot: React.FC = () => {
             width={1080}
             height={1920}
             defaultProps={equipeCapacitadaProps}
+          />
+        </Folder>
+
+        <Folder name="NewHair-PRP">
+          <Composition
+            id="PRP"
+            component={PRP}
+            durationInFrames={Math.ceil(prpProps.duration * 30)}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={prpProps}
           />
         </Folder>
 

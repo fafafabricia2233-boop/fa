@@ -1,0 +1,23 @@
+{
+  "_comment": "PRP — Reel New Hair FUE. Plasma Rico em Plaquetas. 47s @ 30fps.",
+  "videoSrc": "prp/video.mp4",
+  "captionsJson": "prp/captions.json",
+  "duration": 47.11,
+  "musicSrc": "new sfx/Chill.MP3",
+  "musicVolume": 0.02,
+  "colorOverrides": {
+    "PRP": "#FFD700",
+    "PRP.": "#FFD700",
+    "PRP?": "#FFD700",
+    "PLAQUETAS,": "#FFD700",
+    "PLAQUETAS": "#FFD700",
+    "SANGUE": "#FFD700",
+    "CENTRIFUGAÇÃO.": "#FFD700",
+    "CENTRIFUGAÇÃO,": "#FFD700",
+    "REGENERATIVA": "#FFD700",
+    "CAPILARES.": "#FFD700",
+    "CRESCIMENTO.": "#FFD700"
+  },
+  "sfxCues": [],
+  "titleCards": []
+}
