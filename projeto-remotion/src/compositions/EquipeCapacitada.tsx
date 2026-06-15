@@ -141,21 +141,19 @@ export const EquipeCapacitada: React.FC<EquipeCapacitadaProps> = ({
   return (
     <AbsoluteFill style={{ backgroundColor: "#06080c", overflow: "hidden" }}>
       <DevDraggableProvider>
-        {/* Vídeo base com zoom estratégico */}
+        {/* Vídeo base com zoom estratégico via position/size (sem CSS transform) */}
         <AbsoluteFill style={{ overflow: "hidden" }}>
-          <div
+          <Video
+            src={staticFile(videoSrc)}
             style={{
-              width: "100%",
-              height: "100%",
-              transform: `scale(${videoScale})`,
-              transformOrigin: "50% 38%",
+              position: "absolute",
+              width: `${videoScale * 100}%`,
+              height: `${videoScale * 100}%`,
+              top: `${-(videoScale - 1) * 38}%`,
+              left: `${-(videoScale - 1) * 50}%`,
+              objectFit: "cover",
             }}
-          >
-            <Video
-              src={staticFile(videoSrc)}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </div>
+          />
         </AbsoluteFill>
 
         {/* Vinheta leve para legibilidade (topo + base) */}
