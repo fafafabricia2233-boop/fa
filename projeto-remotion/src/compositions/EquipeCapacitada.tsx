@@ -124,8 +124,8 @@ export const EquipeCapacitada: React.FC<EquipeCapacitadaProps> = ({
           }}
         />
 
-        {/* Música de fundo discreta */}
-        <Audio src={staticFile(musicSrc)} volume={musicVolume} />
+        {/* Música de fundo discreta — loop para cobrir todo o vídeo */}
+        <Audio src={staticFile(musicSrc)} volume={musicVolume} loop />
 
         {/* SFX pontuais */}
         {renderSfxCues(sfxCues)}
