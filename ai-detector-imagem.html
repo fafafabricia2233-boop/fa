@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detector de IA em Imagens</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+    .drop-zone {
+      border: 2px dashed #444;
+      border-radius: 16px;
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      max-width: 640px;
+      margin: 0 auto 28px;
+      background: #1a1a1a;
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: #7c3aed;
+      background: #1e1427;
+    }
+    .drop-zone svg { margin-bottom: 12px; }
+    .drop-zone p { color: #888; font-size: 0.95rem; }
+    .drop-zone span { color: #a78bfa; font-weight: 600; cursor: pointer; }
+    #file-input { display: none; }
+
+    .preview-wrap {
+      max-width: 640px;
+      margin: 0 auto 24px;
+      display: none;
+    }
+    .preview-wrap img {
+      width: 100%;
+      border-radius: 12px;
+      max-height: 340px;
+      object-fit: contain;
+      background: #1a1a1a;
+    }
+
+    .results {
+      max-width: 640px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .risk-banner {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .risk-banner.alto {
+      background: #3b0a0a;
+      border: 1px solid #dc2626;
+      color: #fca5a5;
+    }
+    .risk-banner.medio {
+      background: #2d1a00;
+      border: 1px solid #d97706;
+      color: #fcd34d;
+    }
+    .risk-banner.baixo {
+      background: #052e16;
+      border: 1px solid #16a34a;
+      color: #86efac;
+    }
+    .risk-icon { font-size: 1.4rem; }
+
+    .section {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: #222;
+      color: #ccc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-body { padding: 14px 18px; }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #2a2a2a;
+      align-items: flex-start;
+    }
+    .meta-row:last-child { border-bottom: none; }
+    .meta-key {
+      font-size: 0.78rem;
+      color: #888;
+      min-width: 140px;
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+    .meta-val {
+      font-size: 0.85rem;
+      color: #e0e0e0;
+      flex: 1;
+      word-break: break-all;
+    }
+    .meta-val.flagged {
+      color: #fca5a5;
+      font-weight: 600;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 1px 7px;
+      border-radius: 100px;
+      font-weight: 700;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .badge.ai { background: #7c1d1d; color: #fca5a5; }
+    .badge.ok { background: #14532d; color: #86efac; }
+
+    .empty-state {
+      color: #555;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .action-bar {
+      max-width: 640px;
+      margin: 0 auto 32px;
+      display: none;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      flex: 1;
+      min-width: 180px;
+      padding: 13px 20px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      text-align: center;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: #7c3aed; color: #fff; }
+    .btn-outline { background: transparent; color: #a78bfa; border: 1px solid #7c3aed; }
+
+    .tip {
+      max-width: 640px;
+      margin: 0 auto 16px;
+      background: #1a1a2e;
+      border: 1px solid #2d2d5a;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.82rem;
+      color: #9999cc;
+      display: none;
+    }
+    .tip strong { color: #c4b5fd; }
+
+    .loader {
+      text-align: center;
+      padding: 24px;
+      color: #666;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #444;
+      font-size: 0.78rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Detector de IA em Imagens</h1>
+  <p class="subtitle">Veja quais metadados podem fazer sua imagem ser identificada como IA</p>
+
+  <div class="drop-zone" id="drop-zone">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="17 8 12 3 7 8"/>
+      <line x1="12" y1="3" x2="12" y2="15"/>
+    </svg>
+    <p>Arraste a imagem aqui ou <span id="browse-link">clique para selecionar</span></p>
+    <p style="margin-top:8px;font-size:0.78rem;">JPG, PNG, WEBP, HEIC • sem limite de tamanho</p>
+    <input type="file" id="file-input" accept="image/*">
+  </div>
+
+  <div class="loader" id="loader">Analisando imagem...</div>
+
+  <div class="preview-wrap" id="preview-wrap">
+    <img id="preview-img" alt="preview">
+  </div>
+
+  <div class="risk-banner" id="risk-banner" style="display:none;max-width:640px;margin:0 auto 20px;"></div>
+
+  <div class="tip" id="tip-box">
+    <strong>Como limpar:</strong> Use o botão "Baixar sem metadados" para remover os dados de IA da imagem.
+    Plataformas como Instagram e LinkedIn analisam esses campos para identificar conteúdo gerado por IA.
+  </div>
+
+  <div class="action-bar" id="action-bar">
+    <button class="btn btn-primary" id="btn-clean">⬇ Baixar sem metadados</button>
+    <button class="btn btn-outline" id="btn-new">Nova imagem</button>
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <footer>Análise feita 100% no seu navegador — nenhum dado sai do seu dispositivo</footer>
+
+  <script>
+  // ── helpers ────────────────────────────────────────────────────────────────
+  const AI_KEYWORDS = [
+    'midjourney','dall-e','dalle','stable diffusion','openai','adobe firefly',
+    'firefly','imagen','bing image creator','craiyon','nightcafe','dreamstudio',
+    'invoke ai','automatic1111','comfyui','leonardo','runway','pika','heygen',
+    'ai generated','ai-generated','generated by ai','artificial intelligence',
+    'gpt','claude','gemini','diffusion','generative','synthesized','neural',
+    'flux','sd xl','sdxl','latent diffusion','dreambooth','lora','controlnet',
+    'kling','sora','gen-2','gen2','canva','fotor ai'
+  ];
+
+  const C2PA_MAGIC = [0xca, 0xfe, 0xd0, 0x0d]; // simplified — real is JUMBF
+
+  function flagsAI(value) {
+    if (!value) return false;
+    const lower = String(value).toLowerCase();
+    return AI_KEYWORDS.some(k => lower.includes(k));
+  }
+
+  // ── EXIF reader (pure JS, no dependency) ──────────────────────────────────
+  function readExif(buffer) {
+    const view = new DataView(buffer);
+    const tags = {};
+
+    // Must start with JPEG SOI
+    if (view.getUint16(0) !== 0xFFD8) return tags;
+
+    let offset = 2;
+    while (offset < buffer.byteLength - 1) {
+      const marker = view.getUint16(offset);
+      offset += 2;
+      if (marker === 0xFFE1) { // APP1 — EXIF / XMP
+        const len = view.getUint16(offset);
+        const segData = buffer.slice(offset + 2, offset + len);
+        const segView = new DataView(segData);
+        // Check for Exif header
+        const header = String.fromCharCode(...new Uint8Array(segData, 0, 6));
+        if (header.startsWith('Exif')) {
+          parseIFD(segView, 8, tags);
+        }
+        // Check for XMP
+        const xmpHeader = new TextDecoder().decode(new Uint8Array(segData, 0, 30));
+        if (xmpHeader.includes('http://ns.adobe.com/xap')) {
+          const xmpStr = new TextDecoder().decode(new Uint8Array(segData));
+          parseXMP(xmpStr, tags);
+        }
+        offset += len;
+      } else if (marker === 0xFFE0 || (marker >= 0xFFE2 && marker <= 0xFFEF)) {
+        const len = view.getUint16(offset);
+        // Check APP11 for C2PA
+        if (marker === 0xFFEB) tags['C2PA/Content Credentials'] = 'Detectado (APP11)';
+        // Check IPTC in APP13
+        if (marker === 0xFFED) {
+          const seg = new Uint8Array(buffer, offset + 2, view.getUint16(offset) - 2);
+          parseIPTC(seg, tags);
+        }
+        offset += len;
+      } else if (marker === 0xFFDA) {
+        break; // SOS — start of scan data
+      } else {
+        if (offset + 2 > buffer.byteLength) break;
+        const len = view.getUint16(offset);
+        if (len < 2) break;
+        offset += len;
+      }
+    }
+    return tags;
+  }
+
+  function parseIFD(view, offset, tags) {
+    const EXIF_TAGS = {
+      0x010E: 'Descrição',
+      0x010F: 'Fabricante (Make)',
+      0x0110: 'Modelo (Model)',
+      0x0131: 'Software',
+      0x013B: 'Artista',
+      0x8298: 'Copyright',
+      0x9003: 'Data original',
+      0x9286: 'Comentário do usuário',
+      0x0112: 'Orientação',
+      0x013E: 'Ponto branco',
+    };
+
+    let littleEndian;
+    try {
+      const byteOrder = view.getUint16(0);
+      littleEndian = byteOrder === 0x4949;
+      const ifdOffset = view.getUint32(4, littleEndian);
+      offset = ifdOffset;
+
+      const entryCount = view.getUint16(offset, littleEndian);
+      offset += 2;
+
+      for (let i = 0; i < entryCount; i++) {
+        const tag = view.getUint16(offset, littleEndian);
+        const type = view.getUint16(offset + 2, littleEndian);
+        const count = view.getUint32(offset + 4, littleEndian);
+        const valOffset = offset + 8;
+
+        let value = null;
+        try {
+          if (type === 2) { // ASCII
+            const strOffset = count <= 4 ? valOffset : view.getUint32(valOffset, littleEndian);
+            const bytes = [];
+            for (let j = 0; j < count - 1; j++) bytes.push(view.getUint8(strOffset + j));
+            value = String.fromCharCode(...bytes).trim();
+          }
+        } catch(e) {}
+
+        if (value && EXIF_TAGS[tag]) tags[EXIF_TAGS[tag]] = value;
+
+        // Recurse into Exif SubIFD
+        if (tag === 0x8769) {
+          try {
+            const subOffset = view.getUint32(valOffset, littleEndian);
+            parseSubIFD(view, subOffset, littleEndian, tags);
+          } catch(e) {}
+        }
+        offset += 12;
+      }
+    } catch(e) {}
+  }
+
+  function parseSubIFD(view, offset, le, tags) {
+    const SUB_TAGS = {
+      0x9C9B: 'Palavras-chave (XP)',
+      0x9C9C: 'Assunto (XP)',
+      0x9C9D: 'Autor (XP)',
+      0x9C9E: 'Comentário (XP)',
+      0x9C9F: 'Título (XP)',
+      0xA420: 'ID da imagem única',
+      0xA433: 'Fabricante da câmera',
+      0xA434: 'Modelo da câmera',
+    };
+    try {
+      const count = view.getUint16(offset, le);
+      offset += 2;
+      for (let i = 0; i < count; i++) {
+        const tag = view.getUint16(offset, le);
+        const type = view.getUint16(offset + 2, le);
+        const n = view.getUint32(offset + 4, le);
+        const valOff = offset + 8;
+        if (type === 2 && SUB_TAGS[tag]) {
+          try {
+            const so = n <= 4 ? valOff : view.getUint32(valOff, le);
+            const bytes = [];
+            for (let j = 0; j < n - 1; j++) bytes.push(view.getUint8(so + j));
+            const v = String.fromCharCode(...bytes).trim();
+            if (v) tags[SUB_TAGS[tag]] = v;
+          } catch(e) {}
+        }
+        offset += 12;
+      }
+    } catch(e) {}
+  }
+
+  function parseXMP(xmpStr, tags) {
+    const extract = (pattern) => {
+      const m = xmpStr.match(pattern);
+      return m ? m[1].trim() : null;
+    };
+    const fields = {
+      'XMP: Creator Tool':    /xmp:CreatorTool[^>]*>([^<]+)/,
+      'XMP: Creator':         /dc:creator[^>]*>(?:.*?<rdf:li[^>]*>)?([^<]+)/s,
+      'XMP: Description':     /dc:description[^>]*>(?:.*?<rdf:li[^>]*>)?([^<]+)/s,
+      'XMP: Rights':          /dc:rights[^>]*>(?:.*?<rdf:li[^>]*>)?([^<]+)/s,
+      'XMP: Label':           /xmp:Label[^>]*>([^<]+)/,
+      'XMP: AI Source':       /Iptc4xmpExt:DigitalSourceType[^>]*>([^<]+)/,
+      'XMP: AI Model':        /ai:model[^>]*>([^<]+)/i,
+      'XMP: Generator':       /Generator[^>]*>([^<]+)/i,
+    };
+    for (const [key, rx] of Object.entries(fields)) {
+      const v = extract(rx);
+      if (v && v.length < 300) tags[key] = v;
+    }
+    // Generic AI keyword scan in XMP
+    if (flagsAI(xmpStr) && !Object.keys(tags).some(k => k.startsWith('XMP'))) {
+      tags['XMP: Conteúdo suspeito'] = 'Palavras-chave de IA encontradas no bloco XMP';
+    }
+  }
+
+  function parseIPTC(seg, tags) {
+    let i = 0;
+    while (i < seg.length - 4) {
+      if (seg[i] !== 0x1C) { i++; continue; }
+      const rec = seg[i + 1];
+      const ds  = seg[i + 2];
+      const len = (seg[i + 3] << 8) | seg[i + 4];
+      i += 5;
+      if (rec === 2) {
+        const val = new TextDecoder().decode(seg.slice(i, i + len));
+        const IPTC = {
+          5: 'IPTC: Título do objeto',
+          15: 'IPTC: Categoria',
+          20: 'IPTC: Assunto',
+          25: 'IPTC: Palavras-chave',
+          55: 'IPTC: Data de criação',
+          80: 'IPTC: Crédito',
+          85: 'IPTC: Fonte',
+          110: 'IPTC: Copyright',
+          120: 'IPTC: Legenda',
+        };
+        if (IPTC[ds] && val.trim()) tags[IPTC[ds]] = val.trim();
+      }
+      i += len;
+    }
+  }
+
+  // ── PNG metadata reader ────────────────────────────────────────────────────
+  function readPngMeta(buffer) {
+    const tags = {};
+    const view = new DataView(buffer);
+    const sig = [137,80,78,71,13,10,26,10];
+    for (let i = 0; i < 8; i++) if (view.getUint8(i) !== sig[i]) return tags;
+
+    let offset = 8;
+    const dec = new TextDecoder();
+    while (offset < buffer.byteLength - 8) {
+      const chunkLen  = view.getUint32(offset);
+      const chunkType = dec.decode(new Uint8Array(buffer, offset + 4, 4));
+      const chunkData = new Uint8Array(buffer, offset + 8, chunkLen);
+      offset += 12 + chunkLen;
+
+      if (chunkType === 'tEXt' || chunkType === 'iTXt' || chunkType === 'zTXt') {
+        try {
+          let str = dec.decode(chunkData);
+          // Find null separator
+          const nullIdx = str.indexOf('\0');
+          if (nullIdx !== -1) {
+            const key = str.slice(0, nullIdx);
+            let val = str.slice(nullIdx + 1).replace(/\0+/, '').trim();
+            if (chunkType === 'iTXt') val = str.slice(nullIdx + 3).trim();
+            if (key && val) tags['PNG/' + key] = val.length > 500 ? val.slice(0, 500) + '…' : val;
+          }
+        } catch(e) {}
+      }
+      if (chunkType === 'caBX' || chunkType === 'c2pa') {
+        tags['C2PA/Content Credentials'] = 'Detectado (chunk PNG)';
+      }
+    }
+    return tags;
+  }
+
+  // ── WEBP reader ────────────────────────────────────────────────────────────
+  function readWebpMeta(buffer) {
+    const tags = {};
+    const view = new DataView(buffer);
+    const dec = new TextDecoder();
+    if (dec.decode(new Uint8Array(buffer, 0, 4)) !== 'RIFF') return tags;
+    if (dec.decode(new Uint8Array(buffer, 8, 4)) !== 'WEBP') return tags;
+
+    let offset = 12;
+    while (offset < buffer.byteLength - 8) {
+      const fourcc = dec.decode(new Uint8Array(buffer, offset, 4));
+      const size   = view.getUint32(offset + 4, true);
+      offset += 8;
+      if (fourcc === 'XMP ') {
+        const xmpStr = dec.decode(new Uint8Array(buffer, offset, size));
+        parseXMP(xmpStr, tags);
+      }
+      if (fourcc === 'EXIF') {
+        const exifBuf = buffer.slice(offset, offset + size);
+        const exifView = new DataView(exifBuf);
+        parseIFD(exifView, 0, tags);
+      }
+      offset += size + (size % 2);
+    }
+    return tags;
+  }
+
+  // ── Main analysis ──────────────────────────────────────────────────────────
+  function analyze(buffer, filename) {
+    const ext = filename.split('.').pop().toLowerCase();
+    let meta = {};
+
+    if (ext === 'png') {
+      meta = readPngMeta(buffer);
+    } else if (ext === 'webp') {
+      meta = readWebpMeta(buffer);
+    } else {
+      // JPEG / HEIC / etc
+      meta = readExif(buffer);
+    }
+
+    // Score
+    let aiFields = [];
+    for (const [k, v] of Object.entries(meta)) {
+      if (flagsAI(v) || flagsAI(k)) aiFields.push(k);
+    }
+
+    // C2PA present?
+    const hasC2PA = 'C2PA/Content Credentials' in meta;
+    if (hasC2PA) aiFields.push('C2PA/Content Credentials');
+
+    return { meta, aiFields, hasC2PA };
+  }
+
+  // ── Render results ─────────────────────────────────────────────────────────
+  function render(filename, { meta, aiFields, hasC2PA }) {
+    const resultsEl  = document.getElementById('results');
+    const bannerEl   = document.getElementById('risk-banner');
+    const actionEl   = document.getElementById('action-bar');
+    const tipEl      = document.getElementById('tip-box');
+
+    // Risk banner
+    bannerEl.style.display = 'flex';
+    let riskClass, riskIcon, riskText;
+    if (aiFields.length >= 2 || hasC2PA) {
+      riskClass = 'alto'; riskIcon = '🚨';
+      riskText = `Alto risco de detecção como IA — ${aiFields.length} sinal(is) encontrado(s)`;
+    } else if (aiFields.length === 1) {
+      riskClass = 'medio'; riskIcon = '⚠️';
+      riskText = '1 sinal de IA encontrado — risco moderado';
+    } else if (Object.keys(meta).length > 0) {
+      riskClass = 'medio'; riskIcon = '⚠️';
+      riskText = 'Metadados presentes — verifique os campos abaixo';
+    } else {
+      riskClass = 'baixo'; riskIcon = '✅';
+      riskText = 'Nenhum sinal de IA encontrado nos metadados';
+    }
+    bannerEl.className = `risk-banner ${riskClass}`;
+    bannerEl.innerHTML = `<span class="risk-icon">${riskIcon}</span><span>${riskText}</span>`;
+
+    // Sections
+    let html = '';
+
+    // AI fields section
+    if (aiFields.length > 0) {
+      html += `<div class="section">
+        <div class="section-header">🤖 Campos identificados como IA</div>
+        <div class="section-body">`;
+      for (const k of aiFields) {
+        html += `<div class="meta-row">
+          <span class="meta-key">${esc(k)}</span>
+          <span class="meta-val flagged">${esc(meta[k] || '(presente)')} <span class="badge ai">IA</span></span>
+        </div>`;
+      }
+      html += `</div></div>`;
+    }
+
+    // All metadata
+    const otherKeys = Object.keys(meta).filter(k => !aiFields.includes(k));
+    if (otherKeys.length > 0) {
+      html += `<div class="section">
+        <div class="section-header">📋 Todos os metadados encontrados</div>
+        <div class="section-body">`;
+      for (const k of otherKeys) {
+        html += `<div class="meta-row">
+          <span class="meta-key">${esc(k)}</span>
+          <span class="meta-val">${esc(meta[k])}</span>
+        </div>`;
+      }
+      html += `</div></div>`;
+    }
+
+    if (Object.keys(meta).length === 0) {
+      html += `<div class="section">
+        <div class="section-body">
+          <p class="empty-state">✅ Nenhum metadado encontrado nesta imagem.<br>
+          Está limpa para postar!</p>
+        </div>
+      </div>`;
+    }
+
+    // What platforms check
+    html += `<div class="section">
+      <div class="section-header">📱 O que as plataformas verificam</div>
+      <div class="section-body">
+        <div class="meta-row">
+          <span class="meta-key">EXIF Software</span>
+          <span class="meta-val">${'Software' in meta ? `<span class="badge ai">presente</span>` : `<span class="badge ok">ausente</span>`}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">XMP CreatorTool</span>
+          <span class="meta-val">${'XMP: Creator Tool' in meta ? `<span class="badge ai">presente</span>` : `<span class="badge ok">ausente</span>`}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">C2PA / Content Credentials</span>
+          <span class="meta-val">${hasC2PA ? `<span class="badge ai">presente</span>` : `<span class="badge ok">ausente</span>`}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">PNG Text Chunks (SD params)</span>
+          <span class="meta-val">${Object.keys(meta).some(k => k.startsWith('PNG/')) ? `<span class="badge ai">presente</span>` : `<span class="badge ok">ausente</span>`}</span>
+        </div>
+      </div>
+    </div>`;
+
+    resultsEl.innerHTML = html;
+    resultsEl.style.display = 'block';
+    actionEl.style.display = 'flex';
+    tipEl.style.display = aiFields.length > 0 ? 'block' : 'none';
+  }
+
+  function esc(str) {
+    return String(str ?? '')
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  // ── Clean download (strip metadata via canvas) ─────────────────────────────
+  let currentFile = null;
+  let currentObjectURL = null;
+
+  function downloadClean() {
+    if (!currentFile) return;
+    const img = document.getElementById('preview-img');
+    const canvas = document.createElement('canvas');
+    canvas.width  = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const ext  = currentFile.name.split('.').pop().toLowerCase();
+      const base = currentFile.name.replace(/\.[^.]+$/, '');
+      a.href = url;
+      a.download = `${base}_limpa.jpg`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }, 'image/jpeg', 0.95);
+  }
+
+  // ── File handling ──────────────────────────────────────────────────────────
+  function handleFile(file) {
+    if (!file || !file.type.startsWith('image/')) {
+      alert('Por favor, selecione uma imagem válida.');
+      return;
+    }
+    currentFile = file;
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('action-bar').style.display = 'none';
+    document.getElementById('tip-box').style.display = 'none';
+    document.getElementById('risk-banner').style.display = 'none';
+
+    // Show preview
+    if (currentObjectURL) URL.revokeObjectURL(currentObjectURL);
+    currentObjectURL = URL.createObjectURL(file);
+    const img = document.getElementById('preview-img');
+    img.src = currentObjectURL;
+    img.onload = () => {
+      document.getElementById('preview-wrap').style.display = 'block';
+    };
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const buffer = e.target.result;
+      const result = analyze(buffer, file.name);
+      document.getElementById('loader').style.display = 'none';
+      render(file.name, result);
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function reset() {
+    currentFile = null;
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('action-bar').style.display = 'none';
+    document.getElementById('tip-box').style.display = 'none';
+    document.getElementById('risk-banner').style.display = 'none';
+    document.getElementById('preview-wrap').style.display = 'none';
+    document.getElementById('preview-img').src = '';
+    document.getElementById('file-input').value = '';
+  }
+
+  // ── Events ────────────────────────────────────────────────────────────────
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
+
+  document.getElementById('browse-link').addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('click', (e) => {
+    if (e.target.id !== 'browse-link') fileInput.click();
+  });
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files[0]) handleFile(fileInput.files[0]);
+  });
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+
+  document.getElementById('btn-clean').addEventListener('click', downloadClean);
+  document.getElementById('btn-new').addEventListener('click', reset);
+  </script>
+</body>
+</html>
