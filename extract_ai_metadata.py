@@ -6,10 +6,91 @@ Stable Diffusion (A1111/Forge), ComfyUI, Midjourney, DALL-E, etc.
 
 import sys
 import json
+import re
 import argparse
 import struct
 import zlib
 from pathlib import Path
+
+
+def _cbor_text(data, pos):
+    """Extrai string de texto CBOR (major type 3) na posição dada. Retorna (str, next_pos)."""
+    if pos >= len(data):
+        return None, pos
+    b = data[pos]
+    major = (b & 0xe0) >> 5
+    if major != 3:
+        return None, pos
+    additional = b & 0x1f
+    if additional <= 23:
+        length = additional
+        pos += 1
+    elif additional == 24:
+        if pos + 1 >= len(data):
+            return None, pos
+        length = data[pos + 1]
+        pos += 2
+    else:
+        return None, pos
+    end = pos + length
+    try:
+        return data[pos:end].decode("utf-8"), end
+    except Exception:
+        return None, end
+
+
+def read_c2pa_chunk(data):
+    """Extrai informações do chunk C2PA (caBX) usando CBOR básico + regex."""
+    result = {}
+
+    # --- Parse CBOR para extrair campos chave ---
+    # Busca por padrão: texto "name" seguido de texto com o nome da ferramenta
+    i = 0
+    while i < len(data) - 1:
+        key, next_i = _cbor_text(data, i)
+        if key == "name":
+            val, next_i2 = _cbor_text(data, next_i)
+            if val:
+                result["generator_name"] = val
+                i = next_i2
+                continue
+        elif key == "version":
+            val, next_i2 = _cbor_text(data, next_i)
+            if val:
+                result["generator_version"] = val
+                i = next_i2
+                continue
+        i += 1
+
+    # --- Regex sobre texto legível para os demais campos ---
+    text = data.decode("latin-1", errors="replace")
+
+    m = re.search(r'(urn:c2pa:[0-9a-f-]{36})', text)
+    if m:
+        result["manifest_id"] = m.group(1)
+
+    m2 = re.search(r'(\d{4}-\d{2}-\d{2}T[\d:Z]+)', text)
+    if m2:
+        result["created_at"] = m2.group(1)
+
+    if "trainedAlgorithmicMedia" in text:
+        result["source_type"] = "trainedAlgorithmicMedia (Mídia gerada por IA)"
+    elif "digitalCapture" in text:
+        result["source_type"] = "digitalCapture (Foto real)"
+    elif "compositeWithTrainedAlgorithmicMedia" in text:
+        result["source_type"] = "compositeWithTrainedAlgorithmicMedia (Composta com IA)"
+
+    actions = []
+    for action in ("c2pa.created", "c2pa.converted", "c2pa.watermarked", "c2pa.edited"):
+        if action in text:
+            actions.append(action)
+    if actions:
+        result["actions"] = actions
+
+    if "ssl.com" in text.lower():
+        result["certificate"] = "SSL.com C2PA Certificate"
+
+    return result
 
 
 def read_png_chunks(filepath):
@@ -170,6 +251,28 @@ def extract_exif_metadata(filepath):
         return {}
 
 
+def _read_raw_chunk(filepath, target_type):
+    """Retorna os bytes de um chunk PNG pelo tipo, ou None se não encontrado."""
+    try:
+        with open(filepath, "rb") as f:
+            if f.read(8) != b"\x89PNG\r\n\x1a\n":
+                return None
+            while True:
+                header = f.read(8)
+                if len(header) < 8:
+                    return None
+                length = struct.unpack(">I", header[:4])[0]
+                chunk_type = header[4:8].decode("ascii", errors="ignore")
+                data = f.read(length)
+                f.read(4)
+                if chunk_type == target_type:
+                    return data
+                if chunk_type == "IEND":
+                    return None
+    except OSError:
+        return None
+
+
 def extract_ai_metadata(filepath):
     """Extrai todos os metadados de IA disponíveis na imagem."""
     path = Path(filepath)
@@ -188,6 +291,24 @@ def extract_ai_metadata(filepath):
 
     # --- PNG ---
     if suffix == ".png":
+        # Verifica C2PA (chunk caBX) antes dos chunks de texto
+        c2pa_data = _read_raw_chunk(filepath, "caBX")
+        if c2pa_data:
+            c2pa = read_c2pa_chunk(c2pa_data)
+            if c2pa:
+                name = c2pa.get("generator_name", "")
+                ver = c2pa.get("generator_version", "")
+                label = f"{name} v{ver}" if name and ver else (name or ver or "desconhecido")
+                if "gpt-image" in name or "dall-e" in name.lower() or "openai" in name.lower():
+                    result["tool_detected"] = f"ChatGPT / OpenAI ({label})"
+                elif name:
+                    result["tool_detected"] = f"C2PA: {label}"
+                else:
+                    result["tool_detected"] = "C2PA (proveniência verificada)"
+                result["metadata"]["c2pa"] = c2pa
+                result["parsed"] = {k: v for k, v in c2pa.items() if k not in ("manifest_id", "certificate")}
+                return result
+
         chunks = read_png_chunks(filepath)
 
         # Stable Diffusion A1111 / Forge
