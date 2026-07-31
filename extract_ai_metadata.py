@@ -273,6 +273,36 @@ def _read_raw_chunk(filepath, target_type):
         return None
 
 
+def _read_jpeg_c2pa(filepath):
+    """Concatena os segmentos APP11 (JUMBF/C2PA) de um JPEG, ou None."""
+    try:
+        with open(filepath, "rb") as f:
+            data = f.read()
+    except OSError:
+        return None
+
+    if data[:2] != b"\xff\xd8":
+        return None
+
+    blobs = []
+    i = 2
+    while i < len(data) - 3:
+        if data[i] != 0xFF:
+            break
+        marker = data[i + 1]
+        if marker == 0xDA:  # início da imagem comprimida
+            break
+        seg_len = int.from_bytes(data[i + 2:i + 4], "big")
+        if seg_len < 2:
+            break
+        payload = data[i + 4:i + 2 + seg_len]
+        if marker == 0xEB and b"jumb" in payload[:32]:  # APP11
+            blobs.append(payload)
+        i += 2 + seg_len
+
+    return b"".join(blobs) if blobs else None
+
+
 def extract_ai_metadata(filepath):
     """Extrai todos os metadados de IA disponíveis na imagem."""
     path = Path(filepath)
@@ -357,6 +387,24 @@ def extract_ai_metadata(filepath):
 
     # --- JPEG / WEBP (EXIF) ---
     elif suffix in (".jpg", ".jpeg", ".webp"):
+        # C2PA em JPEG vive nos segmentos APP11 (JUMBF)
+        c2pa_data = _read_jpeg_c2pa(filepath)
+        if c2pa_data:
+            c2pa = read_c2pa_chunk(c2pa_data)
+            if c2pa:
+                name = c2pa.get("generator_name", "")
+                ver = c2pa.get("generator_version", "")
+                label = f"{name} v{ver}" if name and ver else (name or ver or "desconhecido")
+                if "gpt-image" in name or "dall-e" in name.lower() or "openai" in name.lower():
+                    result["tool_detected"] = f"ChatGPT / OpenAI ({label})"
+                elif name:
+                    result["tool_detected"] = f"C2PA: {label}"
+                else:
+                    result["tool_detected"] = "C2PA (proveniência verificada)"
+                result["metadata"]["c2pa"] = c2pa
+                result["parsed"] = {k: v for k, v in c2pa.items() if k not in ("manifest_id", "certificate")}
+                return result
+
         exif = extract_exif_metadata(filepath)
         if exif:
             result["metadata"] = exif
@@ -383,6 +431,10 @@ def extract_ai_metadata(filepath):
 def print_result(data, output_format="human"):
     if output_format == "json":
         print(json.dumps(data, ensure_ascii=False, indent=2))
+        return
+
+    if "error" in data:
+        print(f"\nERRO: {data['error']}\n")
         return
 
     print(f"\n{'='*60}")

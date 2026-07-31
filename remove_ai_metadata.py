@@ -10,15 +10,19 @@ import zlib
 import argparse
 from pathlib import Path
 
-# Chunks PNG essenciais que devem ser mantidos
-PNG_KEEP_CHUNKS = {"IHDR", "IDAT", "IEND", "PLTE", "tRNS", "gAMA", "sRGB", "cHRM", "bKGD", "pHYs", "sBIT", "sPLT", "hIST", "tIME"}
+# Chunks PNG essenciais que devem ser mantidos.
+# iCCP (perfil de cor) fica aqui: não carrega informação de IA e removê-lo
+# altera as cores na exibição. Use --strip-icc para removê-lo mesmo assim.
+PNG_KEEP_CHUNKS = {"IHDR", "IDAT", "IEND", "PLTE", "tRNS", "gAMA", "sRGB", "cHRM", "bKGD", "pHYs", "sBIT", "sPLT", "hIST", "tIME", "iCCP"}
 
 # Chunks PNG que sempre contêm metadados e devem ser removidos
-PNG_REMOVE_CHUNKS = {"tEXt", "iTXt", "zTXt", "eXIf", "caBX", "iCCP", "XMP "}
+PNG_REMOVE_CHUNKS = {"tEXt", "iTXt", "zTXt", "eXIf", "caBX", "XMP "}
 
 
-def strip_png(input_path, output_path):
+def strip_png(input_path, output_path, strip_icc=False):
     """Remove todos os metadados de um PNG, mantendo apenas chunks essenciais de imagem."""
+    keep = PNG_KEEP_CHUNKS - {"iCCP"} if strip_icc else PNG_KEEP_CHUNKS
+
     with open(input_path, "rb") as f:
         sig = f.read(8)
         if sig != b"\x89PNG\r\n\x1a\n":
@@ -46,7 +50,7 @@ def strip_png(input_path, output_path):
                 continue
             # Remove chunks não-padrão (minúscula no 1º char = ancillary; maiúscula = critical)
             # Mantém apenas os conhecidos e seguros
-            if chunk_type not in PNG_KEEP_CHUNKS:
+            if chunk_type not in keep:
                 removed.append(chunk_type)
                 continue
             f.write(struct.pack(">I", len(data)))
@@ -57,49 +61,126 @@ def strip_png(input_path, output_path):
     return removed
 
 
-def strip_jpeg(input_path, output_path):
-    """Remove EXIF, XMP e IPTC de JPEG mantendo a imagem intacta."""
-    from PIL import Image
-    import io
-
-    with Image.open(input_path) as img:
-        # Converte para RGB se necessário (remove canal alpha que pode carregar dados)
-        if img.mode in ("RGBA", "P", "LA"):
-            img = img.convert("RGB")
-
-        # Salva sem nenhum metadado
-        buf = io.BytesIO()
-        img.save(buf, format="JPEG", quality=95, optimize=True)
-        buf.seek(0)
-
-    with open(output_path, "wb") as f:
-        f.write(buf.read())
-
-    return ["EXIF", "XMP", "IPTC", "APP1", "APP13"]
+# Marcadores JPEG de metadados a remover (APPn), com rótulo legível
+JPEG_REMOVE_MARKERS = {
+    0xE1: "APP1 (EXIF/XMP)",
+    0xE3: "APP3",
+    0xE5: "APP5",
+    0xE6: "APP6",
+    0xE9: "APP9",
+    0xEA: "APP10 (Apple)",
+    0xEB: "APP11 (C2PA/JUMBF)",
+    0xEC: "APP12",
+    0xED: "APP13 (IPTC/Photoshop)",
+    0xEE: "APP14 (Adobe)",
+    0xEF: "APP15",
+    0xFE: "COM (comentário)",
+}
 
 
-def strip_webp(input_path, output_path):
-    """Remove metadados de WebP."""
-    from PIL import Image
-    import io
+def strip_jpeg(input_path, output_path, strip_icc=False):
+    """Remove EXIF, XMP, IPTC e C2PA de JPEG sem reencodificar (sem perda de qualidade).
 
-    with Image.open(input_path) as img:
-        if img.mode in ("RGBA", "P"):
-            img = img.convert("RGBA")
+    O perfil de cor ICC (APP2) é preservado por padrão: não carrega informação de
+    IA e removê-lo altera as cores na exibição. Use strip_icc=True para removê-lo.
+    """
+    remove_markers = dict(JPEG_REMOVE_MARKERS)
+    if strip_icc:
+        remove_markers[0xE2] = "APP2 (ICC/perfil de cor)"
+
+    with open(input_path, "rb") as f:
+        data = f.read()
+
+    if data[:2] != b"\xff\xd8":
+        raise ValueError("Não é um arquivo JPEG válido.")
+
+    out = bytearray(b"\xff\xd8")
+    removed = []
+    i = 2
+
+    while i < len(data) - 1:
+        if data[i] != 0xFF:
+            # Fora de sincronia: copia o resto como está
+            out.extend(data[i:])
+            break
+
+        marker = data[i + 1]
+
+        if marker == 0xDA:  # SOS: daqui em diante são os dados da imagem
+            out.extend(data[i:])
+            break
+
+        seg_len = int.from_bytes(data[i + 2:i + 4], "big")
+        if seg_len < 2:
+            out.extend(data[i:])
+            break
+
+        segment = data[i:i + 2 + seg_len]
+
+        if marker in remove_markers:
+            removed.append(remove_markers[marker])
         else:
-            img = img.convert("RGB")
+            out.extend(segment)
 
-        buf = io.BytesIO()
-        img.save(buf, format="WEBP", quality=90)
-        buf.seek(0)
+        i += 2 + seg_len
 
     with open(output_path, "wb") as f:
-        f.write(buf.read())
+        f.write(out)
 
-    return ["EXIF", "XMP", "IPTC"]
+    return removed
 
 
-def remove_ai_metadata(input_path, output_path=None, overwrite=False):
+def strip_webp(input_path, output_path, strip_icc=False):
+    """Remove EXIF, XMP e C2PA de WebP sem reencodificar (sem perda de qualidade)."""
+    with open(input_path, "rb") as f:
+        data = f.read()
+
+    if data[:4] != b"RIFF" or data[8:12] != b"WEBP":
+        raise ValueError("Não é um arquivo WebP válido.")
+
+    remove = {b"EXIF", b"XMP ", b"C2PA"}
+    if strip_icc:
+        remove.add(b"ICCP")
+
+    kept = bytearray()
+    removed = []
+    i = 12
+
+    while i + 8 <= len(data):
+        fourcc = data[i:i + 4]
+        size = int.from_bytes(data[i + 4:i + 8], "little")
+        padded = size + (size & 1)  # chunks RIFF têm padding para tamanho par
+        chunk = data[i:i + 8 + padded]
+
+        if fourcc in remove:
+            removed.append(fourcc.decode("ascii", errors="replace").strip())
+        else:
+            if fourcc == b"VP8X" and len(chunk) >= 9:
+                # VP8X carrega flags de presença de ICC/EXIF/XMP; limpa as removidas
+                chunk = bytearray(chunk)
+                flags = chunk[8]
+                if strip_icc:
+                    flags &= ~0x20  # ICC
+                flags &= ~0x08      # EXIF
+                flags &= ~0x04      # XMP
+                chunk[8] = flags
+                chunk = bytes(chunk)
+            kept.extend(chunk)
+
+        i += 8 + padded
+
+    out = bytearray(b"RIFF")
+    out.extend((len(kept) + 4).to_bytes(4, "little"))
+    out.extend(b"WEBP")
+    out.extend(kept)
+
+    with open(output_path, "wb") as f:
+        f.write(out)
+
+    return removed
+
+
+def remove_ai_metadata(input_path, output_path=None, overwrite=False, strip_icc=False):
     path = Path(input_path)
     if not path.exists():
         return {"error": f"Arquivo não encontrado: {input_path}"}
@@ -113,17 +194,19 @@ def remove_ai_metadata(input_path, output_path=None, overwrite=False):
     else:
         out = path.with_stem(path.stem + "_clean")
 
+    # Lido antes de escrever, pois com --overwrite entrada e saída são o mesmo arquivo
+    size_before = path.stat().st_size
+
     try:
         if suffix == ".png":
-            removed = strip_png(path, out)
+            removed = strip_png(path, out, strip_icc)
         elif suffix in (".jpg", ".jpeg"):
-            removed = strip_jpeg(path, out)
+            removed = strip_jpeg(path, out, strip_icc)
         elif suffix == ".webp":
-            removed = strip_webp(path, out)
+            removed = strip_webp(path, out, strip_icc)
         else:
             return {"error": f"Formato não suportado: {suffix}"}
 
-        size_before = path.stat().st_size
         size_after = out.stat().st_size
         saved = size_before - size_after
 
@@ -149,6 +232,9 @@ def main():
                         help="Arquivo de saída (só funciona com uma imagem)")
     parser.add_argument("--overwrite", action="store_true",
                         help="Sobrescreve o arquivo original (CUIDADO)")
+    parser.add_argument("--strip-icc", action="store_true",
+                        help="Remove também o perfil de cor ICC "
+                             "(não contém dado de IA e altera as cores)")
     args = parser.parse_args()
 
     if args.output and len(args.images) > 1:
@@ -156,7 +242,7 @@ def main():
         sys.exit(1)
 
     for img_path in args.images:
-        result = remove_ai_metadata(img_path, args.output, args.overwrite)
+        result = remove_ai_metadata(img_path, args.output, args.overwrite, args.strip_icc)
 
         if "error" in result:
             print(f"ERRO: {result['error']}")
