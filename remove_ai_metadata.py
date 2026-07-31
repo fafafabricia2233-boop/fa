@@ -18,10 +18,38 @@ PNG_KEEP_CHUNKS = {"IHDR", "IDAT", "IEND", "PLTE", "tRNS", "gAMA", "sRGB", "cHRM
 # Chunks PNG que sempre contêm metadados e devem ser removidos
 PNG_REMOVE_CHUNKS = {"tEXt", "iTXt", "zTXt", "eXIf", "caBX", "XMP "}
 
+EXIF_ORIENTATION_TAG = 0x0112
+
+
+def read_orientation(filepath):
+    """Lê a tag EXIF de orientação (1-8). Retorna None se ausente ou normal."""
+    try:
+        from PIL import Image
+        with Image.open(filepath) as img:
+            value = img.getexif().get(EXIF_ORIENTATION_TAG)
+    except Exception:
+        return None
+    return value if value and 2 <= value <= 8 else None
+
+
+def build_minimal_exif(orientation):
+    """Monta um bloco EXIF/TIFF contendo apenas a tag de orientação.
+
+    Preserva como a imagem deve ser exibida sem carregar nenhum outro dado
+    (câmera, GPS, data, software). Retorna os bytes começando em "Exif\\x00\\x00".
+    """
+    tiff = b"MM\x00\x2a" + struct.pack(">I", 8)          # big-endian, IFD0 em offset 8
+    tiff += struct.pack(">H", 1)                          # 1 entrada
+    tiff += struct.pack(">HHI", EXIF_ORIENTATION_TAG, 3, 1)  # tag, tipo SHORT, count 1
+    tiff += struct.pack(">HH", orientation, 0)            # valor + padding do campo de 4 bytes
+    tiff += struct.pack(">I", 0)                          # sem próximo IFD
+    return b"Exif\x00\x00" + tiff
+
 
 def strip_png(input_path, output_path, strip_icc=False):
     """Remove todos os metadados de um PNG, mantendo apenas chunks essenciais de imagem."""
     keep = PNG_KEEP_CHUNKS - {"iCCP"} if strip_icc else PNG_KEEP_CHUNKS
+    orientation = read_orientation(input_path)
 
     with open(input_path, "rb") as f:
         sig = f.read(8)
@@ -41,9 +69,20 @@ def strip_png(input_path, output_path, strip_icc=False):
             if chunk_type == "IEND":
                 break
 
+    def write_chunk(f, chunk_type, payload):
+        raw = chunk_type.encode("ascii") + payload
+        f.write(struct.pack(">I", len(payload)))
+        f.write(raw)
+        f.write(struct.pack(">I", zlib.crc32(raw) & 0xFFFFFFFF))
+
     removed = []
     with open(output_path, "wb") as f:
         f.write(sig)
+
+        # eXIf mínimo só com a orientação, senão a imagem aparece girada
+        if orientation:
+            write_chunk(f, "eXIf", build_minimal_exif(orientation)[6:])
+
         for chunk_type, data, crc in chunks:
             if chunk_type in PNG_REMOVE_CHUNKS:
                 removed.append(chunk_type)
@@ -83,10 +122,15 @@ def strip_jpeg(input_path, output_path, strip_icc=False):
 
     O perfil de cor ICC (APP2) é preservado por padrão: não carrega informação de
     IA e removê-lo altera as cores na exibição. Use strip_icc=True para removê-lo.
+
+    A orientação EXIF também é preservada (reescrita como um EXIF mínimo), senão
+    a foto aparece girada no visualizador.
     """
     remove_markers = dict(JPEG_REMOVE_MARKERS)
     if strip_icc:
         remove_markers[0xE2] = "APP2 (ICC/perfil de cor)"
+
+    orientation = read_orientation(input_path)
 
     with open(input_path, "rb") as f:
         data = f.read()
@@ -95,6 +139,14 @@ def strip_jpeg(input_path, output_path, strip_icc=False):
         raise ValueError("Não é um arquivo JPEG válido.")
 
     out = bytearray(b"\xff\xd8")
+
+    # EXIF mínimo só com a orientação, logo após o SOI
+    if orientation:
+        exif = build_minimal_exif(orientation)
+        out.extend(b"\xff\xe1")
+        out.extend(struct.pack(">H", len(exif) + 2))
+        out.extend(exif)
+
     removed = []
     i = 2
 
@@ -142,6 +194,7 @@ def strip_webp(input_path, output_path, strip_icc=False):
     if strip_icc:
         remove.add(b"ICCP")
 
+    orientation = read_orientation(input_path)
     kept = bytearray()
     removed = []
     i = 12
@@ -160,14 +213,24 @@ def strip_webp(input_path, output_path, strip_icc=False):
                 chunk = bytearray(chunk)
                 flags = chunk[8]
                 if strip_icc:
-                    flags &= ~0x20  # ICC
-                flags &= ~0x08      # EXIF
-                flags &= ~0x04      # XMP
+                    flags &= ~0x20      # ICC
+                if orientation:
+                    flags |= 0x08       # mantém EXIF: reescrito só com a orientação
+                else:
+                    flags &= ~0x08
+                flags &= ~0x04          # XMP
                 chunk[8] = flags
                 chunk = bytes(chunk)
             kept.extend(chunk)
 
         i += 8 + padded
+
+    # EXIF mínimo só com a orientação, senão a imagem aparece girada
+    if orientation:
+        payload = build_minimal_exif(orientation)[6:]
+        kept.extend(b"EXIF" + len(payload).to_bytes(4, "little") + payload)
+        if len(payload) & 1:
+            kept.extend(b"\x00")
 
     out = bytearray(b"RIFF")
     out.extend((len(kept) + 4).to_bytes(4, "little"))
