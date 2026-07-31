@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Editor Premium — Edição Fotográfica</title>
 <style>
 :root{
@@ -286,6 +287,37 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
 
 #file{display:none}
 
+/* ── resultado da exportação ── */
+.done{
+  position:fixed;inset:0;z-index:60;
+  background:rgba(6,6,10,.9);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.done[hidden]{display:none}
+.done-card{
+  background:var(--panel);border:1px solid var(--border2);
+  max-width:560px;width:100%;max-height:100%;
+  display:flex;flex-direction:column;gap:14px;padding:18px;
+  overflow-y:auto;
+}
+.done-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.done-title{font-family:var(--ff-d);font-size:19px}
+.done-meta{font-family:var(--ff-m);font-size:10.5px;color:var(--text3);margin-top:3px}
+.done-x{
+  background:transparent;color:var(--text2);font-size:15px;
+  padding:4px 8px;line-height:1;flex-shrink:0;
+}
+.done-x:hover{color:var(--text)}
+#done-img{
+  width:100%;height:auto;max-height:46vh;object-fit:contain;
+  background:#000;display:block;
+}
+.done-hint{font-size:12px;color:var(--text2);line-height:1.55}
+.done-hint b{color:var(--gold);font-weight:600}
+.done-actions{display:flex;gap:9px}
+.done-actions .btn{flex:1;padding:12px 8px;text-align:center;text-decoration:none;
+  display:flex;align-items:center;justify-content:center}
+
 @media (max-width:900px){
   body{overflow:auto;height:auto;min-height:100vh}
   .work{flex-direction:column}
@@ -293,6 +325,10 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
   #gl{max-height:44vh}
   .panel{width:100%;border-left:none;border-top:1px solid var(--border)}
   .panel-body{overflow:visible}
+  .done{padding:12px}
+  .done-card{max-height:calc(100vh - 24px);gap:11px;padding:14px}
+  #done-img{max-height:34vh}
+  .done-actions{flex-direction:column}
   .bar{padding:0 12px;height:52px;gap:10px}
   .brand .tag{display:none}
   .brand h1{font-size:16px;overflow:hidden;text-overflow:ellipsis}
@@ -339,6 +375,24 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
     </div>
 
     <div class="busy" id="busy">Processando</div>
+  </div>
+
+  <div class="done" id="done" hidden>
+    <div class="done-card">
+      <div class="done-head">
+        <div>
+          <div class="done-title">Imagem pronta</div>
+          <div class="done-meta" id="done-meta"></div>
+        </div>
+        <button class="done-x" id="done-x" aria-label="Fechar">✕</button>
+      </div>
+      <img id="done-img" alt="Resultado da edição — toque e segure para salvar">
+      <p class="done-hint" id="done-hint"></p>
+      <div class="done-actions">
+        <a class="btn btn-gold" id="done-dl" download>Baixar arquivo</a>
+        <button class="btn btn-ghost" id="done-tab">Abrir em nova aba</button>
+      </div>
+    </div>
   </div>
 
   <aside class="panel">
@@ -1039,16 +1093,37 @@ wipe.addEventListener('pointerup', e => {
    ══════════════════════════════════════════════════════════════ */
 let outMode = '1';
 
+/* Limites reais de hardware: a textura não pode passar de MAX_TEXTURE_SIZE,
+   e o canvas 2D tem teto de área — no Safari do iPhone são 16,7 milhões de
+   pixels, então um "2×" de foto de celular estouraria e voltaria em branco. */
+const MAX_TEX  = Math.min(gl.getParameter(gl.MAX_TEXTURE_SIZE), 8192);
+const MAX_AREA = 16777216;
+
+function clampSize(w, h){
+  let s = Math.min(1, MAX_TEX / Math.max(w, h));
+  const area = (w * s) * (h * s);
+  if (area > MAX_AREA) s *= Math.sqrt(MAX_AREA / area);
+  // Arredonda para baixo: arredondar para cima devolveria alguns pixels
+  // acima do teto e o canvas voltaria em branco no iPhone.
+  let tw = Math.max(1, Math.floor(w * s));
+  let th = Math.max(1, Math.floor(h * s));
+  while (tw * th > MAX_AREA && tw > 1 && th > 1){ tw--; th = Math.max(1, Math.round(th * tw / (tw + 1))); }
+  return [tw, th, tw < w || th < h];
+}
+
 function targetSize(){
-  if (!img) return [0, 0];
-  if (outMode === '1') return [srcW, srcH];
-  if (outMode === '2') return [srcW * 2, srcH * 2];
+  if (!img) return [0, 0, false];
+  if (outMode === '1') return clampSize(srcW, srcH);
+  if (outMode === '2') return clampSize(srcW * 2, srcH * 2);
   const s = 3840 / Math.max(srcW, srcH);           // 4K no lado maior
-  return [Math.round(srcW * s), Math.round(srcH * s)];
+  return clampSize(Math.round(srcW * s), Math.round(srcH * s));
 }
 function updateOutDim(){
-  const [w, h] = targetSize();
-  document.getElementById('out-dim').textContent = w ? `${w} × ${h}` : '—';
+  const [w, h, limited] = targetSize();
+  const el = document.getElementById('out-dim');
+  el.textContent = w ? `${w} × ${h}` : '—';
+  el.style.color = limited ? 'var(--gold)' : '';
+  el.title = limited ? 'Reduzido para caber no limite de canvas deste dispositivo' : '';
 }
 
 document.getElementById('seg-size').addEventListener('click', e => {
@@ -1061,30 +1136,66 @@ document.getElementById('seg-size').addEventListener('click', e => {
 
 const busy = document.getElementById('busy');
 
+const done     = document.getElementById('done');
+const doneImg  = document.getElementById('done-img');
+const doneDl   = document.getElementById('done-dl');
+const doneMeta = document.getElementById('done-meta');
+const doneHint = document.getElementById('done-hint');
+let doneURL = null;
+
+function openDone(){
+  // No celular a página rola, e um overlay fixo dentro de iframe pode
+  // acabar ancorado fora da área visível. Sobe ao topo e trava a rolagem.
+  try { window.scrollTo(0, 0); } catch(e){}
+  document.body.style.overflow = 'hidden';
+  done.hidden = false;
+  document.getElementById('done-x').focus();
+}
+function closeDone(){
+  done.hidden = true;
+  document.body.style.overflow = '';
+  doneImg.removeAttribute('src');
+  if (doneURL){ URL.revokeObjectURL(doneURL); doneURL = null; }
+}
+document.getElementById('done-x').addEventListener('click', closeDone);
+done.addEventListener('click', e => { if (e.target === done) closeDone(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !done.hidden) closeDone(); });
+document.getElementById('done-tab').addEventListener('click', () => {
+  if (doneURL) window.open(doneURL, '_blank');
+});
+
+/* Renderiza no tamanho pedido; se o canvas voltar vazio (limite do
+   dispositivo), reduz a escala e tenta de novo em vez de falhar. */
+async function renderExport(w, h){
+  for (let attempt = 0; attempt < 3; attempt++){
+    const s  = [1, 0.7, 0.5][attempt];
+    const tw = Math.max(1, Math.round(w * s));
+    const th = Math.max(1, Math.round(h * s));
+    try {
+      uploadTexture(resample(img, tw, th));
+      canvas.width = tw;
+      canvas.height = th;
+      runPipeline(tw, th);
+      const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.95));
+      if (blob && blob.size > 1024) return { blob, w: tw, h: th, reduced: s < 1 };
+    } catch (err){
+      console.warn('tentativa de exportação falhou em', tw, th, err);
+    }
+  }
+  return null;
+}
+
 document.getElementById('btn-export').addEventListener('click', async () => {
   if (!img) return;
   const [w, h] = targetSize();
   busy.classList.add('on');
   await new Promise(r => setTimeout(r, 40));
 
+  let result = null;
   try {
     // Reamostra o original para o tamanho de saída, depois processa nessa resolução
     // — a nitidez e a definição são aplicadas já em 4K, que é o que dá o "look".
-    uploadTexture(resample(img, w, h));
-    canvas.width = w;
-    canvas.height = h;
-    runPipeline(w, h);
-
-    const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.95));
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${fileName}_premium_${outMode === '4k' ? '4k' : outMode + 'x'}.jpg`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 4000);
-  } catch (err) {
-    alert('Não foi possível exportar nesta resolução — a imagem excede a memória disponível da GPU. Tente uma escala menor.');
-    console.error(err);
+    result = await renderExport(w, h);
   } finally {
     // Restaura o preview
     const scale = Math.min(1, PREVIEW_MAX / Math.max(srcW, srcH));
@@ -1094,6 +1205,28 @@ document.getElementById('btn-export').addEventListener('click', async () => {
     runPipeline(previewW, previewH);
     busy.classList.remove('on');
   }
+
+  if (!result){
+    alert('Não foi possível gerar o arquivo nesta resolução — o dispositivo não deu conta do tamanho. Escolha "Original" e tente de novo.');
+    return;
+  }
+
+  const name = `${fileName}_premium_${outMode === '4k' ? '4k' : outMode + 'x'}.jpg`;
+  doneURL = URL.createObjectURL(result.blob);
+
+  doneImg.src   = doneURL;
+  doneDl.href   = doneURL;
+  doneDl.download = name;
+  doneMeta.textContent =
+    `${result.w} × ${result.h}  ·  ${Math.round(result.blob.size / 1024)} KB  ·  sem metadados`
+    + (result.reduced ? '  ·  reduzida pelo limite do dispositivo' : '');
+  doneHint.innerHTML = 'Se o download não começar sozinho, <b>toque e segure a imagem</b> '
+    + 'acima (ou clique com o botão direito) e escolha <b>Salvar imagem</b>.';
+  openDone();
+
+  // Tenta o download direto — bloqueado dentro de iframes com sandbox,
+  // por isso a imagem acima continua sendo o caminho garantido.
+  try { doneDl.click(); } catch(e){}
 });
 
 /* ══════════════════════════════════════════════════════════════
