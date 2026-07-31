@@ -312,9 +312,19 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
   width:100%;height:auto;max-height:46vh;object-fit:contain;
   background:#000;display:block;
 }
-.done-hint{font-size:12px;color:var(--text2);line-height:1.55}
+.done-hint{
+  font-size:12.5px;color:var(--text2);line-height:1.55;
+  background:rgba(201,167,92,.09);border-left:2px solid var(--gold);
+  padding:10px 12px;
+}
 .done-hint b{color:var(--gold);font-weight:600}
+.done-warn{
+  font-size:11.5px;color:#D98A7E;line-height:1.5;
+  background:rgba(196,87,75,.1);padding:9px 11px;
+}
+.done-warn[hidden]{display:none}
 .done-actions{display:flex;gap:9px}
+.done-actions .btn[hidden]{display:none}
 .done-actions .btn{flex:1;padding:12px 8px;text-align:center;text-decoration:none;
   display:flex;align-items:center;justify-content:center}
 
@@ -386,12 +396,14 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
         </div>
         <button class="done-x" id="done-x" aria-label="Fechar">✕</button>
       </div>
-      <img id="done-img" alt="Resultado da edição — toque e segure para salvar">
       <p class="done-hint" id="done-hint"></p>
-      <div class="done-actions">
-        <a class="btn btn-gold" id="done-dl" download>Baixar arquivo</a>
-        <button class="btn btn-ghost" id="done-tab">Abrir em nova aba</button>
+      <img id="done-img" alt="Resultado da edição — toque e segure para salvar">
+      <div class="done-actions" id="done-actions">
+        <button class="btn btn-gold" id="done-share" hidden>Salvar / compartilhar</button>
+        <a class="btn btn-gold" id="done-dl" download hidden>Baixar arquivo</a>
+        <button class="btn btn-ghost" id="done-tab" hidden>Abrir em nova aba</button>
       </div>
+      <p class="done-warn" id="done-warn" hidden></p>
     </div>
   </div>
 
@@ -1141,7 +1153,7 @@ const doneImg  = document.getElementById('done-img');
 const doneDl   = document.getElementById('done-dl');
 const doneMeta = document.getElementById('done-meta');
 const doneHint = document.getElementById('done-hint');
-let doneURL = null;
+let doneURL = null, doneFile = null;
 
 function openDone(){
   // No celular a página rola, e um overlay fixo dentro de iframe pode
@@ -1155,13 +1167,40 @@ function closeDone(){
   done.hidden = true;
   document.body.style.overflow = '';
   doneImg.removeAttribute('src');
+  doneFile = null;
   if (doneURL){ URL.revokeObjectURL(doneURL); doneURL = null; }
 }
 document.getElementById('done-x').addEventListener('click', closeDone);
 done.addEventListener('click', e => { if (e.target === done) closeDone(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !done.hidden) closeDone(); });
+/* Dentro de um iframe com sandbox — que é como o app é servido na web —
+   o navegador bloqueia downloads via <a download>, sem erro nenhum.
+   Por isso cada caminho de salvamento só aparece quando pode funcionar,
+   e a própria imagem acima continua sendo o caminho que nunca falha. */
+const inFrame = (() => { try { return window.self !== window.top; } catch(e){ return true; } })();
+const isTouch = matchMedia('(pointer: coarse)').matches;
+const doneWarn = document.getElementById('done-warn');
+
 document.getElementById('done-tab').addEventListener('click', () => {
-  if (doneURL) window.open(doneURL, '_blank');
+  if (!doneURL) return;
+  const w = window.open(doneURL, '_blank');
+  if (!w){
+    doneWarn.hidden = false;
+    doneWarn.textContent = 'O navegador bloqueou a nova aba. Use o toque longo '
+      + '(ou botão direito) na imagem acima para salvar.';
+  }
+});
+
+document.getElementById('done-share').addEventListener('click', async () => {
+  if (!doneFile) return;
+  try {
+    await navigator.share({ files: [doneFile], title: doneFile.name });
+  } catch (err){
+    if (err && err.name === 'AbortError') return;   // usuário cancelou
+    doneWarn.hidden = false;
+    doneWarn.textContent = 'Não foi possível abrir o compartilhamento. '
+      + 'Use o toque longo na imagem acima e escolha Salvar imagem.';
+  }
 });
 
 /* Renderiza no tamanho pedido; se o canvas voltar vazio (limite do
@@ -1214,19 +1253,36 @@ document.getElementById('btn-export').addEventListener('click', async () => {
   const name = `${fileName}_premium_${outMode === '4k' ? '4k' : outMode + 'x'}.jpg`;
   doneURL = URL.createObjectURL(result.blob);
 
-  doneImg.src   = doneURL;
-  doneDl.href   = doneURL;
+  doneFile = new File([result.blob], name, { type: 'image/jpeg' });
+
+  doneImg.src     = doneURL;
+  doneDl.href     = doneURL;
   doneDl.download = name;
+  doneWarn.hidden = true;
   doneMeta.textContent =
     `${result.w} × ${result.h}  ·  ${Math.round(result.blob.size / 1024)} KB  ·  sem metadados`
     + (result.reduced ? '  ·  reduzida pelo limite do dispositivo' : '');
-  doneHint.innerHTML = 'Se o download não começar sozinho, <b>toque e segure a imagem</b> '
-    + 'acima (ou clique com o botão direito) e escolha <b>Salvar imagem</b>.';
+
+  // Compartilhamento nativo: no celular abre a folha do sistema, de onde
+  // dá para salvar na galeria ou mandar direto para o Instagram.
+  const canShare = !!(navigator.canShare && navigator.share
+                      && navigator.canShare({ files: [doneFile] }));
+  document.getElementById('done-share').hidden = !canShare;
+  // O <a download> só funciona fora de iframe — não adianta oferecer dentro.
+  doneDl.hidden = inFrame;
+  // Nova aba dá um contexto onde salvar funciona; só faz sentido dentro do iframe.
+  document.getElementById('done-tab').hidden = !inFrame;
+
+  doneHint.innerHTML = isTouch
+    ? '<b>Toque e segure a imagem</b> abaixo e escolha <b>Salvar imagem</b> '
+      + 'para guardá-la no seu celular.'
+    : '<b>Clique com o botão direito na imagem</b> abaixo e escolha '
+      + '<b>Salvar imagem como</b>.';
+
   openDone();
 
-  // Tenta o download direto — bloqueado dentro de iframes com sandbox,
-  // por isso a imagem acima continua sendo o caminho garantido.
-  try { doneDl.click(); } catch(e){}
+  // Fora de iframe o download automático funciona — dentro, é ignorado.
+  if (!inFrame){ try { doneDl.click(); } catch(e){} }
 });
 
 /* ══════════════════════════════════════════════════════════════
