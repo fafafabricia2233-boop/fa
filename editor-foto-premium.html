@@ -1,0 +1,938 @@
+<title>Editor Premium — Edição Fotográfica</title>
+<style>
+:root{
+  --bg:#0B0B10;
+  --panel:#12121A;
+  --panel2:#181822;
+  --border:#242433;
+  --border2:#2E2E40;
+  --text:#E7E4DC;
+  --text2:#87879B;
+  --text3:#4C4C60;
+  --gold:#C9A75C;
+  --gold-dim:#8A733C;
+  --blue:#6F92C4;
+  --ok:#5FA87A;
+  --ff:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ff-d:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --ff-m:"SF Mono",Menlo,Consolas,"Cascadia Code",monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--ff);
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* ── TOP BAR ── */
+.bar{
+  height:58px;
+  flex-shrink:0;
+  border-bottom:1px solid var(--border);
+  background:var(--panel);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  gap:20px;
+}
+.brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+.brand h1{
+  font-family:var(--ff-d);
+  font-size:19px;
+  font-weight:400;
+  letter-spacing:-.01em;
+  white-space:nowrap;
+}
+.brand h1 em{font-style:italic;color:var(--gold)}
+.brand .tag{
+  font-size:9.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text3);
+  font-weight:700;
+  white-space:nowrap;
+}
+.bar-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+
+button{font-family:inherit;cursor:pointer;border:none;transition:all .14s}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button:disabled{opacity:.32;cursor:not-allowed}
+
+.btn{
+  padding:9px 16px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  border-radius:2px;
+  white-space:nowrap;
+}
+.btn-gold{background:var(--gold);color:#0B0B10}
+.btn-gold:hover:not(:disabled){background:#DBB96E}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2)}
+.btn-ghost:hover:not(:disabled){color:var(--text);border-color:var(--text3)}
+.btn-ghost.on{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,167,92,.08)}
+
+/* ── WORKSPACE ── */
+.work{flex:1;display:flex;min-height:0}
+
+/* ── STAGE ── */
+.stage-wrap{
+  flex:1;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  position:relative;
+  background:
+    linear-gradient(rgba(255,255,255,.012),rgba(255,255,255,.012)),
+    var(--bg);
+  overflow:hidden;
+}
+
+.dropzone{
+  border:1px dashed var(--border2);
+  border-radius:3px;
+  padding:64px 48px;
+  text-align:center;
+  max-width:440px;
+  transition:border-color .18s,background .18s;
+  cursor:pointer;
+}
+.dropzone:hover,.dropzone.over{border-color:var(--gold-dim);background:rgba(201,167,92,.04)}
+.dropzone-icon{color:var(--text3);margin-bottom:18px}
+.dropzone h2{font-family:var(--ff-d);font-size:22px;font-weight:400;margin-bottom:10px}
+.dropzone p{font-size:13px;color:var(--text2);line-height:1.6}
+.dropzone .hl{color:var(--gold)}
+.dropzone .fine{font-size:11px;color:var(--text3);margin-top:16px;letter-spacing:.02em}
+
+.stage{position:relative;display:none;line-height:0;box-shadow:0 24px 70px rgba(0,0,0,.6)}
+.stage.live{display:block}
+#gl{display:block;max-width:100%;max-height:calc(100vh - 114px);width:auto;height:auto}
+#before{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:fill;pointer-events:none;display:none;
+}
+.stage.cmp #before{display:block;clip-path:inset(0 calc(100% - var(--wipe,50%)) 0 0)}
+
+.wipe{
+  position:absolute;top:0;bottom:0;left:var(--wipe,50%);
+  width:1px;background:rgba(255,255,255,.85);
+  display:none;cursor:ew-resize;
+}
+.stage.cmp .wipe{display:block}
+.wipe::before{content:"";position:absolute;top:0;bottom:0;left:-14px;right:-14px}
+.wipe-grip{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(11,11,16,.9);border:1px solid rgba(255,255,255,.85);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:#fff;letter-spacing:-1px;line-height:1;
+}
+.cmp-tag{
+  position:absolute;top:12px;padding:4px 10px;
+  font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  background:rgba(11,11,16,.82);color:var(--text2);line-height:1.4;
+  display:none;
+}
+.stage.cmp .cmp-tag{display:block}
+.cmp-tag.l{left:12px}
+.cmp-tag.r{right:12px;color:var(--gold)}
+
+.busy{
+  position:absolute;inset:0;background:rgba(11,11,16,.86);
+  display:none;align-items:center;justify-content:center;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+  z-index:20;
+}
+.busy.on{display:flex}
+
+/* ── PANEL ── */
+.panel{
+  width:328px;flex-shrink:0;
+  border-left:1px solid var(--border);
+  background:var(--panel);
+  display:flex;flex-direction:column;
+  min-height:0;
+}
+.panel-head{
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;gap:7px;flex-shrink:0;
+}
+.panel-head .btn{flex:1;padding:9px 6px;font-size:10px;letter-spacing:.07em}
+
+.panel-body{flex:1;overflow-y:auto;overscroll-behavior:contain}
+.panel-body::-webkit-scrollbar{width:9px}
+.panel-body::-webkit-scrollbar-track{background:var(--panel)}
+.panel-body::-webkit-scrollbar-thumb{background:var(--border2);border:3px solid var(--panel)}
+
+.grp{border-bottom:1px solid var(--border)}
+.grp-h{
+  padding:16px 18px 11px;
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text3);font-weight:700;
+}
+.grp-b{padding:0 18px 18px;display:flex;flex-direction:column;gap:14px}
+
+/* ── SLIDER ── */
+.sl-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+.sl-name{font-size:12px;color:var(--text2)}
+.sl-num{
+  font-family:var(--ff-m);font-size:10.5px;
+  font-variant-numeric:tabular-nums;color:var(--text3);
+  cursor:pointer;padding:1px 3px;border-radius:2px;
+}
+.sl-num.act{color:var(--gold)}
+.sl-num.act.neg{color:var(--blue)}
+.sl-num:hover{background:var(--panel2)}
+
+.sl-rail{position:relative;height:16px;display:flex;align-items:center}
+.sl-rail::after{
+  content:"";position:absolute;left:var(--zero,50%);top:2px;
+  width:1px;height:12px;background:var(--border2);
+}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;
+  width:100%;background:transparent;margin:0;position:relative;z-index:2;
+  height:16px;cursor:pointer;
+}
+input[type=range]::-webkit-slider-runnable-track{height:1px;background:var(--border2)}
+input[type=range]::-moz-range-track{height:1px;background:var(--border2)}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:11px;height:11px;border-radius:50%;
+  background:var(--text2);margin-top:-5px;
+  border:none;transition:background .12s,transform .12s;
+}
+input[type=range]::-moz-range-thumb{
+  width:11px;height:11px;border-radius:50%;background:var(--text2);border:none;
+}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.18)}
+input[type=range].act::-webkit-slider-thumb{background:var(--gold)}
+input[type=range].act::-moz-range-thumb{background:var(--gold)}
+input[type=range].act.neg::-webkit-slider-thumb{background:var(--blue)}
+input[type=range].act.neg::-moz-range-thumb{background:var(--blue)}
+input[type=range]:focus-visible{outline:none}
+input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(201,167,92,.35)}
+
+/* ── EXPORT ── */
+.seg{display:flex;border:1px solid var(--border2);border-radius:2px;overflow:hidden}
+.seg button{
+  flex:1;background:transparent;color:var(--text2);
+  padding:8px 4px;font-size:10px;font-weight:700;letter-spacing:.06em;
+  border-right:1px solid var(--border2);
+}
+.seg button:last-child{border-right:none}
+.seg button:hover{color:var(--text)}
+.seg button.on{background:var(--gold);color:#0B0B10}
+
+.row{display:flex;justify-content:space-between;align-items:baseline;font-size:11px}
+.row span:first-child{color:var(--text2)}
+.row span:last-child{font-family:var(--ff-m);color:var(--text);font-variant-numeric:tabular-nums}
+
+.note{
+  font-size:11px;color:var(--text3);line-height:1.55;
+  padding-top:2px;
+}
+.note b{color:var(--text2);font-weight:600}
+
+.panel-foot{
+  padding:14px 18px;border-top:1px solid var(--border);
+  flex-shrink:0;display:flex;flex-direction:column;gap:9px;
+}
+.panel-foot .btn{width:100%;padding:12px}
+
+#file{display:none}
+
+@media (max-width:900px){
+  body{overflow:auto;height:auto;min-height:100vh}
+  .work{flex-direction:column}
+  .stage-wrap{padding:16px;min-height:44vh}
+  #gl{max-height:44vh}
+  .panel{width:100%;border-left:none;border-top:1px solid var(--border)}
+  .panel-body{overflow:visible}
+  .bar{padding:0 12px;height:52px;gap:10px}
+  .brand .tag{display:none}
+  .brand h1{font-size:16px;overflow:hidden;text-overflow:ellipsis}
+  .bar .btn{padding:8px 11px;font-size:10px;letter-spacing:.05em}
+}
+@media (max-width:400px){
+  .bar .btn{padding:8px 9px;font-size:9.5px;letter-spacing:.03em}
+  .brand h1{font-size:15px}
+}
+</style>
+
+<div class="bar">
+  <div class="brand">
+    <h1>Editor <em>Premium</em></h1>
+    <span class="tag">Full Frame · 4K</span>
+  </div>
+  <div class="bar-actions">
+    <button class="btn btn-ghost" id="btn-cmp" disabled>Comparar</button>
+    <button class="btn btn-ghost" id="btn-open">Abrir imagem</button>
+  </div>
+</div>
+
+<div class="work">
+  <div class="stage-wrap" id="stage-wrap">
+    <div class="dropzone" id="dropzone">
+      <div class="dropzone-icon">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="2.5" y="5" width="19" height="14.5" rx="1.5"/>
+          <circle cx="12" cy="12.2" r="3.8"/>
+          <path d="M8 5l1.3-2h5.4L16 5"/>
+        </svg>
+      </div>
+      <h2>Solte a fotografia aqui</h2>
+      <p>Ou <span class="hl">clique para selecionar</span> um arquivo do seu dispositivo</p>
+      <p class="fine">O preset premium é aplicado automaticamente</p>
+    </div>
+
+    <div class="stage" id="stage">
+      <canvas id="gl"></canvas>
+      <img id="before" alt="Imagem original">
+      <span class="cmp-tag l">Original</span>
+      <span class="cmp-tag r">Editada</span>
+      <div class="wipe" id="wipe"><div class="wipe-grip">◂▸</div></div>
+    </div>
+
+    <div class="busy" id="busy">Processando</div>
+  </div>
+
+  <aside class="panel">
+    <div class="panel-head">
+      <button class="btn btn-gold" id="btn-preset">Preset premium</button>
+      <button class="btn btn-ghost" id="btn-reset">Zerar</button>
+    </div>
+
+    <div class="panel-body" id="controls"></div>
+
+    <div class="panel-foot">
+      <div class="grp-h" style="padding:0 0 4px">Exportação</div>
+      <div class="seg" id="seg-size">
+        <button data-size="1" class="on">Original</button>
+        <button data-size="2">2×</button>
+        <button data-size="4k">4K</button>
+      </div>
+      <div class="row"><span>Resolução de saída</span><span id="out-dim">—</span></div>
+      <div class="note">Exportado <b>sem metadados</b> — nenhum campo EXIF, XMP ou C2PA é gravado no arquivo final.</div>
+      <button class="btn btn-gold" id="btn-export" disabled>Exportar JPEG</button>
+    </div>
+  </aside>
+</div>
+
+<input type="file" id="file" accept="image/*">
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   PARÂMETROS — valores default = preset do prompt premium
+   ══════════════════════════════════════════════════════════════ */
+const PARAMS = [
+  {grp:'Exposição e tom', items:[
+    {id:'exposure',   name:'Exposição',      min:-2,   max:2,   step:.05, def:-0.3, unit:' EV', dec:2},
+    {id:'brightness', name:'Brilho',         min:-50,  max:50,  step:1,   def:-8,   unit:'%'},
+    {id:'contrast',   name:'Contraste',      min:-50,  max:50,  step:1,   def:10,   unit:'%'},
+    {id:'blacks',     name:'Ponto de preto', min:-50,  max:50,  step:1,   def:12,   unit:'%'},
+  ]},
+  {grp:'Luz — recuperação', items:[
+    {id:'highlights', name:'Altas luzes',    min:-100, max:100, step:1,   def:-12,  unit:'%'},
+    {id:'shadows',    name:'Sombras',        min:-100, max:100, step:1,   def:10,   unit:'%'},
+    {id:'dehaze',     name:'Dehaze',         min:-20,  max:50,  step:1,   def:3,    unit:'%'},
+  ]},
+  {grp:'Cor', items:[
+    {id:'vibrance',   name:'Vibração',       min:-50,  max:50,  step:1,   def:5,    unit:'%'},
+    {id:'saturation', name:'Saturação',      min:-50,  max:50,  step:1,   def:0,    unit:'%'},
+  ]},
+  {grp:'Detalhe e textura', items:[
+    {id:'clarity',    name:'Clareza',        min:-50,  max:50,  step:1,   def:8,    unit:'%'},
+    {id:'definition', name:'Definição',      min:-50,  max:50,  step:1,   def:15,   unit:'%'},
+    {id:'sharpness',  name:'Nitidez',        min:0,    max:100, step:1,   def:10,   unit:'%'},
+    {id:'noise',      name:'Redução de ruído',min:0,   max:100, step:1,   def:15,   unit:'%'},
+  ]},
+];
+
+const V = {};
+const EL = {};
+PARAMS.forEach(g => g.items.forEach(p => V[p.id] = p.def));
+
+/* ══════════════════════════════════════════════════════════════
+   SHADERS
+   ══════════════════════════════════════════════════════════════ */
+const VS = `#version 300 es
+in vec2 aPos;
+out vec2 vUV;
+void main(){ vUV = aPos * 0.5 + 0.5; gl_Position = vec4(aPos, 0.0, 1.0); }`;
+
+/* Passo 1 — tom: dehaze, exposição, brilho, altas luzes, sombras,
+   contraste (curva S), ponto de preto, rolloff suave de brancos.  */
+const FS_TONE = `#version 300 es
+precision highp float;
+in vec2 vUV;
+out vec4 outColor;
+uniform sampler2D uSrc;
+uniform float uExposure, uBrightness, uContrast, uBlacks;
+uniform float uHighlights, uShadows, uDehaze;
+
+const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
+
+void main(){
+  vec3 c = texture(uSrc, vUV).rgb;
+
+  /* — Dehaze: modelo de véu atmosférico J = (I - A)/t + A — */
+  if (abs(uDehaze) > 0.001){
+    float dark = min(c.r, min(c.g, c.b));
+    const float A = 0.92;
+    float t = clamp(1.0 - uDehaze * (dark / A), 0.15, 2.0);
+    c = (c - A) / t + A;
+  }
+
+  /* — Exposição em espaço linear — */
+  if (abs(uExposure) > 0.001){
+    vec3 lin = pow(max(c, 0.0), vec3(2.2)) * exp2(uExposure);
+    c = pow(max(lin, 0.0), vec3(1.0/2.2));
+  }
+
+  /* — Brilho — */
+  c *= (1.0 + uBrightness);
+
+  /* — Recuperação de altas luzes e sombras — */
+  float l = dot(clamp(c, 0.0, 1.0), LUMA);
+  if (abs(uHighlights) > 0.001) c += c * (uHighlights * smoothstep(0.45, 1.0, l));
+  if (abs(uShadows)    > 0.001) c += uShadows * 0.28 * (1.0 - smoothstep(0.0, 0.55, l));
+
+  /* — Contraste: curva S suave, sem clipping duro — */
+  if (uContrast > 0.0){
+    vec3 s = smoothstep(vec3(0.0), vec3(1.0), clamp(c, 0.0, 1.0));
+    c = mix(c, s, uContrast);
+  } else if (uContrast < 0.0){
+    c = mix(c, c * 0.62 + 0.19, -uContrast);
+  }
+
+  /* — Ponto de preto — */
+  float k = uBlacks * 0.2;
+  c = (c - k) / max(1.0 - k, 0.02);
+
+  /* — Rolloff de brancos: comprime acima de 0.90 em vez de estourar — */
+  vec3 over = max(c - 0.90, 0.0);
+  c = min(c, 0.90 + over / (1.0 + over * 3.2));
+
+  outColor = vec4(max(c, 0.0), 1.0);
+}`;
+
+/* Blur gaussiano separável — usado para construir as bandas de frequência */
+const FS_BLUR = `#version 300 es
+precision highp float;
+in vec2 vUV;
+out vec4 outColor;
+uniform sampler2D uTex;
+uniform vec2 uDir;
+
+void main(){
+  vec3 c = texture(uTex, vUV).rgb * 0.2270270;
+  c += (texture(uTex, vUV + uDir * 1.0).rgb + texture(uTex, vUV - uDir * 1.0).rgb) * 0.1945946;
+  c += (texture(uTex, vUV + uDir * 2.0).rgb + texture(uTex, vUV - uDir * 2.0).rgb) * 0.1216216;
+  c += (texture(uTex, vUV + uDir * 3.0).rgb + texture(uTex, vUV - uDir * 3.0).rgb) * 0.0540540;
+  c += (texture(uTex, vUV + uDir * 4.0).rgb + texture(uTex, vUV - uDir * 4.0).rgb) * 0.0162162;
+  outColor = vec4(c, 1.0);
+}`;
+
+/* Passo final — recombina as bandas de detalhe + cor.
+   fine  = T - S  → nitidez (e onde o ruído vive)
+   mid   = S - M  → definição / microtextura
+   broad = M - L  → clareza (contraste local, mascarado nos meios-tons) */
+const FS_COMP = `#version 300 es
+precision highp float;
+in vec2 vUV;
+out vec4 outColor;
+uniform sampler2D uT, uS, uM, uL;
+uniform float uClarity, uDefinition, uSharpness, uNoise;
+uniform float uVibrance, uSaturation;
+
+const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
+
+void main(){
+  vec3 T = texture(uT, vUV).rgb;
+  vec3 S = texture(uS, vUV).rgb;
+  vec3 M = texture(uM, vUV).rgb;
+  vec3 L = texture(uL, vUV).rgb;
+
+  vec3 fine  = T - S;
+  vec3 mid   = S - M;
+  vec3 broad = M - L;
+
+  float lum = dot(T, LUMA);
+
+  /* — Redução de ruído por coring (encolhimento tipo Wiener):
+       keep = amp²/(amp² + t²). Abaixo do limiar (ruído) → 0;
+       acima dele (borda, textura real) → 1 rapidamente, sem suavizar. — */
+  if (uNoise > 0.001){
+    float amp  = abs(dot(fine, LUMA));
+    float t    = 0.012 + uNoise * 0.030;
+    float keep = (amp * amp) / (amp * amp + t * t);
+    fine *= mix(1.0, keep, uNoise);
+  }
+
+  /* — Máscara de meios-tons: clareza não ataca pretos nem brancos — */
+  float mid_mask = 1.0 - pow(abs(2.0 * lum - 1.0), 2.0);
+
+  vec3 c = T
+         + fine  * uSharpness
+         + mid   * uDefinition
+         + broad * uClarity * mid_mask;
+
+  c = clamp(c, 0.0, 1.0);
+
+  /* — Vibração: ganho maior onde há pouca saturação, com proteção de pele — */
+  if (abs(uVibrance) > 0.001 || abs(uSaturation) > 0.001){
+    float mx  = max(c.r, max(c.g, c.b));
+    float mn  = min(c.r, min(c.g, c.b));
+    float sat = mx - mn;
+    float skin = clamp((c.r - c.b) * 2.2, 0.0, 1.0)
+               * step(c.b, c.g) * step(c.g, c.r);
+    float vib = uVibrance * (1.0 - sat) * (1.0 - 0.55 * skin);
+    float gl  = dot(c, LUMA);
+    c = mix(vec3(gl), c, max(1.0 + vib + uSaturation, 0.0));
+  }
+
+  outColor = vec4(clamp(c, 0.0, 1.0), 1.0);
+}`;
+
+/* ══════════════════════════════════════════════════════════════
+   WEBGL
+   ══════════════════════════════════════════════════════════════ */
+const canvas = document.getElementById('gl');
+const gl = canvas.getContext('webgl2', {
+  preserveDrawingBuffer: true, alpha: false, antialias: false, premultipliedAlpha: false
+});
+
+if (!gl){
+  document.getElementById('stage-wrap').innerHTML =
+    '<div class="dropzone" style="cursor:default"><h2>WebGL 2 indisponível</h2>' +
+    '<p>Este editor precisa de WebGL 2. Tente um navegador atualizado (Chrome, Edge, Safari 15+ ou Firefox).</p></div>';
+  throw new Error('no webgl2');
+}
+
+const hasFloat = !!gl.getExtension('EXT_color_buffer_half_float') || !!gl.getExtension('EXT_color_buffer_float');
+const IFMT = hasFloat ? gl.RGBA16F : gl.RGBA8;
+const ITYPE = hasFloat ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE;
+
+function compile(type, src){
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+  return s;
+}
+function program(fs){
+  const p = gl.createProgram();
+  gl.attachShader(p, compile(gl.VERTEX_SHADER, VS));
+  gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs));
+  gl.bindAttribLocation(p, 0, 'aPos');
+  gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  return p;
+}
+
+const P_TONE = program(FS_TONE);
+const P_BLUR = program(FS_BLUR);
+const P_COMP = program(FS_COMP);
+
+const vao = gl.createVertexArray();
+gl.bindVertexArray(vao);
+const vbo = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(0);
+gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+function makeTarget(w, h){
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texImage2D(gl.TEXTURE_2D, 0, IFMT, w, h, 0, gl.RGBA, ITYPE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const fb = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  return { tex, fb, w, h };
+}
+
+let TG = null;             // alvos: T, S, M, L, ping
+let srcTex = null;
+let srcW = 0, srcH = 0;
+
+function allocTargets(w, h){
+  if (TG && TG.w === w && TG.h === h) return;
+  if (TG) TG.all.forEach(t => { gl.deleteTexture(t.tex); gl.deleteFramebuffer(t.fb); });
+  const T = makeTarget(w,h), S = makeTarget(w,h), M = makeTarget(w,h),
+        L = makeTarget(w,h), ping = makeTarget(w,h);
+  TG = { T, S, M, L, ping, w, h, all:[T,S,M,L,ping] };
+}
+
+function draw(target){
+  if (target){
+    gl.bindFramebuffer(gl.FRAMEBUFFER, target.fb);
+    gl.viewport(0, 0, target.w, target.h);
+  } else {
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+function bindTex(prog, name, tex, unit){
+  gl.activeTexture(gl.TEXTURE0 + unit);
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.uniform1i(gl.getUniformLocation(prog, name), unit);
+}
+
+/* Blur separável com N iterações (blur progressivo entre bandas) */
+function blur(srcTexture, dst, sigmaPx, iters){
+  gl.useProgram(P_BLUR);
+  const dirLoc = gl.getUniformLocation(P_BLUR, 'uDir');
+  const step = sigmaPx / 2.0;
+  for (let i = 0; i < iters; i++){
+    bindTex(P_BLUR, 'uTex', i === 0 ? srcTexture : dst.tex, 0);
+    gl.uniform2f(dirLoc, step / TG.w, 0);
+    draw(TG.ping);
+    bindTex(P_BLUR, 'uTex', TG.ping.tex, 0);
+    gl.uniform2f(dirLoc, 0, step / TG.h);
+    draw(dst);
+  }
+}
+
+/* Pipeline completo. `toScreen` = desenha o passo final no canvas. */
+function runPipeline(w, h){
+  allocTargets(w, h);
+  gl.bindVertexArray(vao);
+
+  /* — 1. tom — */
+  gl.useProgram(P_TONE);
+  bindTex(P_TONE, 'uSrc', srcTex, 0);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uExposure'),   V.exposure);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uBrightness'), V.brightness/100);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uContrast'),   V.contrast/100);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uBlacks'),     V.blacks/100);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uHighlights'), V.highlights/100 * 0.6);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uShadows'),    V.shadows/100 * 0.5);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uDehaze'),     V.dehaze/100);
+  draw(TG.T);
+
+  /* — 2. pirâmide de blurs (raios proporcionais ao tamanho → look idêntico
+         no preview e na exportação 4K) — */
+  const k = Math.max(w, h) / 1600;
+  blur(TG.T.tex, TG.S, Math.max(1.0, 1.3 * k), 1);
+  blur(TG.S.tex, TG.M, Math.max(2.0, 6.0 * k), 2);
+  blur(TG.M.tex, TG.L, Math.max(6.0, 20.0 * k), 3);
+
+  /* — 3. recombinação — */
+  gl.useProgram(P_COMP);
+  bindTex(P_COMP, 'uT', TG.T.tex, 0);
+  bindTex(P_COMP, 'uS', TG.S.tex, 1);
+  bindTex(P_COMP, 'uM', TG.M.tex, 2);
+  bindTex(P_COMP, 'uL', TG.L.tex, 3);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uClarity'),    V.clarity/100 * 2.6);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uDefinition'), V.definition/100 * 2.4);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uSharpness'),  V.sharpness/100 * 3.0);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uNoise'),      V.noise/100);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uVibrance'),   V.vibrance/100);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uSaturation'), V.saturation/100);
+  draw(null);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CARREGAMENTO E RENDER
+   ══════════════════════════════════════════════════════════════ */
+const PREVIEW_MAX = 2048;
+let img = null, fileName = 'imagem';
+let previewW = 0, previewH = 0;
+
+function uploadTexture(source){
+  if (srcTex) gl.deleteTexture(srcTex);
+  srcTex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, srcTex);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE, source);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+}
+
+/* Reamostragem de alta qualidade em canvas 2D (bicúbico do navegador),
+   feita em etapas de no máx. 2× para evitar serrilhado e halos. */
+function resample(source, w, h){
+  let cw = source.naturalWidth || source.width;
+  let ch = source.naturalHeight || source.height;
+  let cur = source;
+  while (cw !== w || ch !== h){
+    const nw = w > cw ? Math.min(w, cw * 2) : Math.max(w, Math.ceil(cw / 2));
+    const nh = h > ch ? Math.min(h, ch * 2) : Math.max(h, Math.ceil(ch / 2));
+    const c = document.createElement('canvas');
+    c.width = nw; c.height = nh;
+    const ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(cur, 0, 0, nw, nh);
+    cur = c; cw = nw; ch = nh;
+  }
+  return cur;
+}
+
+let pending = false;
+function render(){
+  if (pending || !srcTex) return;
+  pending = true;
+  requestAnimationFrame(() => {
+    pending = false;
+    canvas.width = previewW;
+    canvas.height = previewH;
+    runPipeline(previewW, previewH);
+  });
+}
+
+function loadFile(file){
+  if (!file || !file.type.startsWith('image/')){
+    alert('Selecione um arquivo de imagem válido.');
+    return;
+  }
+  fileName = file.name.replace(/\.[^.]+$/, '') || 'imagem';
+  const url = URL.createObjectURL(file);
+  const im = new Image();
+  im.onload = () => {
+    img = im;
+    srcW = im.naturalWidth; srcH = im.naturalHeight;
+
+    const scale = Math.min(1, PREVIEW_MAX / Math.max(srcW, srcH));
+    previewW = Math.max(1, Math.round(srcW * scale));
+    previewH = Math.max(1, Math.round(srcH * scale));
+
+    uploadTexture(scale < 1 ? resample(im, previewW, previewH) : im);
+
+    document.getElementById('before').src = url;
+    document.getElementById('dropzone').style.display = 'none';
+    document.getElementById('stage').classList.add('live');
+    document.getElementById('btn-export').disabled = false;
+    document.getElementById('btn-cmp').disabled = false;
+    updateOutDim();
+    render();
+  };
+  im.onerror = () => alert('Não foi possível abrir esta imagem.');
+  im.src = url;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INTERFACE — sliders
+   ══════════════════════════════════════════════════════════════ */
+function fmt(p, v){
+  const s = p.dec ? v.toFixed(p.dec) : String(Math.round(v));
+  return (v > 0 ? '+' : v < 0 ? '−' : '') + s.replace('-','').replace('.', ',') + p.unit;
+}
+function syncOne(p){
+  const { input, num } = EL[p.id];
+  const v = V[p.id];
+  const off = Math.abs(v - (p.min < 0 ? 0 : p.min)) > 1e-6;
+  num.textContent = fmt(p, v);
+  num.classList.toggle('act', off);
+  num.classList.toggle('neg', v < 0);
+  input.classList.toggle('act', off);
+  input.classList.toggle('neg', v < 0);
+  input.value = v;
+}
+function syncAll(){ PARAMS.forEach(g => g.items.forEach(syncOne)); }
+
+const controls = document.getElementById('controls');
+PARAMS.forEach(g => {
+  const grp = document.createElement('div');
+  grp.className = 'grp';
+  const h = document.createElement('div');
+  h.className = 'grp-h';
+  h.textContent = g.grp;
+  const b = document.createElement('div');
+  b.className = 'grp-b';
+
+  g.items.forEach(p => {
+    const wrap = document.createElement('div');
+
+    const top = document.createElement('div');
+    top.className = 'sl-top';
+    const nm = document.createElement('label');
+    nm.className = 'sl-name';
+    nm.textContent = p.name;
+    nm.htmlFor = 'r-' + p.id;
+    const num = document.createElement('button');
+    num.className = 'sl-num';
+    num.type = 'button';
+    num.title = 'Clique para voltar ao valor do preset';
+    top.append(nm, num);
+
+    const rail = document.createElement('div');
+    rail.className = 'sl-rail';
+    const zero = p.min < 0 ? (0 - p.min) / (p.max - p.min) * 100 : 0;
+    rail.style.setProperty('--zero', zero + '%');
+
+    const input = document.createElement('input');
+    input.type = 'range';
+    input.id = 'r-' + p.id;
+    input.min = p.min; input.max = p.max; input.step = p.step; input.value = p.def;
+    rail.appendChild(input);
+
+    wrap.append(top, rail);
+    b.appendChild(wrap);
+    EL[p.id] = { input, num };
+
+    input.addEventListener('input', () => {
+      V[p.id] = parseFloat(input.value);
+      syncOne(p);
+      render();
+    });
+    num.addEventListener('click', () => {
+      V[p.id] = p.def;
+      syncOne(p);
+      render();
+    });
+  });
+
+  grp.append(h, b);
+  controls.appendChild(grp);
+});
+syncAll();
+
+document.getElementById('btn-preset').addEventListener('click', () => {
+  PARAMS.forEach(g => g.items.forEach(p => V[p.id] = p.def));
+  syncAll(); render();
+});
+document.getElementById('btn-reset').addEventListener('click', () => {
+  PARAMS.forEach(g => g.items.forEach(p => V[p.id] = p.min < 0 ? 0 : p.min));
+  syncAll(); render();
+});
+
+/* ══════════════════════════════════════════════════════════════
+   COMPARAÇÃO ANTES / DEPOIS
+   ══════════════════════════════════════════════════════════════ */
+const stage = document.getElementById('stage');
+const wipe = document.getElementById('wipe');
+const btnCmp = document.getElementById('btn-cmp');
+
+btnCmp.addEventListener('click', () => {
+  const on = stage.classList.toggle('cmp');
+  btnCmp.classList.toggle('on', on);
+  if (on) stage.style.setProperty('--wipe', '50%');
+});
+
+let dragging = false;
+function moveWipe(clientX){
+  const r = canvas.getBoundingClientRect();
+  const pct = Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100));
+  stage.style.setProperty('--wipe', pct + '%');
+}
+wipe.addEventListener('pointerdown', e => {
+  dragging = true;
+  wipe.setPointerCapture(e.pointerId);
+  e.preventDefault();
+});
+wipe.addEventListener('pointermove', e => { if (dragging) moveWipe(e.clientX); });
+wipe.addEventListener('pointerup', e => {
+  dragging = false;
+  wipe.releasePointerCapture(e.pointerId);
+});
+
+/* ══════════════════════════════════════════════════════════════
+   EXPORTAÇÃO
+   ══════════════════════════════════════════════════════════════ */
+let outMode = '1';
+
+function targetSize(){
+  if (!img) return [0, 0];
+  if (outMode === '1') return [srcW, srcH];
+  if (outMode === '2') return [srcW * 2, srcH * 2];
+  const s = 3840 / Math.max(srcW, srcH);           // 4K no lado maior
+  return [Math.round(srcW * s), Math.round(srcH * s)];
+}
+function updateOutDim(){
+  const [w, h] = targetSize();
+  document.getElementById('out-dim').textContent = w ? `${w} × ${h}` : '—';
+}
+
+document.getElementById('seg-size').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  outMode = b.dataset.size;
+  [...e.currentTarget.children].forEach(x => x.classList.toggle('on', x === b));
+  updateOutDim();
+});
+
+const busy = document.getElementById('busy');
+
+document.getElementById('btn-export').addEventListener('click', async () => {
+  if (!img) return;
+  const [w, h] = targetSize();
+  busy.classList.add('on');
+  await new Promise(r => setTimeout(r, 40));
+
+  try {
+    // Reamostra o original para o tamanho de saída, depois processa nessa resolução
+    // — a nitidez e a definição são aplicadas já em 4K, que é o que dá o "look".
+    uploadTexture(resample(img, w, h));
+    canvas.width = w;
+    canvas.height = h;
+    runPipeline(w, h);
+
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.95));
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${fileName}_premium_${outMode === '4k' ? '4k' : outMode + 'x'}.jpg`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  } catch (err) {
+    alert('Não foi possível exportar nesta resolução — a imagem excede a memória disponível da GPU. Tente uma escala menor.');
+    console.error(err);
+  } finally {
+    // Restaura o preview
+    const scale = Math.min(1, PREVIEW_MAX / Math.max(srcW, srcH));
+    uploadTexture(scale < 1 ? resample(img, previewW, previewH) : img);
+    canvas.width = previewW;
+    canvas.height = previewH;
+    runPipeline(previewW, previewH);
+    busy.classList.remove('on');
+  }
+});
+
+/* ══════════════════════════════════════════════════════════════
+   ENTRADA DE ARQUIVO
+   ══════════════════════════════════════════════════════════════ */
+const fileInput = document.getElementById('file');
+const dropzone = document.getElementById('dropzone');
+
+dropzone.addEventListener('click', () => fileInput.click());
+document.getElementById('btn-open').addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', () => {
+  if (fileInput.files[0]) loadFile(fileInput.files[0]);
+  fileInput.value = '';
+});
+
+const wrap = document.getElementById('stage-wrap');
+['dragenter','dragover'].forEach(ev =>
+  wrap.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.add('over'); }));
+['dragleave','drop'].forEach(ev =>
+  wrap.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.remove('over'); }));
+wrap.addEventListener('drop', e => {
+  if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+});
+</script>
