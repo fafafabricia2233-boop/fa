@@ -279,14 +279,16 @@
       if (marker === 0xFFE1) { // APP1 — EXIF / XMP
         const len = view.getUint16(offset);
         const segData = buffer.slice(offset + 2, offset + len);
-        const segView = new DataView(segData);
-        // Check for Exif header
-        const header = String.fromCharCode(...new Uint8Array(segData, 0, 6));
-        if (header.startsWith('Exif')) {
-          parseIFD(segView, 8, tags);
+        // Check for Exif header. O bloco TIFF começa DEPOIS dos 6 bytes
+        // "Exif\0\0" — a DataView precisa partir dali, senão a ordem de
+        // bytes é lida como "Ex" e a IFD inteira sai corrompida.
+        const header = String.fromCharCode(...new Uint8Array(segData, 0, Math.min(6, segData.byteLength)));
+        if (header.startsWith('Exif') && segData.byteLength > 14) {
+          parseIFD(new DataView(segData, 6), 0, tags);
         }
         // Check for XMP
-        const xmpHeader = new TextDecoder().decode(new Uint8Array(segData, 0, 30));
+        const xmpHeader = new TextDecoder().decode(
+          new Uint8Array(segData, 0, Math.min(30, segData.byteLength)));
         if (xmpHeader.includes('http://ns.adobe.com/xap')) {
           const xmpStr = new TextDecoder().decode(new Uint8Array(segData));
           parseXMP(xmpStr, tags);

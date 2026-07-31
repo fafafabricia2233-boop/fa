@@ -248,6 +248,36 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
 }
 .note b{color:var(--text2);font-weight:600}
 
+/* ── caixa de metadados ── */
+.meta-box{border:1px solid var(--border2);border-radius:2px;overflow:hidden}
+.meta-sum{
+  width:100%;background:var(--panel2);border:none;
+  display:flex;align-items:center;gap:8px;
+  padding:9px 11px;text-align:left;
+  font-size:11px;color:var(--text2);font-family:inherit;
+}
+.meta-sum:hover{background:#1E1E2A}
+.meta-sum span:nth-child(2){flex:1;line-height:1.35}
+.meta-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  background:var(--ok);
+}
+.meta-box.risk .meta-dot{background:#C4574B}
+.meta-caret{color:var(--text3);font-size:9px;transition:transform .15s;flex-shrink:0}
+.meta-sum[aria-expanded="true"] .meta-caret{transform:rotate(180deg)}
+.meta-list{
+  border-top:1px solid var(--border2);
+  max-height:132px;overflow-y:auto;
+  padding:8px 11px;display:flex;flex-direction:column;gap:5px;
+}
+.meta-item{font-size:10.5px;line-height:1.4;display:flex;gap:6px}
+.meta-item b{
+  color:var(--text3);font-weight:500;flex-shrink:0;
+  max-width:112px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.meta-item span{color:var(--text2);word-break:break-word;min-width:0}
+.meta-item.ai b,.meta-item.ai span{color:#D98A7E}
+
 .panel-foot{
   padding:14px 18px;border-top:1px solid var(--border);
   flex-shrink:0;display:flex;flex-direction:column;gap:9px;
@@ -327,7 +357,17 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
         <button data-size="4k">4K</button>
       </div>
       <div class="row"><span>Resolução de saída</span><span id="out-dim">—</span></div>
-      <div class="note">Exportado <b>sem metadados</b> — nenhum campo EXIF, XMP ou C2PA é gravado no arquivo final.</div>
+
+      <div class="meta-box" id="meta-box" hidden>
+        <button class="meta-sum" id="meta-sum" aria-expanded="false">
+          <span class="meta-dot" id="meta-dot"></span>
+          <span id="meta-label"></span>
+          <span class="meta-caret">▾</span>
+        </button>
+        <div class="meta-list" id="meta-list" hidden></div>
+      </div>
+
+      <div class="note">A exportação regrava os pixels do zero — <b>nenhum campo EXIF, XMP, IPTC ou C2PA</b> sobrevive no arquivo final.</div>
       <button class="btn btn-gold" id="btn-export" disabled>Exportar JPEG</button>
     </div>
   </aside>
@@ -712,6 +752,10 @@ function loadFile(file){
     return;
   }
   fileName = file.name.replace(/\.[^.]+$/, '') || 'imagem';
+
+  // Lê os bytes brutos para inspecionar os metadados do original
+  file.arrayBuffer().then(showMeta).catch(() => { metaBox.hidden = true; });
+
   const url = URL.createObjectURL(file);
   const im = new Image();
   im.onload = () => {
@@ -735,6 +779,144 @@ function loadFile(file){
   im.onerror = () => alert('Não foi possível abrir esta imagem.');
   im.src = url;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   LEITOR DE METADADOS — mostra o que existe no original
+   e que será descartado na exportação
+   ══════════════════════════════════════════════════════════════ */
+const AI_WORDS = ['midjourney','dall-e','dalle','stable diffusion','openai','firefly',
+  'imagen','bing image','craiyon','nightcafe','dreamstudio','invoke','automatic1111',
+  'comfyui','leonardo','runway','pika','flux','sdxl','diffusion','generative','gpt',
+  'gemini','claude','ai generated','ai-generated','trainedalgorithmic','synthetic',
+  'neural','lora','controlnet','dreambooth','sora','kling','c2pa','canva','fotor ai'];
+
+const isAI = v => { const s = String(v || '').toLowerCase();
+  return AI_WORDS.some(k => s.includes(k)); };
+
+function readMeta(buf){
+  const out = [];
+  const dv = new DataView(buf);
+  const dec = new TextDecoder('utf-8', { fatal:false });
+  const push = (k,v) => { if (v && String(v).trim())
+    out.push({ k, v: String(v).trim().slice(0,220) }); };
+
+  /* ── JPEG ── */
+  if (buf.byteLength > 4 && dv.getUint16(0) === 0xFFD8){
+    let o = 2;
+    while (o < buf.byteLength - 3){
+      const m = dv.getUint16(o);
+      if (m === 0xFFDA || m === 0xFFD9) break;
+      if ((m & 0xFF00) !== 0xFF00) break;
+      const len = dv.getUint16(o + 2);
+      if (len < 2) break;
+      const seg = buf.slice(o + 4, o + 2 + len);
+
+      if (m === 0xFFE1){
+        const head = dec.decode(new Uint8Array(seg, 0, Math.min(32, seg.byteLength)));
+        if (head.startsWith('Exif') && seg.byteLength > 14){
+          try { readTiff(new DataView(seg, 6), push); } catch(e){}
+        } else if (head.includes('ns.adobe.com/xap')){
+          const s = dec.decode(new Uint8Array(seg));
+          [['xmp:CreatorTool','Ferramenta (XMP)'],
+           ['dc:creator','Autor (XMP)'],
+           ['dc:description','Descrição (XMP)'],
+           ['Iptc4xmpExt:DigitalSourceType','Origem digital (XMP)'],
+           ['photoshop:Credit','Crédito (XMP)']
+          ].forEach(([tag,label]) => {
+            const r = new RegExp(tag + '[^>]*>(?:\\s*<rdf:li[^>]*>)?([^<]+)');
+            const mm = s.match(r); if (mm) push(label, mm[1]);
+          });
+          if (!out.some(x => x.k.includes('XMP')) && isAI(s))
+            push('Bloco XMP', 'contém marcadores de IA');
+        }
+      }
+      if (m === 0xFFEB) push('C2PA / Content Credentials', 'assinatura presente');
+      if (m === 0xFFED) push('IPTC', 'bloco presente');
+      if (m === 0xFFEE) push('Adobe APP14', 'bloco presente');
+      o += 2 + len;
+    }
+  }
+  /* ── PNG ── */
+  else if (buf.byteLength > 8 && dv.getUint32(0) === 0x89504E47){
+    let o = 8;
+    while (o < buf.byteLength - 8){
+      const len = dv.getUint32(o);
+      const type = dec.decode(new Uint8Array(buf, o + 4, 4));
+      if (type === 'IDAT' || type === 'IEND') break;
+      if (type === 'tEXt' || type === 'iTXt' || type === 'zTXt'){
+        const s = dec.decode(new Uint8Array(buf, o + 8, Math.min(len, 900)));
+        const i = s.indexOf('\0');
+        if (i > 0) push(s.slice(0, i), s.slice(i + 1).replace(/\0/g,' '));
+      }
+      if (type === 'caBX') push('C2PA / Content Credentials', 'assinatura presente');
+      o += 12 + len;
+    }
+  }
+  return out;
+}
+
+function readTiff(v, push){
+  const TAGS = { 0x010E:'Descrição', 0x010F:'Fabricante', 0x0110:'Modelo',
+    0x0131:'Software', 0x013B:'Artista', 0x8298:'Copyright',
+    0x9003:'Data original', 0x9286:'Comentário' };
+  const le = v.getUint16(0) === 0x4949;
+  let o = v.getUint32(4, le);
+  const n = v.getUint16(o, le);
+  o += 2;
+  for (let i = 0; i < n && o + 12 <= v.byteLength; i++, o += 12){
+    const tag = v.getUint16(o, le);
+    const type = v.getUint16(o + 2, le);
+    const cnt = v.getUint32(o + 4, le);
+    if (type === 2 && TAGS[tag] && cnt > 1 && cnt < 512){
+      const so = cnt <= 4 ? o + 8 : v.getUint32(o + 8, le);
+      if (so + cnt > v.byteLength) continue;
+      let s = '';
+      for (let j = 0; j < cnt - 1; j++) s += String.fromCharCode(v.getUint8(so + j));
+      push(TAGS[tag], s);
+    }
+  }
+}
+
+const metaBox = document.getElementById('meta-box');
+const metaSum = document.getElementById('meta-sum');
+const metaList = document.getElementById('meta-list');
+
+metaSum.addEventListener('click', () => {
+  const open = metaSum.getAttribute('aria-expanded') === 'true';
+  metaSum.setAttribute('aria-expanded', String(!open));
+  metaList.hidden = open;
+});
+
+function showMeta(buf){
+  let found = [];
+  try { found = readMeta(buf); } catch(e){ console.warn('meta scan', e); }
+
+  const ai = found.filter(f => isAI(f.v) || isAI(f.k));
+  metaBox.hidden = false;
+  metaBox.classList.toggle('risk', ai.length > 0);
+  metaSum.setAttribute('aria-expanded', 'false');
+  metaList.hidden = true;
+
+  const label = document.getElementById('meta-label');
+  if (!found.length){
+    label.innerHTML = 'Original já está sem metadados';
+  } else if (ai.length){
+    label.innerHTML = `<b style="color:#D98A7E">${ai.length} ${ai.length>1?'sinais':'sinal'} de IA</b>`
+      + ` · ${found.length} ${found.length>1?'campos':'campo'}`
+      + ` — ${found.length>1?'serão removidos':'será removido'}`;
+  } else {
+    label.innerHTML = `${found.length} ${found.length>1?'campos':'campo'} de metadados`
+      + ` — ${found.length>1?'serão removidos':'será removido'}`;
+  }
+
+  metaList.innerHTML = found.length
+    ? found.map(f => `<div class="meta-item${isAI(f.v)||isAI(f.k)?' ai':''}">`
+        + `<b>${esc(f.k)}</b><span>${esc(f.v)}</span></div>`).join('')
+    : '<div class="meta-item"><span>Nenhum campo EXIF, XMP, IPTC ou C2PA encontrado.</span></div>';
+}
+
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 /* ══════════════════════════════════════════════════════════════
    INTERFACE — sliders
