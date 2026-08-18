@@ -311,6 +311,11 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
 #done-img{
   width:100%;height:auto;max-height:46vh;object-fit:contain;
   background:#000;display:block;
+  /* Garante o menu de contexto do toque longo, que é o caminho de
+     salvamento que sobrevive dentro de iframes com sandbox. */
+  -webkit-touch-callout:default;
+  -webkit-user-select:auto;user-select:auto;
+  pointer-events:auto;touch-action:manipulation;
 }
 .done-hint{
   font-size:12.5px;color:var(--text2);line-height:1.55;
@@ -323,6 +328,12 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
   background:rgba(196,87,75,.1);padding:9px 11px;
 }
 .done-warn[hidden]{display:none}
+.done-escape{
+  font-size:11px;color:var(--text3);line-height:1.55;
+  border-top:1px solid var(--border);padding-top:11px;
+}
+.done-escape b{color:var(--text2);font-weight:600}
+.done-escape[hidden]{display:none}
 .done-actions{display:flex;gap:9px}
 .done-actions .btn[hidden]{display:none}
 .done-actions .btn{flex:1;padding:12px 8px;text-align:center;text-decoration:none;
@@ -399,11 +410,18 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
       <p class="done-hint" id="done-hint"></p>
       <img id="done-img" alt="Resultado da edição — toque e segure para salvar">
       <div class="done-actions" id="done-actions">
+        <button class="btn btn-gold" id="done-save" hidden>Salvar imagem</button>
         <button class="btn btn-gold" id="done-share" hidden>Salvar / compartilhar</button>
         <a class="btn btn-gold" id="done-dl" download hidden>Baixar arquivo</a>
         <button class="btn btn-ghost" id="done-tab" hidden>Abrir em nova aba</button>
       </div>
       <p class="done-warn" id="done-warn" hidden></p>
+      <p class="done-escape" id="done-escape" hidden>
+        Nada disso funcionou? Esta página está <b>embutida</b>, e o navegador
+        bloqueia downloads aqui dentro. Abra o endereço do editor
+        <b>direto no navegador do celular</b> — numa aba própria, salvar
+        volta a funcionar normalmente.
+      </p>
     </div>
   </div>
 
@@ -1180,6 +1198,52 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !done.hidd
 const inFrame = (() => { try { return window.self !== window.top; } catch(e){ return true; } })();
 const isTouch = matchMedia('(pointer: coarse)').matches;
 const doneWarn = document.getElementById('done-warn');
+const doneSave = document.getElementById('done-save');
+
+/* Caminho oficial de salvamento quando a página roda como Artifact:
+   o visualizador pede confirmação e entrega o arquivo — no app do iPhone
+   abre a folha de compartilhamento do sistema. Resolve null quando a
+   página está fora desse ambiente (arquivo aberto direto, por exemplo). */
+let downloadsPromise;
+function getDownloads(){
+  if (!downloadsPromise){
+    downloadsPromise = (async () => {
+      try {
+        if (window.claude && typeof window.claude.use === 'function')
+          return await window.claude.use('downloads');
+      } catch(e){ console.warn('capacidade de download indisponível', e); }
+      return null;
+    })();
+  }
+  return downloadsPromise;
+}
+
+const SAVE_ERRORS = {
+  declined:     'Salvamento cancelado.',
+  rate_limited: 'Espere um instante e toque em salvar de novo.',
+  too_large:    'O arquivo passou do limite de 16 MB. Exporte numa resolução menor.',
+  bad_request:  'Não foi possível preparar o arquivo. Exporte de novo.',
+};
+
+doneSave.addEventListener('click', async () => {
+  const dl = await getDownloads();
+  if (!dl || !doneFile) return;
+  doneSave.disabled = true;
+  const rotulo = doneSave.textContent;
+  try {
+    await dl.save({ filename: doneFile.name, data: doneFile });
+    doneWarn.hidden = true;
+    doneSave.textContent = 'Salvo ✓';
+    setTimeout(() => { doneSave.textContent = rotulo; }, 2500);
+  } catch (err){
+    const code = err && err.code;
+    doneWarn.hidden = false;
+    doneWarn.textContent = SAVE_ERRORS[code]
+      || 'Não deu para salvar por aqui. Use o toque longo na imagem acima.';
+  } finally {
+    doneSave.disabled = false;
+  }
+});
 
 document.getElementById('done-tab').addEventListener('click', () => {
   if (!doneURL) return;
@@ -1215,7 +1279,13 @@ async function renderExport(w, h){
       canvas.width = tw;
       canvas.height = th;
       runPipeline(tw, th);
-      const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.95));
+      let blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.95));
+      // O salvamento do visualizador recusa acima de 16 MiB; recodifica
+      // com menos qualidade em vez de deixar a exportação falhar.
+      for (const q of [0.88, 0.80]){
+        if (!blob || blob.size <= 15.5 * 1024 * 1024) break;
+        blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', q));
+      }
       if (blob && blob.size > 1024) return { blob, w: tw, h: th, reduced: s < 1 };
     } catch (err){
       console.warn('tentativa de exportação falhou em', tw, th, err);
@@ -1255,7 +1325,21 @@ document.getElementById('btn-export').addEventListener('click', async () => {
 
   doneFile = new File([result.blob], name, { type: 'image/jpeg' });
 
-  doneImg.src     = doneURL;
+  // A imagem exibida usa data: em vez de blob: — no iOS o toque longo
+  // não oferece "Salvar" numa imagem blob:, só numa data:. Se por algum
+  // motivo a data: não carregar, cai de volta para a blob:.
+  try {
+    const dataURL = await new Promise((res, rej) => {
+      const fr = new FileReader();
+      fr.onload = () => res(fr.result);
+      fr.onerror = rej;
+      fr.readAsDataURL(result.blob);
+    });
+    doneImg.onerror = () => { doneImg.onerror = null; doneImg.src = doneURL; };
+    doneImg.src = dataURL;
+  } catch(e){
+    doneImg.src = doneURL;
+  }
   doneDl.href     = doneURL;
   doneDl.download = name;
   doneWarn.hidden = true;
@@ -1265,19 +1349,28 @@ document.getElementById('btn-export').addEventListener('click', async () => {
 
   // Compartilhamento nativo: no celular abre a folha do sistema, de onde
   // dá para salvar na galeria ou mandar direto para o Instagram.
-  const canShare = !!(navigator.canShare && navigator.share
+  const podeSalvar = !!(await getDownloads());
+  const canShare = !podeSalvar && !!(navigator.canShare && navigator.share
                       && navigator.canShare({ files: [doneFile] }));
+  doneSave.hidden  = !podeSalvar;
+  doneSave.textContent = 'Salvar imagem';
   document.getElementById('done-share').hidden = !canShare;
   // O <a download> só funciona fora de iframe — não adianta oferecer dentro.
-  doneDl.hidden = inFrame;
-  // Nova aba dá um contexto onde salvar funciona; só faz sentido dentro do iframe.
-  document.getElementById('done-tab').hidden = !inFrame;
+  doneDl.hidden = inFrame || podeSalvar;
+  // Nova aba só faz sentido quando não há caminho oficial de salvamento.
+  document.getElementById('done-tab').hidden = !inFrame || podeSalvar;
 
-  doneHint.innerHTML = isTouch
-    ? '<b>Toque e segure a imagem</b> abaixo e escolha <b>Salvar imagem</b> '
-      + 'para guardá-la no seu celular.'
-    : '<b>Clique com o botão direito na imagem</b> abaixo e escolha '
-      + '<b>Salvar imagem como</b>.';
+  doneHint.innerHTML = podeSalvar
+    ? 'Toque em <b>Salvar imagem</b> para guardar o arquivo — ele sai '
+      + 'sem nenhum metadado.'
+    : isTouch
+      ? '<b>Toque e segure a imagem</b> abaixo e escolha '
+        + '<b>Salvar em Fotos</b> (iPhone) ou <b>Baixar imagem</b> (Android).'
+      : '<b>Clique com o botão direito na imagem</b> abaixo e escolha '
+        + '<b>Salvar imagem como</b>.';
+
+  // Só orienta a sair do embed quando não existe caminho oficial aqui dentro.
+  document.getElementById('done-escape').hidden = !inFrame || podeSalvar;
 
   openDone();
 
