@@ -64,6 +64,7 @@ body{
   white-space:nowrap;
 }
 .bar-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.lbl-short{display:none}
 
 button{font-family:inherit;cursor:pointer;border:none;transition:all .14s}
 button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
@@ -150,6 +151,23 @@ button:disabled{opacity:.32;cursor:not-allowed}
 .stage.cmp .cmp-tag{display:block}
 .cmp-tag.l{left:12px}
 .cmp-tag.r{right:12px;color:var(--gold)}
+
+/* ── área de foco ── */
+.focus{position:absolute;inset:0;z-index:15}
+.focus[hidden]{display:none}
+.focus-ell{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 0 0 1px rgba(0,0,0,.45), inset 0 0 0 1px rgba(0,0,0,.35);
+  cursor:move;touch-action:none;
+}
+.fh{
+  position:absolute;width:16px;height:16px;border-radius:50%;
+  background:var(--gold);border:2px solid rgba(11,11,16,.85);
+  touch-action:none;
+}
+.fh-x{right:-8px;top:50%;transform:translateY(-50%);cursor:ew-resize}
+.fh-y{bottom:-8px;left:50%;transform:translateX(-50%);cursor:ns-resize}
 
 .busy{
   position:absolute;inset:0;background:rgba(11,11,16,.86);
@@ -353,6 +371,8 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
   .bar{padding:0 12px;height:52px;gap:10px}
   .brand .tag{display:none}
   .brand h1{font-size:16px;overflow:hidden;text-overflow:ellipsis}
+  .lbl-full{display:none}
+  .lbl-short{display:inline}
   .bar .btn{padding:8px 11px;font-size:10px;letter-spacing:.05em}
 }
 @media (max-width:400px){
@@ -367,8 +387,9 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
     <span class="tag">Full Frame · 4K</span>
   </div>
   <div class="bar-actions">
-    <button class="btn btn-ghost" id="btn-cmp" disabled>Comparar</button>
-    <button class="btn btn-ghost" id="btn-open">Abrir imagem</button>
+    <button class="btn btn-ghost" id="btn-focus" aria-pressed="false" disabled><span class="lbl-full">Área de foco</span><span class="lbl-short">Foco</span></button>
+    <button class="btn btn-ghost" id="btn-cmp" disabled><span class="lbl-full">Comparar</span><span class="lbl-short">Antes</span></button>
+    <button class="btn btn-ghost" id="btn-open"><span class="lbl-full">Abrir imagem</span><span class="lbl-short">Abrir</span></button>
   </div>
 </div>
 
@@ -393,6 +414,12 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
       <span class="cmp-tag l">Original</span>
       <span class="cmp-tag r">Editada</span>
       <div class="wipe" id="wipe"><div class="wipe-grip">◂▸</div></div>
+      <div class="focus" id="focus" hidden>
+        <div class="focus-ell" id="focus-ell">
+          <div class="fh fh-x" id="fh-x" title="Arraste para mudar a largura"></div>
+          <div class="fh fh-y" id="fh-y" title="Arraste para mudar a altura"></div>
+        </div>
+      </div>
     </div>
 
     <div class="busy" id="busy">Processando</div>
@@ -478,6 +505,11 @@ const PARAMS = [
   {grp:'Cor', items:[
     {id:'vibrance',   name:'Vibração',       min:-50,  max:50,  step:1,   def:5,    unit:'%'},
     {id:'saturation', name:'Saturação',      min:-50,  max:50,  step:1,   def:0,    unit:'%'},
+  ]},
+  {grp:'Fundo', items:[
+    {id:'bgDark',    name:'Escurecer fundo', min:0, max:100, step:1, def:0,  unit:'%'},
+    {id:'bgBlur',    name:'Desfocar fundo',  min:0, max:100, step:1, def:0,  unit:'%'},
+    {id:'bgFeather', name:'Suavidade',       min:0, max:100, step:1, def:40, unit:'%'},
   ]},
   {grp:'Detalhe e textura', items:[
     {id:'clarity',    name:'Clareza',        min:-50,  max:50,  step:1,   def:8,    unit:'%'},
@@ -580,9 +612,11 @@ const FS_COMP = `#version 300 es
 precision highp float;
 in vec2 vUV;
 out vec4 outColor;
-uniform sampler2D uT, uS, uM, uL;
+uniform sampler2D uT, uS, uM, uL, uBG;
 uniform float uClarity, uDefinition, uSharpness, uNoise;
 uniform float uVibrance, uSaturation;
+uniform float uBgDark, uBgBlur, uFeather;
+uniform vec2  uCenter, uRadius;
 
 const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
 
@@ -591,6 +625,15 @@ void main(){
   vec3 S = texture(uS, vUV).rgb;
   vec3 M = texture(uM, vUV).rgb;
   vec3 L = texture(uL, vUV).rgb;
+
+  /* — Máscara de fundo: elipse ao redor do assunto. 0 dentro (preservado),
+       1 fora. A borda usa smoothstep para não deixar recorte visível. — */
+  float bg = 0.0;
+  if (uBgDark > 0.001 || uBgBlur > 0.001){
+    float r = length((vUV - uCenter) / max(uRadius, vec2(0.01)));
+    float f = max(uFeather, 0.02);
+    bg = smoothstep(1.0 - f, 1.0 + f, r);
+  }
 
   vec3 fine  = T - S;
   vec3 mid   = S - M;
@@ -611,10 +654,18 @@ void main(){
   /* — Máscara de meios-tons: clareza não ataca pretos nem brancos — */
   float mid_mask = 1.0 - pow(abs(2.0 * lum - 1.0), 2.0);
 
+  /* Não faz sentido afiar o que vai ser desfocado: o detalhe é atenuado
+     na mesma medida em que o fundo entra em desfoque. */
+  float sharpKeep = 1.0 - uBgBlur * bg;
+
   vec3 c = T
-         + fine  * uSharpness
-         + mid   * uDefinition
-         + broad * uClarity * mid_mask;
+         + fine  * uSharpness  * sharpKeep
+         + mid   * uDefinition * sharpKeep
+         + broad * uClarity    * mid_mask * sharpKeep;
+
+  /* — Desfoque de fundo, depois escurecimento — */
+  if (uBgBlur > 0.001) c = mix(c, texture(uBG, vUV).rgb, uBgBlur * bg);
+  if (uBgDark > 0.001) c *= 1.0 - uBgDark * bg;
 
   c = clamp(c, 0.0, 1.0);
 
@@ -700,12 +751,17 @@ let TG = null;             // alvos: T, S, M, L, ping
 let srcTex = null;
 let srcW = 0, srcH = 0;
 
-function allocTargets(w, h){
-  if (TG && TG.w === w && TG.h === h) return;
+function allocTargets(w, h, needBG){
+  // O alvo do desfoque de fundo é pesado (mais uma imagem inteira em
+  // memória), então só existe quando o recurso está em uso.
+  if (TG && TG.w === w && TG.h === h && (!needBG || TG.BG)) return;
   if (TG) TG.all.forEach(t => { gl.deleteTexture(t.tex); gl.deleteFramebuffer(t.fb); });
   const T = makeTarget(w,h), S = makeTarget(w,h), M = makeTarget(w,h),
         L = makeTarget(w,h), ping = makeTarget(w,h);
-  TG = { T, S, M, L, ping, w, h, all:[T,S,M,L,ping] };
+  const all = [T,S,M,L,ping];
+  const BG = needBG ? makeTarget(w,h) : null;
+  if (BG) all.push(BG);
+  TG = { T, S, M, L, ping, BG, w, h, all };
 }
 
 function draw(target){
@@ -741,7 +797,8 @@ function blur(srcTexture, dst, sigmaPx, iters){
 
 /* Pipeline completo. `toScreen` = desenha o passo final no canvas. */
 function runPipeline(w, h){
-  allocTargets(w, h);
+  const needBG = V.bgBlur > 0;
+  allocTargets(w, h, needBG);
   gl.bindVertexArray(vao);
 
   /* — 1. tom — */
@@ -763,12 +820,24 @@ function runPipeline(w, h){
   blur(TG.S.tex, TG.M, Math.max(2.0, 6.0 * k), 2);
   blur(TG.M.tex, TG.L, Math.max(6.0, 20.0 * k), 3);
 
+  /* — 2b. desfoque de fundo: continua a partir de L, bem mais forte,
+         para chegar num borrão de lente em vez de um simples borrão — */
+  if (needBG) blur(TG.L.tex, TG.BG, Math.max(14.0, 46.0 * k), 4);
+
   /* — 3. recombinação — */
   gl.useProgram(P_COMP);
   bindTex(P_COMP, 'uT', TG.T.tex, 0);
   bindTex(P_COMP, 'uS', TG.S.tex, 1);
   bindTex(P_COMP, 'uM', TG.M.tex, 2);
   bindTex(P_COMP, 'uL', TG.L.tex, 3);
+  bindTex(P_COMP, 'uBG', (TG.BG || TG.L).tex, 4);
+
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uBgDark'),  V.bgDark/100 * 0.85);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uBgBlur'),  V.bgBlur/100);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uFeather'), V.bgFeather/100 * 0.9);
+  // A textura é enviada com Y invertido, então o centro acompanha.
+  gl.uniform2f(gl.getUniformLocation(P_COMP,'uCenter'), FOCUS.cx, 1 - FOCUS.cy);
+  gl.uniform2f(gl.getUniformLocation(P_COMP,'uRadius'), FOCUS.rx, FOCUS.ry);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uClarity'),    V.clarity/100 * 2.6);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uDefinition'), V.definition/100 * 2.4);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uSharpness'),  V.sharpness/100 * 3.0);
@@ -857,6 +926,7 @@ function loadFile(file){
     document.getElementById('stage').classList.add('live');
     document.getElementById('btn-export').disabled = false;
     document.getElementById('btn-cmp').disabled = false;
+    document.getElementById('btn-focus').disabled = false;
     updateOutDim();
     render();
   };
@@ -1065,6 +1135,10 @@ PARAMS.forEach(g => {
     input.addEventListener('input', () => {
       V[p.id] = parseFloat(input.value);
       syncOne(p);
+      // Mexer no fundo sem ver onde fica a área de foco não faz sentido:
+      // a elipse aparece sozinha na primeira vez que o efeito é ligado.
+      if ((p.id === 'bgDark' || p.id === 'bgBlur') && V[p.id] > 0
+          && focusBox.hidden && img) setFocusVisible(true);
       render();
     });
     num.addEventListener('click', () => {
@@ -1089,6 +1163,70 @@ document.getElementById('btn-reset').addEventListener('click', () => {
 });
 
 /* ══════════════════════════════════════════════════════════════
+   ÁREA DE FOCO — elipse que separa assunto e fundo
+   Coordenadas em 0..1 da imagem; rx/ry no eixo de cada lado, o que
+   faz a elipse desenhada em CSS coincidir com a do shader.
+   ══════════════════════════════════════════════════════════════ */
+const FOCUS = { cx: 0.5, cy: 0.5, rx: 0.32, ry: 0.42 };
+
+const focusBox = document.getElementById('focus');
+const focusEll = document.getElementById('focus-ell');
+
+function layoutFocus(){
+  focusEll.style.left   = (FOCUS.cx - FOCUS.rx) * 100 + '%';
+  focusEll.style.top    = (FOCUS.cy - FOCUS.ry) * 100 + '%';
+  focusEll.style.width  = FOCUS.rx * 200 + '%';
+  focusEll.style.height = FOCUS.ry * 200 + '%';
+}
+layoutFocus();
+
+function dragFocus(el, onMove){
+  let active = false, start = null;
+  el.addEventListener('pointerdown', e => {
+    active = true;
+    el.setPointerCapture(e.pointerId);
+    const r = canvas.getBoundingClientRect();
+    start = { x: e.clientX, y: e.clientY, r, ...FOCUS };
+    e.preventDefault();
+    e.stopPropagation();
+  });
+  el.addEventListener('pointermove', e => {
+    if (!active) return;
+    onMove((e.clientX - start.x) / start.r.width,
+           (e.clientY - start.y) / start.r.height, start);
+    layoutFocus();
+    render();
+  });
+  const end = e => {
+    if (!active) return;
+    active = false;
+    try { el.releasePointerCapture(e.pointerId); } catch(err){}
+  };
+  el.addEventListener('pointerup', end);
+  el.addEventListener('pointercancel', end);
+}
+const clamp01 = v => Math.min(1, Math.max(0, v));
+
+dragFocus(focusEll, (dx, dy, s) => {
+  FOCUS.cx = clamp01(s.cx + dx);
+  FOCUS.cy = clamp01(s.cy + dy);
+});
+dragFocus(document.getElementById('fh-x'), (dx, dy, s) => {
+  FOCUS.rx = Math.min(1.2, Math.max(0.03, s.rx + dx));
+});
+dragFocus(document.getElementById('fh-y'), (dx, dy, s) => {
+  FOCUS.ry = Math.min(1.2, Math.max(0.03, s.ry + dy));
+});
+
+const btnFocus = document.getElementById('btn-focus');
+function setFocusVisible(on){
+  focusBox.hidden = !on;
+  btnFocus.classList.toggle('on', on);
+  btnFocus.setAttribute('aria-pressed', String(on));
+}
+btnFocus.addEventListener('click', () => setFocusVisible(focusBox.hidden));
+
+/* ══════════════════════════════════════════════════════════════
    COMPARAÇÃO ANTES / DEPOIS
    ══════════════════════════════════════════════════════════════ */
 const stage = document.getElementById('stage');
@@ -1098,7 +1236,7 @@ const btnCmp = document.getElementById('btn-cmp');
 btnCmp.addEventListener('click', () => {
   const on = stage.classList.toggle('cmp');
   btnCmp.classList.toggle('on', on);
-  if (on) stage.style.setProperty('--wipe', '50%');
+  if (on){ stage.style.setProperty('--wipe', '50%'); setFocusVisible(false); }
 });
 
 let dragging = false;
