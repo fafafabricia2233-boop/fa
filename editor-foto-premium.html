@@ -188,9 +188,10 @@ button:disabled{opacity:.32;cursor:not-allowed}
 .panel-head{
   padding:14px 18px;
   border-bottom:1px solid var(--border);
-  display:flex;gap:7px;flex-shrink:0;
+  display:flex;flex-direction:column;gap:8px;flex-shrink:0;
 }
-.panel-head .btn{flex:1;padding:9px 6px;font-size:10px;letter-spacing:.07em}
+.panel-head .btn{padding:9px 6px;font-size:10px;letter-spacing:.07em}
+#seg-preset button{padding:10px 4px;font-size:10.5px}
 
 .panel-body{flex:1;overflow-y:auto;overscroll-behavior:contain}
 .panel-body::-webkit-scrollbar{width:9px}
@@ -454,7 +455,10 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
 
   <aside class="panel">
     <div class="panel-head">
-      <button class="btn btn-gold" id="btn-preset">Preset premium</button>
+      <div class="seg" id="seg-preset">
+        <button data-preset="premium" class="on">Premium</button>
+        <button data-preset="cirurgico">Cirúrgico</button>
+      </div>
       <button class="btn btn-ghost" id="btn-reset">Zerar</button>
     </div>
 
@@ -503,6 +507,9 @@ const PARAMS = [
     {id:'dehaze',     name:'Dehaze',         min:-20,  max:50,  step:1,   def:3,    unit:'%'},
   ]},
   {grp:'Cor', items:[
+    {id:'temp',       name:'Temperatura',    min:-100, max:100, step:1,   def:0,    unit:''},
+    {id:'tint',       name:'Matiz',          min:-100, max:100, step:1,   def:0,    unit:''},
+    {id:'teal',       name:'Teal nas sombras',min:0,   max:100, step:1,   def:0,    unit:'%'},
     {id:'vibrance',   name:'Vibração',       min:-50,  max:50,  step:1,   def:5,    unit:'%'},
     {id:'saturation', name:'Saturação',      min:-50,  max:50,  step:1,   def:0,    unit:'%'},
   ]},
@@ -517,11 +524,43 @@ const PARAMS = [
     {id:'sharpness',  name:'Nitidez',        min:0,    max:100, step:1,   def:10,   unit:'%'},
     {id:'noise',      name:'Redução de ruído',min:0,   max:100, step:1,   def:15,   unit:'%'},
   ]},
+  {grp:'Acabamento', items:[
+    {id:'vignette',   name:'Vinheta',        min:0,    max:100, step:1,   def:0,    unit:'%'},
+    {id:'grain',      name:'Granulação',     min:0,    max:100, step:1,   def:0,    unit:'%'},
+  ]},
 ];
+
+/* ── Presets ───────────────────────────────────────────────────────────
+   Cada preset é um mapa completo; o que não estiver listado assume o
+   valor neutro do controle. */
+const PRESETS = {
+  premium: {
+    nome: 'Premium',
+    v: { exposure:-0.3, brightness:-8, contrast:10, blacks:12,
+         highlights:-12, shadows:10, dehaze:3,
+         temp:0, tint:0, teal:0, vibrance:5, saturation:0,
+         bgDark:0, bgBlur:0, bgFeather:40,
+         clarity:8, definition:15, sharpness:10, noise:15,
+         vignette:0, grain:0 },
+  },
+  cirurgico: {
+    nome: 'Cirúrgico',
+    // Centro cirúrgico: baixa exposição, pretos profundos, grading frio
+    // em azul petróleo, assunto nítido e fundo com queda de luz.
+    v: { exposure:-0.45, brightness:-10, contrast:22, blacks:20,
+         highlights:-25, shadows:18, dehaze:5,
+         temp:-14, tint:-4, teal:54, vibrance:6, saturation:-4,
+         bgDark:32, bgBlur:26, bgFeather:55,
+         clarity:14, definition:20, sharpness:16, noise:12,
+         vignette:18, grain:12 },
+  },
+};
+let presetAtual = 'premium';
 
 const V = {};
 const EL = {};
-PARAMS.forEach(g => g.items.forEach(p => V[p.id] = p.def));
+const neutro = p => (p.min < 0 ? 0 : p.min);
+PARAMS.forEach(g => g.items.forEach(p => V[p.id] = PRESETS.premium.v[p.id] ?? neutro(p)));
 
 /* ══════════════════════════════════════════════════════════════
    SHADERS
@@ -540,6 +579,7 @@ out vec4 outColor;
 uniform sampler2D uSrc;
 uniform float uExposure, uBrightness, uContrast, uBlacks;
 uniform float uHighlights, uShadows, uDehaze;
+uniform float uTemp, uTint;
 
 const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
 
@@ -552,6 +592,19 @@ void main(){
     const float A = 0.92;
     float t = clamp(1.0 - uDehaze * (dark / A), 0.15, 2.0);
     c = (c - A) / t + A;
+  }
+
+  /* — Balanço de branco. Positivo esquenta, negativo esfria; a
+       luminância é reposta depois para a foto não mudar de brilho. — */
+  if (abs(uTemp) > 0.001 || abs(uTint) > 0.001){
+    float l0 = dot(max(c, 0.0), LUMA);
+    c.r *= 1.0 + uTemp * 0.30;
+    c.b *= 1.0 - uTemp * 0.30;
+    c.g *= 1.0 - uTint * 0.22;
+    c.r *= 1.0 + uTint * 0.10;
+    c.b *= 1.0 + uTint * 0.10;
+    float l1 = dot(max(c, 0.0), LUMA);
+    c *= l0 / max(l1, 0.001);
   }
 
   /* — Exposição em espaço linear — */
@@ -617,6 +670,7 @@ uniform float uClarity, uDefinition, uSharpness, uNoise;
 uniform float uVibrance, uSaturation;
 uniform float uBgDark, uBgBlur, uFeather;
 uniform vec2  uCenter, uRadius;
+uniform float uTeal, uVignette, uGrain, uAspect;
 
 const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
 
@@ -669,16 +723,48 @@ void main(){
 
   c = clamp(c, 0.0, 1.0);
 
-  /* — Vibração: ganho maior onde há pouca saturação, com proteção de pele — */
+  /* Tom de pele: laranja com R > G > B. Serve para proteger a pele
+     tanto do grading frio quanto do excesso de vibração. */
+  float skin = clamp((c.r - c.b) * 2.2, 0.0, 1.0)
+             * step(c.b, c.g) * step(c.g, c.r);
+
+  /* — Grading frio nas sombras: azul petróleo / teal. Multiplicativo
+       para os pretos continuarem pretos em vez de ganharem véu, e
+       poupando a pele para ela não ficar acinzentada. — */
+  if (uTeal > 0.001){
+    float l2 = dot(c, LUMA);
+    float shadow = 1.0 - smoothstep(0.0, 0.62, l2);
+    vec3 graded = c * vec3(0.80, 1.03, 1.14);
+    c = mix(c, graded, uTeal * shadow * (1.0 - 0.72 * skin));
+  }
+
+  /* — Vibração: ganho maior onde há pouca saturação — */
   if (abs(uVibrance) > 0.001 || abs(uSaturation) > 0.001){
     float mx  = max(c.r, max(c.g, c.b));
     float mn  = min(c.r, min(c.g, c.b));
     float sat = mx - mn;
-    float skin = clamp((c.r - c.b) * 2.2, 0.0, 1.0)
-               * step(c.b, c.g) * step(c.g, c.r);
     float vib = uVibrance * (1.0 - sat) * (1.0 - 0.55 * skin);
     float gl  = dot(c, LUMA);
     c = mix(vec3(gl), c, max(1.0 + vib + uSaturation, 0.0));
+  }
+
+  /* — Vinheta: queda suave a partir do centro do quadro — */
+  if (uVignette > 0.001){
+    vec2 vd = (vUV - 0.5) * vec2(uAspect, 1.0);
+    float vr = length(vd) / 0.62;
+    c *= 1.0 - uVignette * smoothstep(0.45, 1.25, vr);
+  }
+
+  /* — Granulação: densidade fixa em relação à imagem, então o preview
+       mostra o mesmo grão da exportação. Mais visível nos meios-tons,
+       como em filme. — */
+  if (uGrain > 0.001){
+    vec2 gp = vUV * vec2(uAspect, 1.0) * 820.0;
+    vec2 h = fract(gp * vec2(443.897, 441.423));
+    h += dot(h, h + 19.19);
+    float n = fract((h.x + h.y) * h.x) - 0.5;
+    float gmask = 1.0 - abs(2.0 * dot(c, LUMA) - 1.0);
+    c += n * uGrain * gmask * 0.14;
   }
 
   outColor = vec4(clamp(c, 0.0, 1.0), 1.0);
@@ -811,6 +897,8 @@ function runPipeline(w, h){
   gl.uniform1f(gl.getUniformLocation(P_TONE,'uHighlights'), V.highlights/100 * 0.6);
   gl.uniform1f(gl.getUniformLocation(P_TONE,'uShadows'),    V.shadows/100 * 0.5);
   gl.uniform1f(gl.getUniformLocation(P_TONE,'uDehaze'),     V.dehaze/100);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uTemp'),        V.temp/100);
+  gl.uniform1f(gl.getUniformLocation(P_TONE,'uTint'),        V.tint/100);
   draw(TG.T);
 
   /* — 2. pirâmide de blurs (raios proporcionais ao tamanho → look idêntico
@@ -838,6 +926,10 @@ function runPipeline(w, h){
   // A textura é enviada com Y invertido, então o centro acompanha.
   gl.uniform2f(gl.getUniformLocation(P_COMP,'uCenter'), FOCUS.cx, 1 - FOCUS.cy);
   gl.uniform2f(gl.getUniformLocation(P_COMP,'uRadius'), FOCUS.rx, FOCUS.ry);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uTeal'),     V.teal/100);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uVignette'), V.vignette/100 * 0.9);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uGrain'),    V.grain/100);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uAspect'),   w / h);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uClarity'),    V.clarity/100 * 2.6);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uDefinition'), V.definition/100 * 2.4);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uSharpness'),  V.sharpness/100 * 3.0);
@@ -1082,7 +1174,7 @@ function fmt(p, v){
 function syncOne(p){
   const { input, num } = EL[p.id];
   const v = V[p.id];
-  const off = Math.abs(v - (p.min < 0 ? 0 : p.min)) > 1e-6;
+  const off = Math.abs(v - neutro(p)) > 1e-6;
   num.textContent = fmt(p, v);
   num.classList.toggle('act', off);
   num.classList.toggle('neg', v < 0);
@@ -1125,7 +1217,7 @@ PARAMS.forEach(g => {
     const input = document.createElement('input');
     input.type = 'range';
     input.id = 'r-' + p.id;
-    input.min = p.min; input.max = p.max; input.step = p.step; input.value = p.def;
+    input.min = p.min; input.max = p.max; input.step = p.step; input.value = V[p.id];
     rail.appendChild(input);
 
     wrap.append(top, rail);
@@ -1142,7 +1234,7 @@ PARAMS.forEach(g => {
       render();
     });
     num.addEventListener('click', () => {
-      V[p.id] = p.def;
+      V[p.id] = PRESETS[presetAtual].v[p.id] ?? neutro(p);
       syncOne(p);
       render();
     });
@@ -1153,12 +1245,24 @@ PARAMS.forEach(g => {
 });
 syncAll();
 
-document.getElementById('btn-preset').addEventListener('click', () => {
-  PARAMS.forEach(g => g.items.forEach(p => V[p.id] = p.def));
-  syncAll(); render();
+function aplicarPreset(nome){
+  const preset = PRESETS[nome];
+  if (!preset) return;
+  presetAtual = nome;
+  PARAMS.forEach(g => g.items.forEach(p => V[p.id] = preset.v[p.id] ?? neutro(p)));
+  [...document.querySelectorAll('#seg-preset button')]
+    .forEach(b => b.classList.toggle('on', b.dataset.preset === nome));
+  syncAll();
+  // Um preset que mexe no fundo precisa da elipse à vista para ser ajustado.
+  if ((V.bgDark > 0 || V.bgBlur > 0) && img) setFocusVisible(true);
+  render();
+}
+document.getElementById('seg-preset').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (b) aplicarPreset(b.dataset.preset);
 });
 document.getElementById('btn-reset').addEventListener('click', () => {
-  PARAMS.forEach(g => g.items.forEach(p => V[p.id] = p.min < 0 ? 0 : p.min));
+  PARAMS.forEach(g => g.items.forEach(p => V[p.id] = neutro(p)));
   syncAll(); render();
 });
 
