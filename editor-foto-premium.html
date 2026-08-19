@@ -458,6 +458,7 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
       <div class="seg" id="seg-preset">
         <button data-preset="premium" class="on">Premium</button>
         <button data-preset="cirurgico">Cirúrgico</button>
+        <button data-preset="lowkey">Low Key</button>
       </div>
       <button class="btn btn-ghost" id="btn-reset">Zerar</button>
     </div>
@@ -510,6 +511,7 @@ const PARAMS = [
     {id:'temp',       name:'Temperatura',    min:-100, max:100, step:1,   def:0,    unit:''},
     {id:'tint',       name:'Matiz',          min:-100, max:100, step:1,   def:0,    unit:''},
     {id:'teal',       name:'Teal nas sombras',min:0,   max:100, step:1,   def:0,    unit:'%'},
+    {id:'skinWarm',   name:'Calor da pele',  min:0,    max:100, step:1,   def:0,    unit:'%'},
     {id:'vibrance',   name:'Vibração',       min:-50,  max:50,  step:1,   def:5,    unit:'%'},
     {id:'saturation', name:'Saturação',      min:-50,  max:50,  step:1,   def:0,    unit:'%'},
   ]},
@@ -549,10 +551,21 @@ const PRESETS = {
     // em azul petróleo, assunto nítido e fundo com queda de luz.
     v: { exposure:-0.45, brightness:-10, contrast:22, blacks:20,
          highlights:-25, shadows:18, dehaze:5,
-         temp:-14, tint:-4, teal:54, vibrance:6, saturation:-4,
+         temp:-14, tint:-4, teal:54, skinWarm:30, vibrance:6, saturation:-4,
          bgDark:32, bgBlur:26, bgFeather:55,
          clarity:14, definition:20, sharpness:16, noise:12,
          vignette:18, grain:12 },
+  },
+  lowkey: {
+    nome: 'Low Key',
+    // Versão mais escura ainda: fundo quase preto com nuance de azul
+    // petróleo, e a pele aquecida para destacar do ambiente frio.
+    v: { exposure:-0.75, brightness:-14, contrast:26, blacks:28,
+         highlights:-40, shadows:26, dehaze:6,
+         temp:-20, tint:-5, teal:68, skinWarm:55, vibrance:5, saturation:-6,
+         bgDark:58, bgBlur:34, bgFeather:62,
+         clarity:12, definition:26, sharpness:18, noise:14,
+         vignette:20, grain:15 },
   },
 };
 let presetAtual = 'premium';
@@ -670,7 +683,7 @@ uniform float uClarity, uDefinition, uSharpness, uNoise;
 uniform float uVibrance, uSaturation;
 uniform float uBgDark, uBgBlur, uFeather;
 uniform vec2  uCenter, uRadius;
-uniform float uTeal, uVignette, uGrain, uAspect;
+uniform float uTeal, uVignette, uGrain, uAspect, uSkinWarm;
 
 const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
 
@@ -736,6 +749,17 @@ void main(){
     float shadow = 1.0 - smoothstep(0.0, 0.62, l2);
     vec3 graded = c * vec3(0.80, 1.03, 1.14);
     c = mix(c, graded, uTeal * shadow * (1.0 - 0.72 * skin));
+  }
+
+  /* — Calor da pele: só nos tons de pele, para ela destacar contra um
+       ambiente frio sem ficar cinza nem dessaturada. A saturação é
+       devolvida junto, senão a pele achata no meio do grading. — */
+  if (uSkinWarm > 0.001 && skin > 0.001){
+    float k = uSkinWarm * skin;
+    float l3 = dot(c, LUMA);
+    c.r *= 1.0 + k * 0.16;
+    c.b *= 1.0 - k * 0.14;
+    c = mix(vec3(l3), c, 1.0 + k * 0.18);
   }
 
   /* — Vibração: ganho maior onde há pouca saturação — */
@@ -927,6 +951,7 @@ function runPipeline(w, h){
   gl.uniform2f(gl.getUniformLocation(P_COMP,'uCenter'), FOCUS.cx, 1 - FOCUS.cy);
   gl.uniform2f(gl.getUniformLocation(P_COMP,'uRadius'), FOCUS.rx, FOCUS.ry);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uTeal'),     V.teal/100);
+  gl.uniform1f(gl.getUniformLocation(P_COMP,'uSkinWarm'),V.skinWarm/100);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uVignette'), V.vignette/100 * 0.9);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uGrain'),    V.grain/100);
   gl.uniform1f(gl.getUniformLocation(P_COMP,'uAspect'),   w / h);
