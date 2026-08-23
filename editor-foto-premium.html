@@ -359,11 +359,20 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(
   display:flex;align-items:center;justify-content:center}
 
 @media (max-width:900px){
-  body{overflow:auto;height:auto;min-height:100vh}
-  .work{flex-direction:column}
-  .stage-wrap{padding:16px;min-height:44vh}
-  #gl{max-height:44vh}
-  .panel{width:100%;border-left:none;border-top:1px solid var(--border)}
+  /* overflow precisa ser visible: com auto o body vira contêiner de
+     rolagem e o position:sticky abaixo deixa de funcionar. */
+  body{overflow:visible;height:auto;min-height:100vh;display:block}
+  .work{flex-direction:column;display:block}
+  /* A foto acompanha a rolagem: sem isso ela sai da tela justamente
+     quando se chega nos controles do fim do painel. */
+  .bar{position:sticky;top:0;z-index:30}
+  .stage-wrap{
+    position:sticky;top:52px;z-index:12;
+    flex:0 0 auto;height:38vh;min-height:0;padding:10px 14px;
+    border-bottom:1px solid var(--border);
+  }
+  #gl{max-height:100%;max-width:100%}
+  .panel{width:100%;border-left:none;flex:1 1 auto}
   .panel-body{overflow:visible}
   .done{padding:12px}
   .done-card{max-height:calc(100vh - 24px);gap:11px;padding:14px}
