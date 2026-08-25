@@ -70,20 +70,24 @@ const PECA = {
    Regra de fidelidade: so se corta palavra repetida. Nunca escrever na tela
    palavra que a pessoa nao disse. */
 const TITULO = {
+  /* Texto dado pela dona. Esta fita NAO tem fala (passo 3 devolveu alucinacao
+     em audio sem voz), entao o titulo nao veio de gancho falado: veio escrito.
+     Nenhuma palavra alterada. */
   linhas: [
-    "PRIMEIRA LINHA DO GANCHO",
-    "SEGUNDA LINHA DO GANCHO",
-    "REMATE EM DOURADO",
+    "UM ENXERTO.",
+    "MUITAS ETAPAS.",
   ],
 
   /* "temporario" = o titulo sai junto com o gancho e o veu de cima sai com ele.
      Use quando o topo do quadro e B-roll que E a prova (cirurgia acontecendo).
      "permanente" = o titulo fica ate o fim. Use quando o topo e imagem morta. */
+  /* TEMPORARIO: o quadro vira campo cirurgico cheio a partir de ~9s, e ali o
+     topo e a prova. O titulo sai antes, levando o veu de cima junto. */
   modo: "temporario" as "temporario" | "permanente",
 
-  inicio: 0.15, // quando a primeira letra aparece
-  seguraAte: 6.7, // so no modo temporario: ate quando fica parado na tela
-  saiEm: 6.9, // so no modo temporario: quando termina de sumir
+  inicio: 0.15, // primeira letra
+  seguraAte: 4.3, // segura ate aqui
+  saiEm: 4.5, // some EM CIMA do corte medido em 4.50s: a virada entrega tela limpa
 };
 
 /* LEGENDA DE RODAPE, frase a frase, colada na fala.
@@ -100,17 +104,32 @@ type Cue = {
 };
 
 const CUES: Cue[] = [
+  /* Texto da dona, palavra por palavra, sem cortar nem acrescentar.
+     A 1a cue comeca depois que o titulo sai (4.50s): enquanto o titulo esta na
+     tela o rodape fica vazio, como manda a regra 1.
+     As viradas caem nos cortes medidos (6.90 e 9.00). */
   {
-    start: 7.1,
-    end: 8.66,
-    lines: [{ text: "primeira frase depois do gancho", size: 38 }],
+    start: 4.6,
+    end: 7.0,
+    lines: [
+      { text: "Extração, separação, armazenamento,", size: 34 },
+      { text: "contagem e implantação.", size: 34 },
+    ],
   },
   {
-    start: 8.74,
-    end: 10.72,
+    start: 7.1,
+    end: 9.4,
     lines: [
-      { text: "frase com a palavra chave", size: 34 },
-      { text: "EM DOURADO", size: 46, gold: true },
+      { text: "Por trás de cada unidade folicular", size: 34 },
+      { text: "existe um processo inteiro acontecendo", size: 34 },
+    ],
+  },
+  {
+    start: 9.5,
+    end: 11.6,
+    lines: [
+      { text: "para que a cirurgia mantenha", size: 34 },
+      { text: "QUALIDADE E FLUXO.", size: 46, gold: true },
     ],
   },
 ];
