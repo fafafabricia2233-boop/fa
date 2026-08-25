@@ -8,6 +8,7 @@ import { LegDayReel, type LegDayReelProps } from "./compositions/LegDayReel";
 import { EquipeCapacitada, type EquipeCapacitadaProps } from "./compositions/EquipeCapacitada";
 import equipeCapacitadaPropsRaw from "../props.equipe-capacitada.json";
 import { PRP, type PRPProps } from "./compositions/PRP";
+import { NewHairImplanter, type NewHairImplanterProps } from "./compositions/NewHairImplanter";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -213,6 +214,20 @@ export const RemotionRoot: React.FC = () => {
           ║  📺  REELS  —  Composições completas 1080x1920                  ║
           ╚══════════════════════════════════════════════════════════════════╝ */}
       <Folder name="REELS">
+
+        {/* Padrão §10.1 — legenda de reel. endCard e splitScreen MEDIDOS nesta
+            fita com medir-fita.py, nunca herdados de outra peça. */}
+        <Folder name="NewHair-Implanter">
+          <Composition
+            id="NewHairImplanter"
+            component={NewHairImplanter as React.FC<NewHairImplanterProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(11.8 * 30)}
+            defaultProps={{ durationSeconds: 11.8, video: "newhair/implanter_h264.mp4" }}
+          />
+        </Folder>
 
         <Folder name="NewHair-EquipeCapacitada">
           <Composition
