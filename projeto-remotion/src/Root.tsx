@@ -17,6 +17,7 @@ import { NewHairResolve, type NewHairResolveProps } from "./compositions/NewHair
 import { NewHairNaoSo, type NewHairNaoSoProps } from "./compositions/NewHairNaoSo";
 import { NewHairOrganizada, type NewHairOrganizadaProps } from "./compositions/NewHairOrganizada";
 import { NewHairNivel, type NewHairNivelProps } from "./compositions/NewHairNivel";
+import { NewHairFluir, type NewHairFluirProps } from "./compositions/NewHairFluir";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -225,6 +226,18 @@ export const RemotionRoot: React.FC = () => {
 
         {/* Padrão §10.1 — legenda de reel. endCard e splitScreen MEDIDOS nesta
             fita com medir-fita.py, nunca herdados de outra peça. */}
+        <Folder name="NewHair-Fluir">
+          <Composition
+            id="NewHairFluir"
+            component={NewHairFluir as React.FC<NewHairFluirProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(15.8 * 30)}
+            defaultProps={{ durationSeconds: 15.8, video: "newhair/fluir_h264.mp4" }}
+          />
+        </Folder>
+
         <Folder name="NewHair-Nivel">
           <Composition
             id="NewHairNivel"
