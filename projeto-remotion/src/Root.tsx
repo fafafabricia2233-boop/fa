@@ -15,6 +15,7 @@ import { NewHairAtencao, type NewHairAtencaoProps } from "./compositions/NewHair
 import { NewHairQualidade, type NewHairQualidadeProps } from "./compositions/NewHairQualidade";
 import { NewHairResolve, type NewHairResolveProps } from "./compositions/NewHairResolve";
 import { NewHairNaoSo, type NewHairNaoSoProps } from "./compositions/NewHairNaoSo";
+import { NewHairOrganizada, type NewHairOrganizadaProps } from "./compositions/NewHairOrganizada";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -223,6 +224,18 @@ export const RemotionRoot: React.FC = () => {
 
         {/* Padrão §10.1 — legenda de reel. endCard e splitScreen MEDIDOS nesta
             fita com medir-fita.py, nunca herdados de outra peça. */}
+        <Folder name="NewHair-Organizada">
+          <Composition
+            id="NewHairOrganizada"
+            component={NewHairOrganizada as React.FC<NewHairOrganizadaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(7.65 * 30)}
+            defaultProps={{ durationSeconds: 7.65, video: "newhair/organizada_h264.mp4" }}
+          />
+        </Folder>
+
         <Folder name="NewHair-NaoSo">
           <Composition
             id="NewHairNaoSo"
