@@ -19,6 +19,7 @@ import { NewHairOrganizada, type NewHairOrganizadaProps } from "./compositions/N
 import { NewHairNivel, type NewHairNivelProps } from "./compositions/NewHairNivel";
 import { NewHairFluir, type NewHairFluirProps } from "./compositions/NewHairFluir";
 import { NewHairFluir2, type NewHairFluir2Props } from "./compositions/NewHairFluir2";
+import { NewHairSalaVazia, type NewHairSalaVaziaProps } from "./compositions/NewHairSalaVazia";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -227,6 +228,18 @@ export const RemotionRoot: React.FC = () => {
 
         {/* Padrão §10.1 — legenda de reel. endCard e splitScreen MEDIDOS nesta
             fita com medir-fita.py, nunca herdados de outra peça. */}
+        <Folder name="NewHair-SalaVazia">
+          <Composition
+            id="NewHairSalaVazia"
+            component={NewHairSalaVazia as React.FC<NewHairSalaVaziaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(6.802 * 30)}
+            defaultProps={{ durationSeconds: 6.802, video: "newhair/salavazia_h264.mp4" }}
+          />
+        </Folder>
+
         <Folder name="NewHair-Fluir2">
           <Composition
             id="NewHairFluir2"
