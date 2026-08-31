@@ -67,39 +67,60 @@ Equivalentes em rgba: dourado `201,162,74` · off-white `247,243,234`.
 
 ## Formato e layout
 
-Slide **1080 × 1350 px**.
+Slide **1080 × 1350 px**. Os números abaixo são os do template — valores fixos,
+não faixas. O template `Carrossel Template Base.html` é o carrossel aprovado com
+o conteúdo trocado por marcadores; o CSS é idêntico, linha por linha.
 
 ### S01 — Capa
 - Imagem de fundo cobrindo o slide, vinheta por cima
   (preto 70% no topo → 15% aos 40% → 30% aos 70% → 90% na base)
-- Tag: topo `60px`, esquerda `72px` · 28–30px · dourado · CAIXA ALTA · tracking `.14em`
+- Tag: topo `60px`, esquerda `72px` · **28px** · dourado · CAIXA ALTA · tracking `.16em`
 - Bloco do título: topo `120px`, laterais `72px`
-- Título: 80–88px · itálico · CAIXA ALTA · entrelinha `.94` · tracking `-.02em`
-  · sombra `0 4px 40px rgba(0,0,0,.7)`
-- Subtítulo: 36–38px · itálico · off-white 82% · margem superior 24–32px
-- Filete dourado: 80 × 3px
-- **Alinhamento: à ESQUERDA**
+- Título: **80px** · Catchy Mager 900 · itálico · CAIXA ALTA · entrelinha `.96`
+  · tracking `-.02em` · sombra `0 4px 40px rgba(0,0,0,.70)`
+- Subtítulo: **38px** · Montserrat 300 · itálico · off-white 75% · entrelinha `1.30`
+  · margem superior `32px`
+- Filete dourado: `80 × 3px` · margem superior `40px`
+- **Alinhamento: à ESQUERDA** · sem logo na capa
 
 ### S02–S05 — Texto
-- Conteúdo centralizado nos dois eixos · padding `80px 80px 140px` · gap `52px`
+- Conteúdo centralizado nos dois eixos · padding `80px 88px 120px` · gap `48px`
 - **Logo sempre no topo do bloco, nunca no rodapé**
-  - círculo 108–112px · borda dourada 2px · imagem interna sem `width:100%`
-  - espaço logo→texto: 22px
-  - nome "New Hair FUE" 30px peso 500 · `@newhair_fue` 23px peso 300, off-white 45%
-- Corpo: 58–60px (ou 46px quando o texto for longo) · entrelinha 1.26–1.30
+  - círculo **108px** · borda dourada `2px` · imagem interna `86px`, sem `width:100%`
+  - espaço logo→texto: `22px`
+  - nome "New Hair FUE" **30px** peso 500 · `@newhair_fue` **22px** peso 500,
+    off-white 42%, margem superior `6px`
+- Corpo `.t-main`: **58px** · peso 300 · entrelinha `1.28`
+- Corpo menor `.t-main-sm`: **46px** · peso 300 · entrelinha `1.30`
+- Destaque dourado dentro do corpo: mesma fonte, peso **500**
+- Filete divisor `.gold-line`: `72 × 3px`, centralizado
 - **Alinhamento do corpo: CENTRALIZADO**
 - Checklist e bullets: **alinhados à ESQUERDA** mesmo dentro do bloco centralizado
-  - checklist: gap 28px · ícone dourado 52px · texto 52px
-  - bullets: gap 22px · marcador dourado 12px (margem superior 18px) · texto 50px
-- Seta `»`: base 52–60px · centralizada · dourado · 88–92px
+  - checklist: gap `28px` · ícone ✓ dourado **52px** peso 500 · espaço `28px`
+    · texto **52px** peso 300 · entrelinha `1.1`
+  - bullets: gap `22px` · marcador dourado `12px` (margem superior `18px`)
+    · espaço `22px` · texto **50px** peso 300 · entrelinha `1.15`
+- Seta `»`: base `52px` · centralizada · dourado · **88px** peso 500
 
 ### S06 — CTA
-- Tudo centralizado · padding 80px · gap 44–48px
-- Logo 140px · opacidade 92%
-- Título do CTA: Montserrat **500** itálico · 100px (não é Catchy Mager)
-- Texto: 46px peso 300
-- Link `@newhair_fue`: 42–46px peso 500 · dourado · tracking `.04em`
+- Fundo: degradê 155° `#0a0a0a → #0f1f50 (60%) → #0a0a0a` · vinheta por cima
+- Tudo centralizado · padding `80px` · gap `44px`
+- Logo **140px** · opacidade 92%
+- Texto: **46px** peso 300 · entrelinha `1.30` — Montserrat, **não** Catchy Mager
+- Link `@newhair_fue`: **46px** peso 500 · dourado · tracking `.04em`
   · filete dourado 40% em cima e embaixo · padding `18px 56px`
+- Bio: **34px** peso 300 · itálico · off-white 55%
+
+---
+
+## Marcadores do template
+
+`{{TEMA}}` `{{COVER_BASE64}}` `{{HOOK}}` `{{SUBTITULO}}` `{{CONTEUDO_S02}}`
+`{{INTRO_S03}}` `{{ITEM_1..4}}` `{{INTRO_S04}}` `{{BULLET_1..4}}`
+`{{CONTEUDO_S05}}` `{{CTA_TEXTO}}` `{{CTA_BIO}}`
+
+Checklist e bullets: repetir o bloco do item quantas vezes precisar.
+O nome do arquivo do ZIP sai do `{{TEMA}}` automaticamente.
 
 ---
 
