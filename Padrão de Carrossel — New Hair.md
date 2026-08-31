@@ -24,7 +24,7 @@ Montserrat Light.
 | Onde | Fonte | Peso |
 |---|---|---|
 | Título da capa (`.hero-title`) | **Catchy Mager** | 900, itálico |
-| Título do CTA (`.cta-title`) | **Catchy Mager** | 900, itálico |
+| Título do CTA (`.cta-title`) | Montserrat | **500**, itálico |
 | Corpo, listas, subtítulo | Montserrat | **300** |
 | Destaques, rótulos, CTA, nome do perfil | Montserrat | **500** |
 | Frases de impacto | Cormorant Garamond | 500 |
@@ -35,7 +35,7 @@ pesos 300 e 500 acima são exatamente os das peças de vídeo.
 
 Variáveis CSS:
 ```css
---titulo: 'Catchy Mager','Montserrat',serif;   /* SÓ nos dois títulos display */
+--titulo: 'Catchy Mager','Montserrat',serif;   /* SÓ no título da capa */
 --font:   'Montserrat NH','Montserrat',sans-serif;
 --serif:  'Cormorant NH',Georgia,serif;
 ```
@@ -96,7 +96,7 @@ Slide **1080 × 1350 px**.
 ### S06 — CTA
 - Tudo centralizado · padding 80px · gap 44–48px
 - Logo 140px · opacidade 92%
-- Título do CTA: Catchy Mager 900 itálico · 100px
+- Título do CTA: Montserrat **500** itálico · 100px (não é Catchy Mager)
 - Texto: 46px peso 300
 - Link `@newhair_fue`: 42–46px peso 500 · dourado · tracking `.04em`
   · filete dourado 40% em cima e embaixo · padding `18px 56px`
@@ -106,16 +106,18 @@ Slide **1080 × 1350 px**.
 ## Regras invioláveis
 
 1. **Peso 900 só na Catchy Mager.** Nunca na Montserrat.
-2. **Logo no topo** dos slides de texto. Nunca no rodapé.
-3. **Avatar sem `width:100%`** na imagem interna — quebra o alinhamento.
-4. **Nome completo** no avatar ("New Hair FUE"), nunca apelido.
-5. `hero-tag` **separado** do `hero-block` — dois absolutos independentes
+2. **Catchy Mager só no título da capa.** Em nenhum outro lugar da peça —
+   nem no título do CTA. Decisão da dona em 31/08/2026.
+3. **Logo no topo** dos slides de texto. Nunca no rodapé.
+4. **Avatar sem `width:100%`** na imagem interna — quebra o alinhamento.
+5. **Nome completo** no avatar ("New Hair FUE"), nunca apelido.
+6. `hero-tag` **separado** do `hero-block` — dois absolutos independentes
    (`top:60px` e `top:120px`), senão um empurra o outro.
-6. Título de 3+ linhas usa 88px; 128px só para 1–2 linhas.
-7. Copy longo (6+ linhas) usa `.t-main-sm` (46px), não `.t-main`.
-8. **Dourado só em**: destaques, ícones, filetes, link e bordas do CTA.
-9. Assets **embutidos em base64** — o HTML tem que abrir offline.
-10. **6 slides fixos.**
+7. Título de 3+ linhas usa 88px; 128px só para 1–2 linhas.
+8. Copy longo (6+ linhas) usa `.t-main-sm` (46px), não `.t-main`.
+9. **Dourado só em**: destaques, ícones, filetes, link e bordas do CTA.
+10. Assets **embutidos em base64** — o HTML tem que abrir offline.
+11. **6 slides fixos.**
 
 ---
 
