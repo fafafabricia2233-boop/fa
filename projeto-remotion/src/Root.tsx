@@ -11,6 +11,7 @@ import { PRP, type PRPProps } from "./compositions/PRP";
 import { NewHairImplanter, type NewHairImplanterProps } from "./compositions/NewHairImplanter";
 import { NewHairCinco, type NewHairCincoProps } from "./compositions/NewHairCinco";
 import { NewHairEquipe, type NewHairEquipeProps } from "./compositions/NewHairEquipe";
+import { NewHairAgostoDump, type NewHairAgostoDumpProps } from "./compositions/NewHairAgostoDump";
 import { NewHairAtencao, type NewHairAtencaoProps } from "./compositions/NewHairAtencao";
 import { NewHairQualidade, type NewHairQualidadeProps } from "./compositions/NewHairQualidade";
 import { NewHairResolve, type NewHairResolveProps } from "./compositions/NewHairResolve";
@@ -333,6 +334,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(15.0 * 30)}
             defaultProps={{ durationSeconds: 15.0, video: "newhair/atencao_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-AgostoDump">
+          <Composition
+            id="NewHairAgostoDump"
+            component={NewHairAgostoDump as React.FC<NewHairAgostoDumpProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(6.133 * 30)}
+            defaultProps={{ durationSeconds: 6.133, video: "newhair/agosto_dump_h264.mp4" }}
           />
         </Folder>
 
