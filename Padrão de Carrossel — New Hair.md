@@ -67,9 +67,11 @@ Equivalentes em rgba: dourado `201,162,74` · off-white `247,243,234`.
 
 ## Formato e layout
 
-Slide **1080 × 1350 px**. Os números abaixo são os do template — valores fixos,
-não faixas. O template `Carrossel Template Base.html` é o carrossel aprovado com
-o conteúdo trocado por marcadores; o CSS é idêntico, linha por linha.
+Slide **1080 × 1440 px** (4:3 vertical). A partir de 01/09/2026 as peças novas
+saem nesse formato — antes era 1080 × 1350. Os números abaixo são os do
+template — valores fixos, não faixas. O template `Carrossel Template Base.html`
+é o carrossel aprovado com o conteúdo trocado por marcadores; o CSS é idêntico,
+linha por linha.
 
 ### S01 — Capa
 - Imagem de fundo cobrindo o slide, vinheta por cima
