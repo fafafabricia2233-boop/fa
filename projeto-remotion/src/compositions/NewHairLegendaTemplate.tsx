@@ -59,7 +59,10 @@ const PECA = {
   /* Geometria aprovada. So mexer se a medicao mostrar que o texto cai em cima da
      prova (area cirurgica) ou em fundo claro demais pra ler. */
   geometria: {
-    tituloTop: 118, // 150 quando o topo e imagem morta e nao ha B-roll competindo
+    // titulo agora e SEMPRE centralizado no meio exato do quadro (ordem da dona,
+    // peca NewHairCusta2, mantida na NewHairSupervisionar) — nao usa mais um
+    // offset do topo. Campo mantido so por compatibilidade com pecas antigas.
+    tituloTop: 118,
     legendaBottom: 430,
     seloBottom: 300,
   },
@@ -312,7 +315,11 @@ export const NewHairLegenda: React.FC<NewHairLegendaProps> = ({ video }) => {
 
   /* SCRIM EM DOIS. O de cima existe SO enquanto o titulo existe: depois que ele sai,
      o B-roll cirurgico (que e a prova) fica limpo, sem veu por cima.
-     Peso maior em split screen, porque ali o titulo mora dentro da faixa de B-roll. */
+     Peso maior em split screen, porque ali o titulo mora dentro da faixa de B-roll.
+     Gradiente ESTENDIDO ate ~76%: o titulo e centralizado no meio exato do
+     quadro (ordem da dona, fixada na NewHairCusta2), entao o veu precisa
+     acompanhar ate a metade da tela pra manter contraste do dourado contra
+     fundo claro — a versao antiga, que parava em 42%, era pro titulo no topo. */
   const pesoTopo = PECA.splitScreen ? 0.82 : 0.72;
   const scrimTopo = interpolate(
     frame,
@@ -339,7 +346,7 @@ export const NewHairLegenda: React.FC<NewHairLegendaProps> = ({ video }) => {
       <AbsoluteFill
         style={{
           opacity: scrimTopo,
-          background: `linear-gradient(to bottom, rgba(11,36,54,${pesoTopo}) 0%, rgba(11,36,54,0.55) 18%, rgba(11,36,54,0.10) 30%, rgba(11,36,54,0) 42%)`,
+          background: `linear-gradient(to bottom, rgba(11,36,54,${pesoTopo}) 0%, rgba(11,36,54,0.58) 20%, rgba(11,36,54,0.42) 38%, rgba(11,36,54,0.38) 50%, rgba(11,36,54,0.16) 64%, rgba(11,36,54,0) 76%)`,
         }}
       />
       <AbsoluteFill
@@ -349,11 +356,12 @@ export const NewHairLegenda: React.FC<NewHairLegendaProps> = ({ video }) => {
         }}
       />
 
-      {/* ===== GANCHO = TITULO (topo) ===== */}
+      {/* ===== GANCHO = TITULO (centralizado no meio exato do quadro) ===== */}
       <div
         style={{
           position: "absolute",
-          top: PECA.geometria.tituloTop,
+          top: "50%",
+          transform: "translateY(-50%)",
           width: "100%",
           textAlign: "center",
           padding: "0 90px",
