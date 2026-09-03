@@ -31,6 +31,7 @@ import { NewHairFlui4, type NewHairFlui4Props } from "./compositions/NewHairFlui
 import { NewHairMaturidade, type NewHairMaturidadeProps } from "./compositions/NewHairMaturidade";
 import { NewHairSuperviso, type NewHairSupervisoProps } from "./compositions/NewHairSuperviso";
 import { NewHairProtocolo, type NewHairProtocoloProps } from "./compositions/NewHairProtocolo";
+import { NewHairHistoria, type NewHairHistoriaProps } from "./compositions/NewHairHistoria";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -332,6 +333,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(15.9 * 30)}
             defaultProps={{ durationSeconds: 15.9, video: "newhair/protocolo_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Historia">
+          <Composition
+            id="NewHairHistoria"
+            component={NewHairHistoria as React.FC<NewHairHistoriaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(12.978 * 30)}
+            defaultProps={{ durationSeconds: 12.978, video: "newhair/historia_h264.mp4" }}
           />
         </Folder>
 
