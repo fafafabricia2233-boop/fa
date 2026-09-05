@@ -414,6 +414,21 @@ export const NewHairFoliculo: React.FC<NewHairFoliculoProps> = ({ video }) => {
             margin: "22px auto 0",
           }}
         />
+        <div
+          style={{
+            marginTop: 28,
+            fontFamily: montserrat.fontFamily,
+            fontWeight: 300,
+            fontSize: 18,
+            letterSpacing: 1.2,
+            color: NH.offwhite,
+            textAlign: "center",
+            opacity: tituloOpacity,
+            textShadow: "0 1px 12px rgba(11,36,54,0.8)",
+          }}
+        >
+          Leia a legenda. ↓
+        </div>
       </div>
 
       {/* ===== LEGENDA (rodape, uma frase por vez) ===== */}
