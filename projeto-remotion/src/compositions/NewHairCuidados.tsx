@@ -374,7 +374,7 @@ export const NewHairCuidados: React.FC<NewHairCuidadosProps> = ({ video }) => {
           transform: "translateY(-50%)",
           width: "100%",
           textAlign: "center",
-          padding: "0 90px",
+          padding: "0 120px",
           boxSizing: "border-box",
           opacity: tituloOpacity,
         }}
