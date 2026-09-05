@@ -99,6 +99,24 @@ registro (CFM, CFBM, CRBM). Vale ela confirmar o que o conselho dela permite
 antes de publicar antes/depois — isso é decisão dela, não sua, mas levantar a
 questão uma vez é útil.
 
+## Entregar os slides
+
+O botão **Baixar ZIP** do template serve para quem abre no computador. **No
+celular ele não resolve** — o navegador não descompacta o ZIP e acaba salvando
+a peça inteira como um PDF único, e o Instagram precisa de um arquivo por
+slide. Quando ela for postar pelo telefone, exporte as imagens separadas:
+
+```bash
+python3 scripts/exportar.py carrossel-tema.html slides-tema
+```
+
+Sai um arquivo por slide em 2160×2700, numerado na ordem de publicação. JPEG
+de qualidade 95, porque em slide com foto o PNG passa de 4 MB e trava o envio
+pelo celular — a 95 a diferença visual é nula. Use `--png` só para impressão.
+
+Mande os arquivos com o `SendUserFile`, todos numa chamada, para ela salvar um
+a um no rolo da câmera.
+
 ## Conferir antes de entregar
 
 Renderize e **olhe as imagens**. Boa parte dos defeitos só aparece renderizado:
