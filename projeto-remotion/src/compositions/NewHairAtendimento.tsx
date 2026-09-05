@@ -125,8 +125,9 @@ const CUES: Cue[] = [
     start: 8.2,
     end: 10.8,
     lines: [
-      { text: "O paciente é recebido", size: 34 },
-      { text: "COM PROTOCOLO, CUIDADO E SEGURANÇA", size: 44, gold: true },
+      { text: "Na New Hair, o paciente é recebido com", size: 34 },
+      { text: "PROTOCOLO, CUIDADO E SEGURANÇA", size: 44, gold: true },
+      { text: "desde o primeiro contato", size: 34 },
     ],
   },
 ];
