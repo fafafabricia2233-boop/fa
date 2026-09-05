@@ -8,6 +8,9 @@ em ordem, para postar sem se perder na sequencia.
 
 Uso:  python3 exportar.py <arquivo.html> [pasta-de-saida] [--png]
 
+Todo metadado sai antes da entrega — nenhuma imagem vai para fora com EXIF,
+perfil de cor, comentario ou marca de ferramenta.
+
 Sai em 2160x2700 (o dobro de 1080x1350), que e o que o Instagram aceita sem
 reamostrar para baixo. JPEG de qualidade 95 por padrao: num slide com foto o
 PNG passa de 4 MB e trava o envio pelo celular, e a 95 a diferenca visual e
@@ -32,6 +35,54 @@ def achar_chromium() -> str | None:
     return None
 
 
+def limpar_metadados(arq: pathlib.Path) -> int:
+    """Remove todo segmento de metadado do arquivo, sem reencodar.
+
+    Cortar os marcadores byte a byte preserva o fluxo comprimido intacto — abrir
+    e salvar de novo custaria uma geracao de qualidade a toa.
+
+    JPEG: sai todo APPn menos o APP0/JFIF, e todo COM. O APP0 fica porque e
+    estrutura do formato e nao carrega informacao (versao, densidade 1x1,
+    miniatura 0x0). O que sai de fato: APP1 (EXIF e XMP), APP2 (perfil de cor),
+    APP13 (IPTC) e APP14 (Adobe). Sem perfil, o conteudo e lido como sRGB, que
+    e o que ele ja e.
+
+    PNG: saem os blocos de texto e de tempo (tEXt, iTXt, zTXt, tIME, eXIf).
+    """
+    b = arq.read_bytes()
+
+    if b[:2] == b"\xff\xd8":                       # JPEG
+        saida = bytearray(b[:2])
+        i = 2
+        while i < len(b) - 1 and b[i] == 0xFF:
+            m = b[i + 1]
+            if m == 0xDA:                            # daqui pra frente e imagem
+                saida += b[i:]
+                break
+            tam = int.from_bytes(b[i + 2:i + 4], "big")
+            descartar = (0xE1 <= m <= 0xEF) or m == 0xFE
+            if not descartar:
+                saida += b[i:i + 2 + tam]
+            i += 2 + tam
+        else:
+            saida += b[i:]
+    elif b[:8] == b"\x89PNG\r\n\x1a\n":              # PNG
+        saida = bytearray(b[:8]); i = 8
+        while i < len(b):
+            tam = int.from_bytes(b[i:i + 4], "big")
+            tipo = b[i + 4:i + 8]
+            if tipo not in (b"tEXt", b"iTXt", b"zTXt", b"tIME", b"eXIf"):
+                saida += b[i:i + 12 + tam]
+            i += 12 + tam
+    else:
+        return 0
+
+    removido = len(b) - len(saida)
+    if removido:
+        arq.write_bytes(bytes(saida))
+    return removido
+
+
 async def exportar(html: pathlib.Path, saida: pathlib.Path, png: bool) -> list[pathlib.Path]:
     from playwright.async_api import async_playwright
 
@@ -53,6 +104,7 @@ async def exportar(html: pathlib.Path, saida: pathlib.Path, png: bool) -> list[p
                 await el.screenshot(path=str(arq))
             else:
                 await el.screenshot(path=str(arq), type="jpeg", quality=95)
+            limpar_metadados(arq)
             feitos.append(arq)
         await nav.close()
     return feitos

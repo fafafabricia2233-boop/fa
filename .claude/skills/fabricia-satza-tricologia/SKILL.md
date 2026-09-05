@@ -117,6 +117,13 @@ pelo celular — a 95 a diferença visual é nula. Use `--png` só para impress�
 Mande os arquivos com o `SendUserFile`, todos numa chamada, para ela salvar um
 a um no rolo da câmera.
 
+**Nenhuma imagem sai com metadado.** O `exportar.py` limpa antes de entregar —
+some todo EXIF, XMP, perfil de cor, IPTC e comentário; no PNG, os blocos de
+texto e de tempo. A limpeza é feita cortando os marcadores byte a byte, sem
+reencodar, para não gastar uma geração de qualidade. Se algum dia você gerar
+imagem por outro caminho, passe pela mesma função antes de entregar: peça que
+publica em nome dela não deve carregar rastro de ferramenta nenhuma.
+
 ## Conferir antes de entregar
 
 Renderize e **olhe as imagens**. Boa parte dos defeitos só aparece renderizado:
