@@ -52,13 +52,20 @@
   --terracota:#B06F53;
   --terracota-esc:#8A5A44;
 
+  /* Formato da peca. Trocar estes dois valores troca o carrossel inteiro.
+       4:5  1080x1350  padrao do Instagram, o mais alto aceito em carrossel
+       3:4  1080x1440  bate com o corte da grade do perfil
+       1:1  1080x1080  quadrado */
+  --peca-larg:1080px;
+  --peca-alt:1350px;
+
   --titulo:'Fabricia Satza Alt','Futura',sans-serif;
   --texto:'Fabricia Satza','Futura',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#191919;display:flex;flex-direction:column;align-items:center;
      gap:26px;padding:64px 20px}
-.slide{width:1080px;height:1350px;position:relative;overflow:hidden;flex-shrink:0;
+.slide{width:var(--peca-larg);height:var(--peca-alt);position:relative;overflow:hidden;flex-shrink:0;
        background:var(--branco);font-family:var(--texto);color:var(--forte)}
 .slide.quente{background:var(--marfim)}
 .slide.escuro{background:var(--vinho);color:var(--claro)}

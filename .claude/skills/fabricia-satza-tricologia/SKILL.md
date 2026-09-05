@@ -99,6 +99,32 @@ registro (CFM, CFBM, CRBM). Vale ela confirmar o que o conselho dela permite
 antes de publicar antes/depois — isso é decisão dela, não sua, mas levantar a
 questão uma vez é útil.
 
+## Formato da peça
+
+O padrão é **4:5, 1080×1350** — é o mais alto que o Instagram aceita em
+carrossel e o que ocupa mais tela no feed. Para trocar, mexa só nos dois
+tokens no topo do `base.css`:
+
+```css
+--peca-larg:1080px;  --peca-alt:1350px;   /* 4:5  padrão */
+--peca-larg:1080px;  --peca-alt:1440px;   /* 3:4  bate com o corte da grade */
+--peca-larg:1080px;  --peca-alt:1080px;   /* 1:1  quadrado */
+```
+
+O Instagram aceita em carrossel apenas **4:5, 1:1 e 1.91:1**. O 3:4 nasceu para
+post de feed avulso, casando com o corte da grade do perfil; num carrossel ele
+pode ser aparado para 4:5. **4:3 em paisagem não existe como formato de
+carrossel** — o paisagem de lá é 1.91:1, bem mais largo.
+
+Ao trocar de formato, duas coisas precisam acompanhar:
+
+1. **Recorte as fotos na nova proporção a partir do original.** Deixar o
+   `object-fit:cover` apertar uma imagem já cortada em outra proporção joga
+   fora resolução e desloca o enquadramento.
+2. **A altura extra vira respiro, não texto maior.** Suba o `padding` do
+   `.corpo` na mesma medida. Aumentar o corpo do texto para "preencher" acaba
+   com a leveza que sustenta a marca.
+
 ## Entregar os slides
 
 O botão **Baixar ZIP** do template serve para quem abre no computador. **No
