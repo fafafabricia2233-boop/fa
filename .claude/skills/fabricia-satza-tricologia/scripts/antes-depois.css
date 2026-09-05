@@ -12,7 +12,7 @@
 .lado{position:relative;overflow:hidden}
 .lado img{width:100%;height:100%;object-fit:cover;display:block}
 .divisa{position:absolute;top:0;bottom:0;left:50%;width:1px;z-index:12;
-        background:rgba(253,252,248,.85)}
+        background:rgba(252,250,247,.85)}
 
 /* Os marcadores vivem FORA de .lado. Dentro, o overflow:hidden que recorta a
    foto recortava tambem o rotulo. */
@@ -22,7 +22,7 @@
 
 .selo{position:absolute;bottom:132px;left:50%;transform:translateX(-50%);z-index:14;
       font-family:var(--titulo);font-size:56px;letter-spacing:.14em;
-      text-transform:uppercase;color:var(--creme);white-space:nowrap;
+      text-transform:uppercase;color:var(--branco);white-space:nowrap;
       text-shadow:0 2px 22px rgba(0,0,0,.55)}
 
 /* Posicione com --x e --y em % DA METADE (nao da peca inteira):
@@ -31,22 +31,22 @@
    Use .abaixo quando o anel estiver perto do topo da foto. */
 .marca{position:absolute;left:var(--x);top:var(--y);width:var(--r,140px);
        height:var(--r,140px);transform:translate(-50%,-50%);border-radius:50%;
-       border:1.5px solid rgba(253,252,248,.92);
+       border:1.5px solid rgba(252,250,247,.92);
        box-shadow:0 0 0 1px rgba(0,0,0,.16),0 0 30px rgba(0,0,0,.30)}
 .marca.perda{border-style:dashed}
 .marca.ganho{border-style:solid}
 
 .marca .haste{position:absolute;left:50%;bottom:100%;width:1px;height:var(--h,74px);
-       background:rgba(253,252,248,.85);transform:translateX(-50%)}
+       background:rgba(252,250,247,.85);transform:translateX(-50%)}
 .marca .nome{position:absolute;left:50%;bottom:calc(100% + var(--h,74px) + 14px);
        transform:translateX(-50%);font-size:23px;letter-spacing:.20em;
-       text-transform:uppercase;color:var(--creme);white-space:nowrap;
+       text-transform:uppercase;color:var(--branco);white-space:nowrap;
        text-shadow:0 2px 14px rgba(0,0,0,.75)}
 .marca.abaixo .haste{bottom:auto;top:100%}
 .marca.abaixo .nome{bottom:auto;top:calc(100% + var(--h,74px) + 14px)}
 
 /* Faixa de leitura no rodape: o que mudou, em uma linha. */
 .leitura{position:absolute;left:80px;right:80px;bottom:150px;z-index:14;
-       text-align:center;font-size:33px;line-height:1.44;color:var(--creme);
+       text-align:center;font-size:33px;line-height:1.44;color:var(--branco);
        text-shadow:0 2px 18px rgba(0,0,0,.62)}
 .leitura .caixa{font-size:33px}

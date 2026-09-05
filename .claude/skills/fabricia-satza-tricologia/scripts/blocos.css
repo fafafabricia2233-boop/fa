@@ -22,13 +22,13 @@
 .veu{position:absolute;inset:0;z-index:5;pointer-events:none;
      background:linear-gradient(to bottom,rgba(0,0,0,.42) 0%,rgba(0,0,0,.05) 34%,
                 rgba(0,0,0,.12) 60%,rgba(0,0,0,.62) 100%)}
-.sobre-foto .corpo{justify-content:flex-end;color:var(--creme)}
+.sobre-foto .corpo{justify-content:flex-end;color:var(--branco)}
 .sobre-foto .titulo,.sobre-foto .subtitulo,.sobre-foto .texto{
      text-shadow:0 2px 26px rgba(0,0,0,.42)}
 
-/* Caixa creme atras do texto. box-decoration-break:clone da uma caixa por
+/* Caixa em branco suave atras do texto. box-decoration-break:clone da uma caixa por
    linha, entao a mancha acompanha o texto em vez de virar um retangulo. */
-.caixa{background:var(--creme);color:var(--tinta);padding:.16em .40em;
+.caixa{background:var(--branco);color:var(--forte);padding:.16em .40em;
        box-decoration-break:clone;-webkit-box-decoration-break:clone;
        text-shadow:none;line-height:1.52}
 .caixa-sombra{box-shadow:0 8px 40px rgba(0,0,0,.18)}
@@ -36,7 +36,7 @@
 /* ══ LISTA ════════════════════════════════════════════════════════════════ */
 .lista{display:flex;flex-direction:column;gap:40px}
 .item{display:flex;gap:32px;align-items:baseline}
-.item-n{font-size:32px;color:var(--taupe);letter-spacing:.10em;
+.item-n{font-size:32px;color:var(--terracota-esc);letter-spacing:.10em;
         flex-shrink:0;min-width:50px}
 .item-t{font-size:45px;line-height:1.32}
 
@@ -47,23 +47,23 @@
         width:1px;background:var(--taupe);opacity:.7}
 .etapa{position:relative}
 .etapa::before{content:'';position:absolute;left:-64px;top:16px;width:11px;
-        height:11px;border-radius:50%;background:var(--creme);
+        height:11px;border-radius:50%;background:var(--branco);
         border:1px solid var(--taupe)}
-.etapa.marcada::before{background:var(--taupe)}
+.etapa.marcada::before{background:var(--terracota)}
 .etapa-n{font-size:24px;letter-spacing:.26em;text-transform:uppercase;
-        color:var(--taupe);margin-bottom:12px}
+        color:var(--terracota-esc);margin-bottom:12px}
 .etapa-t{font-size:44px;line-height:1.26;margin-bottom:10px}
-.etapa-d{font-size:34px;line-height:1.44;color:var(--tinta-suave)}
+.etapa-d{font-size:34px;line-height:1.44;color:var(--suave)}
 
 /* ══ COMPARATIVO ═══ duas colunas separadas por um fio ════════════════════ */
 .comparativo{display:grid;grid-template-columns:1fr 1px 1fr;gap:52px;flex:1;
         align-items:start;padding-top:26px}
 .comp-fio{background:var(--taupe);opacity:.7;align-self:stretch}
 .comp-cab{font-size:24px;letter-spacing:.26em;text-transform:uppercase;
-        color:var(--taupe);margin-bottom:34px}
+        color:var(--terracota-esc);margin-bottom:34px}
 .comp-lista{display:flex;flex-direction:column;gap:30px}
 .comp-item{font-size:38px;line-height:1.34}
-.comp-item.fraco{color:var(--tinta-suave)}
+.comp-item.fraco{color:var(--suave)}
 
 /* ══ CICLO ═══ fases em linha, ligadas por um fio horizontal ══════════════ */
 .ciclo{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
@@ -72,26 +72,26 @@
         background:var(--taupe);opacity:.7}
 .fase{position:relative;text-align:center;padding-top:82px}
 .fase::before{content:'';position:absolute;left:50%;top:46px;transform:translateX(-50%);
-        width:13px;height:13px;border-radius:50%;background:var(--creme);
+        width:13px;height:13px;border-radius:50%;background:var(--branco);
         border:1px solid var(--taupe)}
-.fase.marcada::before{background:var(--taupe)}
+.fase.marcada::before{background:var(--terracota)}
 .fase-n{font-size:38px;line-height:1.2;margin-bottom:12px}
-.fase-d{font-size:30px;line-height:1.42;color:var(--tinta-suave)}
+.fase-d{font-size:30px;line-height:1.42;color:var(--suave)}
 
 /* ══ DEFINICAO ═══ termo grande, fio, explicacao ══════════════════════════ */
 .definicao{display:flex;flex-direction:column;gap:32px}
 .def-termo{font-family:var(--titulo);font-size:80px;line-height:1.06}
-.def-fon{font-size:30px;letter-spacing:.16em;color:var(--taupe)}
+.def-fon{font-size:30px;letter-spacing:.16em;color:var(--terracota-esc)}
 .def-txt{font-size:42px;line-height:1.42}
 
 /* ══ DADO ═══ um numero grande com legenda ════════════════════════════════ */
 .dado{text-align:center}
 .dado-n{font-family:var(--titulo);font-size:190px;line-height:.94;
         letter-spacing:-.03em}
-.dado-l{font-size:36px;line-height:1.4;color:var(--tinta-suave);margin-top:24px}
+.dado-l{font-size:36px;line-height:1.4;color:var(--suave);margin-top:24px}
 
 /* ══ BARRA DE EXPORT ══════════════════════════════════════════════════════ */
-.dl{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--creme);
+.dl{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--branco);
     border:1px solid var(--taupe);padding:13px 26px;font-family:var(--texto);
-    font-size:19px;color:var(--tinta);cursor:pointer;z-index:9999;border-radius:4px;
+    font-size:19px;color:var(--forte);cursor:pointer;z-index:9999;border-radius:4px;
     letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}

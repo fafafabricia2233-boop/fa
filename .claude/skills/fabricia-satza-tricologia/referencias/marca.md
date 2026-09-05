@@ -17,25 +17,68 @@ identifica a peça quando ela é printada e recompartilhada sem o perfil junto.
 
 ## Cor
 
+Paleta oficial da marca, oito cores. O que mantém a unidade não é a lista — é
+o **papel** de cada uma. Usadas soltas, oito cores viram ruído.
+
 ```
---creme         #FDFCF8   fundo padrão
---creme-quente  #F7F4EC   fundo alternado, para dar ritmo entre slides
---tinta         #23272F   texto (azul-petróleo tão escuro que lê como preto)
---tinta-suave   rgba(35,39,47,.58)   secundário, rótulos, notas
---taupe         #B9A492   único acento
+Vinho ameixa profundo   #4A2634
+Marfim quente           #F4EFE8
+Taupe / nude            #A99B91
+Café profundo           #28201F
+Champagne               #C9B39B
+Branco suave            #FCFAF7
+Terracota suave         #B06F53
+Marrom terracota        #8A5A44
 ```
 
-Amostradas dos posters originais da marca, não escolhidas do zero.
+### Papéis
 
-**Taupe:** fio de 1px, número de lista, bolinha de etapa, uma palavra em
-`<em>`. Nunca área preenchida. Esta é a regra que mais rápido quebra a marca.
+| Cor | Papel |
+|---|---|
+| **Branco suave** `#FCFAF7` | fundo padrão |
+| **Marfim quente** `#F4EFE8` | fundo alternado, dá ritmo sem cor nova |
+| **Café profundo** `#28201F` | texto sobre claro **e** fundo escuro neutro |
+| **Vinho ameixa** `#4A2634` | fundo escuro de assinatura, o mais marcante |
+| **Marrom terracota** `#8A5A44` | números, rótulos, palavra destacada em texto |
+| **Terracota suave** `#B06F53` | destaque em corpo grande, bolinha do passo em foco |
+| **Taupe** `#A99B91` | fio de 1px sobre fundo claro |
+| **Champagne** `#C9B39B` | acento e fio sobre fundo escuro |
 
-**Fundo escuro** (`--tinta`): só o slide de virada, no máximo um por carrossel.
-Ele existe para marcar a frase que você quer que a pessoa lembre — se aparecer
-três vezes, não marca nada.
+### Contraste — a parte que decide o uso
 
-**Ritmo de fundo:** alternar creme e creme-quente entre slides dá respiração
-sem introduzir cor nova. Não alterne a cada slide; use em blocos.
+Medido contra cada fundo (mínimo 4,5:1 para texto corrido, 3,0:1 para corpo
+grande a partir de 45px):
+
+| Cor | sobre claro | sobre café | sobre vinho |
+|---|---|---|---|
+| Café profundo | **15,3** | — | — |
+| Vinho ameixa | **12,5** | — | — |
+| Marrom terracota | **5,6** | 2,8 | 2,2 |
+| Terracota suave | 3,8 ⚠ | 4,0 ⚠ | 3,2 ⚠ |
+| Taupe | 2,6 ✗ | **5,9** | **4,8** |
+| Champagne | 1,9 ✗ | **7,9** | **6,4** |
+| Branco suave | — | **15,3** | **12,5** |
+
+Duas leituras dessa tabela mudam como a paleta se usa:
+
+1. **Taupe e champagne se invertem conforme o fundo.** Sobre fundo claro são pálidos
+   demais para qualquer texto — servem só como fio e superfície. Sobre café ou
+   vinho ficam ótimos e viram o acento. É contraintuitivo, e foi o que quebrou
+   a primeira versão deste CSS: números e rótulos estavam em taupe sobre claro,
+   a 2,6:1, praticamente invisíveis depois da recompressão do Instagram.
+2. **Terracota precisa de corpo.** A 3,8:1 ele só aguenta 45px pra cima. Dentro
+   de texto corrido use o **marrom terracota**, que chega a 5,6:1.
+
+### Regras
+
+**Um fundo escuro por carrossel, nunca os dois.** Café e vinho são ambos o
+slide de virada. Dois slides escuros são duas viradas, e aí nenhuma é virada.
+
+**Nenhum acento em área preenchida.** Taupe, champagne e terracota entram como
+fio de 1px, número, bolinha ou palavra. No momento em que viram bloco de cor
+ou botão, a peça deixa de parecer da marca.
+
+**Ritmo de fundo:** alterne branco suave e marfim em blocos, não a cada slide.
 
 ## Tipografia
 
@@ -94,9 +137,9 @@ rodapé            64px da base
 O respiro largo não é desperdício — é o que separa esta marca de um panfleto.
 Quando faltar espaço, **corte texto**, não margem.
 
-## A caixa creme sobre foto
+## A caixa branca sobre foto
 
-`<span class="caixa">` põe um fundo creme atrás do texto, uma caixa por linha
+`<span class="caixa">` põe um fundo branco suave atrás do texto, uma caixa por linha
 (via `box-decoration-break: clone`), então a mancha acompanha o texto em vez de
 virar um retângulo cego sobre a foto.
 

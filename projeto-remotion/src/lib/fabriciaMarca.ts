@@ -1,26 +1,49 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // FABRÍCIA SATZA — tokens da marca pessoal (tricologia e queda capilar).
 //
-// Amostrados dos posters de referência da marca. Identidade CLARA e editorial:
-// fundo creme, tinta escura, um único detalhe em taupe. É o oposto da New Hair
-// (fundo escuro + dourado) — as duas marcas não devem se parecer.
+// Paleta oficial da marca. Identidade CLARA e editorial, de base quente: fundo
+// branco suave, tinta café, acentos em terracota e champagne. É o oposto da
+// New Hair (fundo escuro + dourado) — as duas marcas não devem se parecer.
+//
+// Regras de cor e tabela de contraste completa:
+//   .claude/skills/fabricia-satza-tricologia/referencias/marca.md
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { FABRICIA_TEXTO, FABRICIA_TITULO } from "./fabriciaFonts";
 
 export const CORES = {
+  // ── Superfícies ──
   /** Fundo padrão de toda peça. */
-  creme: "#FDFCF8",
-  /** Variação levemente mais quente, para blocos alternados. */
-  cremeQuente: "#F7F4EC",
-  /** Cor de texto principal. Azul-petróleo tão escuro que lê como preto. */
-  tinta: "#23272F",
-  /** Texto secundário / legendas. */
-  tintaSuave: "rgba(35,39,47,0.58)",
-  /** Único acento da marca: filete, sublinhado, detalhe. Nunca em bloco. */
-  taupe: "#B9A492",
-  /** Para peças invertidas (story escuro, capa de vídeo). */
-  tintaFundo: "#23272F",
+  branco: "#FCFAF7",
+  /** Fundo alternado, para dar ritmo sem introduzir cor nova. */
+  marfim: "#F4EFE8",
+  /** Fundo escuro neutro. Também é a cor do texto sobre fundo claro. */
+  cafe: "#28201F",
+  /** Fundo escuro de assinatura, mais marcante. Um OU outro, nunca os dois. */
+  vinho: "#4A2634",
+
+  // ── Texto ──
+  /** Texto principal sobre fundo claro. 15,3:1. */
+  forte: "#28201F",
+  /** Secundário sobre claro: legendas, notas, rótulos. */
+  suave: "rgba(40,32,31,0.58)",
+  /** Texto sobre fundo escuro. */
+  claro: "#FCFAF7",
+  /** Secundário sobre escuro. */
+  claroSuave: "rgba(252,250,247,0.64)",
+
+  // ── Acentos ──
+  // Taupe e champagne se INVERTEM conforme o fundo: sobre claro são pálidos
+  // demais para texto (2,6:1 e 1,9:1) e só valem como fio; sobre escuro ficam
+  // ótimos (5,9:1 e 7,9:1) e viram o acento.
+  /** Fio de 1px sobre fundo claro. Nunca texto. */
+  taupe: "#A99B91",
+  /** Acento e fio sobre fundo escuro. Nunca texto sobre claro. */
+  champagne: "#C9B39B",
+  /** Destaque em corpo grande (45px+) e marcador de passo em foco. 3,8:1. */
+  terracota: "#B06F53",
+  /** Destaque dentro de texto corrido, números e rótulos. 5,6:1. */
+  terracotaEscuro: "#8A5A44",
 } as const;
 
 export const FONTES = {
@@ -29,26 +52,28 @@ export const FONTES = {
 } as const;
 
 /**
- * Escala tipográfica em px para tela 1080×1350 (carrossel) e 1080×1920 (reel).
+ * Escala tipográfica em px para tela 1080×1350 (carrossel).
  * A fonte é Light: em corpo pequeno ela perde peso, então nada abaixo de 30px.
+ * Em reel 1080×1920 suba tudo — legenda mínima confortável é 44px, não 30px.
  */
 export const ESCALA = {
   display: 116,
-  titulo: 92,
-  subtitulo: 54,
-  corpo: 46,
-  corpoPequeno: 38,
+  titulo: 88,
+  subtitulo: 52,
+  corpo: 45,
+  corpoPequeno: 37,
   legenda: 30,
 } as const;
 
 /**
- * Rótulos da marca (A TYPEFACE FOR BRIGHTER BRANDS, SIMPLES | ELEGANTE | ...)
- * usam caixa alta com tracking largo. É a assinatura visual dos posters.
+ * Rótulos em caixa alta com tracking largo são a assinatura visual da marca —
+ * é o par de rótulos nos cantos de cima que faz peças soltas lerem como uma
+ * série só.
  */
 export const ROTULO = {
   fontFamily: FONTES.texto,
-  fontSize: ESCALA.legenda,
+  fontSize: 24,
   letterSpacing: "0.30em",
   textTransform: "uppercase",
-  color: CORES.tintaSuave,
+  color: CORES.suave,
 } as const;

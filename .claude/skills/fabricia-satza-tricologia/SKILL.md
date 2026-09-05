@@ -48,7 +48,7 @@ próxima geração.
 |---|---|
 | **Capa** | Sempre o primeiro. Só o gancho. |
 | **Quadro** | A frase que a pessoa printa. Entra em cima, conclui em caixa alta embaixo. |
-| **Foto com caixa** | Texto sobre foto qualquer. A caixa creme garante leitura. |
+| **Foto com caixa** | Texto sobre foto qualquer. A caixa em branco suave garante leitura. |
 | **Foto sem caixa** | Só quando a imagem tem área limpa de verdade. |
 | **Lista** | Até 4 itens. Acima disso vira folheto. |
 | **Etapas** | Quando a **ordem** importa: protocolo, investigação, jornada. |
@@ -121,17 +121,29 @@ Uma família só: **Fabrícia Satza**, em dois pesos.
 - Títulos usam `Fabricia Satza Alt` (o `a` de um andar); texto corrido usa
   `Fabricia Satza` (o `a` de dois andares). O CSS já faz isso — não troque.
 
-## Cor — a única regra que quebra a marca
+## Cor — o essencial
 
 ```
-creme #FDFCF8 · creme quente #F7F4EC · tinta #23272F · taupe #B9A492
+branco suave #FCFAF7 · marfim quente #F4EFE8 · café profundo #28201F
+vinho ameixa #4A2634 · marrom terracota #8A5A44 · terracota suave #B06F53
+taupe #A99B91 · champagne #C9B39B
 ```
 
-O **taupe só aparece como fio de 1px, número de lista ou palavra destacada**.
-Nunca preenchendo área, nunca como botão, nunca como fundo de caixa. No momento
-em que ele vira bloco, a peça deixa de parecer da marca.
+Duas regras carregam a marca:
 
-Detalhe completo em `referencias/marca.md`.
+1. **Nenhum acento em área preenchida.** Taupe, champagne e terracota entram
+   como fio de 1px, número, bolinha ou palavra destacada. Viraram bloco de cor
+   ou botão, a peça deixou de ser da marca.
+2. **Taupe e champagne se invertem conforme o fundo.** Sobre claro são pálidos
+   demais para texto (2,6:1 e 1,9:1) e só valem como fio. Sobre escuro ficam
+   ótimos (5,9:1 e 7,9:1) e viram o acento. Dentro de texto sobre fundo claro,
+   o destaque é o **marrom terracota** (5,6:1) — o terracota claro só aguenta
+   45px pra cima.
+
+Um fundo escuro por carrossel (café **ou** vinho), nunca os dois: seriam duas
+viradas, e aí nenhuma é virada.
+
+Tabela de contraste completa em `referencias/marca.md`.
 
 ## Vídeo (Remotion)
 

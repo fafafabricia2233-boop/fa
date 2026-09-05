@@ -1,6 +1,32 @@
 :root {
-  --creme:#FDFCF8; --creme-quente:#F7F4EC; --tinta:#23272F;
-  --tinta-suave:rgba(35,39,47,.58); --taupe:#B9A492;
+  /* ── SUPERFÍCIES ──────────────────────────────────────────────────────
+     Branco suave e o padrao; marfim da ritmo entre slides sem cor nova.
+     Cafe e vinho sao os dois fundos escuros — cafe e neutro, vinho e o de
+     assinatura, mais marcante. Um dos dois por carrossel, nunca os dois. */
+  --branco:#FCFAF7;
+  --marfim:#F4EFE8;
+  --cafe:#28201F;
+  --vinho:#4A2634;
+
+  /* ── TEXTO ────────────────────────────────────────────────────────────
+     Cafe sobre claro da 15,3:1; branco sobre cafe da o mesmo. Os niveis
+     "suave" existem para hierarquia sem introduzir mais uma cor. */
+  --forte:#28201F;
+  --suave:rgba(40,32,31,.58);
+  --claro:#FCFAF7;
+  --claro-suave:rgba(252,250,247,.64);
+
+  /* ── ACENTOS ──────────────────────────────────────────────────────────
+     Taupe e champagne se invertem conforme o fundo: sobre claro sao pale
+     demais para texto (2,6:1 e 1,9:1) e servem so como fio e superficie;
+     sobre escuro ficam otimos (5,9:1 e 7,9:1) e viram texto de acento.
+     Terracota precisa de corpo: 3,8:1 so aguenta 45px pra cima. A versao
+     escura chega a 5,6:1 e e a que entra dentro do texto corrido. */
+  --taupe:#A99B91;
+  --champagne:#C9B39B;
+  --terracota:#B06F53;
+  --terracota-esc:#8A5A44;
+
   --titulo:'Fabricia Satza Alt','Futura',sans-serif;
   --texto:'Fabricia Satza','Futura',sans-serif;
 }
@@ -8,25 +34,26 @@
 body{background:#191919;display:flex;flex-direction:column;align-items:center;
      gap:26px;padding:64px 20px}
 .slide{width:1080px;height:1350px;position:relative;overflow:hidden;flex-shrink:0;
-       background:var(--creme);font-family:var(--texto);color:var(--tinta)}
-.slide.quente{background:var(--creme-quente)}
-.slide.escuro{background:var(--tinta);color:var(--creme)}
+       background:var(--branco);font-family:var(--texto);color:var(--forte)}
+.slide.quente{background:var(--marfim)}
+.slide.escuro{background:var(--cafe);color:var(--claro)}
+.slide.vinho{background:var(--vinho);color:var(--claro)}
 
 /* ── CABECALHO: assinatura fixa da marca, nos dois cantos de cima ───────── */
 .cab{position:absolute;top:64px;left:80px;right:80px;z-index:30;display:flex;
      justify-content:space-between;font-size:22px;letter-spacing:.30em;
-     text-transform:uppercase;color:var(--tinta-suave);white-space:nowrap}
-.escuro .cab,.sobre-foto .cab{color:rgba(253,252,248,.72);
+     text-transform:uppercase;color:var(--suave);white-space:nowrap}
+.escuro .cab,.vinho .cab,.sobre-foto .cab{color:rgba(252,250,247,.74);
      text-shadow:0 1px 12px rgba(0,0,0,.45)}
 
 /* ── RODAPE ─────────────────────────────────────────────────────────────── */
 .rod{position:absolute;bottom:64px;left:80px;right:80px;z-index:30;display:flex;
      justify-content:space-between;align-items:center;font-size:22px;
-     letter-spacing:.24em;text-transform:uppercase;color:var(--tinta-suave)}
-.escuro .rod,.sobre-foto .rod{color:rgba(253,252,248,.66);
+     letter-spacing:.24em;text-transform:uppercase;color:var(--suave)}
+.escuro .rod,.vinho .rod,.sobre-foto .rod{color:rgba(252,250,247,.68);
      text-shadow:0 1px 12px rgba(0,0,0,.45)}
-.rod .segue{font-size:30px;letter-spacing:0;color:var(--taupe)}
-.sobre-foto .rod .segue{color:var(--creme)}
+.rod .segue{font-size:30px;letter-spacing:0;color:var(--terracota-esc)}
+.escuro .rod .segue,.vinho .rod .segue,.sobre-foto .rod .segue{color:var(--champagne)}
 
 /* ── AREA DE CONTEUDO ───────────────────────────────────────────────────── */
 .corpo{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column;
@@ -41,16 +68,25 @@ body{background:#191919;display:flex;flex-direction:column;align-items:center;
         letter-spacing:-.01em;text-wrap:balance}
 .subtitulo{font-size:52px;line-height:1.34}
 .texto{font-size:45px;line-height:1.44}
-.texto-sm{font-size:37px;line-height:1.48;color:var(--tinta-suave)}
-.escuro .texto-sm{color:rgba(253,252,248,.62)}
+.texto-sm{font-size:37px;line-height:1.48;color:var(--suave)}
+.escuro .texto-sm,.vinho .texto-sm{color:var(--claro-suave)}
 .rotulo{font-size:24px;letter-spacing:.30em;text-transform:uppercase;
-        color:var(--tinta-suave)}
-.escuro .rotulo{color:rgba(253,252,248,.55)}
+        color:var(--suave)}
+.escuro .rotulo,.vinho .rotulo{color:var(--claro-suave)}
 
 /* Enfase SEM engrossar: o salto e de 300 para 500, dois passos abaixo do
    negrito real. Da peso a palavra sem quebrar a leveza da fonte. */
 b,strong,.forte{font-weight:500}
-em,i,.destaque{font-style:normal;color:var(--taupe)}
+
+/* Destaque em cor. Sobre claro usa o terracota escuro (5,6:1); sobre escuro,
+   champagne (7,9:1). .quente usa o terracota claro e SO vale de 45px pra cima,
+   porque em corpo menor ele cai para 3,8:1 e some na recompressao. */
+em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
+.escuro em,.escuro i,.escuro .destaque,
+.vinho em,.vinho i,.vinho .destaque,
+.sobre-foto em,.sobre-foto i,.sobre-foto .destaque{color:var(--champagne)}
+.destaque.quente{color:var(--terracota)}
 
 .filete{width:110px;height:1px;background:var(--taupe);flex-shrink:0}
+.escuro .filete,.vinho .filete{background:var(--champagne);opacity:.75}
 .filete.centro{margin:0 auto}
