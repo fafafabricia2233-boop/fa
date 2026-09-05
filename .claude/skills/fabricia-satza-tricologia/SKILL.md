@@ -50,6 +50,12 @@ próxima geração.
 | **Quadro** | A frase que a pessoa printa. Entra em cima, conclui em caixa alta embaixo. |
 | **Foto com caixa** | Texto sobre foto qualquer. A caixa em branco suave garante leitura. |
 | **Foto sem caixa** | Só quando a imagem tem área limpa de verdade. |
+
+Os dois blocos de foto dependem da classe **`sobre-foto`** no `<section>`: é ela
+que liga o véu, joga o texto para o rodapé e inverte cabeçalho e rodapé para
+claro. Ao trocar a classe de fundo de um slide, **acrescente** — não substitua a
+lista inteira, ou o slide perde o véu e o texto sai na cor de fundo claro, cinza
+sobre a imagem.
 | **Lista** | Até 4 itens. Acima disso vira folheto. |
 | **Etapas** | Quando a **ordem** importa: protocolo, investigação, jornada. |
 | **Comparativo** | Mito × fato, o que parece × o que é. |
@@ -107,6 +113,7 @@ O que olhar:
 - Gancho da capa quebrando em linha feia (cabe em ~3 linhas de 18 caracteres —
   se não cabe, o texto é que está longo, encurte em vez de diminuir a fonte)
 - Fios de 1px que sumiram
+- Cabeçalho e rodapé cinza-escuro sobre foto (sinal de que `sobre-foto` caiu)
 - Marcador do antes/depois fora do lugar
 - `{{PLACEHOLDER}}` esquecido
 

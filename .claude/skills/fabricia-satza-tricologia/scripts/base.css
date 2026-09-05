@@ -57,15 +57,19 @@ body{background:#191919;display:flex;flex-direction:column;align-items:center;
 .cab{position:absolute;top:64px;left:80px;right:80px;z-index:30;display:flex;
      justify-content:space-between;font-size:22px;letter-spacing:.30em;
      text-transform:uppercase;color:var(--suave);white-space:nowrap}
-.escuro .cab,.cafe .cab,.terra .cab,.sobre-foto .cab{color:rgba(252,250,247,.74);
+.escuro .cab,.cafe .cab,.terra .cab{color:rgba(252,250,247,.74);
      text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.sobre-foto .cab{color:rgba(252,250,247,.94);
+     text-shadow:0 1px 3px rgba(0,0,0,.55),0 2px 18px rgba(0,0,0,.65)}
 
 /* ── RODAPE ─────────────────────────────────────────────────────────────── */
 .rod{position:absolute;bottom:64px;left:80px;right:80px;z-index:30;display:flex;
      justify-content:space-between;align-items:center;font-size:22px;
      letter-spacing:.24em;text-transform:uppercase;color:var(--suave)}
-.escuro .rod,.cafe .rod,.terra .rod,.sobre-foto .rod{color:rgba(252,250,247,.68);
+.escuro .rod,.cafe .rod,.terra .rod{color:rgba(252,250,247,.68);
      text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.sobre-foto .rod{color:rgba(252,250,247,.92);
+     text-shadow:0 1px 3px rgba(0,0,0,.55),0 2px 18px rgba(0,0,0,.65)}
 .rod .segue{font-size:30px;letter-spacing:0;color:var(--terracota-esc)}
 .escuro .rod .segue,.cafe .rod .segue,.sobre-foto .rod .segue{color:var(--champagne)}
 /* Champagne sobre terracota da 2,9:1. Ali o acento tem de ser o marfim. */
