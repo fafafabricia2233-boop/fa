@@ -56,7 +56,7 @@ próxima geração.
 | **Ciclo** | Fases em sequência: anágena/catágena/telógena, linha do tempo. |
 | **Definição** | Explicar um termo técnico sem soar aula. |
 | **Dado** | Um número só. Dois números no mesmo slide se anulam. |
-| **Virada** | Vinho ameixa. **Uma por carrossel**, senão perde a força. |
+| **Virada** | O único slide de cor. **Uma por carrossel** — vinho, terracota ou café. |
 | **Chamada** | Sempre o último. |
 
 Os quatro do meio — etapas, comparativo, ciclo, definição — são os "quadros
@@ -123,30 +123,34 @@ Uma família só: **Fabrícia Satza**, em dois pesos.
 
 ## Cor — o essencial
 
-Fundo claro (branco suave, com marfim alternando) e **três superfícies de cor**,
-cada uma com um papel:
+Fundo claro (branco suave, com marfim alternando) e **um único slide de cor por
+carrossel**: a virada. Ela tem três cores possíveis:
 
-| Classe | Cor | Papel |
+| Classe | Cor | Caráter |
 |---|---|---|
-| `escuro` | vinho ameixa `#4A2634` | **a virada.** A frase que a pessoa tem de lembrar. |
-| `terra` | marrom terracota `#8A5A44` | **respiro quente** no meio do carrossel. Não é virada. |
-| `cafe` | café profundo `#28201F` | alternativa mais sóbria à virada. |
+| `escuro` | vinho ameixa `#4A2634` | marcante, o mais assinatura |
+| `terra` | marrom terracota `#8A5A44` | quente, mais próximo |
+| `cafe` | café profundo `#28201F` | sóbrio, o mais clínico |
 
-Três regras carregam a marca:
+**A variação acontece entre publicações, não dentro de uma.** Este post sai em
+vinho, o próximo em terracota, o outro em café. O feed ganha ritmo e cada
+carrossel continua coerente consigo mesmo. Escolha a cor pelo caráter do tema:
+vinho no conteúdo que quer marcar, terracota no acolhedor, café no técnico.
 
-1. **Uma virada por carrossel.** `escuro` **ou** `cafe`, nunca as duas — seriam
-   duas viradas, e aí nenhuma é virada.
-2. **`terra` e `escuro` nunca adjacentes.** Eles têm só 2,2:1 entre si; lado a
-   lado pareceriam erro, não escolha. Dois slides claros de distância, no
-   mínimo. E o `terra` é pausa, não conclusão: a frase de fecho vai na virada.
-3. **Nenhum acento em área preenchida.** Taupe, champagne e terracota suave
-   entram como fio de 1px, número, bolinha ou palavra. Viraram bloco de cor,
-   a peça deixou de ser da marca.
+Antes de montar, **veja qual cor foi a última publicada** e use outra.
 
-O acento troca conforme a superfície, e o CSS já faz isso: champagne sobre
-vinho e café (6,4:1 e 7,9:1), **marfim** sobre terracota — ali o champagne
-cairia para 2,9:1. Dentro de texto sobre fundo claro o destaque é o marrom
-terracota (5,6:1); o terracota suave só aguenta 45px pra cima.
+Duas regras fecham a marca:
+
+1. **Uma cor por carrossel.** Duas seriam duas viradas, e aí nenhuma é virada.
+   Vinho e terracota ainda têm só 2,2:1 entre si — juntos leriam como erro de
+   arquivo, não como escolha.
+2. **Nenhum acento em área preenchida.** Taupe, champagne e terracota suave
+   entram como fio de 1px, número, bolinha ou palavra destacada.
+
+O acento troca sozinho conforme a superfície: champagne sobre vinho e café
+(6,4:1 e 7,9:1), **marfim** sobre terracota — ali o champagne cairia para
+2,9:1. Dentro de texto sobre fundo claro o destaque é o marrom terracota
+(5,6:1); o terracota suave só aguenta 45px pra cima.
 
 Tabela de contraste completa em `referencias/marca.md`.
 

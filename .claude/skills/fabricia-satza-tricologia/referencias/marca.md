@@ -71,33 +71,28 @@ Duas leituras dessa tabela mudam como a paleta se usa:
 
 ### Regras
 
-### As três superfícies de cor
+### O slide de virada e suas três cores
 
-| Classe | Cor | Papel |
-|---|---|---|
-| `.escuro` | vinho ameixa `#4A2634` | a virada — a frase que tem de ficar |
-| `.terra` | marrom terracota `#8A5A44` | respiro quente no meio, não é virada |
-| `.cafe` | café profundo `#28201F` | alternativa mais sóbria à virada |
+O carrossel tem **um único slide de cor**. Ele é a virada: a frase que a pessoa
+precisa levar. As três cores são alternativas entre si.
 
-**Uma virada por carrossel.** `.escuro` ou `.cafe`, nunca as duas: seriam duas
-viradas, e aí nenhuma é virada.
+| Classe | Cor | Caráter | Quando |
+|---|---|---|---|
+| `.escuro` | vinho ameixa `#4A2634` | marcante | o conteúdo que você quer que marque |
+| `.terra` | marrom terracota `#8A5A44` | quente | o conteúdo acolhedor, de vínculo |
+| `.cafe` | café profundo `#28201F` | sóbrio | o conteúdo técnico, de autoridade |
 
-**`.terra` e `.escuro` nunca adjacentes.** O contraste entre vinho e terracota
-é de apenas 2,2:1 — dois slides seguidos nessas cores leem como erro de
-arquivo, não como decisão. Deixe pelo menos dois slides claros entre eles.
-Um arranjo que funciona em 8 slides: `terra` no 4, virada no 7.
+**A variação é entre publicações.** Um post em vinho, o seguinte em terracota,
+o outro em café. Isso dá ritmo ao feed sem quebrar a coerência de nenhuma peça.
+Antes de montar, olhe a cor da última publicada e escolha outra.
 
-**O `.terra` é pausa, não conclusão.** Ele quebra a sequência clara no meio do
-carrossel e devolve calor. A frase de fecho continua sendo da virada — se o
-terracota carregar a conclusão, a virada chega sem função.
+**Nunca duas no mesmo carrossel.** Seriam duas viradas, e aí nenhuma é virada.
+Some-se a isso que vinho e terracota têm apenas 2,2:1 entre si: dois slides
+nessas cores no mesmo carrossel leem como erro de arquivo, não como decisão.
 
 **Sobre terracota o acento é marfim, não champagne.** Champagne ali cai para
-2,9:1. Só branco suave (5,6:1) e marfim (5,1:1) funcionam como texto sobre
-essa superfície. O CSS já resolve isso por classe.
-
-**Nenhum acento em área preenchida.** Taupe, champagne e terracota entram como
-fio de 1px, número, bolinha ou palavra. No momento em que viram bloco de cor
-ou botão, a peça deixa de parecer da marca.
+2,9:1. Só branco suave (5,6:1) e marfim (5,1:1) funcionam como texto sobre essa
+superfície. O CSS já troca por classe — números, rótulos, filete e seta.
 
 **Ritmo de fundo:** alterne branco suave e marfim em blocos, não a cada slide.
 
