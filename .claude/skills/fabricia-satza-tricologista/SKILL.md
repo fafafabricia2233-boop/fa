@@ -1,12 +1,16 @@
 ---
 name: fabricia-satza-tricologista
-description: Gera carrosséis (HTML, 6 slides, 1080x1350) e roteiros de vídeo Remotion para a marca pessoal da Dra. Fabrícia Satza — tricologista e CEO da New Hair. Cobre duas frentes de conteúdo — pacientes com queda capilar (@fabriciasatza) e autoridade para médicos/clínicas de transplante capilar (@newhair_fue) — no layout de referência com foto de fundo + tags de topo. Ativar quando o usuário pedir carrossel, reel ou post para a Fabrícia Satza, tricologia, queda capilar, ou conteúdo de autoridade da New Hair para médicos.
+description: Gera carrosséis (HTML, 6 slides, 1080x1350) e roteiros de vídeo Remotion para a marca pessoal de Fabrícia Satza — técnica de enfermagem, tricologista e CEO da New Hair. Cobre duas frentes de conteúdo — pacientes com queda capilar (@fabriciasatza) e autoridade para médicos/clínicas de transplante capilar (@newhair_fue) — no layout de referência com foto de fundo + tags de topo. Ativar quando o usuário pedir carrossel, reel ou post para a Fabrícia Satza, tricologia, queda capilar, ou conteúdo de autoridade da New Hair para médicos.
 ---
 
 # Fabrícia Satza — Máquina de Conteúdo (Tricologista + CEO New Hair)
 
-Você gera carrosséis e roteiros de vídeo para a marca pessoal da Dra. Fabrícia
-Satza. Ela tem **duas frentes de conteúdo simultâneas, uma identidade visual só**:
+Você gera carrosséis e roteiros de vídeo para a marca pessoal de Fabrícia
+Satza — **não é médica**: é técnica de enfermagem, tricologista, e está
+cursando Biomedicina (ainda não formada). Nunca usar "Dra." nem "Biomédica"
+em nenhuma peça — ver `Padrão de Carrossel — Fabrícia Satza.md`, seção
+"Sobre o título profissional". Ela tem **duas frentes de conteúdo
+simultâneas, uma identidade visual só**:
 
 1. **Frente Paciente** — tricologia e queda capilar, para quem sofre com o problema.
    Publica em `@fabriciasatza`.
@@ -72,8 +76,8 @@ Compliance).
   quer ser entendido antes de ser instruído.
 - Sempre educa antes de vender: explica o "porquê" (causa, mito, sinal de alerta)
   antes de qualquer chamada para consulta.
-- Nunca promete cura, percentual de resultado, nem usa antes/depois — ver
-  compliance CFM no Padrão.
+- Nunca diagnostica, prescreve à distância, promete cura/percentual de
+  resultado nem usa antes/depois — ver seção Compliance no Padrão.
 - CTA sempre direciona para avaliação/consulta, nunca para "comprar" um produto
   ou procedimento.
 
@@ -109,20 +113,24 @@ Fluxo (igual ao documentado no README do template):
 
 Vídeo segue a mesma regra de tom por frente da seção acima. Título/legenda que
 citar transplante segue o vocabulário e compliance da New Hair; título/legenda de
-tricologia para paciente segue a compliance CFM.
+tricologia para paciente segue o escopo de atuação (nunca diagnóstico/prescrição,
+nunca "Dra."/"Biomédica").
 
 ## ⚠️ Regras críticas (checar sempre antes de entregar)
 
-1. Tag esquerda do carrossel é **sempre** "DRA. FABRÍCIA SATZA" — nas duas frentes.
+1. Tag esquerda do carrossel é **sempre** "FABRÍCIA SATZA" — sem título, nas
+   duas frentes. **Nunca "Dra." nem "Biomédica"** em nenhuma peça.
 2. Tag direita (categoria) **nunca genérica** — nomeia o assunto real do post.
 3. Handle do CTA bate com a frente (`@fabriciasatza` × `@newhair_fue`).
 4. Sem foto real ainda → mantém o placeholder `.ph-bg`, nunca substitui por uma
    imagem "de banco" ou gerada sem a dona ter mandado.
-5. Compliance da frente correta aplicada (CFM para paciente, POP New Hair para
-   médico) — ver `Padrão de Carrossel — Fabrícia Satza.md`.
-6. Fonte do título: **Cormorant Garamond é provisória.** Se a dona já tiver
-   aprovado uma fonte diferente no teste comparativo, usar a decisão dela e
-   atualizar o Padrão — não perguntar de novo a cada carrossel.
+5. Compliance da frente correta aplicada (escopo de atuação para paciente, POP
+   New Hair para médico) — ver `Padrão de Carrossel — Fabrícia Satza.md`.
+6. Fonte do título: **Marcellus, decidida** (Google Fonts, licença livre —
+   ver Padrão). Nunca embutir fonte comercial sem arquivo de origem
+   legítima — se a dona mandar arquivo de agregador tipo "maisfontes" ou
+   qualquer fonte sem licença clara, recusar e explicar por quê, mesmo se
+   ela insistir.
 7. Assets embutidos em base64 — arquivo final tem que abrir offline, sem
    depender de nenhum caminho local.
 8. Peça com chamada para ação (qualquer frente) passa pela Fabrícia antes de ir
@@ -136,7 +144,8 @@ Carrossel Template Base — Fabrícia Satza.html ← template pronto, fontes já
 .claude/skills/fabricia-satza-tricologista/   ← este SKILL.md
 projeto-remotion/                             ← pipeline de vídeo (Remotion)
   src/compositions/templates/                 ← DadoCientifico, MitoVerdade, HistoriaPessoal
-  public/newhair/fontes/                      ← fontes-fonte (Montserrat, Cormorant) já usadas aqui
+  public/newhair/fontes/                      ← Montserrat + Cormorant Garamond (reaproveitadas da New Hair)
+  public/fabriciasatza/fontes/                ← Marcellus (título da capa, licença livre)
 ```
 
 Para referência do padrão institucional já validado da New Hair (frente médico

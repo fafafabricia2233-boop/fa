@@ -1,9 +1,26 @@
 # Fabrícia Satza — Padrão de Carrossel
 
-> Marca pessoal da Dra. Fabrícia Satza: tricologista e CEO da New Hair.
-> Duas frentes de conteúdo, um sistema visual só. O template
-> `Carrossel Template Base — Fabrícia Satza.html` já sai com tudo isto
-> aplicado — quem gerar carrossel novo parte dele.
+> Marca pessoal de Fabrícia Satza: técnica de enfermagem, tricologista
+> (cursando Biomedicina) e CEO da New Hair. Duas frentes de conteúdo, um
+> sistema visual só. O template `Carrossel Template Base — Fabrícia Satza.html`
+> já sai com tudo isto aplicado — quem gerar carrossel novo parte dele.
+
+---
+
+## Sobre o título profissional — regra que não muda
+
+**Fabrícia não é médica.** É técnica de enfermagem, tricologista e está
+cursando Biomedicina (ainda não formada/registrada). Isso significa:
+
+- **Nunca usar "Dra."** ou qualquer prefixo que sugira formação médica — em
+  nenhuma tag, bio, CTA ou legenda, nas duas frentes.
+- **Nunca usar "Biomédica"** enquanto não formada e registrada no CRBM
+  (Conselho Regional de Biomedicina) — se quiser citar a formação em
+  andamento, é sempre "cursando Biomedicina" ou "acadêmica de Biomedicina",
+  nunca como título já conquistado.
+- O nome que aparece na tag do carrossel é só **"Fabrícia Satza"**, sem
+  prefixo. Quando o conteúdo exige credencial por extenso (bio do CTA, por
+  exemplo), o texto correto é **"Técnica de Enfermagem e Tricologista"**.
 
 ---
 
@@ -13,14 +30,15 @@
 |---|---|---|
 | **Assunto** | Tricologia, queda capilar, cuidado com o couro cabeludo | Autoridade da Fabrícia como CEO, cirurgia de transplante capilar, gestão de centro cirúrgico |
 | **Perfil no carrossel** | `@fabriciasatza` | `@newhair_fue` — creditado "Fabrícia Satza, CEO" |
-| **Quem fala** | Dra. Fabrícia Satza, tricologista | Fabrícia Satza, CEO da New Hair |
+| **Quem fala** | Fabrícia Satza, técnica de enfermagem e tricologista | Fabrícia Satza, CEO da New Hair |
 | **Tom** | Acolhedor, didático, fala direto com quem sofre com a queda | Técnico, direto, autoridade de quem lidera equipe em centro cirúrgico |
 | **Tag de categoria (canto direito)** | Ex.: `TRICOLOGIA E SAÚDE CAPILAR` | Ex.: `TRANSPLANTE CAPILAR`, `GESTÃO DE CENTRO CIRÚRGICO` |
-| **Regras de compliance** | CFM (publicidade médica) — ver seção Compliance | Padrão New Hair já aprovado (POP + Padrão de Carrossel New Hair) |
+| **Regras de compliance** | Escopo de atuação (ver seção Compliance) | Padrão New Hair já aprovado (POP + Padrão de Carrossel New Hair) |
 
-O nome "Dra. Fabrícia Satza" aparece na tag do canto esquerdo em **toda peça, das duas
-frentes** — é o mesmo rosto por trás dos dois conteúdos. O que muda é a tag da direita
-(categoria) e o handle usado no CTA final.
+O nome **"Fabrícia Satza"** (sem título) aparece na tag do canto esquerdo em
+**toda peça, das duas frentes** — é o mesmo rosto por trás dos dois
+conteúdos. O que muda é a tag da direita (categoria) e o handle usado no
+CTA final.
 
 ---
 
@@ -40,21 +58,18 @@ Fabrícia e o conteúdo institucional da New Hair.
 
 ## Fontes
 
-**Pendente de aprovação final.** A dona pediu teste comparativo entre a fonte mais
-próxima da referência, Cormorant Garamond, Futura Light e Futura PT Light antes de
-travar — teste em `font-test.html` (artifact enviado no chat). Até a decisão, o
-template sai com **Cormorant Garamond** no título (já embutida em base64 no projeto,
-mesma fonte usada pela New Hair em frases de impacto) — é a opção mais segura para
-não travar o trabalho, e a troca depois é uma linha só (`--titulo` no CSS).
-
-> **Nota sobre Futura:** Futura e Futura PT são fontes comerciais, não distribuíveis.
-> Se a dona decidir por uma delas, precisa enviar o arquivo licenciado (`.ttf`/`.otf`)
-> para embutir de verdade — no teste comparativo usei substitutas gratuitas (Jost e
-> Poppins) só para dar a sensação visual.
+**Decidido.** Título da capa em **Marcellus** (Google Fonts, licença SIL
+OFL — gratuita e livre para uso comercial). Foi a opção do teste comparativo
+mais próxima do estilo da foto de referência sem depender de fonte
+comercial. Futura Light e Futura PT Light ficaram de fora: são fontes pagas
+e o único arquivo oferecido para elas veio de um agregador que redistribui
+fonte sem licença — não entra em peça da marca. Se um dia a dona comprar a
+licença oficial (MyFonts/Fontspring/ParaType) ou tiver acesso via Adobe
+Fonts, é só embutir o arquivo legítimo e trocar a variável `--titulo`.
 
 | Onde | Fonte | Peso |
 |---|---|---|
-| Título da capa (`.hero-title`) | **Cormorant Garamond** (pendente) | 500 |
+| Título da capa (`.hero-title`) | **Marcellus** | 400 |
 | Tags de topo (nome + categoria) | Montserrat | 500, tracking `.14em` |
 | Subtítulo da capa / legendas sobre foto | Montserrat | 300, itálico |
 | Corpo em slide escuro (sem foto) | Montserrat | 300 |
@@ -63,13 +78,16 @@ não travar o trabalho, e a troca depois é uma linha só (`--titulo` no CSS).
 
 Variáveis CSS:
 ```css
---titulo: 'Cormorant NH','Montserrat',serif;   /* SÓ no título da capa — trocar aqui quando a fonte final for aprovada */
+--titulo: 'Marcellus NH','Cormorant NH','Montserrat',serif;   /* SÓ no título da capa */
 --font:   'Montserrat NH','Montserrat',sans-serif;
 --serif:  'Cormorant NH',Georgia,serif;
 ```
 
-Fontes embutidas em base64, das mesmas origens da New Hair
-(`projeto-remotion/public/newhair/fontes/`) — o arquivo abre offline.
+Fontes embutidas em base64: Montserrat e Cormorant Garamond vêm de
+`projeto-remotion/public/newhair/fontes/`; Marcellus vem de
+`projeto-remotion/public/fabriciasatza/fontes/Marcellus-Regular.ttf`
+(baixada direto do CDN oficial do Google Fonts). O arquivo final abre
+offline.
 
 ---
 
@@ -99,7 +117,7 @@ por post conforme o material disponível:
 - Tag esquerda: topo `60px`, esquerda `72px` · Tag direita: topo `60px`, direita `72px`
   · ambas **26px** · dourado · CAIXA ALTA · tracking `.14em` · peso 500
 - Bloco do título: alinhado à direita, base `16%` da altura, laterais `72px`
-- Título: **80px** · Cormorant Garamond 500 · CAIXA ALTA · entrelinha `1.02`
+- Título: **80px** · Marcellus 400 · CAIXA ALTA · entrelinha `1.02`
   · sombra `0 4px 30px rgba(0,0,0,.55)`
 - Subtítulo (ex.: "Parte I"): **32px** · Montserrat 300 · itálico · off-white 75%
   · margem superior `18px`
@@ -128,8 +146,9 @@ por post conforme o material disponível:
 - Link (handle da frente): **44px** peso 500 · dourado · filete dourado 40% em cima
   e embaixo · padding `18px 56px`
 - Bio: **32px** peso 300 · itálico · off-white 55%
-- **Handle muda por frente:** `@fabriciasatza` (paciente) ou `@newhair_fue` (médico,
-  com bio "Fabrícia Satza · CEO New Hair")
+- **Handle muda por frente:** `@fabriciasatza` (paciente, bio "Fabrícia Satza ·
+  Técnica de Enfermagem e Tricologista") ou `@newhair_fue` (médico, bio
+  "Fabrícia Satza · CEO New Hair")
 
 ---
 
@@ -144,17 +163,21 @@ por post conforme o material disponível:
 
 ## Regras invioláveis
 
-1. **Tag esquerda sempre "DRA. FABRÍCIA SATZA"** — nas duas frentes, é o mesmo rosto.
-2. **Tag direita muda por post**, nunca fica genérica — nomeia a categoria real do
+1. **Tag esquerda sempre "FABRÍCIA SATZA"** — sem título, nas duas frentes,
+   é o mesmo rosto.
+2. **Nunca usar "Dra." ou "Biomédica"** em qualquer peça — ver seção acima.
+3. **Tag direita muda por post**, nunca fica genérica — nomeia a categoria real do
    conteúdo daquele carrossel.
-3. Cormorant Garamond só no título da capa e nas frases de impacto — nunca peso
-   900 nelas (a família não aguenta).
-4. Avatar sem `width:100%` na imagem interna quando houver foto real — quebra o
+4. Marcellus e Cormorant Garamond só onde a tabela de fontes indica — nunca peso
+   900 nelas (nenhuma das duas aguenta).
+5. Avatar sem `width:100%` na imagem interna quando houver foto real — quebra o
    alinhamento (mesma regra da New Hair).
-5. Handle do CTA final tem que bater com a frente do conteúdo — nunca cruzar
+6. Handle do CTA final tem que bater com a frente do conteúdo — nunca cruzar
    `@fabriciasatza` com bio de CEO da New Hair ou vice-versa.
-6. Assets **embutidos em base64** — o HTML tem que abrir offline.
-7. **6 slides fixos**, salvo pedido explícito de esticar para uma sequência maior.
+7. Assets **embutidos em base64**, sempre de origem com licença livre ou
+   licenciada de verdade — nunca fonte baixada de agregador tipo
+   "maisfontes" — o HTML tem que abrir offline.
+8. **6 slides fixos**, salvo pedido explícito de esticar para uma sequência maior.
 
 ---
 
@@ -168,18 +191,22 @@ Vale o Padrão de Carrossel e o POP já aprovados da New Hair:
 - ✅ selo obrigatório em peça que mostra cirurgia:
   `Procedimento realizado por médico · a New Hair realiza a instrumentação`
 
-### Frente Paciente (publicidade médica — CFM)
-Conteúdo assinado por uma médica tricologista segue a Resolução CFM de publicidade
-médica:
-- ❌ prometer cura, resultado ou percentual de sucesso de tratamento
-- ❌ antes/depois de paciente (mesmo com autorização, é vedado em publicidade)
+### Frente Paciente (escopo de atuação — não é publicidade médica)
+Fabrícia fala como técnica de enfermagem e tricologista, não como médica —
+o conteúdo tem que respeitar esse limite:
+- ❌ **nunca diagnosticar ou prescrever** à distância (comentário/DM/slide) —
+  toda queda com causa incerta é direcionada para avaliação com profissional
+  habilitado (dermatologista/médico)
+- ❌ nunca usar "Dra." ou "Biomédica" — ver seção "Sobre o título profissional"
+- ❌ prometer cura, resultado ou percentual de sucesso de qualquer cuidado
+- ❌ antes/depois de paciente
 - ❌ comparar com outro profissional/clínica ou usar linguagem de superioridade
 - ❌ divulgar preço, parcelamento ou condição comercial no carrossel
-- ❌ diagnosticar ou prescrever à distância no comentário/DM — direcionar sempre
-  para consulta
-- ✅ CRM da Dra. Fabrícia Satza visível na bio do perfil (não precisa repetir em
-  todo slide, mas tem que constar no perfil)
-- ✅ tom educativo: explicar causas, mitos, quando procurar avaliação — nunca
-  "prometer" solução
+- ✅ apresentar-se sempre pelo título real: Técnica de Enfermagem e
+  Tricologista (mencionar "cursando Biomedicina" é opcional e só como
+  formação em andamento)
+- ✅ tom educativo: explicar causas, mitos, sinais de alerta, cuidados com o
+  couro cabeludo — sempre recomendando avaliação profissional para
+  diagnóstico, nunca "resolvendo" a distância
 
 Criativo com chamada para ação de qualquer frente passa pela Fabrícia antes de ir ao ar.
