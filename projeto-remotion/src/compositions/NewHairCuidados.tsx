@@ -76,7 +76,8 @@ const TITULO = {
   linhas: [
     "MÉDICO, O PACIENTE",
     "PODE ESQUECER",
-    "MAS NÃO ESQUECE COMO FOI TRATADO",
+    "MAS NÃO ESQUECE COMO FOI",
+    "TRATADO",
   ],
 
   /* "temporario" = o titulo sai junto com o gancho e o veu de cima sai com ele.
