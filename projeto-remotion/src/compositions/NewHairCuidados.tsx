@@ -374,7 +374,7 @@ export const NewHairCuidados: React.FC<NewHairCuidadosProps> = ({ video }) => {
           transform: "translateY(-50%)",
           width: "100%",
           textAlign: "center",
-          padding: "0 120px",
+          padding: "0 150px",
           boxSizing: "border-box",
           opacity: tituloOpacity,
         }}
@@ -391,7 +391,7 @@ export const NewHairCuidados: React.FC<NewHairCuidadosProps> = ({ video }) => {
               style={{
                 fontFamily: montserrat.fontFamily,
                 fontWeight: remate ? 500 : 300,
-                fontSize: remate ? 48 : 36,
+                fontSize: remate ? 44 : 36,
                 letterSpacing: remate ? 2 : 2.5,
                 color: remate ? NH.gold : NH.offwhite,
                 lineHeight: remate ? 1.25 : 1.32,
