@@ -151,3 +151,20 @@ A fonte é derivada da **Jost\*** sob **SIL OFL 1.1** — uso comercial liberado
 inclusive para clientes. A única obrigação é distribuir o `OFL.txt` junto
 quando você **entregar o arquivo da fonte** para alguém. Publicar posts e
 vídeos feitos com ela não exige nada.
+
+---
+
+## ⚠️ Este documento foi absorvido pela skill
+
+A partir de agora o padrão vive em **`.claude/skills/fabricia-satza-tricologia/`**,
+com templates, blocos prontos e scripts. Este arquivo fica como histórico.
+
+- `SKILL.md` — como montar carrossel e antes/depois
+- `referencias/marca.md` — identidade completa
+- `referencias/tom.md` — tom de voz
+- `assets/carrossel.html` — 12 blocos de slide
+- `assets/antes-depois.html` — peça de resultado com marcadores
+
+O `Carrossel Template Base — Fabrícia Satza.html` na raiz foi substituído por
+`assets/carrossel.html`, que tem os mesmos blocos mais o cabeçalho da marca,
+os quadros explicativos e a ênfase em peso 500.
