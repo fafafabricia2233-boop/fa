@@ -96,6 +96,17 @@ async def exportar(html: pathlib.Path, saida: pathlib.Path, png: bool) -> list[p
                                 device_scale_factor=2)
         await pg.goto(html.as_uri())
         await pg.wait_for_timeout(2000)
+        # A janela tem de caber o slide. Com viewport fixo de 1200px, qualquer
+        # formato mais largo que isso (paisagem, por exemplo) saia cortado no
+        # print — o elemento existe inteiro, mas nao cabe na area capturavel.
+        caixa = await pg.evaluate(
+            "() => { const s = document.querySelector('.slide');"
+            "  return s ? {w: s.offsetWidth, h: s.offsetHeight} : null; }"
+        )
+        if caixa:
+            await pg.set_viewport_size({"width": int(caixa["w"]) + 80,
+                                        "height": int(caixa["h"]) + 80})
+            await pg.wait_for_timeout(300)
         await pg.eval_on_selector_all(".dl", "els => els.forEach(e => e.remove())")
         base = html.stem.replace("carrossel-", "")
         for i, el in enumerate(await pg.query_selector_all(".slide"), 1):

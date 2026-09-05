@@ -111,10 +111,24 @@ tokens no topo do `base.css`:
 --peca-larg:1080px;  --peca-alt:1080px;   /* 1:1  quadrado */
 ```
 
-O Instagram aceita em carrossel apenas **4:5, 1:1 e 1.91:1**. O 3:4 nasceu para
-post de feed avulso, casando com o corte da grade do perfil; num carrossel ele
-pode ser aparado para 4:5. **4:3 em paisagem não existe como formato de
-carrossel** — o paisagem de lá é 1.91:1, bem mais largo.
+Os presets do Instagram para carrossel são **4:5, 1:1 e 1.91:1**. O 3:4
+(1080×1440) nasceu para post de feed avulso, casando com o corte da grade. O
+4:3 em paisagem (1440×1080) não é preset, mas cai dentro da faixa aceita e
+posta sem corte — só ocupa bem menos tela no feed, o que costuma custar
+alcance. Se ela pedir, faça; o custo é dela conhecer.
+
+**Paisagem não é troca de parâmetro, é outro layout.** A altura cai para 1080px
+e a largura sobe para 1440, então:
+
+- A escala inteira desce cerca de 25% (display 88, título 66, corpo 36).
+- O texto passa a viver numa coluna de ~64% da largura. Sem isso a linha
+  atravessa 1260px e chega a ~70 caracteres, o que cansa de ler e desmancha o
+  ar editorial. O vazio ao lado é proposital.
+- `.corpo.topo` precisa centralizar. Ancorar no topo faz sentido no retrato,
+  onde o conteúdo alto encosta em cima; em paisagem sobra altura e a metade de
+  baixo fica vazia.
+- Recuos escritos direto no slide (`style="padding-top:200px"`) foram
+  calculados para 1350px de altura e precisam sair.
 
 Ao trocar de formato, duas coisas precisam acompanhar:
 

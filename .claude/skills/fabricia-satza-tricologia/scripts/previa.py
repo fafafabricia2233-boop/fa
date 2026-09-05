@@ -41,6 +41,17 @@ async def capturar(html: pathlib.Path, destino: pathlib.Path) -> list[pathlib.Pa
         # A fonte esta embutida, mas ainda precisa decodificar e aplicar. Sem a
         # espera, o print sai medido com a fonte de fallback.
         await pagina.wait_for_timeout(1800)
+        # A janela tem de caber o slide. Com viewport fixo de 1200px, qualquer
+        # formato mais largo que isso (paisagem, por exemplo) saia cortado no
+        # print — o elemento existe inteiro, mas nao cabe na area capturavel.
+        caixa = await pagina.evaluate(
+            "() => { const s = document.querySelector('.slide');"
+            "  return s ? {w: s.offsetWidth, h: s.offsetHeight} : null; }"
+        )
+        if caixa:
+            await pagina.set_viewport_size({"width": int(caixa["w"]) + 80,
+                                        "height": int(caixa["h"]) + 80})
+            await pagina.wait_for_timeout(300)
         # A barra de export e position:fixed e apareceria dentro do print.
         await pagina.eval_on_selector_all(".dl", "els => els.forEach(e => e.remove())")
         for i, el in enumerate(await pagina.query_selector_all(".slide")):
@@ -54,7 +65,12 @@ async def capturar(html: pathlib.Path, destino: pathlib.Path) -> list[pathlib.Pa
 def folha(slides: list[pathlib.Path], destino: pathlib.Path, colunas: int) -> None:
     from PIL import Image
 
-    larg, alt = 330, 412
+    # A proporcao da miniatura sai do proprio slide. Fixar 330x412 espremia a
+    # peca sempre que o formato nao era retrato 4:5 — em paisagem a folha saia
+    # ilegivel, com os slides deslocados uns sobre os outros.
+    primeiro = Image.open(slides[0])
+    larg = 330 if primeiro.width <= primeiro.height else 430
+    alt = max(1, round(larg * primeiro.height / primeiro.width))
     imagens = [Image.open(s).resize((larg, alt)) for s in slides]
     linhas = (len(imagens) + colunas - 1) // colunas
     folha = Image.new("RGB", (colunas * (larg + 10) + 10,
