@@ -41,6 +41,8 @@ async def capturar(html: pathlib.Path, destino: pathlib.Path) -> list[pathlib.Pa
         # A fonte esta embutida, mas ainda precisa decodificar e aplicar. Sem a
         # espera, o print sai medido com a fonte de fallback.
         await pagina.wait_for_timeout(1800)
+        # A barra de export e position:fixed e apareceria dentro do print.
+        await pagina.eval_on_selector_all(".dl", "els => els.forEach(e => e.remove())")
         for i, el in enumerate(await pagina.query_selector_all(".slide")):
             arq = destino.parent / f".slide-{i:02d}.png"
             await el.screenshot(path=str(arq))

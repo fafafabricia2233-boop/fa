@@ -56,7 +56,7 @@ próxima geração.
 | **Ciclo** | Fases em sequência: anágena/catágena/telógena, linha do tempo. |
 | **Definição** | Explicar um termo técnico sem soar aula. |
 | **Dado** | Um número só. Dois números no mesmo slide se anulam. |
-| **Virada** | Fundo escuro. **No máximo um por carrossel**, senão perde a força. |
+| **Virada** | Vinho ameixa. **Uma por carrossel**, senão perde a força. |
 | **Chamada** | Sempre o último. |
 
 Os quatro do meio — etapas, comparativo, ciclo, definição — são os "quadros
@@ -123,25 +123,30 @@ Uma família só: **Fabrícia Satza**, em dois pesos.
 
 ## Cor — o essencial
 
-```
-branco suave #FCFAF7 · marfim quente #F4EFE8 · café profundo #28201F
-vinho ameixa #4A2634 · marrom terracota #8A5A44 · terracota suave #B06F53
-taupe #A99B91 · champagne #C9B39B
-```
+Fundo claro (branco suave, com marfim alternando) e **três superfícies de cor**,
+cada uma com um papel:
 
-Duas regras carregam a marca:
+| Classe | Cor | Papel |
+|---|---|---|
+| `escuro` | vinho ameixa `#4A2634` | **a virada.** A frase que a pessoa tem de lembrar. |
+| `terra` | marrom terracota `#8A5A44` | **respiro quente** no meio do carrossel. Não é virada. |
+| `cafe` | café profundo `#28201F` | alternativa mais sóbria à virada. |
 
-1. **Nenhum acento em área preenchida.** Taupe, champagne e terracota entram
-   como fio de 1px, número, bolinha ou palavra destacada. Viraram bloco de cor
-   ou botão, a peça deixou de ser da marca.
-2. **Taupe e champagne se invertem conforme o fundo.** Sobre claro são pálidos
-   demais para texto (2,6:1 e 1,9:1) e só valem como fio. Sobre escuro ficam
-   ótimos (5,9:1 e 7,9:1) e viram o acento. Dentro de texto sobre fundo claro,
-   o destaque é o **marrom terracota** (5,6:1) — o terracota claro só aguenta
-   45px pra cima.
+Três regras carregam a marca:
 
-Um fundo escuro por carrossel (café **ou** vinho), nunca os dois: seriam duas
-viradas, e aí nenhuma é virada.
+1. **Uma virada por carrossel.** `escuro` **ou** `cafe`, nunca as duas — seriam
+   duas viradas, e aí nenhuma é virada.
+2. **`terra` e `escuro` nunca adjacentes.** Eles têm só 2,2:1 entre si; lado a
+   lado pareceriam erro, não escolha. Dois slides claros de distância, no
+   mínimo. E o `terra` é pausa, não conclusão: a frase de fecho vai na virada.
+3. **Nenhum acento em área preenchida.** Taupe, champagne e terracota suave
+   entram como fio de 1px, número, bolinha ou palavra. Viraram bloco de cor,
+   a peça deixou de ser da marca.
+
+O acento troca conforme a superfície, e o CSS já faz isso: champagne sobre
+vinho e café (6,4:1 e 7,9:1), **marfim** sobre terracota — ali o champagne
+cairia para 2,9:1. Dentro de texto sobre fundo claro o destaque é o marrom
+terracota (5,6:1); o terracota suave só aguenta 45px pra cima.
 
 Tabela de contraste completa em `referencias/marca.md`.
 

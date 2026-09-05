@@ -64,6 +64,16 @@
 .comp-lista{display:flex;flex-direction:column;gap:30px}
 .comp-item{font-size:38px;line-height:1.34}
 .comp-item.fraco{color:var(--suave)}
+.escuro .comp-item.fraco,.cafe .comp-item.fraco,.terra .comp-item.fraco{color:var(--claro-suave)}
+
+/* Sobre superficie escura o acento troca: champagne no vinho e no cafe (6,4:1
+   e 7,9:1), marfim no terracota (5,1:1 — champagne ali cairia para 2,9:1). */
+.escuro .item-n,.escuro .etapa-n,.escuro .comp-cab,.escuro .def-fon,
+.cafe .item-n,.cafe .etapa-n,.cafe .comp-cab,.cafe .def-fon{color:var(--champagne)}
+.terra .item-n,.terra .etapa-n,.terra .comp-cab,.terra .def-fon{color:var(--marfim)}
+.escuro .etapa.marcada::before,.cafe .etapa.marcada::before,
+.escuro .fase.marcada::before,.cafe .fase.marcada::before{background:var(--champagne)}
+.terra .etapa.marcada::before,.terra .fase.marcada::before{background:var(--marfim)}
 
 /* ══ CICLO ═══ fases em linha, ligadas por um fio horizontal ══════════════ */
 .ciclo{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
@@ -80,8 +90,9 @@
    nao for o fundo padrao, ela precisa acompanhar — senao sobra um circulo de
    cor errada em cima do fio. */
 .quente .etapa::before,.quente .fase::before{background:var(--marfim)}
-.escuro .etapa::before,.escuro .fase::before{background:var(--cafe)}
-.vinho .etapa::before,.vinho .fase::before{background:var(--vinho)}
+.escuro .etapa::before,.escuro .fase::before{background:var(--vinho)}
+.cafe .etapa::before,.cafe .fase::before{background:var(--cafe)}
+.terra .etapa::before,.terra .fase::before{background:var(--terra)}
 .fase-n{font-size:38px;line-height:1.2;margin-bottom:12px}
 .fase-d{font-size:30px;line-height:1.42;color:var(--suave)}
 

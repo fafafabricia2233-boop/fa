@@ -71,8 +71,29 @@ Duas leituras dessa tabela mudam como a paleta se usa:
 
 ### Regras
 
-**Um fundo escuro por carrossel, nunca os dois.** Café e vinho são ambos o
-slide de virada. Dois slides escuros são duas viradas, e aí nenhuma é virada.
+### As três superfícies de cor
+
+| Classe | Cor | Papel |
+|---|---|---|
+| `.escuro` | vinho ameixa `#4A2634` | a virada — a frase que tem de ficar |
+| `.terra` | marrom terracota `#8A5A44` | respiro quente no meio, não é virada |
+| `.cafe` | café profundo `#28201F` | alternativa mais sóbria à virada |
+
+**Uma virada por carrossel.** `.escuro` ou `.cafe`, nunca as duas: seriam duas
+viradas, e aí nenhuma é virada.
+
+**`.terra` e `.escuro` nunca adjacentes.** O contraste entre vinho e terracota
+é de apenas 2,2:1 — dois slides seguidos nessas cores leem como erro de
+arquivo, não como decisão. Deixe pelo menos dois slides claros entre eles.
+Um arranjo que funciona em 8 slides: `terra` no 4, virada no 7.
+
+**O `.terra` é pausa, não conclusão.** Ele quebra a sequência clara no meio do
+carrossel e devolve calor. A frase de fecho continua sendo da virada — se o
+terracota carregar a conclusão, a virada chega sem função.
+
+**Sobre terracota o acento é marfim, não champagne.** Champagne ali cai para
+2,9:1. Só branco suave (5,6:1) e marfim (5,1:1) funcionam como texto sobre
+essa superfície. O CSS já resolve isso por classe.
 
 **Nenhum acento em área preenchida.** Taupe, champagne e terracota entram como
 fio de 1px, número, bolinha ou palavra. No momento em que viram bloco de cor

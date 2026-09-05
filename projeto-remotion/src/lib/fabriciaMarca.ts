@@ -19,8 +19,15 @@ export const CORES = {
   marfim: "#F4EFE8",
   /** Fundo escuro neutro. Também é a cor do texto sobre fundo claro. */
   cafe: "#28201F",
-  /** Fundo escuro de assinatura, mais marcante. Um OU outro, nunca os dois. */
+  /** A VIRADA. Fundo do slide que carrega a frase que tem de ficar. */
   vinho: "#4A2634",
+  /**
+   * Respiro quente no meio da sequência — não é virada.
+   * Nunca adjacente ao vinho: os dois têm só 2,2:1 entre si e lado a lado
+   * leem como erro. Sobre esta superfície o acento é marfim, não champagne
+   * (que aqui cairia para 2,9:1).
+   */
+  terra: "#8A5A44",
 
   // ── Texto ──
   /** Texto principal sobre fundo claro. 15,3:1. */

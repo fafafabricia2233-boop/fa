@@ -13,12 +13,20 @@
 :root {
   /* ── SUPERFÍCIES ──────────────────────────────────────────────────────
      Branco suave e o padrao; marfim da ritmo entre slides sem cor nova.
-     Cafe e vinho sao os dois fundos escuros — cafe e neutro, vinho e o de
-     assinatura, mais marcante. Um dos dois por carrossel, nunca os dois. */
+
+     Tres superficies de cor, com papeis diferentes:
+       .escuro  vinho ameixa   A VIRADA. A frase que a pessoa tem de lembrar.
+       .cafe    cafe profundo  alternativa a virada, mais sobria.
+       .terra   marrom terra   RESPIRO QUENTE no meio do carrossel. Nao e virada.
+
+     Vinho e terracota tem so 2,2:1 entre si — lado a lado pareceriam erro, nao
+     escolha. Se os dois entrarem, precisam de pelo menos dois slides claros de
+     distancia. E nunca duas viradas: .cafe e .escuro nao convivem. */
   --branco:#FCFAF7;
   --marfim:#F4EFE8;
-  --cafe:#28201F;
   --vinho:#4A2634;
+  --cafe:#28201F;
+  --terra:#8A5A44;
 
   /* ── TEXTO ────────────────────────────────────────────────────────────
      Cafe sobre claro da 15,3:1; branco sobre cafe da o mesmo. Os niveis
@@ -48,24 +56,27 @@ body{background:#191919;display:flex;flex-direction:column;align-items:center;
 .slide{width:1080px;height:1350px;position:relative;overflow:hidden;flex-shrink:0;
        background:var(--branco);font-family:var(--texto);color:var(--forte)}
 .slide.quente{background:var(--marfim)}
-.slide.escuro{background:var(--cafe);color:var(--claro)}
-.slide.vinho{background:var(--vinho);color:var(--claro)}
+.slide.escuro{background:var(--vinho);color:var(--claro)}
+.slide.cafe{background:var(--cafe);color:var(--claro)}
+.slide.terra{background:var(--terra);color:var(--claro)}
 
 /* ── CABECALHO: assinatura fixa da marca, nos dois cantos de cima ───────── */
 .cab{position:absolute;top:64px;left:80px;right:80px;z-index:30;display:flex;
      justify-content:space-between;font-size:22px;letter-spacing:.30em;
      text-transform:uppercase;color:var(--suave);white-space:nowrap}
-.escuro .cab,.vinho .cab,.sobre-foto .cab{color:rgba(252,250,247,.74);
+.escuro .cab,.cafe .cab,.terra .cab,.sobre-foto .cab{color:rgba(252,250,247,.74);
      text-shadow:0 1px 12px rgba(0,0,0,.45)}
 
 /* ── RODAPE ─────────────────────────────────────────────────────────────── */
 .rod{position:absolute;bottom:64px;left:80px;right:80px;z-index:30;display:flex;
      justify-content:space-between;align-items:center;font-size:22px;
      letter-spacing:.24em;text-transform:uppercase;color:var(--suave)}
-.escuro .rod,.vinho .rod,.sobre-foto .rod{color:rgba(252,250,247,.68);
+.escuro .rod,.cafe .rod,.terra .rod,.sobre-foto .rod{color:rgba(252,250,247,.68);
      text-shadow:0 1px 12px rgba(0,0,0,.45)}
 .rod .segue{font-size:30px;letter-spacing:0;color:var(--terracota-esc)}
-.escuro .rod .segue,.vinho .rod .segue,.sobre-foto .rod .segue{color:var(--champagne)}
+.escuro .rod .segue,.cafe .rod .segue,.sobre-foto .rod .segue{color:var(--champagne)}
+/* Champagne sobre terracota da 2,9:1. Ali o acento tem de ser o marfim. */
+.terra .rod .segue{color:var(--marfim)}
 
 /* ── AREA DE CONTEUDO ───────────────────────────────────────────────────── */
 .corpo{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column;
@@ -81,10 +92,10 @@ body{background:#191919;display:flex;flex-direction:column;align-items:center;
 .subtitulo{font-size:52px;line-height:1.34}
 .texto{font-size:45px;line-height:1.44}
 .texto-sm{font-size:37px;line-height:1.48;color:var(--suave)}
-.escuro .texto-sm,.vinho .texto-sm{color:var(--claro-suave)}
+.escuro .texto-sm,.cafe .texto-sm,.terra .texto-sm{color:var(--claro-suave)}
 .rotulo{font-size:24px;letter-spacing:.30em;text-transform:uppercase;
         color:var(--suave)}
-.escuro .rotulo,.vinho .rotulo{color:var(--claro-suave)}
+.escuro .rotulo,.cafe .rotulo,.terra .rotulo{color:var(--claro-suave)}
 
 /* Enfase SEM engrossar: o salto e de 300 para 500, dois passos abaixo do
    negrito real. Da peso a palavra sem quebrar a leveza da fonte. */
@@ -95,12 +106,14 @@ b,strong,.forte{font-weight:500}
    porque em corpo menor ele cai para 3,8:1 e some na recompressao. */
 em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
 .escuro em,.escuro i,.escuro .destaque,
-.vinho em,.vinho i,.vinho .destaque,
+.cafe em,.cafe i,.cafe .destaque,
 .sobre-foto em,.sobre-foto i,.sobre-foto .destaque{color:var(--champagne)}
+.terra em,.terra i,.terra .destaque{color:var(--marfim)}
 .destaque.quente{color:var(--terracota)}
 
 .filete{width:110px;height:1px;background:var(--taupe);flex-shrink:0}
-.escuro .filete,.vinho .filete{background:var(--champagne);opacity:.75}
+.escuro .filete,.cafe .filete{background:var(--champagne);opacity:.75}
+.terra .filete{background:var(--marfim);opacity:.7}
 .filete.centro{margin:0 auto}
 
 /* ══ QUADRO ═══════════════════════════════════════════════════════════════
@@ -168,6 +181,16 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
 .comp-lista{display:flex;flex-direction:column;gap:30px}
 .comp-item{font-size:38px;line-height:1.34}
 .comp-item.fraco{color:var(--suave)}
+.escuro .comp-item.fraco,.cafe .comp-item.fraco,.terra .comp-item.fraco{color:var(--claro-suave)}
+
+/* Sobre superficie escura o acento troca: champagne no vinho e no cafe (6,4:1
+   e 7,9:1), marfim no terracota (5,1:1 — champagne ali cairia para 2,9:1). */
+.escuro .item-n,.escuro .etapa-n,.escuro .comp-cab,.escuro .def-fon,
+.cafe .item-n,.cafe .etapa-n,.cafe .comp-cab,.cafe .def-fon{color:var(--champagne)}
+.terra .item-n,.terra .etapa-n,.terra .comp-cab,.terra .def-fon{color:var(--marfim)}
+.escuro .etapa.marcada::before,.cafe .etapa.marcada::before,
+.escuro .fase.marcada::before,.cafe .fase.marcada::before{background:var(--champagne)}
+.terra .etapa.marcada::before,.terra .fase.marcada::before{background:var(--marfim)}
 
 /* ══ CICLO ═══ fases em linha, ligadas por um fio horizontal ══════════════ */
 .ciclo{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
@@ -184,8 +207,9 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
    nao for o fundo padrao, ela precisa acompanhar — senao sobra um circulo de
    cor errada em cima do fio. */
 .quente .etapa::before,.quente .fase::before{background:var(--marfim)}
-.escuro .etapa::before,.escuro .fase::before{background:var(--cafe)}
-.vinho .etapa::before,.vinho .fase::before{background:var(--vinho)}
+.escuro .etapa::before,.escuro .fase::before{background:var(--vinho)}
+.cafe .etapa::before,.cafe .fase::before{background:var(--cafe)}
+.terra .etapa::before,.terra .fase::before{background:var(--terra)}
 .fase-n{font-size:38px;line-height:1.2;margin-bottom:12px}
 .fase-d{font-size:30px;line-height:1.42;color:var(--suave)}
 
@@ -266,7 +290,11 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
-<!-- ▸ LISTA — no maximo 4 itens. Acima disso vira folheto. -->
+<!-- ▸ LISTA — no maximo 4 itens. Acima disso vira folheto.
+     Bom lugar para a classe "terra" (marrom terracota): um respiro quente no
+     meio do carrossel. Nao e virada — e pausa. Se o carrossel tiver os dois,
+     deixe pelo menos dois slides claros entre "terra" e "escuro": eles tem so
+     2,2:1 entre si e lado a lado pareceriam erro, nao escolha. -->
 <section class="slide">
   <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
   <div class="corpo">
@@ -389,9 +417,9 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
-<!-- ▸ VIRADA — fundo escuro. No maximo UM por carrossel, senao perde a forca.
-     Troque "escuro" (cafe, neutro) por "vinho" (assinatura, mais marcante).
-     Um dos dois no carrossel, nunca os dois: seriam duas viradas. -->
+<!-- ▸ VIRADA — vinho ameixa. UMA por carrossel, senao perde a forca.
+     Troque "escuro" por "cafe" se quiser a versao mais sobria. Nunca as duas:
+     seriam duas viradas, e aí nenhuma e virada. -->
 <section class="slide escuro">
   <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
   <div class="corpo centro">
