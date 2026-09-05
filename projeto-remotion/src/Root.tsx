@@ -40,6 +40,7 @@ import { NewHairAtendimento, type NewHairAtendimentoProps } from "./compositions
 import { NewHairFluxo, type NewHairFluxoProps } from "./compositions/NewHairFluxo";
 import { NewHairConhecimento, type NewHairConhecimentoProps } from "./compositions/NewHairConhecimento";
 import { NewHairOrganizacao, type NewHairOrganizacaoProps } from "./compositions/NewHairOrganizacao";
+import { NewHairDependencia, type NewHairDependenciaProps } from "./compositions/NewHairDependencia";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -449,6 +450,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(13.733 * 30)}
             defaultProps={{ durationSeconds: 13.733, video: "newhair/organizacao_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Dependencia">
+          <Composition
+            id="NewHairDependencia"
+            component={NewHairDependencia as React.FC<NewHairDependenciaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(13.167 * 30)}
+            defaultProps={{ durationSeconds: 13.167, video: "newhair/dependencia_h264.mp4" }}
           />
         </Folder>
 
