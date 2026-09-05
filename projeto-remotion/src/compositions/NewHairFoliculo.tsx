@@ -120,7 +120,7 @@ const CUES: Cue[] = [
   {
     start: 8.0,
     end: 9.8,
-    lines: [{{ text: "Cada etapa é feita COM CUIDADO", size: 46, gold: true }],
+    lines: [{ text: "Cada etapa é feita COM CUIDADO", size: 46, gold: true }],
   },
   {
     start: 10.0,
