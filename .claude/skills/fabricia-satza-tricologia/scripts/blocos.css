@@ -75,6 +75,13 @@
         width:13px;height:13px;border-radius:50%;background:var(--branco);
         border:1px solid var(--taupe)}
 .fase.marcada::before{background:var(--terracota)}
+
+/* A bolinha "fura" a linha ao ser preenchida com a cor do fundo. Se o slide
+   nao for o fundo padrao, ela precisa acompanhar — senao sobra um circulo de
+   cor errada em cima do fio. */
+.quente .etapa::before,.quente .fase::before{background:var(--marfim)}
+.escuro .etapa::before,.escuro .fase::before{background:var(--cafe)}
+.vinho .etapa::before,.vinho .fase::before{background:var(--vinho)}
 .fase-n{font-size:38px;line-height:1.2;margin-bottom:12px}
 .fase-d{font-size:30px;line-height:1.42;color:var(--suave)}
 

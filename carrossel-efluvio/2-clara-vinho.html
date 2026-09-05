@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>@fabriciasatza — antes e depois {{CASO}}</title>
+<title>@fabriciasatza — eflúvio telógeno Clara · Vinho</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
@@ -207,200 +207,144 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
     font-size:19px;color:var(--forte);cursor:pointer;z-index:9999;border-radius:4px;
     letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
 
-/* ══ ANTES / DEPOIS ═══════════════════════════════════════════════════════
-   A seta branca e o clichê do nicho e ainda por cima tapa justamente o que a
-   pessoa precisa ver. Aqui o marcador e um anel fino com uma haste vertical
-   que sobe ate um rotulo em caixa alta: circunda a regiao sem cobrir o couro.
-     ANTES  -> anel tracejado, rotulo nomeia a perda
-     DEPOIS -> anel continuo na MESMA coordenada, rotulo nomeia o ganho
-   Repetir a coordenada nos dois lados e o que faz o olho comparar em vez de
-   so olhar duas fotos. Se cada lado marca um ponto diferente, o antes/depois
-   nao prova nada. */
-.par{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;z-index:1}
-.lado{position:relative;overflow:hidden}
-.lado img{width:100%;height:100%;object-fit:cover;display:block}
-.divisa{position:absolute;top:0;bottom:0;left:50%;width:1px;z-index:12;
-        background:rgba(252,250,247,.85)}
-
-/* Os marcadores vivem FORA de .lado. Dentro, o overflow:hidden que recorta a
-   foto recortava tambem o rotulo. */
-.marcas{position:absolute;top:0;bottom:0;width:50%;z-index:13}
-.marcas.a{left:0}
-.marcas.d{left:50%}
-
-.selo{position:absolute;bottom:132px;left:50%;transform:translateX(-50%);z-index:14;
-      font-family:var(--titulo);font-size:56px;letter-spacing:.14em;
-      text-transform:uppercase;color:var(--branco);white-space:nowrap;
-      text-shadow:0 2px 22px rgba(0,0,0,.55)}
-
-/* Posicione com --x e --y em % DA METADE (nao da peca inteira):
-   <div class="marca perda" style="--x:46%;--y:40%;--r:150px">
-   --r  diametro do anel        --h  altura da haste
-   Use .abaixo quando o anel estiver perto do topo da foto. */
-.marca{position:absolute;left:var(--x);top:var(--y);width:var(--r,140px);
-       height:var(--r,140px);transform:translate(-50%,-50%);border-radius:50%;
-       border:1.5px solid rgba(252,250,247,.92);
-       box-shadow:0 0 0 1px rgba(0,0,0,.16),0 0 30px rgba(0,0,0,.30)}
-.marca.perda{border-style:dashed}
-.marca.ganho{border-style:solid}
-
-.marca .haste{position:absolute;left:50%;bottom:100%;width:1px;height:var(--h,74px);
-       background:rgba(252,250,247,.85);transform:translateX(-50%)}
-.marca .nome{position:absolute;left:50%;bottom:calc(100% + var(--h,74px) + 14px);
-       transform:translateX(-50%);font-size:23px;letter-spacing:.20em;
-       text-transform:uppercase;color:var(--branco);white-space:nowrap;
-       text-shadow:0 2px 14px rgba(0,0,0,.75)}
-.marca.abaixo .haste{bottom:auto;top:100%}
-.marca.abaixo .nome{bottom:auto;top:calc(100% + var(--h,74px) + 14px)}
-
-/* Faixa de leitura no rodape: o que mudou, em uma linha. */
-.leitura{position:absolute;left:80px;right:80px;bottom:150px;z-index:14;
-       text-align:center;font-size:33px;line-height:1.44;color:var(--branco);
-       text-shadow:0 2px 18px rgba(0,0,0,.62)}
-.leitura .caixa{font-size:33px}
-
 </style>
 </head>
 <body>
-<div class="dl" onclick="baixar()">&#8595; Baixar ZIP</div>
-<!-- ══════════════════════════════════════════════════════════════════════
-     ANTES E DEPOIS
 
-     Como posicionar os marcadores: --x e --y sao % DO LADO (a metade da peca),
-     nao da peca inteira. --x:50% e o centro da foto daquele lado.
-
-     A regra que faz o antes/depois funcionar: o marcador do DEPOIS fica na
-     MESMA coordenada do ANTES. E a coordenada igual que prova o resultado —
-     se cada lado marca um ponto diferente, a pessoa nao compara, so olha.
-
-     --r  diametro do anel      --ang  angulo da haste (graus, 0 = direita)
-     --h  comprimento da haste  --nx/--ny  deslocamento do rotulo
-     ══════════════════════════════════════════════════════════════════════ -->
-
-<!-- ▸ CAPA DO CASO — opcional, entra antes do antes/depois -->
-<section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+<style>
+/* Clara · Vinho — Mesma base, virada em vinho ameixa. Mais assinatura, mais memória. */
+:root{
+  --branco:#FCFAF7;
+  --marfim:#F4EFE8;
+  --cafe:#4A2634;
+  --forte:#28201F;
+  --suave:rgba(40,32,31,0.66);
+  --claro:#FCFAF7;
+  --claro-suave:rgba(252,250,247,0.66);
+  --taupe:#A99B91;
+  --terracota-esc:#8A5A44;
+  --terracota:#B06F53;
+  --champagne:#C9B39B;
+}
+</style>
+<section class="slide ">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
   <div class="corpo">
-    <div class="rotulo">Caso clínico</div>
-    <div class="display">{{TITULO_CASO}}</div>
+    <div class="display">A queda de hoje começou há três meses.</div>
     <div class="filete"></div>
-    <div class="subtitulo">{{RESUMO_CASO}}</div>
+    <div class="subtitulo">Por isso você não acha a <em>causa</em> olhando o presente.</div>
   </div>
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
-<!-- ▸ ANTES E DEPOIS — a peca principal -->
-<section class="slide sobre-foto">
-  <div class="par">
-    <div class="lado"><img src="{{FOTO_ANTES}}" alt="antes"></div>
-    <div class="lado"><img src="{{FOTO_DEPOIS}}" alt="depois"></div>
-  </div>
-  <!-- anel tracejado = onde falta cabelo -->
-  <div class="marcas a">
-    <div class="marca perda" style="--x:46%;--y:42%;--r:170px;--h:78px">
-      <div class="haste"></div><div class="nome">{{MARCA_A1}}</div>
-    </div>
-    <div class="marca perda abaixo" style="--x:56%;--y:64%;--r:120px;--h:60px">
-      <div class="haste"></div><div class="nome">{{MARCA_A2}}</div>
-    </div>
-  </div>
-  <!-- anel continuo, nas MESMAS coordenadas -->
-  <div class="marcas d">
-    <div class="marca ganho" style="--x:46%;--y:42%;--r:170px;--h:78px">
-      <div class="haste"></div><div class="nome">{{MARCA_D1}}</div>
-    </div>
-    <div class="marca ganho abaixo" style="--x:56%;--y:64%;--r:120px;--h:60px">
-      <div class="haste"></div><div class="nome">{{MARCA_D2}}</div>
-    </div>
-  </div>
-  <div class="divisa"></div>
-  <div class="veu"></div>
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="selo" style="left:25%">Antes</div>
-  <div class="selo" style="left:75%">Depois</div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ LEITURA — o que mudou, em uma linha sobre a mesma dupla -->
-<section class="slide sobre-foto">
-  <div class="par">
-    <div class="lado"><img src="{{FOTO_ANTES}}" alt="antes"></div>
-    <div class="lado"><img src="{{FOTO_DEPOIS}}" alt="depois"></div>
-  </div>
-  <div class="divisa"></div>
-  <div class="veu"></div>
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="leitura"><span class="caixa">{{LEITURA}}</span></div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ O QUE FOI FEITO — o slide que diferencia resultado de propaganda -->
-<section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo topo" style="padding-top:200px">
-    <div class="rotulo">O que foi feito</div>
-    <div class="etapas">
-      <div class="etapa marcada">
-        <div class="etapa-n">Diagnóstico</div>
-        <div class="etapa-t">{{DIAGNOSTICO}}</div>
-        <div class="etapa-d">{{DIAGNOSTICO_DESC}}</div>
-      </div>
-      <div class="etapa">
-        <div class="etapa-n">Conduta</div>
-        <div class="etapa-t">{{CONDUTA}}</div>
-        <div class="etapa-d">{{CONDUTA_DESC}}</div>
-      </div>
-      <div class="etapa">
-        <div class="etapa-n">Tempo</div>
-        <div class="etapa-t">{{TEMPO}}</div>
-        <div class="etapa-d">{{TEMPO_DESC}}</div>
-      </div>
-    </div>
-    <div class="texto-sm">Resultado individual. Cada caso depende do diagnóstico e da adesão ao tratamento.</div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ CHAMADA -->
 <section class="slide quente">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
+  <div class="corpo">
+    <div class="quadro">
+      <div class="quadro-topo">Você trocou o shampoo, parou o secador, começou a vitamina. Nada mudou, porque nada disso era a causa.</div>
+      <div class="quadro-base">A causa ficou para trás.</div>
+    </div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<section class="slide ">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
+  <div class="corpo">
+    <div class="titulo" style="font-size:64px">A linha do tempo</div>
+    <div class="ciclo">
+      <div class="fase marcada">
+        <div class="fase-n">O gatilho</div><div class="fase-d">Cirurgia, parto, febre, dieta, perda. O corpo corta o supérfluo.</div>
+      </div>
+      <div class="fase">
+        <div class="fase-n">2 a 4 meses</div><div class="fase-d">Os fios entram em repouso, ainda presos ao couro.</div>
+      </div>
+      <div class="fase">
+        <div class="fase-n">A queda</div><div class="fase-d">Saem todos juntos. É só aqui que você percebe.</div>
+      </div>
+    </div>
+    <div class="texto-sm">É esse intervalo que faz a paciente procurar a causa no mês errado.</div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<section class="slide quente">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
+  <div class="corpo">
+    <div class="rotulo">Onde o gatilho costuma estar</div>
+    <div class="subtitulo">Quase sempre está em um destes quatro:</div>
+    <div class="lista">
+      <div class="item"><div class="item-n">01</div><div class="item-t">Parto, cirurgia ou internação</div></div>
+      <div class="item"><div class="item-n">02</div><div class="item-t">Dieta restritiva ou perda rápida de peso</div></div>
+      <div class="item"><div class="item-n">03</div><div class="item-t">Febre alta, infecção ou quadro viral</div></div>
+      <div class="item"><div class="item-n">04</div><div class="item-t">Luto, término, mudança brusca de rotina</div></div>
+    </div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<section class="slide ">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
+  <div class="corpo topo" style="padding-top:210px">
+    <div class="titulo" style="font-size:64px">O que parece × o que é</div>
+    <div class="comparativo">
+      <div>
+        <div class="comp-cab">Parece</div>
+        <div class="comp-lista">
+          <div class="comp-item fraco">Está caindo cada vez mais</div>
+          <div class="comp-item fraco">O shampoo parou de funcionar</div>
+          <div class="comp-item fraco">Vai ficar assim</div>
+        </div>
+      </div>
+      <div class="comp-fio"></div>
+      <div>
+        <div class="comp-cab">É</div>
+        <div class="comp-lista">
+          <div class="comp-item">Um ciclo inteiro caiu de uma vez</div>
+          <div class="comp-item">O gatilho foi há meses</div>
+          <div class="comp-item">Tem fim, se a causa foi tratada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<section class="slide quente">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
+  <div class="corpo">
+    <div class="quadro">
+      <div class="definicao">
+        <div class="def-fon">e·flú·vio te·ló·ge·no</div>
+        <div class="def-termo">Eflúvio telógeno</div>
+        <div class="filete"></div>
+        <div class="def-txt">Queda difusa por sincronização do ciclo. O corpo empurra muitos fios para a fase de repouso ao mesmo tempo, e eles caem juntos meses depois.</div>
+      </div>
+      <div class="quadro-base" style="font-size:34px">Reversível — desde que a causa apareça.</div>
+    </div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<section class="slide escuro">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
   <div class="corpo centro">
-    <div class="texto" style="max-width:84%">{{CTA}}</div>
+    <div class="rotulo">O ponto</div>
+    <div class="titulo">Sem achar o gatilho, todo tratamento vira tentativa.</div>
+    <div class="filete centro"></div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<section class="slide ">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
+  <div class="corpo centro">
+    <div class="texto" style="max-width:84%">Se sua queda começou de repente, vale olhar o que aconteceu três meses antes.</div>
     <div class="filete centro"></div>
     <div class="display" style="font-size:72px">@fabriciasatza</div>
-    <div class="texto-sm">{{CTA_BIO}}</div>
+    <div class="texto-sm">Tricologista · Avaliação e acompanhamento</div>
   </div>
   <div class="rod" style="justify-content:center"><span>Tricologia &middot; Queda capilar</span></div>
 </section>
-
-<script>
-async function baixar(){
-  const bar=document.querySelector('.dl');
-  const slides=document.querySelectorAll('.slide');
-  const zip=new JSZip();
-  const slug='satza-'+document.title.replace(/.*\u2014 /,'').trim().toLowerCase()
-              .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-  bar.style.pointerEvents='none';
-  // html2canvas mede o texto com a fonte que estiver valendo NA HORA. Sem esta
-  // espera ele mede com a fonte de fallback e o layout sai deslocado.
-  if(document.fonts&&document.fonts.ready) await document.fonts.ready;
-  for(let i=0;i<slides.length;i++){
-    bar.textContent='Renderizando '+(i+1)+' de '+slides.length+'...';
-    bar.style.display='none';
-    const canvas=await html2canvas(slides[i],{scale:2,useCORS:true,allowTaint:true,
-      logging:false,backgroundColor:getComputedStyle(slides[i]).backgroundColor});
-    bar.style.display='block';
-    const blob=await new Promise(r=>canvas.toBlob(r,'image/png'));
-    zip.file(slug+'-'+String(i+1).padStart(2,'0')+'.png',blob);
-  }
-  bar.textContent='Empacotando...';
-  const a=document.createElement('a');
-  a.download=slug+'.zip';
-  a.href=URL.createObjectURL(await zip.generateAsync({type:'blob'}));
-  a.click();
-  bar.textContent='\u2713 ZIP baixado';
-  setTimeout(()=>{bar.textContent='\u2193 Baixar ZIP';bar.style.pointerEvents='auto'},3000);
-}
-</script>
 </body>
 </html>
