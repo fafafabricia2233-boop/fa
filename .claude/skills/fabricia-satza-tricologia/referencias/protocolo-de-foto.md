@@ -36,3 +36,14 @@ transforma relato clínico em alegação enganosa.
 
 Se depois de normalizar a diferença sumir, a resposta é que aquele par não
 serve. Diga isso a ela.
+
+## Enquadramento na peça
+
+Foto de topo de cabeça pede o **mínimo de zoom possível**: largura cheia da
+cabeça, e só o corte de altura que a proporção do painel obrigar. Aproximar na
+risca parece revelar mais, mas tira a referência — sem ver a cabeça inteira, a
+pessoa não sabe o tamanho da área e o antes e depois perde força.
+
+Por isso os painéis do layout empilhado foram ampliados ao máximo que o resto
+da peça permite: cada pixel a mais de painel é um pixel a menos de zoom no
+recorte.
