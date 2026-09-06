@@ -41,11 +41,13 @@
   --terracota-esc:#8A5A44;
 
   /* Formato da peca. Trocar estes dois valores troca o carrossel inteiro.
-       4:5  1080x1350  padrao do Instagram, o mais alto aceito em carrossel
-       3:4  1080x1440  bate com o corte da grade do perfil
-       1:1  1080x1080  quadrado */
+       3:4  1080x1440  PADRAO DELA, bate com o corte da grade do perfil
+       4:5  1080x1350  preset do Instagram para carrossel
+       1:1  1080x1080  quadrado
+     Paisagem (1440x1080) nao e so trocar aqui — ver "Formato da peca" no
+     SKILL.md, a escala e a coluna de texto mudam junto. */
   --peca-larg:1080px;
-  --peca-alt:1350px;
+  --peca-alt:1440px;
 
   --titulo:'Fabricia Satza Alt','Futura',sans-serif;
   --texto:'Fabricia Satza','Futura',sans-serif;

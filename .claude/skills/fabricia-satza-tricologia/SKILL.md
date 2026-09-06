@@ -101,13 +101,12 @@ questão uma vez é útil.
 
 ## Formato da peça
 
-O padrão é **4:5, 1080×1350** — é o mais alto que o Instagram aceita em
-carrossel e o que ocupa mais tela no feed. Para trocar, mexa só nos dois
-tokens no topo do `base.css`:
+O padrão dela é **3:4, 1080×1440**. Monte nele salvo pedido em contrário. Para
+trocar, mexa só nos dois tokens no topo do `base.css`:
 
 ```css
---peca-larg:1080px;  --peca-alt:1350px;   /* 4:5  padrão */
---peca-larg:1080px;  --peca-alt:1440px;   /* 3:4  bate com o corte da grade */
+--peca-larg:1080px;  --peca-alt:1440px;   /* 3:4  padrão dela */
+--peca-larg:1080px;  --peca-alt:1350px;   /* 4:5  preset de carrossel */
 --peca-larg:1080px;  --peca-alt:1080px;   /* 1:1  quadrado */
 ```
 
