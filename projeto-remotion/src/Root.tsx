@@ -49,6 +49,7 @@ import { NewHairConhecimentoTecnico, type NewHairConhecimentoTecnicoProps } from
 import { NewHairPosExtracao, type NewHairPosExtracaoProps } from "./compositions/NewHairPosExtracao";
 import { NewHairRitmo, type NewHairRitmoProps } from "./compositions/NewHairRitmo";
 import { NewHairDisputar, type NewHairDisputarProps } from "./compositions/NewHairDisputar";
+import { NewHairMaisUm, type NewHairMaisUmProps } from "./compositions/NewHairMaisUm";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -566,6 +567,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(15.433 * 30)}
             defaultProps={{ durationSeconds: 15.433, video: "newhair/disputar_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-MaisUm">
+          <Composition
+            id="NewHairMaisUm"
+            component={NewHairMaisUm as React.FC<NewHairMaisUmProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(20.269 * 30)}
+            defaultProps={{ durationSeconds: 20.269, video: "newhair/maisum_h264.mp4" }}
           />
         </Folder>
 
