@@ -47,6 +47,7 @@ import { NewHairProtocolo2, type NewHairProtocolo2Props } from "./compositions/N
 import { NewHairRegistro, type NewHairRegistroProps } from "./compositions/NewHairRegistro";
 import { NewHairConhecimentoTecnico, type NewHairConhecimentoTecnicoProps } from "./compositions/NewHairConhecimentoTecnico";
 import { NewHairPosExtracao, type NewHairPosExtracaoProps } from "./compositions/NewHairPosExtracao";
+import { NewHairRitmo, type NewHairRitmoProps } from "./compositions/NewHairRitmo";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -540,6 +541,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(12.533 * 30)}
             defaultProps={{ durationSeconds: 12.533, video: "newhair/pos_extracao_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Ritmo">
+          <Composition
+            id="NewHairRitmo"
+            component={NewHairRitmo as React.FC<NewHairRitmoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(14.511 * 30)}
+            defaultProps={{ durationSeconds: 14.511, video: "newhair/ritmo_h264.mp4" }}
           />
         </Folder>
 
