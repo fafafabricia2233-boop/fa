@@ -52,49 +52,39 @@ Tricologia e transplante caem em "procedimento estético", então em tese passam
 Mas se você for impulsionar, confirme antes: uma reprovação repetida pode
 render restrição de anúncio na conta.
 
-## 3. COREN — o conselho dela
+## 3. Registro profissional — qual regra incide
 
-Ela é **técnica de enfermagem**, inscrita no COREN. Duas normas incidem, e a
-segunda é mais grave que a primeira.
+**Terapia capilar não é profissão regulamentada no Brasil.** Atuam nela pessoas
+vindas da estética, da cosmetologia e de várias formações. Ela é técnica de
+enfermagem inscrita no COREN, mas **não exerce enfermagem quando faz terapia
+capilar** — atua como terapeuta capilar, e o COFEN não rege essa atuação.
 
-### Resolução COFEN 554/2017 — publicidade
+Isso reduz a três a lista do que precisa ser resolvido, e todas são decisão
+dela:
 
-- **Todo anúncio deve trazer nome, número de inscrição no COREN e categoria
-  profissional.** Isto é obrigatório e a peça precisa carregar. Não é rodapé
-  opcional.
-- Imagem de paciente só com **autorização expressa**, e desde que não lhe traga
-  consequências negativas.
-- Vedado sensacionalismo e autopromoção; o decoro da profissão precisa ser
-  preservado.
+### A escolha que define o resto: invocar ou não a credencial
 
-Na prática, para o antes e depois: ele é possível, com autorização expressa,
-sem sensacionalismo, e com a identificação profissional na peça.
+- **Se a marca não menciona a inscrição de enfermagem**, as normas de
+  publicidade do COFEN não incidem sobre estas peças. É o caminho mais limpo.
+  O carrossel de apresentação já está assim: diz "formação na área da saúde",
+  sem invocar o registro.
+- **Se ela decidir usar a credencial como argumento de autoridade**, aí passa a
+  se apresentar como profissional de enfermagem, e a Resolução COFEN 554/2017
+  volta a incidir — inclusive a exigência de nome, número do COREN e categoria
+  em todo anúncio.
 
-### Limite de atuação — levantar antes de produzir
+Não misture os dois registros na mesma peça. Ou a marca é de terapia capilar,
+ou é de enfermagem; a mistura é o que cria exposição sem trazer benefício.
 
-O COFEN aprovou parecer reconhecendo atuação em **tricologia e terapia
-capilar**, mas o parecer trata de **enfermeiros**, não de técnicos de
-enfermagem. Ele exige formação superior em enfermagem, com especialização ou
-capacitação mínima, e é nessa condição que autoriza atuação autônoma em
-consultório.
+O campo `{{REGISTRO}}` existe para o segundo caso. **É opcional** — se ela não
+invoca a credencial, deixe vazio.
 
-A Lei 7.498/1986 põe o técnico de enfermagem sob **supervisão do enfermeiro**.
-Avaliação clínica autônoma, definição de conduta e acompanhamento de caso
-próprio não estão descritos como atribuição do técnico.
+### O que continua valendo, venha de onde vier
 
-Isso afeta diretamente o conteúdo, não só a peça de resultado. Frases como
-"eu avalio", "eu defino a estratégia", "eu acompanho a evolução" descrevem
-atuação autônoma. Um antes e depois de tratamento conduzido por ela seria o
-registro público disso.
-
-**Antes de produzir peça de resultado ou conteúdo que a posicione como quem
-conduz o caso, ela precisa confirmar com o COREN do estado dela o que a
-inscrição de técnica permite.** Não é decisão sua, e não é para insistir; é
-para levantar uma vez, com clareza, e seguir o que ela decidir.
-
-Se a atuação dela for dentro de uma equipe — o que as fotos de centro cirúrgico
-sugerem —, o conteúdo funciona igual bem no registro "eu faço parte disso" em
-vez de "eu conduzo isso". O ângulo muda, a qualidade não.
+Autorização escrita da paciente, sem sensacionalismo, sem promessa de
+resultado. Isso não é regra de conselho, é direito de imagem e Código de
+Defesa do Consumidor. Vale para qualquer pessoa que publique resultado de
+outra pessoa.
 
 ---
 
@@ -133,7 +123,8 @@ Antes de entregar qualquer antes e depois, confira os doze itens:
 10. Ressalva de resultado individual visível na própria peça, não só na legenda
     (legenda é cortada em "... mais" e o print circula sem ela).
 11. Autorização escrita da paciente em mãos.
-12. **Nome, número do COREN e categoria profissional na peça** — exigência da
-    Resolução COFEN 554/2017 para todo anúncio.
+12. Se — e só se — a peça invocar a credencial de enfermagem: nome, número do
+    COREN e categoria, conforme a Resolução COFEN 554/2017. Se a marca não
+    menciona o registro, este item não se aplica.
 
 Falhou em um, a peça não sai.
