@@ -46,6 +46,7 @@ import { NewHairPostura, type NewHairPosturaProps } from "./compositions/NewHair
 import { NewHairProtocolo2, type NewHairProtocolo2Props } from "./compositions/NewHairProtocolo2";
 import { NewHairRegistro, type NewHairRegistroProps } from "./compositions/NewHairRegistro";
 import { NewHairConhecimentoTecnico, type NewHairConhecimentoTecnicoProps } from "./compositions/NewHairConhecimentoTecnico";
+import { NewHairPosExtracao, type NewHairPosExtracaoProps } from "./compositions/NewHairPosExtracao";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -527,6 +528,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(14.5 * 30)}
             defaultProps={{ durationSeconds: 14.5, video: "newhair/conhecimentotecnico_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-PosExtracao">
+          <Composition
+            id="NewHairPosExtracao"
+            component={NewHairPosExtracao as React.FC<NewHairPosExtracaoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(12.533 * 30)}
+            defaultProps={{ durationSeconds: 12.533, video: "newhair/pos_extracao_h264.mp4" }}
           />
         </Folder>
 
