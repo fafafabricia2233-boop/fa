@@ -79,10 +79,14 @@ repete no consultório, com foto de perfil, nome e arroba. Lê rápido e não so
 propaganda, porque é uma fala e não um anúncio. Duas regras nele:
 
 - **Até quatro linhas.** Passou disso deixa de parecer fala e vira parágrafo.
-- **Sem selo de verificado e sem marca de plataforma.** Um selo azul sugere uma
-  verificação que ela não tem, e imitar a interface de outra empresa entrega o
-  post visualmente a ela em vez de à marca. Foto, nome, arroba e fala já
-  carregam o formato sozinhos.
+- **Com selo de verificado, sem marca de plataforma.** A conta `@fabriciasatza`
+  é verificada — ela confirmou —, então o selo entra por padrão no campo
+  `{{SELO}}` e não precisa perguntar de novo. Já a interface da plataforma fica
+  de fora: imitá-la entrega o post visualmente a ela em vez de à marca. Foto,
+  nome, arroba e fala carregam o formato sozinhos.
+- **Nada de negrito.** Fala não tem ênfase: marcar palavra ali denuncia que a
+  frase foi montada para convencer, e o formato perde a naturalidade que o faz
+  funcionar. O CSS anula qualquer `<b>` que escape para dentro do bloco.
 
 O avatar sai de uma foto dela recortada em círculo. Gere em 320px: ele aparece
 a 106px na peça, então 320 cobre o export em 2x com folga. Em 512px o arquivo
