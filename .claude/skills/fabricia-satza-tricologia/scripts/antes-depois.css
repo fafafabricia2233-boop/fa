@@ -20,7 +20,7 @@
 .marcas.a{left:0}
 .marcas.d{left:50%}
 
-.selo{position:absolute;bottom:132px;left:50%;transform:translateX(-50%);z-index:14;
+.selo{position:absolute;bottom:186px;left:50%;transform:translateX(-50%);z-index:14;
       font-family:var(--titulo);font-size:56px;letter-spacing:.14em;
       text-transform:uppercase;color:var(--branco);white-space:nowrap;
       text-shadow:0 2px 22px rgba(0,0,0,.55)}
@@ -45,8 +45,16 @@
 .marca.abaixo .haste{bottom:auto;top:100%}
 .marca.abaixo .nome{bottom:auto;top:calc(100% + var(--h,74px) + 14px)}
 
+/* Ressalva. Vai NA IMAGEM, nao so na legenda: a legenda e cortada no "... mais"
+   e o print circula sem ela. Discreta o bastante para nao competir com a foto,
+   legivel o bastante para cumprir o papel. */
+.ressalva{position:absolute;left:80px;right:80px;bottom:118px;z-index:14;
+       text-align:center;font-size:20px;letter-spacing:.18em;text-transform:uppercase;
+       color:rgba(252,250,247,.78);text-shadow:0 1px 3px rgba(0,0,0,.6),
+       0 2px 16px rgba(0,0,0,.7)}
+
 /* Faixa de leitura no rodape: o que mudou, em uma linha. */
-.leitura{position:absolute;left:80px;right:80px;bottom:150px;z-index:14;
+.leitura{position:absolute;left:80px;right:80px;bottom:196px;z-index:14;
        text-align:center;font-size:33px;line-height:1.44;color:var(--branco);
        text-shadow:0 2px 18px rgba(0,0,0,.62)}
 .leitura .caixa{font-size:33px}

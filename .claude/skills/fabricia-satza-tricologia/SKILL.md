@@ -71,35 +71,47 @@ carrega no máximo dois deles; três seguidos viram apostila e a pessoa sai.
 
 ## Como montar um antes e depois
 
-Quando ela mandar fotos de resultado:
+**Leia `referencias/antes-depois-regras.md` antes de qualquer coisa.** Três
+conjuntos de regra incidem sobre esta peça — Instagram orgânico, anúncio pago e
+o conselho profissional dela — e eles não são o mesmo. A lista de verificação
+de onze itens no fim daquele arquivo é obrigatória; falhou em um, a peça não
+sai.
 
-1. **Olhe as duas fotos e ache a região que mudou.** É o trabalho principal.
-   Se marcar o lugar errado, a peça fica pior que sem marcador nenhum.
-2. Copie `assets/antes-depois.html`, aponte `{{FOTO_ANTES}}` e `{{FOTO_DEPOIS}}`
-   para os arquivos.
-3. Posicione os anéis com `--x` e `--y`, em **% da metade** (não da peça
+Três coisas travam a entrega e precisam ser resolvidas com ela, não por você:
+
+1. **Autorização escrita da paciente**, específica para rede social.
+   Consentimento de tratamento não cobre publicação de imagem. Sem isso não há
+   enquadramento nem tarja que resolva.
+2. **A regra do conselho dela.** Muda conforme o registro; alguns proíbem antes
+   e depois por completo. Levante a questão na primeira vez.
+3. **Fotos em mesma luz, ângulo e repartição.** Sem isso a peça não prova nada
+   e qualquer pessoa percebe. Se as fotos não baterem, diga a ela em vez de
+   disfarçar no tratamento da imagem.
+
+Resolvido isso:
+
+4. **Olhe as duas fotos e ache a região que mudou.** É o trabalho principal. Se
+   marcar o lugar errado, a peça fica pior que sem marcador nenhum.
+5. Copie `assets/antes-depois.html`, aponte `{{FOTO_ANTES}}` e `{{FOTO_DEPOIS}}`.
+6. Posicione os anéis com `--x` e `--y`, em **% da metade** (não da peça
    inteira): `--x:50%` é o centro daquele lado.
-4. **A regra que faz a peça funcionar: o anel do DEPOIS fica na MESMA
-   coordenada do ANTES.** É a coordenada repetida que faz o olho comparar. Se
-   cada lado marca um ponto diferente, a pessoa só vê duas fotos.
-5. Nomeie: no antes a perda (`Rarefação central`, `Risca alargada`), no depois
-   o ganho (`Preenchimento`, `Risca estreita`). Duas ou três palavras — o
-   rótulo é uma etiqueta, não uma frase.
-6. Dois marcadores por lado bastam. Três já viram poluição.
-7. Mantenha o slide **"O que foi feito"**. É ele que separa resultado clínico
-   de propaganda: mostra diagnóstico, conduta e tempo.
+7. **O anel do DEPOIS fica na MESMA coordenada do ANTES.** É a coordenada
+   repetida que faz o olho comparar. Se cada lado marca um ponto diferente, a
+   pessoa só vê duas fotos.
+8. Nomeie o achado, nunca julgue a pessoa: `Rarefação central`, `Risca
+   alargada` no antes; `Preenchimento`, `Risca estreita` no depois. Duas ou
+   três palavras.
+9. Dois marcadores por lado bastam. Três viram poluição.
+10. **Não remova a ressalva nem o slide do que foi feito.** A ressalva vai na
+    imagem porque a legenda é cortada no "... mais" e o print circula sem ela.
+    O slide de conduta é o que tira a peça do registro de propaganda e coloca
+    no de relato clínico.
 
-Antes de publicar, confira se as duas fotos têm **mesma luz, mesmo ângulo e
-mesma repartição** — sem isso o antes/depois não prova nada e qualquer pessoa
-percebe. Se não tiverem, diga isso a ela em vez de disfarçar no tratamento da
-imagem.
+A correção de temperatura, quando usada, tem de ser **igual nos dois lados**.
+Tratamento diferente em cada lado altera o resultado aparente, e isso é o que
+transforma um relato em alegação enganosa.
 
-Peça de resultado tem regra de conselho profissional, e ela varia conforme o
-registro (CFM, CFBM, CRBM). Vale ela confirmar o que o conselho dela permite
-antes de publicar antes/depois — isso é decisão dela, não sua, mas levantar a
-questão uma vez é útil.
-
-## Formato da peça
+## Formato da peça## Formato da peça
 
 O padrão dela é **3:4, 1080×1440**. Monte nele salvo pedido em contrário. Para
 trocar, mexa só nos dois tokens no topo do `base.css`:
