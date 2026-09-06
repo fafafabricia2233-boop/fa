@@ -52,18 +52,49 @@ Tricologia e transplante caem em "procedimento estético", então em tese passam
 Mas se você for impulsionar, confirme antes: uma reprovação repetida pode
 render restrição de anúncio na conta.
 
-## 3. Conselho profissional
+## 3. COREN — o conselho dela
 
-**É aqui que está o risco de verdade**, e ele não depende do Instagram.
+Ela é **técnica de enfermagem**, inscrita no COREN. Duas normas incidem, e a
+segunda é mais grave que a primeira.
 
-A regra muda conforme o registro — CFM para médico, CFBM para biomédico, COFEN
-para enfermagem, CFF para farmácia, e assim por diante. Alguns conselhos
-proíbem antes e depois por completo; outros permitem com condições (consentimento
-formal, sem sensacionalismo, sem promessa, com finalidade educativa).
+### Resolução COFEN 554/2017 — publicidade
 
-**Ela precisa confirmar o que o conselho dela permite antes do primeiro post.**
-Isso é decisão dela, não sua. Mas levante a questão sempre que ela pedir a peça
-pela primeira vez em cada conta.
+- **Todo anúncio deve trazer nome, número de inscrição no COREN e categoria
+  profissional.** Isto é obrigatório e a peça precisa carregar. Não é rodapé
+  opcional.
+- Imagem de paciente só com **autorização expressa**, e desde que não lhe traga
+  consequências negativas.
+- Vedado sensacionalismo e autopromoção; o decoro da profissão precisa ser
+  preservado.
+
+Na prática, para o antes e depois: ele é possível, com autorização expressa,
+sem sensacionalismo, e com a identificação profissional na peça.
+
+### Limite de atuação — levantar antes de produzir
+
+O COFEN aprovou parecer reconhecendo atuação em **tricologia e terapia
+capilar**, mas o parecer trata de **enfermeiros**, não de técnicos de
+enfermagem. Ele exige formação superior em enfermagem, com especialização ou
+capacitação mínima, e é nessa condição que autoriza atuação autônoma em
+consultório.
+
+A Lei 7.498/1986 põe o técnico de enfermagem sob **supervisão do enfermeiro**.
+Avaliação clínica autônoma, definição de conduta e acompanhamento de caso
+próprio não estão descritos como atribuição do técnico.
+
+Isso afeta diretamente o conteúdo, não só a peça de resultado. Frases como
+"eu avalio", "eu defino a estratégia", "eu acompanho a evolução" descrevem
+atuação autônoma. Um antes e depois de tratamento conduzido por ela seria o
+registro público disso.
+
+**Antes de produzir peça de resultado ou conteúdo que a posicione como quem
+conduz o caso, ela precisa confirmar com o COREN do estado dela o que a
+inscrição de técnica permite.** Não é decisão sua, e não é para insistir; é
+para levantar uma vez, com clareza, e seguir o que ela decidir.
+
+Se a atuação dela for dentro de uma equipe — o que as fotos de centro cirúrgico
+sugerem —, o conteúdo funciona igual bem no registro "eu faço parte disso" em
+vez de "eu conduzo isso". O ângulo muda, a qualidade não.
 
 ---
 
@@ -80,7 +111,7 @@ substitua isso.
 
 ## Lista de verificação
 
-Antes de entregar qualquer antes e depois, confira os onze itens:
+Antes de entregar qualquer antes e depois, confira os doze itens:
 
 **Imagem**
 1. Mesma luz, mesmo ângulo, mesma distância, mesma repartição nas duas fotos.
@@ -102,5 +133,7 @@ Antes de entregar qualquer antes e depois, confira os onze itens:
 10. Ressalva de resultado individual visível na própria peça, não só na legenda
     (legenda é cortada em "... mais" e o print circula sem ela).
 11. Autorização escrita da paciente em mãos.
+12. **Nome, número do COREN e categoria profissional na peça** — exigência da
+    Resolução COFEN 554/2017 para todo anúncio.
 
 Falhou em um, a peça não sai.

@@ -92,6 +92,16 @@ body{background:#191919;display:flex;flex-direction:column;align-items:center;
 .sobre-foto .rod{color:rgba(252,250,247,.92);
      text-shadow:0 1px 3px rgba(0,0,0,.55),0 2px 18px rgba(0,0,0,.65)}
 .rod .segue{font-size:30px;letter-spacing:0;color:var(--terracota-esc)}
+
+/* Identificacao profissional. A Resolucao COFEN 554/2017 exige nome, numero de
+   inscricao no COREN e categoria em TODO anuncio — entao ela e estrutura da
+   peca, nao lembrete que alguem pode esquecer. Vive no slide de chamada e em
+   qualquer peca que mostre paciente. */
+.registro{font-size:22px;letter-spacing:.20em;text-transform:uppercase;
+       color:var(--suave);line-height:1.7}
+.escuro .registro,.cafe .registro,.terra .registro{color:var(--claro-suave)}
+.sobre-foto .registro{color:rgba(252,250,247,.86);
+       text-shadow:0 1px 3px rgba(0,0,0,.55),0 2px 16px rgba(0,0,0,.65)}
 .escuro .rod .segue,.cafe .rod .segue,.sobre-foto .rod .segue{color:var(--champagne)}
 /* Champagne sobre terracota da 2,9:1. Ali o acento tem de ser o marfim. */
 .terra .rod .segue{color:var(--marfim)}
@@ -368,7 +378,7 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
   <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
   <div class="selo" style="left:25%">Antes</div>
   <div class="selo" style="left:75%">Depois</div>
-  <div class="ressalva">Resultado individual &middot; Imagem publicada com autorização</div>
+  <div class="ressalva">Resultado individual &middot; Imagem publicada com autorização<br>{{REGISTRO}}</div>
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
@@ -382,7 +392,7 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
   <div class="veu"></div>
   <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
   <div class="leitura"><span class="caixa">{{LEITURA}}</span></div>
-  <div class="ressalva">Resultado individual &middot; Imagem publicada com autorização</div>
+  <div class="ressalva">Resultado individual &middot; Imagem publicada com autorização<br>{{REGISTRO}}</div>
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
@@ -422,6 +432,7 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
     <div class="filete centro"></div>
     <div class="display" style="font-size:72px">@fabriciasatza</div>
     <div class="texto-sm">{{CTA_BIO}}</div>
+    <div class="registro">{{REGISTRO}}</div>
   </div>
   <div class="rod" style="justify-content:center"><span>Tricologia &middot; Queda capilar</span></div>
 </section>

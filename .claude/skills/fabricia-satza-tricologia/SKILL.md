@@ -8,6 +8,20 @@ description: Cria carrosséis de Instagram, peças de antes/depois, quadros expl
 Marca **pessoal**. Perfil `@fabriciasatza`. Conteúdo clínico sobre queda
 capilar, feito para uma paciente que já tentou de tudo e não foi diagnosticada.
 
+> **Ela é técnica de enfermagem, inscrita no COREN.** Duas coisas decorrem daí
+> e valem para todo conteúdo, não só para peça de resultado:
+>
+> 1. **Toda peça de anúncio leva nome, número do COREN e categoria
+>    profissional** — exigência da Resolução COFEN 554/2017. O campo
+>    `{{REGISTRO}}` existe para isso no slide de chamada e nas peças com
+>    paciente. Não entregue sem preencher.
+> 2. **O parecer do COFEN sobre tricologia trata de enfermeiros, não de
+>    técnicos.** Antes de escrever conteúdo que a posicione como quem avalia,
+>    define conduta e acompanha o caso, veja
+>    `referencias/antes-depois-regras.md`. Se ela atua dentro de uma equipe, o
+>    conteúdo funciona igual bem no registro "eu faço parte disso" — o ângulo
+>    muda, a qualidade não.
+
 > **Isto não é a New Hair.** A New Hair (`@newhair_fue`) vive no mesmo
 > repositório, com fundo escuro, dourado e Montserrat. São marcas separadas e
 > nunca compartilham arquivo, cor ou template. Se uma peça da Fabrícia pode ser
