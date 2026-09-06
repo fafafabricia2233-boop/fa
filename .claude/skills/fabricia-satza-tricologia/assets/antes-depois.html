@@ -319,6 +319,45 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
        text-shadow:0 2px 18px rgba(0,0,0,.62)}
 .leitura .caixa{font-size:33px}
 
+/* ── EMPILHADO ─────────────────────────────────────────────────────────────
+   Para foto de topo de cabeca, que e larga. Lado a lado num 3:4 daria dois
+   paineis de 540x1440 — altos e estreitos demais, o object-fit jogaria fora
+   metade da foto. Empilhado cada painel fica 1080 de largura, proximo da
+   forma natural da imagem.
+   A geometria vive em variaveis porque os marcadores ficam FORA dos paineis
+   (o overflow deles recorta a foto e recortaria o rotulo junto): os dois
+   precisam ler os mesmos numeros ou o anel sai do lugar. */
+.slide.empilhado{--pa-topo:126px;--pa-alt:calc((100% - 126px - 206px)/2)}
+.empilhado .par{display:block}
+.empilhado .lado{position:absolute;left:0;right:0;height:var(--pa-alt)}
+.empilhado .lado:nth-child(1){top:var(--pa-topo)}
+.empilhado .lado:nth-child(2){top:calc(var(--pa-topo) + var(--pa-alt))}
+.empilhado .divisa{left:0;right:0;width:auto;height:1px;bottom:auto;
+       top:calc(var(--pa-topo) + var(--pa-alt))}
+.empilhado .marcas{left:0;width:100%;height:var(--pa-alt);bottom:auto}
+.empilhado .marcas.a{top:var(--pa-topo)}
+.empilhado .marcas.d{top:calc(var(--pa-topo) + var(--pa-alt))}
+.empilhado .selo{left:auto;right:46px;bottom:auto;transform:none;font-size:36px;
+       letter-spacing:.16em}
+.empilhado .selo.a{top:calc(var(--pa-topo) + 24px)}
+.empilhado .selo.d{top:calc(var(--pa-topo) + var(--pa-alt) + 24px)}
+/* O veu de cima escureceria a foto de cima inteira; aqui ele so protege as
+   faixas do cabecalho e do rodape. */
+.empilhado .veu{background:linear-gradient(to bottom,rgba(0,0,0,.62) 0%,
+       rgba(0,0,0,0) 11%,rgba(0,0,0,0) 84%,rgba(0,0,0,.72) 100%)}
+
+/* Marcador de rotulo lateral. No painel empilhado sobra largura e falta altura:
+   haste para cima empurra o rotulo contra a borda e ele sai cortado. Deitando a
+   haste, o rotulo usa a largura que sobra e fica colado ao anel. */
+.marca.lateral .haste{left:auto;right:100%;bottom:auto;top:50%;
+       width:var(--h,96px);height:1px;transform:none}
+.marca.lateral .nome{left:auto;right:calc(100% + var(--h,96px) + 18px);
+       bottom:auto;top:50%;transform:translateY(-50%)}
+.marca.lateral.direita .haste{right:auto;left:100%}
+.marca.lateral.direita .nome{right:auto;left:calc(100% + var(--h,96px) + 18px)}
+/* Anel um pouco mais firme: sobre cabelo escuro o traco de 1,5px sumia. */
+.empilhado .marca{border-width:2px}
+
 </style>
 </head>
 <body>

@@ -92,7 +92,9 @@ Três coisas travam a entrega e precisam ser resolvidas com ela, não por você:
    enquadramento nem tarja que resolva.
 2. **A regra do conselho dela.** Muda conforme o registro; alguns proíbem antes
    e depois por completo. Levante a questão na primeira vez.
-3. **Fotos em mesma luz, ângulo e repartição.** Sem isso a peça não prova nada
+3. **Fotos em mesma luz, ângulo e repartição** — ver
+   `referencias/protocolo-de-foto.md`, que traz o protocolo de captação e as
+   duas correções legítimas para quando o par não bate. Sem isso a peça não prova nada
    e qualquer pessoa percebe. Se as fotos não baterem, diga a ela em vez de
    disfarçar no tratamento da imagem.
 
