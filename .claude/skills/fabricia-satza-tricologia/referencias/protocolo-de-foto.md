@@ -44,6 +44,8 @@ cabeça, e só o corte de altura que a proporção do painel obrigar. Aproximar 
 risca parece revelar mais, mas tira a referência — sem ver a cabeça inteira, a
 pessoa não sabe o tamanho da área e o antes e depois perde força.
 
-Por isso os painéis do layout empilhado foram ampliados ao máximo que o resto
-da peça permite: cada pixel a mais de painel é um pixel a menos de zoom no
-recorte.
+Por isso os painéis do layout empilhado sangram até a borda da peça, com
+cabeçalho, selo, ressalva e rodapé **sobre** a foto — o véu já escurece
+exatamente essas duas faixas. Cada pixel a mais de painel é um pixel a menos de
+zoom no recorte: a sangria levou o painel de 554 para 720px de altura, e o
+recorte de 41% para 50% da altura da foto.
