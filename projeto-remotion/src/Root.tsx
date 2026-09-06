@@ -48,6 +48,7 @@ import { NewHairRegistro, type NewHairRegistroProps } from "./compositions/NewHa
 import { NewHairConhecimentoTecnico, type NewHairConhecimentoTecnicoProps } from "./compositions/NewHairConhecimentoTecnico";
 import { NewHairPosExtracao, type NewHairPosExtracaoProps } from "./compositions/NewHairPosExtracao";
 import { NewHairRitmo, type NewHairRitmoProps } from "./compositions/NewHairRitmo";
+import { NewHairDisputar, type NewHairDisputarProps } from "./compositions/NewHairDisputar";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -553,6 +554,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(14.511 * 30)}
             defaultProps={{ durationSeconds: 14.511, video: "newhair/ritmo_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Disputar">
+          <Composition
+            id="NewHairDisputar"
+            component={NewHairDisputar as React.FC<NewHairDisputarProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(15.433 * 30)}
+            defaultProps={{ durationSeconds: 15.433, video: "newhair/disputar_h264.mp4" }}
           />
         </Folder>
 
