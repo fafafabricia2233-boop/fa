@@ -70,8 +70,23 @@ sobre a imagem.
 | **Ciclo** | Fases em sequência: anágena/catágena/telógena, linha do tempo. |
 | **Definição** | Explicar um termo técnico sem soar aula. |
 | **Dado** | Um número só. Dois números no mesmo slide se anulam. |
+| **Citação** | Uma fala dela, no formato de post de rede social. Sozinha ou dentro de carrossel. |
 | **Virada** | O único slide de cor. **Uma por carrossel** — vinho, terracota ou café. |
 | **Chamada** | Sempre o último. |
+
+O bloco de **citação** é o formato mais rápido de publicar: uma frase que ela
+repete no consultório, com foto de perfil, nome e arroba. Lê rápido e não soa
+propaganda, porque é uma fala e não um anúncio. Duas regras nele:
+
+- **Até quatro linhas.** Passou disso deixa de parecer fala e vira parágrafo.
+- **Sem selo de verificado e sem marca de plataforma.** Um selo azul sugere uma
+  verificação que ela não tem, e imitar a interface de outra empresa entrega o
+  post visualmente a ela em vez de à marca. Foto, nome, arroba e fala já
+  carregam o formato sozinhos.
+
+O avatar sai de uma foto dela recortada em círculo. Gere em 320px: ele aparece
+a 106px na peça, então 320 cobre o export em 2x com folga. Em 512px o arquivo
+pesava 509 KB sozinho, mais que o dobro do necessário.
 
 Os quatro do meio — etapas, comparativo, ciclo, definição — são os "quadros
 explicativos". Use-os quando o conteúdo **ensina**. Um carrossel que ensina

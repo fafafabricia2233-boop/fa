@@ -113,3 +113,24 @@
     border:1px solid var(--taupe);padding:13px 26px;font-family:var(--texto);
     font-size:19px;color:var(--forte);cursor:pointer;z-index:9999;border-radius:4px;
     letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+
+/* ══ CITACAO ═══ post no formato de rede social, com foto de perfil ════════
+   Le rapido e nao soa propaganda: e uma fala, nao um anuncio. Serve para a
+   frase que ela repete no consultorio e vale a pena circular.
+
+   Sem selo de verificado e sem marca de plataforma nenhuma: um selo azul
+   sugere verificacao que ela nao tem, e imitar a interface de outra empresa
+   entrega o post visualmente a ela em vez de a marca. A estrutura (foto,
+   nome, arroba, fala) ja carrega o formato sozinha. */
+.citacao{display:flex;flex-direction:column;gap:46px;width:100%}
+.perfil{display:flex;align-items:center;gap:26px}
+.perfil-foto{width:106px;height:106px;border-radius:50%;object-fit:cover;
+        flex-shrink:0;display:block}
+.perfil-nome{font-size:34px;line-height:1.2;color:var(--forte)}
+.perfil-nome .div{color:var(--taupe);margin:0 .18em}
+.perfil-arroba{font-size:29px;line-height:1.2;color:var(--suave);margin-top:7px}
+.citacao-texto{font-size:52px;line-height:1.40;color:var(--forte)}
+.escuro .perfil-nome,.cafe .perfil-nome,.terra .perfil-nome,
+.escuro .citacao-texto,.cafe .citacao-texto,.terra .citacao-texto{color:var(--claro)}
+.escuro .perfil-arroba,.cafe .perfil-arroba,.terra .perfil-arroba{color:var(--claro-suave)}
+.escuro .perfil-nome .div,.cafe .perfil-nome .div,.terra .perfil-nome .div{color:var(--champagne)}
