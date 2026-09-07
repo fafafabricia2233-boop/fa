@@ -74,6 +74,37 @@ sobre a imagem.
 | **Virada** | O único slide de cor. **Uma por carrossel** — vinho, terracota ou café. |
 | **Chamada** | Sempre o último. |
 
+## Tricoscopia na prática
+
+Série numerada em que ela mostra uma imagem de tricoscopia e lê os achados.
+**Leia `referencias/tricoscopia.md` antes de escrever** — ele traz os achados,
+os nomes técnicos e, principalmente, o que nunca escrever.
+
+Seis slides, nesta ordem:
+
+| # | Bloco | Conteúdo |
+|---|---|---|
+| 01 | `TRICO CAPA` | imagem sangrando, título por cima. "Tricoscopia na prática 01 \| tema" |
+| 02 | `TRICO PRANCHA` | a imagem grande, achados numerados, legenda embaixo |
+| 03 | `QUADRO` | o que mais chamou atenção — **um** achado, não uma lista |
+| 04 | `LISTA` | "este padrão pode aparecer em" — duas a quatro possibilidades |
+| 05 | `ETAPAS` | "e depois de identificar isso?" — o método e o encaminhamento |
+| 06 | `VIRADA` | o fechamento |
+
+Regras próprias da série:
+
+- **A imagem mostra achados, não doença.** Escreva "o que eu observo" e "este
+  padrão pode aparecer em", nunca "isto é". O slide 04 sempre no plural: uma
+  possibilidade só vira diagnóstico disfarçado.
+- **Três a cinco achados marcados.** Acima disso a pessoa para de ler e a
+  imagem vira um mapa.
+- **Numere os achados na imagem e explique na legenda.** Rótulo escrito em cima
+  da tricoscopia cobre justamente o que a pessoa precisa ver.
+- **Nome técnico entre parênteses, depois do português.** "Fios de calibres bem
+  diferentes (anisotricose)" ensina; "anisotricose" sozinho afasta.
+- **Autorização vale igual.** Imagem de tricoscopia parece anônima, mas veio de
+  uma pessoa.
+
 ## Post de frase
 
 Quando ela pedir um **"post de frase"**, é este formato — e o padrão está

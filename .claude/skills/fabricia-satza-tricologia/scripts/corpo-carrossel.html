@@ -176,6 +176,46 @@
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
+<!-- ▸ TRICO CAPA — abre a série. A imagem manda; o texto só situa.
+     {{SERIE}} numera ("Tricoscopia na prática 01"), {{QUADRO_CLINICO}} nomeia
+     o tema. Ver referencias/tricoscopia.md antes de escrever. -->
+<section class="slide sobre-foto trico-capa">
+  <img class="foto" src="{{TRICO_CAPA}}" alt="">
+  <div class="veu"></div>
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="corpo">
+    <div class="trico-serie">{{SERIE}}</div>
+    <div class="trico-titulo">{{QUADRO_CLINICO}}</div>
+    <div class="filete"></div>
+    <div class="trico-sub">{{TRICO_SUB}}</div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<!-- ▸ TRICO PRANCHA — a imagem grande com os achados numerados, e a legenda
+     dizendo o que é cada número. Numerar em vez de rotular na imagem: rótulo
+     em cima da tricoscopia cobre justamente o que a pessoa precisa ver.
+     Posicione cada .ponto com --x e --y em % da imagem. Três a cinco achados;
+     acima disso a pessoa para de ler. -->
+<section class="slide">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="corpo" style="gap:40px">
+    <div class="prancha">
+      <img src="{{TRICO_IMG}}" alt="">
+      <div class="ponto" style="--x:30%;--y:32%"><span>1</span></div>
+      <div class="ponto" style="--x:63%;--y:44%"><span>2</span></div>
+      <div class="ponto" style="--x:44%;--y:70%"><span>3</span></div>
+    </div>
+    <div class="observa">
+      <div class="observa-cab">Aqui eu observo</div>
+      <div class="observa-item"><div class="observa-n">01</div><div class="observa-t">{{ACHADO_1}}</div></div>
+      <div class="observa-item"><div class="observa-n">02</div><div class="observa-t">{{ACHADO_2}}</div></div>
+      <div class="observa-item"><div class="observa-n">03</div><div class="observa-t">{{ACHADO_3}}</div></div>
+    </div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
 <!-- ▸ CITACAO — a frase que ela repete no consultório, no formato de fala.
      Funciona sozinha num post único ou como slide dentro de um carrossel.
      O texto é curto por natureza: se passar de 4 linhas, deixa de parecer uma
