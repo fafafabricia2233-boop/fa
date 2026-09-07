@@ -55,6 +55,7 @@ import { NewHairSomar, type NewHairSomarProps } from "./compositions/NewHairSoma
 import { NewHairAnsioso, type NewHairAnsiosoProps } from "./compositions/NewHairAnsioso";
 import { NewHairSuporte2, type NewHairSuporte2Props } from "./compositions/NewHairSuporte2";
 import { NewHairExperiencia, type NewHairExperienciaProps } from "./compositions/NewHairExperiencia";
+import { NewHairBasicoPadrao, type NewHairBasicoPadraoProps } from "./compositions/NewHairBasicoPadrao";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -644,6 +645,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(13.167 * 30)}
             defaultProps={{ durationSeconds: 13.167, video: "newhair/experiencia_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-BasicoPadrao">
+          <Composition
+            id="NewHairBasicoPadrao"
+            component={NewHairBasicoPadrao as React.FC<NewHairBasicoPadraoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(16.933 * 30)}
+            defaultProps={{ durationSeconds: 16.933, video: "newhair/basicopadrao_h264.mp4" }}
           />
         </Folder>
 
