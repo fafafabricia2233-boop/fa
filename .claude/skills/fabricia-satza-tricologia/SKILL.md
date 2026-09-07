@@ -269,6 +269,26 @@ reencodar, para não gastar uma geração de qualidade. Se algum dia você gerar
 imagem por outro caminho, passe pela mesma função antes de entregar: peça que
 publica em nome dela não deve carregar rastro de ferramenta nenhuma.
 
+## Propor melhoria sem esperar ser pedido
+
+Ela deu permissão permanente: **sempre que você achar que alguma coisa fica
+melhor de outro jeito, mande o antes e o depois e explique o porquê.** Não
+espere ela pedir e não mude por conta própria — ela decide, e às vezes decide
+contra, o que é o ponto.
+
+Como funciona, do jeito que já deu certo:
+
+- **Liste as mudanças com o motivo de cada uma**, em ordem de impacto, e diga
+  em quais você tem convicção e quais são gosto. Ela usa isso para separar o
+  que discutir do que só aprovar.
+- **Meça quando der.** "O vão do quadro era 585px, 40,6% da peça" convence e
+  se verifica; "ficou desequilibrado" não. Números vêm do render, não do CSS.
+- **Uma folha por slide**, antes à esquerda e depois à direita, com o que
+  mudou escrito em cima. Comparar seis slides numa folha só não deixa ver.
+- **Volte o que ela recusar, sem insistir.** Já aconteceu duas vezes na peça
+  do "desver": ela manteve as duas caixas do slide de tricoscopia e a
+  hierarquia antiga da lista. As duas escolhas dela eram defensáveis.
+
 ## Conferir antes de entregar
 
 Renderize e **olhe as imagens**. Boa parte dos defeitos só aparece renderizado:
