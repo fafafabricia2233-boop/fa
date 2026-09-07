@@ -104,6 +104,14 @@ Regras próprias da série:
   diferentes (anisotricose)" ensina; "anisotricose" sozinho afasta.
 - **Autorização vale igual.** Imagem de tricoscopia parece anônima, mas veio de
   uma pessoa.
+- **A capa e a prancha usam recortes diferentes da mesma imagem.** A capa vai
+  fechada, quase quadrada, valendo como imagem; a prancha vai na largura cheia,
+  para caberem várias unidades foliculares. Mesmo corte nas duas faz o carrossel
+  parecer que repetiu a foto.
+- **O tema vem da imagem, não o contrário.** Se a captura mostra descamação e
+  eritema, o título é esse — não "alopecia androgenética" porque era o plano.
+  Escrever um achado que a imagem não mostra é o erro mais fácil de cometer e o
+  mais caro na credibilidade.
 
 ## Post de frase
 
