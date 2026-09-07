@@ -1,5 +1,7 @@
 ---
 tags: [marca, fonte]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # A fonte — Fabrícia Satza Light
 

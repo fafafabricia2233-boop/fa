@@ -1,5 +1,7 @@
 ---
 tags: [formatos, indice]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # Formatos de post
 

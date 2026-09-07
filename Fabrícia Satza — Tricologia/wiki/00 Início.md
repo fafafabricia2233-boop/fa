@@ -1,5 +1,7 @@
 ---
 tags: [indice]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # Fabrícia Satza — Tricologia Capilar
 
@@ -25,6 +27,14 @@ Tudo sobre a marca em um lugar. Cada link abre uma nota.
 - [[Decisões tomadas]] — o porquê de cada escolha, para não redecidir
 - [[Publicações]] — o que já foi feito
 - [[Banco de ideias]] — frases e temas para os próximos
+
+## Manutenção
+
+- [[index]] — o catálogo completo das páginas
+- [[log]] — o que foi feito e quando
+
+O cofre segue o padrão LLM Wiki: você cura as fontes em `raw/`, o agente
+escreve e mantém tudo em `wiki/`. As regras estão no `CLAUDE.md`.
 
 ---
 > A marca vende **diagnóstico**, não tratamento. A paciente já tentou de tudo e

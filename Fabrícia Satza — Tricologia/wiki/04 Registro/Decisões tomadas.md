@@ -1,5 +1,7 @@
 ---
 tags: [registro]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # Decisões tomadas
 

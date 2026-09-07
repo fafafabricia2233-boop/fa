@@ -1,5 +1,7 @@
 ---
 tags: [marca, tipografia]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # Tipografia e escala
 

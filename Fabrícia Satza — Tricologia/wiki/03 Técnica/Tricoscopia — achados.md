@@ -1,5 +1,7 @@
 ---
 tags: [tricoscopia, referencia]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # Tricoscopia — o que se vê e o que significa
 

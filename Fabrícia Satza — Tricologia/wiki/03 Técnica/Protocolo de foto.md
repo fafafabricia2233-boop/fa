@@ -1,5 +1,7 @@
 ---
 tags: [regras, foto]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # Protocolo de foto
 

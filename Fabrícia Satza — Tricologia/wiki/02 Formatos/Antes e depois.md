@@ -1,5 +1,7 @@
 ---
 tags: [formatos, resultado]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # Antes e depois
 

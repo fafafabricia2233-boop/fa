@@ -1,5 +1,7 @@
 ---
 tags: [regras, resultado]
+atualizado: 2026-09-07
+fontes: 0
 ---
 # Regras de antes e depois
 
