@@ -1,6 +1,6 @@
 ---
 name: fabricia-satza-tricologia
-description: Cria carrosséis de Instagram, peças de antes/depois, quadros explicativos e vídeos para a marca pessoal da Fabrícia Satza (tricologia e queda capilar, @fabriciasatza). Use SEMPRE que o pedido envolver conteúdo para a Fabrícia Satza — carrossel, post, slide, story, reel, legenda, arte, "faz um conteúdo sobre X", ou quando ela mandar fotos de resultado de paciente (antes e depois) para montar a peça. Use também quando o assunto for explicar algo de tricologia visualmente — alopecia, eflúvio, ciclo do fio, miniaturização, tricoscopia, protocolo, queda capilar. NÃO use para a New Hair, que é outra marca com outra identidade visual.
+description: Cria carrosséis de Instagram, peças de antes/depois, quadros explicativos e vídeos para a marca pessoal da Fabrícia Satza (tricologia e queda capilar, @fabriciasatza). Use SEMPRE que o pedido envolver conteúdo para a Fabrícia Satza — carrossel, POST DE FRASE, post, slide, story, reel, legenda, arte, "faz um conteúdo sobre X", ou quando ela mandar fotos de resultado de paciente (antes e depois) para montar a peça. Use também quando o assunto for explicar algo de tricologia visualmente — alopecia, eflúvio, ciclo do fio, miniaturização, tricoscopia, protocolo, queda capilar. NÃO use para a New Hair, que é outra marca com outra identidade visual.
 ---
 
 # Fabrícia Satza — Tricologia e queda capilar
@@ -73,6 +73,30 @@ sobre a imagem.
 | **Citação** | Uma fala dela, no formato de post de rede social. Sozinha ou dentro de carrossel. |
 | **Virada** | O único slide de cor. **Uma por carrossel** — vinho, terracota ou café. |
 | **Chamada** | Sempre o último. |
+
+## Post de frase
+
+Quando ela pedir um **"post de frase"**, é este formato — e o padrão está
+fechado, não se rediscute a cada peça. Um comando entrega tudo:
+
+```bash
+python3 scripts/frase.py "a frase dela" posts-de-frase
+```
+
+Sai o `.html` e a imagem já exportada, em 3:4 e sem metadados. Para várias de
+uma vez, `--arquivo frases.txt` com uma frase por linha.
+
+O padrão fechado:
+
+| | |
+|---|---|
+| Nome | Fabrícia Satza \| Tricologia Capilar, com o selo de verificado |
+| Texto | peso único, **sem negrito** |
+| Rodapé | só o arroba, **sem seta** |
+| Limite | até 4 linhas |
+
+O avatar e o selo vivem em `assets/avatar.png` e `assets/selo.svg`, então a
+frase é a única coisa que muda de uma peça para outra.
 
 O bloco de **citação** é o formato mais rápido de publicar: uma frase que ela
 repete no consultório, com foto de perfil, nome e arroba. Lê rápido e não soa
