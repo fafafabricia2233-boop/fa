@@ -56,7 +56,8 @@
 body{background:#191919;display:flex;flex-direction:column;align-items:center;
      gap:26px;padding:64px 20px}
 .slide{width:var(--peca-larg);height:var(--peca-alt);position:relative;overflow:hidden;flex-shrink:0;
-       background:var(--branco);font-family:var(--texto);color:var(--forte)}
+       background:var(--branco);font-family:var(--texto);color:var(--forte);
+       font-weight:300}
 .slide.quente{background:var(--marfim)}
 .slide.escuro{background:var(--vinho);color:var(--claro)}
 .slide.cafe{background:var(--cafe);color:var(--claro)}
@@ -113,8 +114,14 @@ body{background:#191919;display:flex;flex-direction:column;align-items:center;
         color:var(--suave)}
 .escuro .rotulo,.cafe .rotulo,.terra .rotulo{color:var(--claro-suave)}
 
-/* Enfase SEM engrossar: o salto e de 300 para 500, dois passos abaixo do
-   negrito real. Da peso a palavra sem quebrar a leveza da fonte. */
+/* A peca inteira roda em 300, declarado no .slide acima. Isto NAO e detalhe:
+   a familia so tem faces em 300 e 500, e o peso normal (400) do navegador cai
+   na Medium, nao na Light — 53% mais tinta que o desenho da marca pede. Sem a
+   declaracao, tudo sai mais pesado do que deveria e ninguem percebe de onde
+   vem.
+
+   Enfase, entao, e o salto de 300 para 500: dois passos abaixo do negrito
+   real. Da peso a palavra sem quebrar a leveza da fonte. */
 b,strong,.forte{font-weight:500}
 
 /* Destaque em cor. Sobre claro usa o terracota escuro (5,6:1); sobre escuro,

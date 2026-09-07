@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>@fabriciasatza — eu-gosto-de-estudar-o-porque</title>
+<title>@fabriciasatza — {{TEMA}}</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
@@ -68,7 +68,8 @@
 body{background:#191919;display:flex;flex-direction:column;align-items:center;
      gap:26px;padding:64px 20px}
 .slide{width:var(--peca-larg);height:var(--peca-alt);position:relative;overflow:hidden;flex-shrink:0;
-       background:var(--branco);font-family:var(--texto);color:var(--forte)}
+       background:var(--branco);font-family:var(--texto);color:var(--forte);
+       font-weight:300}
 .slide.quente{background:var(--marfim)}
 .slide.escuro{background:var(--vinho);color:var(--claro)}
 .slide.cafe{background:var(--cafe);color:var(--claro)}
@@ -125,8 +126,14 @@ body{background:#191919;display:flex;flex-direction:column;align-items:center;
         color:var(--suave)}
 .escuro .rotulo,.cafe .rotulo,.terra .rotulo{color:var(--claro-suave)}
 
-/* Enfase SEM engrossar: o salto e de 300 para 500, dois passos abaixo do
-   negrito real. Da peso a palavra sem quebrar a leveza da fonte. */
+/* A peca inteira roda em 300, declarado no .slide acima. Isto NAO e detalhe:
+   a familia so tem faces em 300 e 500, e o peso normal (400) do navegador cai
+   na Medium, nao na Light — 53% mais tinta que o desenho da marca pede. Sem a
+   declaracao, tudo sai mais pesado do que deveria e ninguem percebe de onde
+   vem.
+
+   Enfase, entao, e o salto de 300 para 500: dois passos abaixo do negrito
+   real. Da peso a palavra sem quebrar a leveza da fonte. */
 b,strong,.forte{font-weight:500}
 
 /* Destaque em cor. Sobre claro usa o terracota escuro (5,6:1); sobre escuro,
@@ -285,6 +292,52 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
 .escuro .citacao-texto,.cafe .citacao-texto,.terra .citacao-texto{color:var(--claro)}
 .escuro .perfil-arroba,.cafe .perfil-arroba,.terra .perfil-arroba{color:var(--claro-suave)}
 .escuro .perfil-nome .div,.cafe .perfil-nome .div,.terra .perfil-nome .div{color:var(--champagne)}
+
+/* ══ TRICOSCOPIA ═══ a serie "Tricoscopia na pratica" ══════════════════════
+   Duas pecas proprias: a capa, com a imagem inteira e o titulo por cima, e a
+   prancha, com a imagem grande e os achados marcados. */
+
+/* Capa: imagem sangrando, titulo sobre um veu leve. O veu precisa ser
+   suficiente para ler e leve o bastante para a imagem continuar sendo o
+   assunto — e a tricoscopia que tem de chamar, nao a tipografia. */
+.trico-capa .foto{position:absolute;inset:0;width:100%;height:100%;
+       object-fit:cover;z-index:1}
+.trico-capa .veu{position:absolute;inset:0;z-index:5;
+       background:linear-gradient(to bottom,rgba(24,18,16,.62) 0%,
+       rgba(24,18,16,.22) 34%,rgba(24,18,16,.30) 62%,rgba(24,18,16,.78) 100%)}
+.trico-serie{font-size:26px;letter-spacing:.26em;text-transform:uppercase;
+       color:var(--champagne)}
+.trico-titulo{font-family:var(--titulo);font-size:84px;line-height:1.06;
+       color:var(--claro);letter-spacing:-.01em;text-wrap:balance;
+       text-shadow:0 2px 30px rgba(0,0,0,.5)}
+.trico-sub{font-size:40px;line-height:1.34;color:rgba(252,250,247,.86);
+       text-shadow:0 2px 24px rgba(0,0,0,.5)}
+
+/* Prancha: a imagem ocupa o maximo, os achados sao numerados na imagem e a
+   legenda embaixo diz o que cada numero e. Rotulo em cima da tricoscopia
+   cobriria justamente o que a pessoa precisa ver. */
+/* Altura fixa, nao proporcao 1:1. Em 3:4 sobram 1058px de area util; uma
+   prancha quadrada come 1080 sozinha e empurra a legenda para fora da peca. */
+.prancha{position:relative;width:100%;height:760px;overflow:hidden;flex-shrink:0}
+.prancha img{width:100%;height:100%;object-fit:cover;display:block}
+.ponto{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+       width:var(--r,84px);height:var(--r,84px);border-radius:50%;
+       border:2.5px solid rgba(252,250,247,.96);
+       box-shadow:0 0 0 1.5px rgba(0,0,0,.42),0 0 26px rgba(0,0,0,.5)}
+/* O numero vai num disco preso a borda, nao solto sobre a imagem: em textura
+   de tricoscopia o texto com sombra ainda some, e o anel precisa continuar
+   aberto para nao cobrir o achado que esta marcando. */
+.ponto span{position:absolute;left:calc(100% - 10px);top:-12px;width:38px;height:38px;
+       border-radius:50%;background:var(--forte);color:var(--claro);
+       font-size:22px;line-height:38px;text-align:center;
+       box-shadow:0 2px 10px rgba(0,0,0,.45)}
+.observa{display:flex;flex-direction:column;gap:19px}
+.observa-cab{font-size:24px;letter-spacing:.26em;text-transform:uppercase;
+       color:var(--terracota-esc)}
+.observa-item{display:flex;gap:24px;align-items:baseline}
+.observa-n{font-size:25px;color:var(--terracota-esc);flex-shrink:0;min-width:34px}
+.observa-t{font-size:35px;line-height:1.32;color:var(--forte)}
+.observa-t i{font-style:normal;color:var(--suave)}
 
 </style>
 </head>
