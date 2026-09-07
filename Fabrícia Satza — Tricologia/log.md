@@ -14,22 +14,13 @@ grep "^## \[" log.md | tail -5
 
 ---
 
-## [2026-09-07] estrutura | Vault criado
+## [2026-09-07] estrutura | Cofre zerado
 
-18 páginas escritas a partir das conversas sobre a marca: identidade, fonte,
-paleta, tipografia, formatos, técnica de tricoscopia, regras de antes e depois,
-decisões e banco de ideias. Nenhuma fonte externa — tudo veio de conversa.
+Wiki esvaziado a pedido da Fabrícia: as 18 páginas de marca, formatos, técnica
+e registro foram removidas para recomeçar do zero. O conteúdo continua no
+histórico do git (commit 1a112a4 e anteriores) caso precise voltar.
 
-## [2026-09-07] estrutura | Notas interligadas
-
-51 links laterais entre páginas que já se citavam no texto sem se linkar.
-Antes, 5 das 19 páginas tinham link de saída; agora todas têm entrada e saída.
-Objetivo: o graph view mostrar as relações reais em vez de uma estrela em volta
-do índice.
-
-## [2026-09-07] estrutura | Padrão LLM Wiki instalado
-
-Vault reorganizado nas três camadas do padrão: `raw/` (fontes imutáveis),
-`wiki/` (as 18 páginas, movidas), e `CLAUDE.md` como schema. Criados `index.md`
-(catálogo) e este `log.md`. Adicionados `atualizado` e `fontes` no frontmatter
-de todas as páginas, e `ferramentas/buscar.sh` para busca local.
+Mantidos: o padrão LLM Wiki (`raw/`, `wiki/`, `CLAUDE.md`, `index.md`, este
+log), o `ferramentas/buscar.sh` e a configuração do Obsidian. O `CLAUDE.md` foi
+reescrito sem taxonomia pré-montada — as pastas passam a nascer das fontes — e
+mantendo as regras do domínio.
