@@ -66,6 +66,18 @@ quatro problemas de uma vez, e nenhum tem conserto no tratamento:
 - **Resolução** — a área livre de interface costuma dar metade do que a peça
   precisa. A prancha pede 2160×1520 no export em 2x.
 
+### Resolução da captura
+
+O aplicativo do dermatoscópio tem um ajuste de **Resolution** — o mesmo botão
+que aparece na lateral da tela. As capturas dela vieram em 720×1280, e a peça
+exibe a prancha em 1080 de largura: dá 1,5× de ampliação, aceitável mas macio.
+Subir esse ajuste é o ganho mais barato que existe aqui, e não custa nada.
+
+Antes de montar, meça o foco: variância do laplaciano da imagem em tons de
+cinza. Nas três capturas de teste deu 34, 25 e 6 — a de 6 estava fora de foco e
+não tinha uso. Vale conferir em vez de decidir no olho, porque foto pequena
+disfarça desfoque.
+
 ### Magnificação, conforme o que se quer mostrar
 
 | O que mostrar | Aumento |
