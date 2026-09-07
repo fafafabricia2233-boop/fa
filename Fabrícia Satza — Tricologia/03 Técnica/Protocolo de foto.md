@@ -5,7 +5,8 @@ tags: [regras, foto]
 
 ## Antes e depois
 
-Um antes e depois só prova algo se as duas fotos forem comparáveis. Fixe estas
+Um [[Antes e depois|antes e depois]] só prova algo se as duas fotos forem
+comparáveis — é o item 1 da lista de [[Regras de antes e depois]]. Fixe estas
 seis coisas na **primeira** foto e repita em todas:
 
 1. **Posição** — deitada ou sentada, sempre a mesma. Anote qual.
@@ -32,12 +33,16 @@ Se depois de normalizar a diferença sumir, aquele par não serve.
 
 ## Tricoscopia
 
+Os achados que a captura precisa mostrar estão em [[Tricoscopia — achados]]; a
+série que os publica, em [[Tricoscopia na prática]].
+
 **Nunca fotografe a tela.** Use o botão de captura do aplicativo. Foto de tela
 traz interface no quadro, moiré, reflexo e metade da resolução — e nada disso
 tem conserto no tratamento.
 
 **Suba o ajuste de Resolution no aplicativo.** As capturas vieram em 720×1280;
-exibidas a 1080 ampliam 1,5×, aceitável mas macio. É o ganho mais barato aqui.
+exibidas a 1080 ampliam 1,5×, aceitável mas macio. É o ganho mais barato aqui —
+está na lista de pendências em [[Publicações]].
 
 **Meça o foco antes de escolher** — foto pequena na tela disfarça desfoque que
 aparece grande no post.

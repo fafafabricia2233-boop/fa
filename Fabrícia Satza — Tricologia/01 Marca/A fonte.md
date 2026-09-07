@@ -25,6 +25,9 @@ derivadas renomeadas. A fonte é legitimamente sua.
 O peso foi escolhido comparando renderizações: `wght=350` foi o que mais se
 aproximou da referência.
 
+Como as três faces se distribuem na peça está em [[Tipografia e escala]]. O erro
+que fazia a marca inteira rodar na Medium está em [[Decisões tomadas]].
+
 ## Licença
 
 Distribua o `OFL.txt` junto **quando entregar o arquivo da fonte** para alguém.

@@ -6,6 +6,9 @@ tags: [tricoscopia, referencia]
 > **A regra que não se quebra:** a imagem mostra **achados**, não doença.
 > "O que eu observo" e "este padrão pode aparecer em", nunca "isto é".
 
+A série que publica esses achados é [[Tricoscopia na prática]]. Como capturar a
+imagem e em que aumento: [[Protocolo de foto]].
+
 ## Do fio
 
 | O que aparece | Nome técnico | O que costuma sugerir |
@@ -51,3 +54,6 @@ prova.
 - Percentual de miniaturização sem software que meça
 - Prognóstico ou promessa
 - Qualquer coisa que identifique a paciente
+
+Imagem de paciente só vai para o feed com autorização escrita —
+[[Regras de antes e depois]].

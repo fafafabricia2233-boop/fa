@@ -25,3 +25,6 @@ está errada.
 
 Emoji. "Arrasta pra ver". Promessa de resultado. Superlativo. Selo, borda ou
 interface imitando outra plataforma.
+
+A mesma disciplina aplicada ao texto está em [[Tom de voz]]. Promessa de
+resultado, em peça de caso, tem regra formal: [[Regras de antes e depois]].

@@ -16,8 +16,8 @@ Champagne         #C9B39B    acento e fio sobre fundo escuro
 
 ## O slide de virada e suas três cores
 
-O carrossel tem **um único slide de cor**: a virada, onde vai a frase que a
-pessoa precisa levar.
+O [[Carrossel|carrossel]] tem **um único slide de cor**: a virada, onde vai a
+frase que a pessoa precisa levar.
 
 | Cor | Caráter | Quando |
 |---|---|---|
@@ -26,13 +26,15 @@ pessoa precisa levar.
 | Café profundo | sóbrio | o conteúdo técnico |
 
 **A variação é entre publicações, não dentro de uma.** Um post em vinho, o
-seguinte em terracota, o outro em café. Antes de montar, olhe a cor do último.
+seguinte em terracota, o outro em café. Antes de montar, olhe a cor do último —
+ela fica registrada em [[Publicações]]. O porquê da regra: [[Decisões tomadas]].
 
 Nunca duas no mesmo carrossel: seriam duas viradas, e aí nenhuma é virada.
 
 ## Contraste medido
 
-Mínimo 4,5:1 para texto corrido, 3,0:1 de 45px pra cima.
+Mínimo 4,5:1 para texto corrido, 3,0:1 de 45px pra cima. Os corpos estão em
+[[Tipografia e escala]].
 
 | Cor | sobre claro | sobre café | sobre vinho |
 |---|---|---|---|

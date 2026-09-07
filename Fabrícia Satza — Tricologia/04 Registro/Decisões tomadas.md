@@ -23,19 +23,21 @@ medida: 9,47% contra 6,21%. **53% mais peso** do que o desenho pede, numa marca
 cuja identidade se apoia na leveza.
 
 Você percebeu olhando, pedindo "menos negrito". Corrigido na raiz: a peça
-declara peso 300, e o salto para 500 é só o que o `<b>` pedir.
+declara peso 300, e o salto para 500 é só o que o `<b>` pedir. A escala e os dois
+níveis de ênfase estão em [[Tipografia e escala]].
 
 ## Uma cor de virada por carrossel, alternando entre posts
 
 A primeira regra que criei (duas cores separadas por dois slides) resolvia um
 problema que a sua solução não tem. Vinho e terracota têm só 2,2:1 entre si —
 próximos demais para conviver, distantes o bastante para se revezarem entre
-publicações.
+publicações. A regra em uso está em [[Paleta e contraste]]; a rotação corrente,
+em [[Publicações]].
 
 ## Formato 3:4
 
 Testamos 4:5, 3:4 e 4:3 paisagem. O 4:3 em paisagem posta sem corte, mas ocupa
-bem menos tela no feed. O 3:4 ficou como padrão.
+bem menos tela no feed. O 3:4 ficou como padrão — ver [[Formato das peças]].
 
 ## Terracota não serve de fundo para texto
 
@@ -43,14 +45,14 @@ Máximo 4,0:1 contra qualquer cor da paleta. Ficou fora como superfície.
 
 ## Sem imitar interface de plataforma
 
-No post de frase, a estrutura carrega o formato sozinha. O selo de verificado
+No [[Post de frase|post de frase]], a estrutura carrega o formato sozinha. O selo de verificado
 entra porque a conta **é** verificada — não como enfeite.
 
 ## Metadados
 
 Nenhuma imagem sai com EXIF, XMP, perfil de cor ou comentário. A limpeza corta
 os marcadores byte a byte, sem reencodar, para não gastar uma geração de
-qualidade.
+qualidade. Ver [[Formato das peças]].
 
 ## Registro profissional
 

@@ -11,12 +11,14 @@ tags: [marca]
 --peca-larg:1080px;  --peca-alt:1080px;   /* 1:1  quadrado */
 ```
 
-Os presets do Instagram para carrossel são 4:5, 1:1 e 1.91:1. O 3:4 nasceu para
-post de feed avulso, casando com o corte da grade. **Confira no preview antes de
+Os presets do Instagram para [[Carrossel|carrossel]] são 4:5, 1:1 e 1.91:1. O
+3:4 nasceu para post de feed avulso, casando com o corte da grade. Por que ele
+ficou como padrão: [[Decisões tomadas]]. **Confira no preview antes de
 publicar** — se aparecer corte, os arquivos em 4:5 continuam salvos.
 
 **Paisagem não é troca de parâmetro, é outro layout.** A escala desce ~25% e o
-texto passa a viver numa coluna de 64% da largura.
+texto passa a viver numa coluna de 64% da largura. A escala de referência está
+em [[Tipografia e escala]].
 
 ## Entrega
 
@@ -25,4 +27,4 @@ serve no computador; no celular o navegador não descompacta e salva tudo junto
 como PDF.
 
 **Nenhuma imagem sai com metadado.** EXIF, XMP, perfil de cor e comentário são
-removidos antes da entrega.
+removidos antes da entrega. Como a limpeza é feita: [[Decisões tomadas]].

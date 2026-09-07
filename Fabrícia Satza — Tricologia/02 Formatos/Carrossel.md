@@ -3,13 +3,14 @@ tags: [formatos]
 ---
 # Carrossel
 
-6 a 8 slides. Existem 12 blocos prontos; escolha, apague o resto, reordene.
+6 a 8 slides na peça padrão 3:4 ([[Formato das peças]]). Existem 12 blocos
+prontos; escolha, apague o resto, reordene.
 
 | Bloco | Quando |
 |---|---|
-| **Capa** | sempre o primeiro. Só o gancho. |
+| **Capa** | sempre o primeiro. Só o gancho — ver [[Tom de voz]] |
 | **Quadro** | a frase que a pessoa printa |
-| **Foto com caixa** | texto sobre foto qualquer |
+| **Foto com caixa** | texto sobre foto qualquer — ver [[Protocolo de foto]] |
 | **Foto sem caixa** | só quando a imagem tem área limpa |
 | **Lista** | até 4 itens |
 | **Etapas** | quando a **ordem** importa |
@@ -18,7 +19,7 @@ tags: [formatos]
 | **Definição** | explicar um termo sem soar aula |
 | **Dado** | um número só |
 | **Citação** | uma fala sua |
-| **Virada** | fundo de cor. **Uma por carrossel** |
+| **Virada** | fundo de cor. **Uma por carrossel** — ver [[Paleta e contraste]] |
 | **Chamada** | sempre o último |
 
 Etapas, comparativo, ciclo e definição são os **quadros explicativos**. Um

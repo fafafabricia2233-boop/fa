@@ -21,7 +21,7 @@ O que reduz o risco:
 - Sem número que a tricoscopia não sustente
 - **Sem fazer a pessoa se sentir mal com a própria aparência** para depois
   oferecer a solução — essa regra a Meta aplica em todos os formatos
-- Com o slide do que foi feito
+- Com o slide do que foi feito — a estrutura está em [[Antes e depois]]
 
 ## 2. Anúncio pago
 
@@ -41,7 +41,8 @@ estas peças.
 anúncio.
 
 Escolha uma e mantenha. **Não misture os dois registros na mesma peça** — traz a
-exposição sem trazer o benefício.
+exposição sem trazer o benefício. O raciocínio completo está em
+[[Decisões tomadas]].
 
 ## O que vale sempre
 
@@ -54,15 +55,15 @@ Sem ela, a peça não sai. Não existe enquadramento nem tarja que substitua.
 ## Lista de verificação
 
 **Imagem**
-1. Mesma luz, ângulo, distância e repartição
+1. Mesma luz, ângulo, distância e repartição — [[Protocolo de foto]]
 2. Nenhum tratamento que altere o resultado — e a correção usada tem de ser
    **igual nos dois lados**
 3. Marcador na mesma coordenada
 4. Rosto enquadrado só até onde ela autorizou
 
 **Texto**
-5. Sem superlativo, sem promessa
-6. Sem número que a tricoscopia não sustente
+5. Sem superlativo, sem promessa — [[Tom de voz]]
+6. Sem número que a tricoscopia não sustente — [[Tricoscopia — achados]]
 7. Rótulo nomeia o achado, não julga a pessoa
 8. Sem gatilho de autoimagem negativa
 

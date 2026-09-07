@@ -27,10 +27,13 @@ ponto diferente, a pessoa só vê duas fotos.
 Dois marcadores por lado bastam. Três viram poluição — e cobrem justamente o
 couro cabeludo que ela precisa ver.
 
+O rótulo nomeia o achado, não julga a pessoa. O vocabulário está em
+[[Tricoscopia — achados]]; o modo de escrever, em [[Tom de voz]].
+
 ## Layout
 
 Foto de topo de cabeça vai **empilhada**, não lado a lado. Lado a lado num 3:4
-daria painéis altos e estreitos demais.
+([[Formato das peças]]) daria painéis altos e estreitos demais.
 
 ## A ressalva vai na imagem
 

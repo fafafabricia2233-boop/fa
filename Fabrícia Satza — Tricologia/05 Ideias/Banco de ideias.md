@@ -5,6 +5,8 @@ tags: [ideias]
 
 ## Temas de carrossel
 
+Cada um vira um [[Carrossel|carrossel]] de 6 a 8 slides.
+
 - **Miniaturização** — o fio afina antes de faltar
 - **O ciclo do fio** — anágena, catágena, telógena
 - **Por que exame antes de protocolo** — ferritina, vitamina D, tireoide
@@ -15,10 +17,13 @@ tags: [ideias]
 
 ## Tricoscopia na prática — próximos
 
-Cada captura nova vira um episódio. Numere em sequência. Lembre de variar o
-achado principal: descamação, oleosidade, calibre, densidade, inflamação.
+Cada captura nova vira um episódio de [[Tricoscopia na prática]] — capture
+seguindo o [[Protocolo de foto]]. Numere em sequência. Lembre de variar o achado
+principal: descamação, oleosidade, calibre, densidade, inflamação.
 
 ## Frases para desenvolver
+
+Formato em [[Post de frase]]. As já escritas estão em [[Publicações]].
 
 - Sobre a diferença entre acompanhar e vender protocolo
 - Sobre o que aprendeu na sala cirúrgica que não está em livro

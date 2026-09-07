@@ -13,16 +13,21 @@ entenda o que ela tem**.
 
 Isso define tudo: o conteúdo vende diagnóstico, não tratamento.
 
+É a mesma disciplina de [[Tricoscopia — achados]]: descrever o que se observa,
+sem nomear a doença.
+
 ## Regras
 
 - Frase curta. Ponto final. Sem exclamação.
 - Sem emoji, sem 👇, sem "ARRASTA PRA VER". A seta do rodapé já diz que tem mais.
-- Sem promessa de resultado.
+- Sem promessa de resultado. Em peça de caso isso vira regra formal:
+  [[Regras de antes e depois]].
 - **Explique o mecanismo, não só o sintoma.** "Seu cabelo está caindo" qualquer
   perfil escreve. "O folículo encurta a anágena a cada ciclo, e o fio nasce mais
   fino até não romper mais a pele" é o que diferencia.
 - Não subestime a leitora. Termo técnico pode entrar, desde que explicado na
-  mesma frase.
+  mesma frase. O padrão está em [[Tricoscopia na prática]]: português primeiro,
+  nome técnico entre parênteses.
 - Nunca ataque outros profissionais. Critique a conduta, nunca quem a aplica.
 
 ## Gancho e chamada
@@ -38,4 +43,5 @@ O último slide convida, não empurra:
 ## Limite
 
 Capa: até 3 linhas de ~18 caracteres. Slide de conteúdo: até 4 linhas ou 4 itens.
-Se não coube, **o texto está longo** — encurte em vez de diminuir a fonte.
+Se não coube, **o texto está longo** — encurte em vez de diminuir a fonte. Os
+blocos e o que cabe em cada um estão em [[Carrossel]].
