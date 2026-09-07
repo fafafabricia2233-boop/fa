@@ -53,6 +53,7 @@ import { NewHairMaisUm, type NewHairMaisUmProps } from "./compositions/NewHairMa
 import { NewHairAntecipar, type NewHairAnteciparProps } from "./compositions/NewHairAntecipar";
 import { NewHairSomar, type NewHairSomarProps } from "./compositions/NewHairSomar";
 import { NewHairAnsioso, type NewHairAnsiosoProps } from "./compositions/NewHairAnsioso";
+import { NewHairSuporte2, type NewHairSuporte2Props } from "./compositions/NewHairSuporte2";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -618,6 +619,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(11.539 * 30)}
             defaultProps={{ durationSeconds: 11.539, video: "newhair/ansioso_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Suporte2">
+          <Composition
+            id="NewHairSuporte2"
+            component={NewHairSuporte2 as React.FC<NewHairSuporte2Props>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(11.539 * 30)}
+            defaultProps={{ durationSeconds: 11.539, video: "newhair/suporte2_h264.mp4" }}
           />
         </Folder>
 
