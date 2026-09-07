@@ -8,8 +8,7 @@ Este é um **vault do Obsidian**. Para abrir:
 
 Comece pela nota **[[00 Início]]**.
 
-**O cofre está vazio, de propósito.** A estrutura está montada e as regras
-escritas; falta a primeira fonte.
+O cofre tem **19 páginas e 1 fonte** — o manual da marca, ingerido em 07/09.
 
 ## Como ele funciona
 
@@ -28,9 +27,15 @@ log.md             histórico do que foi feito e quando
 
 raw/               suas fontes — artigos, papers, capturas
   assets/          imagens (a pasta de anexos do Obsidian aponta pra cá)
+  Manual da marca — 2026-09-07/    o vault original, intacto
 
 wiki/              o que o agente escreve e mantém
   00 Início        porta de entrada
+  Marca/           identidade, fonte, cor, tipografia, tom
+  Formatos/        carrossel, frase, antes/depois, tricoscopia
+  Técnica/         achados, regras, protocolo de foto
+  Fontes/          um resumo por fonte ingerida
+  (soltas)         Decisões tomadas · Publicações · Banco de ideias
 
 ferramentas/
   buscar.sh        busca por texto no wiki
@@ -64,7 +69,7 @@ de paciente só com autorização escrita, nada que identifique paciente.
 
 ## Sobre o graph view
 
-`Ctrl/Cmd + G` abre o grafo. Com o cofre vazio ele mostra um ponto só. Conforme
-as fontes entram, ele vira o melhor jeito de ver o formato do wiki — o que
-liga em quê, o que virou hub, o que ficou solto. Página solta é defeito, e o
-lint acusa.
+`Ctrl/Cmd + G` abre o grafo. Você vai ver os três agrupamentos — marca,
+formatos, técnica — e a fonte como um hub ligado a tudo. É o melhor jeito de
+ver o formato do wiki conforme ele cresce. Página solta é defeito, e o lint
+acusa.
