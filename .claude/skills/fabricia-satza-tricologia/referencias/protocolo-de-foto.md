@@ -49,3 +49,31 @@ cabeçalho, selo, ressalva e rodapé **sobre** a foto — o véu já escurece
 exatamente essas duas faixas. Cada pixel a mais de painel é um pixel a menos de
 zoom no recorte: a sangria levou o painel de 554 para 720px de altura, e o
 recorte de 41% para 50% da altura da foto.
+
+---
+
+## Captura de tricoscopia
+
+**Nunca fotografe a tela.** O dermatoscópio salva a imagem: use o botão de
+captura do aplicativo e mande o arquivo do rolo da câmera. Foto de tela traz
+quatro problemas de uma vez, e nenhum tem conserto no tratamento:
+
+- **Interface no quadro** — botões, rótulos e dock do aparelho ocupam metade da
+  foto, e o que sobra ainda tem a moldura do tablet.
+- **Moiré** — o padrão de pixels da tela bate com o sensor da câmera e cria uma
+  trama que aparece muito mais quando a imagem é ampliada.
+- **Reflexo** — a tela reflete a luz do ambiente por cima da imagem.
+- **Resolução** — a área livre de interface costuma dar metade do que a peça
+  precisa. A prancha pede 2160×1520 no export em 2x.
+
+### Magnificação, conforme o que se quer mostrar
+
+| O que mostrar | Aumento |
+|---|---|
+| Densidade, unidades foliculares, comparação de calibre | 20× a 70× |
+| Haste isolada, descamação, detalhe do óstio | 100× ou mais |
+
+Para a série **Tricoscopia na prática**, quase sempre o primeiro caso: os
+achados que ela quer marcar — anisotricose, redução de densidade, sinal
+peripilar — só aparecem quando várias unidades foliculares cabem no quadro. Em
+aumento muito alto o campo mostra uma haste só, e não há o que comparar.
