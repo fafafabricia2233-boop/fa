@@ -16,7 +16,19 @@ OUT  = BASE
 b64 = lambda p: base64.b64encode(open(p, "rb").read()).decode()
 MONT_L = b64(os.path.join(FT, "Montserrat-Light.ttf"))
 MONT_M = b64(os.path.join(FT, "Montserrat-Medium.ttf"))
-CORM   = b64(os.path.join(FT, "CormorantGaramond-Medium.woff2"))
+
+# Fonte de display (ano e palavra). Para usar a fonte propria da marca, e so
+# deixar o arquivo em capas-destaques/fontes/ e apontar DISPLAY_FONT para ele:
+#   DISPLAY_FONT=capas-destaques/fontes/FabriciaSatza-Light.otf python3 ...
+# Aceita varios arquivos separados por virgula (subsets latin/latin-ext).
+FMT = {".woff2": "woff2", ".woff": "woff", ".otf": "opentype", ".ttf": "truetype"}
+_df = os.environ.get("DISPLAY_FONT") or os.path.join(FT, "CormorantGaramond-Medium.woff2")
+DISPLAY_FACES = "".join(
+    "@font-face{font-family:'Display FS';src:url('data:font/%s;base64,%s') format('%s');font-weight:100 900}"
+    % (FMT[os.path.splitext(f)[1].lower()].replace("opentype", "otf"), b64(f.strip()),
+       FMT[os.path.splitext(f)[1].lower()])
+    for f in _df.split(","))
+SUF = os.environ.get("SUFIXO", "")
 
 FOTOS = {   # fx, fy = centro do rosto em fracao da imagem; ar = altura/largura
     "f1": dict(f="f1-em-pe.jpg", fx=.470, fy=.190, ar=1448/1086),
@@ -42,7 +54,7 @@ def place(key, W, tx, ty, mirror=False):
 
 
 CSS = """<style>
-@font-face{font-family:'Cormorant FS';src:url('data:font/woff2;base64,%s') format('woff2');font-weight:500}
+%s
 @font-face{font-family:'Montserrat FS';src:url('data:font/ttf;base64,%s') format('truetype');font-weight:300}
 @font-face{font-family:'Montserrat FS';src:url('data:font/ttf;base64,%s') format('truetype');font-weight:500}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -62,19 +74,19 @@ html,body{width:1080px;height:1920px;background:#F4EFE8;overflow:hidden}
 .grain{position:absolute;inset:0;background:url('%s') repeat;background-size:300px 300px;
   mix-blend-mode:multiply;opacity:.09;pointer-events:none}
 .stack{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.sec{font-family:'Cormorant FS',Georgia,serif;font-weight:500;color:#B06F53}
+.sec{font-family:'Display FS',Georgia,serif;font-weight:500;color:#B06F53}
 .rule{height:1px;background:#B06F53;opacity:.55}
 .lbl{font-family:'Montserrat FS',sans-serif;font-weight:300;letter-spacing:.40em;text-indent:.40em;
   color:#A99B91;text-transform:uppercase;font-size:25px}
-.yr{font-family:'Cormorant FS',Georgia,serif;font-weight:500;color:#4A2634;
+.yr{font-family:'Display FS',Georgia,serif;font-weight:500;color:#4A2634;
   font-size:376px;line-height:.78;letter-spacing:-.005em}
-.word{font-family:'Cormorant FS',Georgia,serif;font-weight:500;color:#4A2634;
+.word{font-family:'Display FS',Georgia,serif;font-weight:500;color:#4A2634;
   text-transform:uppercase;line-height:.98}
 .med{position:absolute;left:50%%;transform:translateX(-50%%);border-radius:50%%;overflow:hidden;
   box-shadow:0 0 0 1px rgba(176,111,83,.60),0 0 0 18px rgba(201,179,155,.22),
              0 26px 70px rgba(74,38,52,.16)}
 .med img{position:absolute;display:block;filter:saturate(.92) contrast(1.02) brightness(1.02) sepia(.06)}
-</style>""" % (CORM, MONT_L, MONT_M, GRAIN)
+</style>""" % (DISPLAY_FACES, MONT_L, MONT_M, GRAIN)
 
 
 def ghost(key, mirror=False, soft=False):
@@ -123,13 +135,13 @@ for nome, corpo in CAPAS:
     html = os.path.join(tmp, nome + ".html")
     open(html, "w", encoding="utf-8").write(
         "<!doctype html><html><head><meta charset='utf-8'>" + CSS + "</head><body>" + corpo + "</body></html>")
-    shot = os.path.join(tmp, nome + ".png")
+    shot = os.path.join(tmp, nome + SUF + ".png")
     subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
                     "--force-device-scale-factor=1", "--window-size=1080,2200",
                     "--screenshot=" + shot, "file://" + html],
                    check=True, capture_output=True)
     # o viewport sai maior que o story; corta nos 1080x1920 exatos
     Image.open(shot).convert("RGB").crop((0, 0, 1080, 1920)).save(
-        os.path.join(OUT, nome + ".png"), optimize=True)
-    print("gerada:", nome + ".png")
+        os.path.join(OUT, nome + SUF + ".png"), optimize=True)
+    print("gerada:", nome + SUF + ".png")
 shutil.rmtree(tmp, ignore_errors=True)
