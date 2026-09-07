@@ -180,8 +180,12 @@
      Funciona sozinha num post único ou como slide dentro de um carrossel.
      O texto é curto por natureza: se passar de 4 linhas, deixa de parecer uma
      fala e vira parágrafo. Vai todo no mesmo peso — fala não tem negrito.
-     {{SELO}} recebe o SVG do selo de verificado, e só deve ser preenchido se a
-     conta realmente tiver o selo. Sem selo, deixe vazio. -->
+     {{SELO}} recebe o SVG do selo de verificado. A conta dela é verificada,
+     então preencha; em peça de outra conta, só se aquela conta também tiver.
+
+     Sem seta no rodapé: num post avulso não há para onde arrastar, e a seta
+     promete um slide seguinte que não existe. Se usar a citação DENTRO de um
+     carrossel, aí devolva o <span class="segue">&#8594;</span> ao rodapé. -->
 <section class="slide">
   <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
   <div class="corpo">
@@ -196,7 +200,7 @@
       <div class="citacao-texto">{{FALA}}</div>
     </div>
   </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+  <div class="rod"><span>@fabriciasatza</span></div>
 </section>
 
 <!-- ▸ VIRADA — o unico slide de cor do carrossel. Escolha UMA classe:
