@@ -51,6 +51,7 @@ import { NewHairRitmo, type NewHairRitmoProps } from "./compositions/NewHairRitm
 import { NewHairDisputar, type NewHairDisputarProps } from "./compositions/NewHairDisputar";
 import { NewHairMaisUm, type NewHairMaisUmProps } from "./compositions/NewHairMaisUm";
 import { NewHairAntecipar, type NewHairAnteciparProps } from "./compositions/NewHairAntecipar";
+import { NewHairSomar, type NewHairSomarProps } from "./compositions/NewHairSomar";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -592,6 +593,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(17.05 * 30)}
             defaultProps={{ durationSeconds: 17.05, video: "newhair/antecipar_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Somar">
+          <Composition
+            id="NewHairSomar"
+            component={NewHairSomar as React.FC<NewHairSomarProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(17.135 * 30)}
+            defaultProps={{ durationSeconds: 17.135, video: "newhair/somar_h264.mp4" }}
           />
         </Folder>
 
