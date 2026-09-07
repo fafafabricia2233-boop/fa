@@ -93,7 +93,7 @@ O padrão fechado:
 | Nome | Fabrícia Satza \| Tricologia Capilar, com o selo de verificado |
 | Texto | peso único, **sem negrito** |
 | Rodapé | só o arroba, **sem seta** |
-| Limite | até 4 linhas |
+| Limite | até 5 linhas |
 
 O avatar e o selo vivem em `assets/avatar.png` e `assets/selo.svg`, então a
 frase é a única coisa que muda de uma peça para outra.
@@ -102,7 +102,9 @@ O bloco de **citação** é o formato mais rápido de publicar: uma frase que el
 repete no consultório, com foto de perfil, nome e arroba. Lê rápido e não soa
 propaganda, porque é uma fala e não um anúncio. Duas regras nele:
 
-- **Até quatro linhas.** Passou disso deixa de parecer fala e vira parágrafo.
+- **Até cinco linhas.** Passou disso deixa de parecer fala e vira parágrafo.
+  Meça em vez de contar caracteres: `e.offsetHeight / lineHeight` no
+  `.citacao-texto` dá o número exato de linhas renderizadas.
 - **Com selo de verificado, sem marca de plataforma.** A conta `@fabriciasatza`
   é verificada — ela confirmou —, então o selo entra por padrão no campo
   `{{SELO}}` e não precisa perguntar de novo. Já a interface da plataforma fica
