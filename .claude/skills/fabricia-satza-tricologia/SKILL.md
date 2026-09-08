@@ -306,6 +306,12 @@ O que olhar:
 - Cabeçalho e rodapé cinza-escuro sobre foto (sinal de que `sobre-foto` caiu)
 - Marcador do antes/depois fora do lugar
 - `{{PLACEHOLDER}}` esquecido
+- **A borda esquerda da TINTA, não do bloco.** Todos os textos ficam no mesmo
+  `padding`, mas cada corpo tem um avanço lateral diferente: na capa da peça de
+  calvície o título de 88px punha a tinta em 83,5px enquanto as linhas de apoio
+  punham em 81,5. Dois pixels, e o título parecia recuado. Meça a coluna em que
+  a tinta começa em cada linha e iguale com `margin-left` negativo — o alinhamento
+  que vale é o que o olho vê, não o que a caixa diz.
 
 ## Tipografia — o essencial
 
