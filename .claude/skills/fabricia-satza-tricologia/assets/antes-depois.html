@@ -354,6 +354,26 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
 .observa-t{font-size:35px;line-height:1.32;color:var(--forte)}
 .observa-t i{font-style:normal;color:var(--suave)}
 
+/* ── SLIDE DE CONTEUDO INTEIRO SOBRE FOTO ────────────────────────────────
+   O bloco de foto nasceu para UMA frase ancorada no rodape. Quando o slide
+   inteiro vive sobre a imagem — rotulo, texto de abertura, lista numerada —
+   tres coisas quebram de uma vez:
+
+     1. o corpo continua colado embaixo (justify-content:flex-end)
+     2. rotulo e texto pequeno seguem em --suave, que e cor de fundo claro:
+        cinza-escuro sobre a foto, ou seja, invisivel
+     3. o numero da lista segue em terracota escuro, que sobre veu some
+
+   .corpo.cheio resolve o primeiro; os tres seletores abaixo resolvem o resto.
+   Sobre veu o acento e champagne, o mesmo que vale nas superficies escuras. */
+.sobre-foto .corpo.cheio{justify-content:center}
+/* .90, nao .82: medido sobre tricoscopia, o rotulo de 24px batia 3,7:1 em
+   .82 — o veu ja fez a parte dele e o resto tem de vir da tinta. */
+.sobre-foto .rotulo,.sobre-foto .texto-sm{color:rgba(252,250,247,.90);
+       text-shadow:0 1px 3px rgba(0,0,0,.5),0 2px 18px rgba(0,0,0,.6)}
+.sobre-foto .item-n{color:var(--champagne)}
+.sobre-foto .item-t{text-shadow:0 2px 22px rgba(0,0,0,.5)}
+
 /* ══ ANTES / DEPOIS ═══════════════════════════════════════════════════════
    A seta branca e o clichê do nicho e ainda por cima tapa justamente o que a
    pessoa precisa ver. Aqui o marcador e um anel fino com uma haste vertical
