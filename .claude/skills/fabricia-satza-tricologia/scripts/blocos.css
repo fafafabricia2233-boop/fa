@@ -1,0 +1,234 @@
+
+/* ══ QUADRO ═══════════════════════════════════════════════════════════════
+   Duas cantoneiras em L que se cruzam, deixando dois cantos abertos. A moldura
+   fechada e o lugar-comum do nicho; a aberta respira e fica so nossa. O texto
+   entra pelo canto de cima e a conclusao sai pelo de baixo, em caixa alta. */
+.quadro{position:relative;flex:1;display:flex;flex-direction:column;
+        justify-content:space-between;padding:64px 58px}
+.quadro::before,.quadro::after{content:'';position:absolute;width:66%;height:60%;
+        border-color:var(--taupe);border-style:solid;border-width:0}
+.quadro::before{left:0;top:0;border-top-width:1px;border-left-width:1px}
+.quadro::after{right:0;bottom:0;border-bottom-width:1px;border-right-width:1px}
+.quadro>*{position:relative;z-index:2}
+.quadro-topo{font-size:56px;line-height:1.34;max-width:82%}
+.quadro-base{align-self:flex-end;text-align:right;max-width:74%;
+        font-size:46px;line-height:1.26;letter-spacing:.06em;text-transform:uppercase}
+.quadro.fechado::before{width:100%;height:100%;border-width:1px}
+.quadro.fechado::after{display:none}
+
+/* ══ FOTO ═════════════════════════════════════════════════════════════════ */
+.slide.sobre-foto{background:#2a2a2a}
+.foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.veu{position:absolute;inset:0;z-index:5;pointer-events:none;
+     background:linear-gradient(to bottom,rgba(0,0,0,.55) 0%,rgba(0,0,0,.06) 30%,
+                rgba(0,0,0,.12) 58%,rgba(0,0,0,.66) 100%)}
+.sobre-foto .corpo{justify-content:flex-end;color:var(--branco)}
+.sobre-foto .titulo,.sobre-foto .subtitulo,.sobre-foto .texto{
+     text-shadow:0 2px 26px rgba(0,0,0,.42)}
+
+/* Caixa em branco suave atras do texto. box-decoration-break:clone da uma caixa por
+   linha, entao a mancha acompanha o texto em vez de virar um retangulo. */
+.caixa{background:var(--branco);color:var(--forte);padding:.16em .40em;
+       box-decoration-break:clone;-webkit-box-decoration-break:clone;
+       text-shadow:none;line-height:1.52}
+.caixa-sombra{box-shadow:0 8px 40px rgba(0,0,0,.18)}
+
+/* ══ LISTA ════════════════════════════════════════════════════════════════ */
+.lista{display:flex;flex-direction:column;gap:40px}
+.item{display:flex;gap:32px;align-items:baseline}
+.item-n{font-size:32px;color:var(--terracota-esc);letter-spacing:.10em;
+        flex-shrink:0;min-width:50px}
+.item-t{font-size:45px;line-height:1.32}
+
+/* ══ ETAPAS ═══ passos ligados por uma linha vertical fina ════════════════ */
+.etapas{position:relative;display:flex;flex-direction:column;gap:52px;
+        padding-left:74px}
+.etapas::before{content:'';position:absolute;left:16px;top:14px;bottom:14px;
+        width:1px;background:var(--taupe);opacity:.7}
+.etapa{position:relative}
+.etapa::before{content:'';position:absolute;left:-64px;top:16px;width:11px;
+        height:11px;border-radius:50%;background:var(--branco);
+        border:1px solid var(--taupe)}
+.etapa.marcada::before{background:var(--terracota)}
+.etapa-n{font-size:24px;letter-spacing:.26em;text-transform:uppercase;
+        color:var(--terracota-esc);margin-bottom:12px}
+.etapa-t{font-size:44px;line-height:1.26;margin-bottom:10px}
+.etapa-d{font-size:34px;line-height:1.44;color:var(--suave)}
+
+/* ══ COMPARATIVO ═══ duas colunas separadas por um fio ════════════════════ */
+.comparativo{display:grid;grid-template-columns:1fr 1px 1fr;gap:52px;flex:1;
+        align-items:start;padding-top:26px}
+.comp-fio{background:var(--taupe);opacity:.7;align-self:stretch}
+.comp-cab{font-size:24px;letter-spacing:.26em;text-transform:uppercase;
+        color:var(--terracota-esc);margin-bottom:34px}
+.comp-lista{display:flex;flex-direction:column;gap:30px}
+.comp-item{font-size:38px;line-height:1.34}
+.comp-item.fraco{color:var(--suave)}
+.escuro .comp-item.fraco,.cafe .comp-item.fraco,.terra .comp-item.fraco{color:var(--claro-suave)}
+
+/* Sobre superficie escura o acento troca: champagne no vinho e no cafe (6,4:1
+   e 7,9:1), marfim no terracota (5,1:1 — champagne ali cairia para 2,9:1). */
+.escuro .item-n,.escuro .etapa-n,.escuro .comp-cab,.escuro .def-fon,
+.cafe .item-n,.cafe .etapa-n,.cafe .comp-cab,.cafe .def-fon{color:var(--champagne)}
+.terra .item-n,.terra .etapa-n,.terra .comp-cab,.terra .def-fon{color:var(--marfim)}
+.escuro .etapa.marcada::before,.cafe .etapa.marcada::before,
+.escuro .fase.marcada::before,.cafe .fase.marcada::before{background:var(--champagne)}
+.terra .etapa.marcada::before,.terra .fase.marcada::before{background:var(--marfim)}
+
+/* ══ CICLO ═══ fases em linha, ligadas por um fio horizontal ══════════════ */
+.ciclo{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
+        gap:20px;padding-top:40px}
+.ciclo::before{content:'';position:absolute;left:11%;right:11%;top:92px;height:1px;
+        background:var(--taupe);opacity:.7}
+.fase{position:relative;text-align:center;padding-top:82px}
+.fase::before{content:'';position:absolute;left:50%;top:46px;transform:translateX(-50%);
+        width:13px;height:13px;border-radius:50%;background:var(--branco);
+        border:1px solid var(--taupe)}
+.fase.marcada::before{background:var(--terracota)}
+
+/* A bolinha "fura" a linha ao ser preenchida com a cor do fundo. Se o slide
+   nao for o fundo padrao, ela precisa acompanhar — senao sobra um circulo de
+   cor errada em cima do fio. */
+.quente .etapa::before,.quente .fase::before{background:var(--marfim)}
+.escuro .etapa::before,.escuro .fase::before{background:var(--vinho)}
+.cafe .etapa::before,.cafe .fase::before{background:var(--cafe)}
+.terra .etapa::before,.terra .fase::before{background:var(--terra)}
+.fase-n{font-size:38px;line-height:1.2;margin-bottom:12px}
+.fase-d{font-size:30px;line-height:1.42;color:var(--suave)}
+
+/* ══ DEFINICAO ═══ termo grande, fio, explicacao ══════════════════════════ */
+.definicao{display:flex;flex-direction:column;gap:32px}
+.def-termo{font-family:var(--titulo);font-size:80px;line-height:1.06}
+.def-fon{font-size:30px;letter-spacing:.16em;color:var(--terracota-esc)}
+.def-txt{font-size:42px;line-height:1.42}
+
+/* ══ DADO ═══ um numero grande com legenda ════════════════════════════════ */
+.dado{text-align:center}
+.dado-n{font-family:var(--titulo);font-size:190px;line-height:.94;
+        letter-spacing:-.03em}
+.dado-l{font-size:36px;line-height:1.4;color:var(--suave);margin-top:24px}
+
+/* ══ BARRA DE EXPORT ══════════════════════════════════════════════════════ */
+.dl{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--branco);
+    border:1px solid var(--taupe);padding:13px 26px;font-family:var(--texto);
+    font-size:19px;color:var(--forte);cursor:pointer;z-index:9999;border-radius:4px;
+    letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+
+/* ══ CITACAO ═══ post no formato de rede social, com foto de perfil ════════
+   Le rapido e nao soa propaganda: e uma fala, nao um anuncio. Serve para a
+   frase que ela repete no consultorio e vale a pena circular.
+
+   O texto vai todo no mesmo peso, sem enfase nenhuma. Uma fala nao tem negrito;
+   marcar palavra aqui denuncia que a frase foi montada para convencer.
+
+   A conta @fabriciasatza e verificada, entao o selo entra por padrao. Ele e
+   selo de plataforma, nao enfeite: em peca de outra conta, so use se aquela
+   conta tambem tiver. */
+.citacao{display:flex;flex-direction:column;gap:46px;width:100%}
+.perfil{display:flex;align-items:center;gap:26px}
+.perfil-foto{width:106px;height:106px;border-radius:50%;object-fit:cover;
+        flex-shrink:0;display:block}
+.perfil-nome{font-size:34px;line-height:1.2;color:var(--forte)}
+.perfil-nome .div{color:var(--taupe);margin:0 .18em}
+.perfil-arroba{font-size:29px;line-height:1.2;color:var(--suave);margin-top:7px}
+.citacao-texto{font-size:52px;line-height:1.40;color:var(--forte);font-weight:300}
+/* Fala nao tem negrito. Anula qualquer <b> que escape para dentro do bloco. */
+.citacao-texto b,.citacao-texto strong{font-weight:300}
+.selo-v{width:.78em;height:.78em;vertical-align:-.09em;margin-left:.22em;
+        flex-shrink:0}
+.escuro .perfil-nome,.cafe .perfil-nome,.terra .perfil-nome,
+.escuro .citacao-texto,.cafe .citacao-texto,.terra .citacao-texto{color:var(--claro)}
+.escuro .perfil-arroba,.cafe .perfil-arroba,.terra .perfil-arroba{color:var(--claro-suave)}
+.escuro .perfil-nome .div,.cafe .perfil-nome .div,.terra .perfil-nome .div{color:var(--champagne)}
+
+/* ══ TRICOSCOPIA ═══ a serie "Tricoscopia na pratica" ══════════════════════
+   Duas pecas proprias: a capa, com a imagem inteira e o titulo por cima, e a
+   prancha, com a imagem grande e os achados marcados. */
+
+/* Capa: imagem sangrando, titulo sobre um veu leve. O veu precisa ser
+   suficiente para ler e leve o bastante para a imagem continuar sendo o
+   assunto — e a tricoscopia que tem de chamar, nao a tipografia. */
+.trico-capa .foto{position:absolute;inset:0;width:100%;height:100%;
+       object-fit:cover;z-index:1}
+.trico-capa .veu{position:absolute;inset:0;z-index:5;
+       background:linear-gradient(to bottom,rgba(24,18,16,.62) 0%,
+       rgba(24,18,16,.22) 34%,rgba(24,18,16,.30) 62%,rgba(24,18,16,.78) 100%)}
+.trico-serie{font-size:26px;letter-spacing:.26em;text-transform:uppercase;
+       color:var(--champagne)}
+.trico-titulo{font-family:var(--titulo);font-size:84px;line-height:1.06;
+       color:var(--claro);letter-spacing:-.01em;text-wrap:balance;
+       text-shadow:0 2px 30px rgba(0,0,0,.5)}
+.trico-sub{font-size:40px;line-height:1.34;color:rgba(252,250,247,.86);
+       text-shadow:0 2px 24px rgba(0,0,0,.5)}
+
+/* Prancha: a imagem ocupa o maximo, os achados sao numerados na imagem e a
+   legenda embaixo diz o que cada numero e. Rotulo em cima da tricoscopia
+   cobriria justamente o que a pessoa precisa ver. */
+/* Altura fixa, nao proporcao 1:1. Em 3:4 sobram 1058px de area util; uma
+   prancha quadrada come 1080 sozinha e empurra a legenda para fora da peca. */
+.prancha{position:relative;width:100%;height:760px;overflow:hidden;flex-shrink:0}
+.prancha img{width:100%;height:100%;object-fit:cover;display:block}
+.ponto{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+       width:var(--r,84px);height:var(--r,84px);border-radius:50%;
+       border:2.5px solid rgba(252,250,247,.96);
+       box-shadow:0 0 0 1.5px rgba(0,0,0,.42),0 0 26px rgba(0,0,0,.5)}
+/* O numero vai num disco preso a borda, nao solto sobre a imagem: em textura
+   de tricoscopia o texto com sombra ainda some, e o anel precisa continuar
+   aberto para nao cobrir o achado que esta marcando. */
+.ponto span{position:absolute;left:calc(100% - 10px);top:-12px;width:38px;height:38px;
+       border-radius:50%;background:var(--forte);color:var(--claro);
+       font-size:22px;line-height:38px;text-align:center;
+       box-shadow:0 2px 10px rgba(0,0,0,.45)}
+.observa{display:flex;flex-direction:column;gap:19px}
+.observa-cab{font-size:24px;letter-spacing:.26em;text-transform:uppercase;
+       color:var(--terracota-esc)}
+.observa-item{display:flex;gap:24px;align-items:baseline}
+.observa-n{font-size:25px;color:var(--terracota-esc);flex-shrink:0;min-width:34px}
+.observa-t{font-size:35px;line-height:1.32;color:var(--forte)}
+.observa-t i{font-style:normal;color:var(--suave)}
+
+/* ── SLIDE DE CONTEUDO INTEIRO SOBRE FOTO ────────────────────────────────
+   O bloco de foto nasceu para UMA frase ancorada no rodape. Quando o slide
+   inteiro vive sobre a imagem — rotulo, texto de abertura, lista numerada —
+   tres coisas quebram de uma vez:
+
+     1. o corpo continua colado embaixo (justify-content:flex-end)
+     2. rotulo e texto pequeno seguem em --suave, que e cor de fundo claro:
+        cinza-escuro sobre a foto, ou seja, invisivel
+     3. o numero da lista segue em terracota escuro, que sobre veu some
+
+   .corpo.cheio resolve o primeiro; os tres seletores abaixo resolvem o resto.
+   Sobre veu o acento e champagne, o mesmo que vale nas superficies escuras. */
+.sobre-foto .corpo.cheio{justify-content:center}
+/* .90, nao .82: medido sobre tricoscopia, o rotulo de 24px batia 3,7:1 em
+   .82 — o veu ja fez a parte dele e o resto tem de vir da tinta. */
+.sobre-foto .rotulo,.sobre-foto .texto-sm{color:rgba(252,250,247,.90);
+       text-shadow:0 1px 3px rgba(0,0,0,.5),0 2px 18px rgba(0,0,0,.6)}
+.sobre-foto .item-n{color:var(--champagne)}
+.sobre-foto .item-t{text-shadow:0 2px 22px rgba(0,0,0,.5)}
+
+/* ══ POST DE NOTA ═════════════════════════════════════════════════════════
+   Cartao branco de cantos arredondados sobre a foto, com o cursor piscando no
+   fim da frase — a forma do adesivo de texto do celular, na letra da marca.
+
+   O cursor nao e enfeite: e ele que faz a frase parecer recem-digitada em vez
+   de diagramada, e e desse ar de espontaneo que o formato vive. Sem ele o
+   cartao vira so uma caixa branca, que a marca ja tem.
+
+   O ambar #F5A623 e a UNICA cor fora da paleta que entra em peca dela. Ele
+   nao esta ali como cor da marca e sim como citacao de interface — e o
+   laranja do cursor do iPhone, reconhecivel justamente por ser aquele. Ela
+   escolheu assim; em terracota o cursor lia como enfeite, nao como cursor.
+   Nao use esse ambar em mais nada. */
+.slide.nota-post .veu{background:linear-gradient(to bottom,
+     rgba(20,14,12,.60) 0%,rgba(20,14,12,.06) 16%,rgba(20,14,12,0) 40%,
+     rgba(20,14,12,0) 72%,rgba(20,14,12,.30) 88%,rgba(20,14,12,.62) 100%)}
+.nota{position:absolute;left:74px;right:74px;top:58%;z-index:20;
+     background:var(--branco);color:var(--forte);border-radius:26px;
+     padding:44px 46px 46px;box-shadow:0 14px 52px rgba(0,0,0,.24);
+     font-size:47px;line-height:1.38;letter-spacing:-.003em;text-shadow:none}
+/* UMA palavra marcada, no maximo. Em 47px a Medium ja tem presenca; duas
+   marcacoes numa frase de tres linhas viram o negrito grosso que ela recusa. */
+.nota b{font-weight:500}
+.cursor{display:inline-block;width:5px;height:.88em;margin-left:10px;
+     vertical-align:-.11em;border-radius:2px;background:#F5A623}

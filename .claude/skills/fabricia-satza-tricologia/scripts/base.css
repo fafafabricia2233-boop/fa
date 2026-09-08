@@ -1,0 +1,155 @@
+:root {
+  /* ── SUPERFÍCIES ──────────────────────────────────────────────────────
+     Branco suave e o padrao; marfim da ritmo entre slides sem cor nova.
+
+     Tres cores para o slide de VIRADA. Sao alternativas, nao camadas:
+
+       .escuro  vinho ameixa    #4A2634   marcante, o mais assinatura
+       .terra   marrom terraco  #8A5A44   quente, mais proximo
+       .cafe    cafe profundo   #28201F   sobrio, o mais clinico
+
+     UMA por carrossel. A variacao acontece ENTRE publicacoes: um post sai em
+     vinho, o seguinte em terracota, o outro em cafe. Assim o feed ganha ritmo
+     e cada carrossel continua coerente consigo mesmo.
+
+     Duas no mesmo carrossel nao funcionam: sao duas viradas (e aí nenhuma e
+     virada), e vinho e terracota ainda tem so 2,2:1 entre si — leriam como
+     erro de arquivo em vez de escolha. */
+  --branco:#FCFAF7;
+  --marfim:#F4EFE8;
+  --vinho:#4A2634;
+  --cafe:#28201F;
+  --terra:#8A5A44;
+
+  /* ── TEXTO ────────────────────────────────────────────────────────────
+     Cafe sobre claro da 15,3:1; branco sobre cafe da o mesmo. Os niveis
+     "suave" existem para hierarquia sem introduzir mais uma cor. */
+  --forte:#28201F;
+  --suave:rgba(40,32,31,.58);
+  --claro:#FCFAF7;
+  --claro-suave:rgba(252,250,247,.64);
+
+  /* ── ACENTOS ──────────────────────────────────────────────────────────
+     Taupe e champagne se invertem conforme o fundo: sobre claro sao pale
+     demais para texto (2,6:1 e 1,9:1) e servem so como fio e superficie;
+     sobre escuro ficam otimos (5,9:1 e 7,9:1) e viram texto de acento.
+     Terracota precisa de corpo: 3,8:1 so aguenta 45px pra cima. A versao
+     escura chega a 5,6:1 e e a que entra dentro do texto corrido. */
+  --taupe:#A99B91;
+  --champagne:#C9B39B;
+  --terracota:#B06F53;
+  --terracota-esc:#8A5A44;
+
+  /* Formato da peca. Trocar estes dois valores troca o carrossel inteiro.
+       3:4  1080x1440  PADRAO DELA, bate com o corte da grade do perfil
+       4:5  1080x1350  preset do Instagram para carrossel
+       1:1  1080x1080  quadrado
+     Paisagem (1440x1080) nao e so trocar aqui — ver "Formato da peca" no
+     SKILL.md, a escala e a coluna de texto mudam junto. */
+  --peca-larg:1080px;
+  --peca-alt:1440px;
+
+  --titulo:'Fabricia Satza Alt','Futura',sans-serif;
+  --texto:'Fabricia Satza','Futura',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#191919;display:flex;flex-direction:column;align-items:center;
+     gap:26px;padding:64px 20px}
+.slide{width:var(--peca-larg);height:var(--peca-alt);position:relative;overflow:hidden;flex-shrink:0;
+       background:var(--branco);font-family:var(--texto);color:var(--forte);
+       font-weight:300}
+.slide.quente{background:var(--marfim)}
+.slide.escuro{background:var(--vinho);color:var(--claro)}
+.slide.cafe{background:var(--cafe);color:var(--claro)}
+.slide.terra{background:var(--terra);color:var(--claro)}
+
+/* ── CABECALHO: assinatura fixa da marca, nos dois cantos de cima ───────── */
+.cab{position:absolute;top:64px;left:80px;right:80px;z-index:30;display:flex;
+     justify-content:space-between;font-size:22px;letter-spacing:.30em;
+     text-transform:uppercase;color:var(--suave);white-space:nowrap}
+.escuro .cab,.cafe .cab,.terra .cab{color:rgba(252,250,247,.74);
+     text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.sobre-foto .cab{color:rgba(252,250,247,.94);
+     text-shadow:0 1px 3px rgba(0,0,0,.55),0 2px 18px rgba(0,0,0,.65)}
+
+/* ── RODAPE ─────────────────────────────────────────────────────────────── */
+.rod{position:absolute;bottom:64px;left:80px;right:80px;z-index:30;display:flex;
+     justify-content:space-between;align-items:center;font-size:22px;
+     letter-spacing:.24em;text-transform:uppercase;color:var(--suave)}
+.escuro .rod,.cafe .rod,.terra .rod{color:rgba(252,250,247,.68);
+     text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.sobre-foto .rod{color:rgba(252,250,247,.92);
+     text-shadow:0 1px 3px rgba(0,0,0,.55),0 2px 18px rgba(0,0,0,.65)}
+.rod .segue{font-size:30px;letter-spacing:0;color:var(--terracota-esc)}
+
+/* Identificacao profissional. A Resolucao COFEN 554/2017 exige nome, numero de
+   inscricao no COREN e categoria em TODO anuncio — entao ela e estrutura da
+   peca, nao lembrete que alguem pode esquecer. Vive no slide de chamada e em
+   qualquer peca que mostre paciente. */
+.registro{font-size:22px;letter-spacing:.20em;text-transform:uppercase;
+       color:var(--suave);line-height:1.7}
+.escuro .registro,.cafe .registro,.terra .registro{color:var(--claro-suave)}
+.sobre-foto .registro{color:rgba(252,250,247,.86);
+       text-shadow:0 1px 3px rgba(0,0,0,.55),0 2px 16px rgba(0,0,0,.65)}
+.escuro .rod .segue,.cafe .rod .segue,.sobre-foto .rod .segue{color:var(--champagne)}
+/* Champagne sobre terracota da 2,9:1. Ali o acento tem de ser o marfim. */
+.terra .rod .segue{color:var(--marfim)}
+
+/* ── AREA DE CONTEUDO ───────────────────────────────────────────────────── */
+.corpo{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column;
+       justify-content:center;gap:48px;padding:170px 80px 160px}
+.corpo.topo{justify-content:flex-start}
+.corpo.centro{align-items:center;text-align:center}
+
+/* ── TIPOGRAFIA ─────────────────────────────────────────────────────────── */
+.display{font-family:var(--titulo);font-size:116px;line-height:1.04;
+         letter-spacing:-.015em;text-wrap:balance}
+.titulo{font-family:var(--titulo);font-size:88px;line-height:1.10;
+        letter-spacing:-.01em;text-wrap:balance}
+.subtitulo{font-size:52px;line-height:1.34}
+.texto{font-size:45px;line-height:1.44}
+.texto-sm{font-size:37px;line-height:1.48;color:var(--suave)}
+.escuro .texto-sm,.cafe .texto-sm,.terra .texto-sm{color:var(--claro-suave)}
+.rotulo{font-size:24px;letter-spacing:.30em;text-transform:uppercase;
+        color:var(--suave)}
+.escuro .rotulo,.cafe .rotulo,.terra .rotulo{color:var(--claro-suave)}
+
+/* A peca inteira roda em 300, declarado no .slide acima. Isto NAO e detalhe:
+   a familia so tem faces em 300 e 500, e o peso normal (400) do navegador cai
+   na Medium, nao na Light — 53% mais tinta que o desenho da marca pede. Sem a
+   declaracao, tudo sai mais pesado do que deveria e ninguem percebe de onde
+   vem.
+
+   Enfase, entao, e o salto de 300 para 500: dois passos abaixo do negrito
+   real. Da peso a palavra sem quebrar a leveza da fonte. */
+b,strong,.forte{font-weight:500}
+
+/* Destaque em cor. Sobre claro usa o terracota escuro (5,6:1); sobre escuro,
+   champagne (7,9:1). .quente usa o terracota claro e SO vale de 45px pra cima,
+   porque em corpo menor ele cai para 3,8:1 e some na recompressao. */
+em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
+.escuro em,.escuro i,.escuro .destaque,
+.cafe em,.cafe i,.cafe .destaque,
+.sobre-foto em,.sobre-foto i,.sobre-foto .destaque{color:var(--champagne)}
+.terra em,.terra i,.terra .destaque{color:var(--marfim)}
+.destaque.quente{color:var(--terracota)}
+
+.filete{width:110px;height:1px;background:var(--taupe);flex-shrink:0}
+.escuro .filete,.cafe .filete{background:var(--champagne);opacity:.75}
+.terra .filete{background:var(--marfim);opacity:.7}
+.filete.centro{margin:0 auto}
+
+/* ── CORRECAO DE CONTRASTE NA TERRACOTA ─────────────────────────────────
+   Vinho e cafe sao superficies escuras; terracota nao e. Ela e 2,2x mais
+   clara que o vinho, entao os MESMOS niveis de opacidade caem junto:
+
+     elemento   alfa    sobre vinho    sobre terracota
+     cabecalho  .74       7,6:1            3,9:1
+     rodape     .68       6,6:1            3,5:1
+     rotulo     .64       6,1:1            3,3:1
+
+   Tudo isso e texto pequeno (21-24px), que precisa de 4,5:1. Sobre terracota
+   os tres secundarios sobem para .85 e voltam a 4,5:1. O titulo ja passa em
+   claro cheio (5,6:1) e nao muda. */
+.terra .cab,.terra .rod,.terra .rotulo,.terra .texto-sm,.terra .registro{
+     color:rgba(252,250,247,.85)}
