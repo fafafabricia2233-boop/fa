@@ -1,6 +1,6 @@
 ---
 name: fabricia-satza-tricologia
-description: Cria carrosséis de Instagram, peças de antes/depois, quadros explicativos e vídeos para a marca pessoal da Fabrícia Satza (tricologia e queda capilar, @fabriciasatza). Use SEMPRE que o pedido envolver conteúdo para a Fabrícia Satza — carrossel, POST DE FRASE, post, slide, story, reel, legenda, arte, "faz um conteúdo sobre X", ou quando ela mandar fotos de resultado de paciente (antes e depois) para montar a peça. Use também quando o assunto for explicar algo de tricologia visualmente — alopecia, eflúvio, ciclo do fio, miniaturização, tricoscopia, protocolo, queda capilar. NÃO use para a New Hair, que é outra marca com outra identidade visual.
+description: Cria carrosséis de Instagram, peças de antes/depois, quadros explicativos e vídeos para a marca pessoal da Fabrícia Satza (tricologia e queda capilar, @fabriciasatza). Use SEMPRE que o pedido envolver conteúdo para a Fabrícia Satza — carrossel, POST DE FRASE, POST DE NOTA, post, slide, story, reel, legenda, arte, "faz um conteúdo sobre X", ou quando ela mandar fotos de resultado de paciente (antes e depois) para montar a peça. Use também quando o assunto for explicar algo de tricologia visualmente — alopecia, eflúvio, ciclo do fio, miniaturização, tricoscopia, protocolo, queda capilar. NÃO use para a New Hair, que é outra marca com outra identidade visual.
 ---
 
 # Fabrícia Satza — Tricologia e queda capilar
@@ -29,6 +29,8 @@ capilar, feito para uma paciente que já tentou de tudo e não foi diagnosticada
 | `assets/antes-depois.html` | Peça de resultado com marcadores de região. |
 | `referencias/marca.md` | Identidade completa: cor, escala, regras. **Leia antes de inventar layout novo.** |
 | `referencias/tom.md` | Como escrever. Leia antes de redigir o texto dos slides. |
+| `scripts/frase.py` | Post de frase pronto, num comando. |
+| `scripts/nota.py` | Post de nota pronto, num comando. |
 | `scripts/montar.py` | Regera os HTML quando o CSS-fonte muda. |
 
 Os `.html` são **gerados**. Para mudar o visual, edite `scripts/base.css`,
@@ -71,6 +73,7 @@ sobre a imagem.
 | **Definição** | Explicar um termo técnico sem soar aula. |
 | **Dado** | Um número só. Dois números no mesmo slide se anulam. |
 | **Citação** | Uma fala dela, no formato de post de rede social. Sozinha ou dentro de carrossel. |
+| **Nota** | Um fato sobre foto, no cartão com o cursor. Ver *Post de nota*. |
 | **Virada** | O único slide de cor. **Uma por carrossel** — vinho, terracota ou café. |
 | **Chamada** | Sempre o último. |
 
