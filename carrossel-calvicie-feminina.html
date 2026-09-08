@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>@fabriciasatza — {{TEMA}}</title>
+<title>@fabriciasatza — calvicie feminina</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
@@ -358,277 +358,100 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
 </head>
 <body>
 <div class="dl" onclick="baixar()">&#8595; Baixar ZIP</div>
-<!-- ══════════════════════════════════════════════════════════════════════
-     BIBLIOTECA DE BLOCOS. Cada <section> e um slide pronto. Para montar um
-     carrossel: duplique os blocos que servem, apague o resto, troque o texto.
-     A ordem dos blocos no arquivo e a ordem dos slides no ZIP.
 
-     O cabecalho (.cab) e o rodape (.rod) repetem em TODO slide. E o que faz
-     seis imagens soltas lerem como um carrossel so.
-     ══════════════════════════════════════════════════════════════════════ -->
-
-<!-- ▸ CAPA — so o gancho. Sem explicacao, sem CTA. -->
+<!-- 01 ▸ CAPA — tipografica. A anterior foi com foto; alternar da ritmo ao feed. -->
 <section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
   <div class="corpo">
-    <div class="display">{{GANCHO}}</div>
+    <div class="display">Calvície em mulher existe</div>
     <div class="filete"></div>
-    <div class="subtitulo">{{APOIO}}</div>
+    <div class="subtitulo">E em muitas mulheres negras, ela começa sendo ignorada</div>
   </div>
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
-<!-- ▸ QUADRO — a frase que a pessoa printa. Entra em cima, conclui embaixo. -->
-<section class="slide quente">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo">
-    <div class="quadro">
-      <div class="quadro-topo">{{QUADRO_TOPO}}</div>
-      <div class="quadro-base">{{QUADRO_BASE}}</div>
-    </div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ FOTO COM CAIXA — texto legivel sobre qualquer imagem.
-     O <span class="caixa"> precisa envolver o texto linha a linha. -->
-<section class="slide sobre-foto">
-  <img class="foto" src="{{FOTO}}" alt="">
-  <div class="veu"></div>
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo">
-    <div class="titulo"><span class="caixa caixa-sombra">{{FRASE_FOTO}}</span></div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ FOTO SEM CAIXA — quando a imagem tem area limpa. Enfase com <b>. -->
-<section class="slide sobre-foto">
-  <img class="foto" src="{{FOTO}}" alt="">
-  <div class="veu"></div>
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo">
-    <div class="titulo">{{FRASE_LIVRE}}</div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ LISTA — no maximo 4 itens. Acima disso vira folheto. -->
+<!-- 02 ▸ LISTA — os quatro sinais que ela descreve na terceira frase. -->
 <section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
   <div class="corpo">
-    <div class="rotulo">{{ROTULO}}</div>
-    <div class="subtitulo">{{INTRO_LISTA}}</div>
+    <div class="rotulo">Não é só cair</div>
+    <div class="subtitulo">Muita mulher acha que é &ldquo;só queda&rdquo;. Mas, às vezes, o problema não é só cair.</div>
     <div class="lista">
-      <div class="item"><div class="item-n">01</div><div class="item-t">{{ITEM_1}}</div></div>
-      <div class="item"><div class="item-n">02</div><div class="item-t">{{ITEM_2}}</div></div>
-      <div class="item"><div class="item-n">03</div><div class="item-t">{{ITEM_3}}</div></div>
+      <div class="item"><div class="item-n">01</div><div class="item-t">O fio afinando</div></div>
+      <div class="item"><div class="item-n">02</div><div class="item-t">A risca abrindo</div></div>
+      <div class="item"><div class="item-n">03</div><div class="item-t">O volume diminuindo</div></div>
+      <div class="item"><div class="item-n">04</div><div class="item-t">O couro cabeludo mais aparente</div></div>
     </div>
   </div>
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
-<!-- ▸ ETAPAS — quando a ordem importa (protocolo, jornada, investigacao).
-     .marcada preenche a bolinha: use no passo que voce quer destacar. -->
-<section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo topo" style="padding-top:200px">
-    <div class="rotulo">{{ROTULO}}</div>
-    <div class="etapas">
-      <div class="etapa marcada">
-        <div class="etapa-n">Etapa 01</div>
-        <div class="etapa-t">{{ETAPA_1}}</div>
-        <div class="etapa-d">{{ETAPA_1_DESC}}</div>
-      </div>
-      <div class="etapa">
-        <div class="etapa-n">Etapa 02</div>
-        <div class="etapa-t">{{ETAPA_2}}</div>
-        <div class="etapa-d">{{ETAPA_2_DESC}}</div>
-      </div>
-      <div class="etapa">
-        <div class="etapa-n">Etapa 03</div>
-        <div class="etapa-t">{{ETAPA_3}}</div>
-        <div class="etapa-d">{{ETAPA_3_DESC}}</div>
-      </div>
-    </div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ COMPARATIVO — mito x fato, o que parece x o que e. A coluna da esquerda
-     usa .fraco: fica mais apagada, entao o olho vai para a direita sozinho. -->
+<!-- 03 ▸ LISTA — as causas. Tracao e "penteados muito apertados" entraram no
+     mesmo item: o penteado apertado e a causa da tracao, nao um item ao lado. -->
 <section class="slide quente">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo topo" style="padding-top:210px">
-    <div class="titulo" style="font-size:64px">{{TITULO_COMP}}</div>
-    <div class="comparativo">
-      <div>
-        <div class="comp-cab">{{COL_A}}</div>
-        <div class="comp-lista">
-          <div class="comp-item fraco">{{A_1}}</div>
-          <div class="comp-item fraco">{{A_2}}</div>
-          <div class="comp-item fraco">{{A_3}}</div>
-        </div>
-      </div>
-      <div class="comp-fio"></div>
-      <div>
-        <div class="comp-cab">{{COL_B}}</div>
-        <div class="comp-lista">
-          <div class="comp-item">{{B_1}}</div>
-          <div class="comp-item">{{B_2}}</div>
-          <div class="comp-item">{{B_3}}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ CICLO — fases em sequencia (anagena/catagena/telogena, linha do tempo). -->
-<section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
   <div class="corpo">
-    <div class="titulo" style="font-size:64px">{{TITULO_CICLO}}</div>
-    <div class="ciclo">
-      <div class="fase marcada">
-        <div class="fase-n">{{FASE_1}}</div><div class="fase-d">{{FASE_1_DESC}}</div>
-      </div>
-      <div class="fase">
-        <div class="fase-n">{{FASE_2}}</div><div class="fase-d">{{FASE_2_DESC}}</div>
-      </div>
-      <div class="fase">
-        <div class="fase-n">{{FASE_3}}</div><div class="fase-d">{{FASE_3_DESC}}</div>
-      </div>
+    <div class="rotulo">Além do hormônio e da genética</div>
+    <div class="subtitulo">Em mulheres negras, esse olhar precisa ser ainda mais atento. O couro cabeludo também pode estar sofrendo por:</div>
+    <div class="lista">
+      <div class="item"><div class="item-n">01</div><div class="item-t">Tração frequente, de penteados muito apertados</div></div>
+      <div class="item"><div class="item-n">02</div><div class="item-t">Calor em excesso</div></div>
+      <div class="item"><div class="item-n">03</div><div class="item-t">Química</div></div>
+      <div class="item"><div class="item-n">04</div><div class="item-t">Inflamação no couro cabeludo</div></div>
     </div>
-    <div class="texto-sm">{{NOTA_CICLO}}</div>
   </div>
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
-<!-- ▸ DEFINICAO — explicar um termo tecnico sem soar aula. -->
+<!-- 04 ▸ VIRADA — marrom terracota. A anterior foi vinho. -->
+<section class="slide terra">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
+  <div class="corpo centro">
+    <div class="rotulo">O tempo conta</div>
+    <div class="titulo" style="font-size:66px;line-height:1.16">E quando isso passa despercebido por muito tempo, o quadro pode evoluir.</div>
+    <div class="filete centro"></div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<!-- 05 ▸ LISTA — o que se observa. Inflamacao entrou junto com a saude do couro:
+     e onde ela e vista, nao um item separado. -->
 <section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
   <div class="corpo">
-    <div class="quadro">
-      <div class="definicao">
-        <div class="def-fon">{{PRONUNCIA}}</div>
-        <div class="def-termo">{{TERMO}}</div>
-        <div class="filete"></div>
-        <div class="def-txt">{{DEFINICAO}}</div>
-      </div>
-      <div class="quadro-base" style="font-size:34px">{{DEF_FECHO}}</div>
+    <div class="rotulo">Nem toda calvície feminina é igual</div>
+    <div class="subtitulo">Por isso, olhar só o &ldquo;antes e depois&rdquo; não basta. É preciso observar os detalhes:</div>
+    <div class="lista">
+      <div class="item"><div class="item-n">01</div><div class="item-t">O padrão da rarefação</div></div>
+      <div class="item"><div class="item-n">02</div><div class="item-t">A espessura dos fios</div></div>
+      <div class="item"><div class="item-n">03</div><div class="item-t">A saúde do couro cabeludo e sinais de inflamação</div></div>
+      <div class="item"><div class="item-n">04</div><div class="item-t">Sinais de quebra ou miniaturização</div></div>
     </div>
+    <div class="texto-sm">É aqui que a avaliação faz diferença.</div>
   </div>
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
-<!-- ▸ DADO — um numero so. Dois numeros no mesmo slide anulam um ao outro. -->
+<!-- 06 ▸ QUADRO — o fechamento dela. -->
 <section class="slide quente">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo centro">
-    <div class="dado">
-      <div class="dado-n">{{NUMERO}}</div>
-      <div class="dado-l">{{LEGENDA_DADO}}</div>
-    </div>
-    <div class="filete centro"></div>
-    <div class="texto-sm" style="max-width:78%">{{FONTE_DADO}}</div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ TRICO CAPA — abre a série. A imagem manda; o texto só situa.
-     {{SERIE}} numera ("Tricoscopia na prática 01"), {{QUADRO_CLINICO}} nomeia
-     o tema. Ver referencias/tricoscopia.md antes de escrever. -->
-<section class="slide sobre-foto trico-capa">
-  <img class="foto" src="{{TRICO_CAPA}}" alt="">
-  <div class="veu"></div>
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
   <div class="corpo">
-    <div class="trico-serie">{{SERIE}}</div>
-    <div class="trico-titulo">{{QUADRO_CLINICO}}</div>
-    <div class="filete"></div>
-    <div class="trico-sub">{{TRICO_SUB}}</div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ TRICO PRANCHA — a imagem grande com os achados numerados, e a legenda
-     dizendo o que é cada número. Numerar em vez de rotular na imagem: rótulo
-     em cima da tricoscopia cobre justamente o que a pessoa precisa ver.
-     Posicione cada .ponto com --x e --y em % da imagem. Três a cinco achados;
-     acima disso a pessoa para de ler. -->
-<section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo" style="gap:40px">
-    <div class="prancha">
-      <img src="{{TRICO_IMG}}" alt="">
-      <div class="ponto" style="--x:30%;--y:32%"><span>1</span></div>
-      <div class="ponto" style="--x:63%;--y:44%"><span>2</span></div>
-      <div class="ponto" style="--x:44%;--y:70%"><span>3</span></div>
-    </div>
-    <div class="observa">
-      <div class="observa-cab">Aqui eu observo</div>
-      <div class="observa-item"><div class="observa-n">01</div><div class="observa-t">{{ACHADO_1}}</div></div>
-      <div class="observa-item"><div class="observa-n">02</div><div class="observa-t">{{ACHADO_2}}</div></div>
-      <div class="observa-item"><div class="observa-n">03</div><div class="observa-t">{{ACHADO_3}}</div></div>
+    <div class="quadro" style="flex:none;height:820px">
+      <div class="quadro-topo">Quanto antes a mulher entende o que está acontecendo, maiores são as chances de cuidar melhor do caso. Porque calvície feminina não é vaidade exagerada.</div>
+      <div class="quadro-base" style="max-width:88%">é saúde, autoestima e identidade.</div>
     </div>
   </div>
   <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
 </section>
 
-<!-- ▸ CITACAO — a frase que ela repete no consultório, no formato de fala.
-     Funciona sozinha num post único ou como slide dentro de um carrossel.
-     O texto é curto por natureza: se passar de 4 linhas, deixa de parecer uma
-     fala e vira parágrafo. Vai todo no mesmo peso — fala não tem negrito.
-     {{SELO}} recebe o SVG do selo de verificado. A conta dela é verificada,
-     então preencha; em peça de outra conta, só se aquela conta também tiver.
-
-     Sem seta no rodapé: num post avulso não há para onde arrastar, e a seta
-     promete um slide seguinte que não existe. Se usar a citação DENTRO de um
-     carrossel, aí devolva o <span class="segue">&#8594;</span> ao rodapé. -->
+<!-- 07 ▸ CHAMADA — fecha com a frase que virou assinatura dela. -->
 <section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo">
-    <div class="citacao">
-      <div class="perfil">
-        <img class="perfil-foto" src="{{AVATAR}}" alt="Fabrícia Satza">
-        <div>
-          <div class="perfil-nome">Fabrícia Satza <span class="div">|</span> Tricologia Capilar{{SELO}}</div>
-          <div class="perfil-arroba">@fabriciasatza</div>
-        </div>
-      </div>
-      <div class="citacao-texto">{{FALA}}</div>
-    </div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span></div>
-</section>
-
-<!-- ▸ VIRADA — o unico slide de cor do carrossel. Escolha UMA classe:
-       escuro  vinho ameixa     marcante, o mais assinatura
-       terra   marrom terracota quente, mais proximo
-       cafe    cafe profundo    sobrio, o mais clinico
-     A variacao e ENTRE publicacoes, nao dentro de uma: este post em vinho, o
-     proximo em terracota, o outro em cafe. Duas cores no mesmo carrossel sao
-     duas viradas, e aí nenhuma e virada. -->
-<section class="slide escuro">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>Queda capilar</span></div>
   <div class="corpo centro">
-    <div class="rotulo">{{ROTULO_VIRADA}}</div>
-    <div class="titulo">{{VIRADA}}</div>
+    <div class="texto" style="max-width:84%">Na tricologia, os detalhes quase nunca são só detalhes.</div>
     <div class="filete centro"></div>
-  </div>
-  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
-</section>
-
-<!-- ▸ CHAMADA — ultimo slide. Sem botao, sem caixa, sem "arrasta". -->
-<section class="slide">
-  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
-  <div class="corpo centro">
-    <div class="texto" style="max-width:84%">{{CTA}}</div>
-    <div class="filete centro"></div>
-    <div class="display" style="font-size:72px">@fabriciasatza</div>
-    <div class="texto-sm">{{CTA_BIO}}</div>
-    <div class="registro">{{REGISTRO}}</div>
+    <div class="display" style="font-size:52px">@fabriciasatza</div>
+    <div class="texto-sm">Tricoscopia e avaliação de queda capilar</div>
   </div>
   <div class="rod" style="justify-content:center"><span>Tricologia &middot; Queda capilar</span></div>
 </section>
