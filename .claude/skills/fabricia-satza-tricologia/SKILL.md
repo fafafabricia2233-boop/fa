@@ -74,6 +74,44 @@ sobre a imagem.
 | **Virada** | O único slide de cor. **Uma por carrossel** — vinho, terracota ou café. |
 | **Chamada** | Sempre o último. |
 
+## Post de nota
+
+Quando ela pedir um **"post de nota"**, é o cartão branco de cantos
+arredondados sobre uma foto dela, com o cursor piscando no fim da frase. Um
+comando entrega tudo:
+
+```bash
+python3 scripts/nota.py "a frase, com <b>uma palavra</b> marcada" foto.jpg posts-de-nota
+```
+
+O padrão fechado:
+
+| | |
+|---|---|
+| Cartão | branco suave, cantos de 26px, sobre a foto |
+| Cursor | **âmbar do iPhone** `#F5A623`, no fim da frase |
+| Ênfase | **uma** palavra em `<b>`, no máximo |
+| Cabeçalho e rodapé | ficam, iguais aos do carrossel |
+| Rodapé | só o arroba, sem seta |
+
+Três coisas que decidem se a peça funciona:
+
+- **O cursor não é enfeite.** É ele que faz a frase parecer recém-digitada em
+  vez de diagramada, e é desse ar de espontâneo que o formato vive. Sem ele o
+  cartão vira só uma caixa branca, que a marca já tem no bloco de foto.
+- **O âmbar é a única cor fora da paleta em peça dela.** Não está ali como cor
+  da marca e sim como citação de interface: é o laranja do cursor do iPhone,
+  reconhecível justamente por ser aquele. Em terracota ele lia como enfeite, e
+  ela escolheu o âmbar por isso. **Não use esse âmbar em mais nada.**
+- **O cabeçalho e o rodapé ficam.** A versão que só imitava o adesivo não tinha
+  nome nenhum, e print que circula sem marca não volta para ninguém. O formato
+  é o cartão; a assinatura é dela.
+
+O texto é um **fato que quebra uma expectativa** — "não tem resultado em 30
+dias", "cresce cerca de um centímetro por mês". Não é frase de efeito nem
+convite: é informação que corrige o que a pessoa achava que sabia. A frase de
+fala, com foto de perfil e selo, é o outro formato — o post de frase.
+
 ## Tricoscopia na prática
 
 Série numerada em que ela mostra uma imagem de tricoscopia e lê os achados.
