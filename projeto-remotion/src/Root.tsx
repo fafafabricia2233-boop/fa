@@ -58,6 +58,7 @@ import { NewHairExperiencia, type NewHairExperienciaProps } from "./compositions
 import { NewHairBasicoPadrao, type NewHairBasicoPadraoProps } from "./compositions/NewHairBasicoPadrao";
 import { NewHairImagem, type NewHairImagemProps } from "./compositions/NewHairImagem";
 import { NewHairPadronizacao, type NewHairPadronizacaoProps } from "./compositions/NewHairPadronizacao";
+import { NewHairLerFluxo, type NewHairLerFluxoProps } from "./compositions/NewHairLerFluxo";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -683,6 +684,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(15.133 * 30)}
             defaultProps={{ durationSeconds: 15.133, video: "newhair/padronizacao_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-LerFluxo">
+          <Composition
+            id="NewHairLerFluxo"
+            component={NewHairLerFluxo as React.FC<NewHairLerFluxoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(12.351 * 30)}
+            defaultProps={{ durationSeconds: 12.351, video: "newhair/lerfluxo_h264.mp4" }}
           />
         </Folder>
 
