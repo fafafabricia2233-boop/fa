@@ -355,6 +355,36 @@ O que olhar:
   a tinta começa em cada linha e iguale com `margin-left` negativo — o alinhamento
   que vale é o que o olho vê, não o que a caixa diz.
 
+## A logo
+
+Dois arquivos em `assets/`: `fs-monograma.png` (só o FS com os arcos) e
+`fs-lockup.png` (monograma + "Fabrícia Satza / Tricologia e Terapia Capilar").
+
+**Entram por máscara CSS, não por `<img>`** — a classe `.fs` usa o PNG como
+`mask-image` e a cor vem do `background`. Assim a logo assume a cor da peça:
+café sobre claro, champagne sobre vinho e café, marfim sobre terracota, branco
+sobre foto. Um arquivo serve todas as superfícies.
+
+**Tamanho mínimo: 110px na peça.** O traço da logo tem 1,8% da altura dela, e
+isso decide onde ela pode aparecer. Medido no tamanho real de tela — o slide
+chega ao celular com cerca de 400px de largura — a marca a 46px no cabeçalho
+vira um traço de 0,7px: some, e o que sobra é uma mancha cinza que lê pior do
+que não ter logo nenhuma.
+
+Por isso:
+
+- **A logo não entra no cabeçalho.** Ali o nome escrito continua sendo mais
+  legível que qualquer marca desse tamanho. O cabeçalho segue como está.
+- **O lugar dela é o slide de chamada**, em 360px, no lugar do arroba escrito.
+  O arroba desce para o rodapé. É como marca se usa: some das páginas
+  internas e assina no fim.
+- Se um dia precisar dela grande — impressão, cartão, fachada — peça o
+  **vetor** (SVG, AI ou PDF) a quem desenhou. O que existe aqui foi extraído
+  de um JPEG e tem 221px de altura: serve até 110px com folga, e não além.
+
+O terracota do arquivo original dela é `#8B5C46`, contra `#8A5A44` da paleta.
+Dois pontos de diferença em cada canal — na prática, a mesma cor.
+
 ## Tipografia — o essencial
 
 Uma família só: **Fabrícia Satza**, em dois pesos.
