@@ -68,7 +68,8 @@ lista inteira, ou o slide perde o véu e o texto sai na cor de fundo claro, cinz
 sobre a imagem.
 | **Lista** | Até 4 itens. Acima disso vira folheto. |
 | **Etapas** | Quando a **ordem** importa: protocolo, investigação, jornada. |
-| **Comparativo** | Mito × fato, o que parece × o que é. |
+| **Comparativo** | Mito × fato, o que parece × o que é. Listas curtas, lado a lado. |
+| **Definições** | Dois termos opostos, **empilhados**. Quando os lados são definições, não listas: em coluna estreita a frase quebra em três palavras. |
 | **Ciclo** | Fases em sequência: anágena/catágena/telógena, linha do tempo. |
 | **Definição** | Explicar um termo técnico sem soar aula. |
 | **Dado** | Um número só. Dois números no mesmo slide se anulam. |
@@ -246,7 +247,7 @@ A correção de temperatura, quando usada, tem de ser **igual nos dois lados**.
 Tratamento diferente em cada lado altera o resultado aparente, e isso é o que
 transforma um relato em alegação enganosa.
 
-## Formato da peça## Formato da peça
+## Formato da peça
 
 O padrão dela é **3:4, 1080×1440**. Monte nele salvo pedido em contrário. Para
 trocar, mexa só nos dois tokens no topo do `base.css`:

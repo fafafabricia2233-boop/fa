@@ -400,6 +400,25 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
 .cursor{display:inline-block;width:5px;height:.88em;margin-left:10px;
      vertical-align:-.11em;border-radius:2px;background:#F5A623}
 
+/* ══ DEFINIÇÕES ═══ dois termos opostos, empilhados ═══════════════════════
+   Substitui o comparativo quando os dois lados sao DEFINICOES e nao listas
+   curtas. Em 1080px de largura, duas colunas deixam ~400px para cada uma e as
+   linhas quebram em tres palavras: a pessoa compara fragmentos, nao frases.
+   Empilhado, cada definicao usa a largura inteira e o olho desce, que e como
+   se le no celular.
+
+   A hierarquia, que no comparativo vem da coluna apagada, aqui vem do peso:
+   o primeiro bloco em .fraco, o segundo em cor cheia. O olho cai no segundo
+   sozinho — entao ponha em segundo o termo que a peca defende. */
+.def-bloco{flex-shrink:0}
+.def-termo-l{font-family:var(--titulo);font-size:46px;line-height:1;margin-bottom:26px}
+.def-linhas div{font-size:44px;line-height:1.5}
+.def-linhas.fraco{color:var(--suave)}
+.escuro .def-linhas.fraco,.cafe .def-linhas.fraco,.terra .def-linhas.fraco{color:var(--claro-suave)}
+.def-fio{height:1px;background:var(--taupe);opacity:.75;margin:54px 0;flex-shrink:0}
+.escuro .def-fio,.cafe .def-fio{background:var(--champagne);opacity:.6}
+.terra .def-fio{background:var(--marfim);opacity:.55}
+
 </style>
 </head>
 <body>
@@ -524,6 +543,31 @@ em,i,.destaque{font-style:normal;color:var(--terracota-esc)}
           <div class="comp-item">{{B_2}}</div>
           <div class="comp-item">{{B_3}}</div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="rod"><span>@fabriciasatza</span><span class="segue">&#8594;</span></div>
+</section>
+
+<!-- ▸ DEFINICOES — dois termos opostos, um sobre o outro. Use no lugar do
+     comparativo quando os dois lados forem DEFINICOES e nao listas curtas: em
+     coluna estreita a definicao quebra em tres palavras e deixa de ser frase.
+     O segundo bloco vai em cor cheia — ponha ali o termo que a peca defende. -->
+<section class="slide quente">
+  <div class="cab"><span>Fabrícia Satza Tricologia</span><span>{{EIXO}}</span></div>
+  <div class="corpo" style="gap:0">
+    <div class="titulo" style="font-size:62px;margin-bottom:74px">{{TITULO_DEF}}</div>
+    <div class="def-bloco">
+      <div class="def-termo-l">{{TERMO_A}}</div>
+      <div class="def-linhas fraco">
+        <div>{{A_1}}</div><div>{{A_2}}</div><div>{{A_3}}</div>
+      </div>
+    </div>
+    <div class="def-fio"></div>
+    <div class="def-bloco">
+      <div class="def-termo-l">{{TERMO_B}}</div>
+      <div class="def-linhas">
+        <div>{{B_1}}</div><div>{{B_2}}</div><div>{{B_3}}</div>
       </div>
     </div>
   </div>

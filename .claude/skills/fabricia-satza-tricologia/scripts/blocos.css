@@ -232,3 +232,22 @@
 .nota b{font-weight:500}
 .cursor{display:inline-block;width:5px;height:.88em;margin-left:10px;
      vertical-align:-.11em;border-radius:2px;background:#F5A623}
+
+/* ══ DEFINIÇÕES ═══ dois termos opostos, empilhados ═══════════════════════
+   Substitui o comparativo quando os dois lados sao DEFINICOES e nao listas
+   curtas. Em 1080px de largura, duas colunas deixam ~400px para cada uma e as
+   linhas quebram em tres palavras: a pessoa compara fragmentos, nao frases.
+   Empilhado, cada definicao usa a largura inteira e o olho desce, que e como
+   se le no celular.
+
+   A hierarquia, que no comparativo vem da coluna apagada, aqui vem do peso:
+   o primeiro bloco em .fraco, o segundo em cor cheia. O olho cai no segundo
+   sozinho — entao ponha em segundo o termo que a peca defende. */
+.def-bloco{flex-shrink:0}
+.def-termo-l{font-family:var(--titulo);font-size:46px;line-height:1;margin-bottom:26px}
+.def-linhas div{font-size:44px;line-height:1.5}
+.def-linhas.fraco{color:var(--suave)}
+.escuro .def-linhas.fraco,.cafe .def-linhas.fraco,.terra .def-linhas.fraco{color:var(--claro-suave)}
+.def-fio{height:1px;background:var(--taupe);opacity:.75;margin:54px 0;flex-shrink:0}
+.escuro .def-fio,.cafe .def-fio{background:var(--champagne);opacity:.6}
+.terra .def-fio{background:var(--marfim);opacity:.55}
