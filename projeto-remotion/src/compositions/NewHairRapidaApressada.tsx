@@ -103,6 +103,8 @@ type Cue = {
   lines: { text: string; size: number; font?: "serif"; gold?: boolean }[];
 };
 
+/* toda cue precisa de pelo menos 0.6s (18 frames): fadeRise usa [f0, f0+8, f1-8, f1]
+   e com janela menor que 16 frames f1-8 fica <= f0+8, quebrando a interpolação. */
 const CUES: Cue[] = [
   {
     start: 3.6,
@@ -111,26 +113,26 @@ const CUES: Cue[] = [
   },
   {
     start: 4.9,
-    end: 5.3,
+    end: 5.6,
     lines: [{ text: "EFICIÊNCIA é outra coisa.", size: 38, gold: true }],
   },
   {
-    start: 5.6,
-    end: 6.3,
+    start: 5.8,
+    end: 6.5,
     lines: [{ text: "É saber o PRÓXIMO PASSO.", size: 38, gold: true }],
   },
   {
-    start: 6.3,
-    end: 7.0,
+    start: 6.5,
+    end: 7.2,
     lines: [{ text: "Manter o FLUXO.", size: 40, gold: true }],
   },
   {
-    start: 7.0,
-    end: 7.5,
+    start: 7.2,
+    end: 7.9,
     lines: [{ text: "E executar sem perder CUIDADO.", size: 32, gold: true }],
   },
   {
-    start: 7.7,
+    start: 8.1,
     end: 11.1,
     lines: [
       { text: "Na New Hair, AGILIDADE nunca vem", size: 32, gold: true },
