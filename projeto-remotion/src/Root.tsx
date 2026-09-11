@@ -78,6 +78,7 @@ import { NewHairPesoResponsabilidade, type NewHairPesoResponsabilidadeProps } fr
 import { NewHairConfereMesa, type NewHairConfereMesaProps } from "./compositions/NewHairConfereMesa";
 import { NewHairConfiaEnxerto, type NewHairConfiaEnxertoProps } from "./compositions/NewHairConfiaEnxerto";
 import { NewHairPassoFrente, type NewHairPassoFrenteProps } from "./compositions/NewHairPassoFrente";
+import { NewHairReforcaConduta, type NewHairReforcaCondutaProps } from "./compositions/NewHairReforcaConduta";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -943,6 +944,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(11.733 * 30)}
             defaultProps={{ durationSeconds: 11.733, video: "newhair/passofrente_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-ReforcaConduta">
+          <Composition
+            id="NewHairReforcaConduta"
+            component={NewHairReforcaConduta as React.FC<NewHairReforcaCondutaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(14.6 * 30)}
+            defaultProps={{ durationSeconds: 14.6, video: "newhair/reforcaconduta_h264.mp4" }}
           />
         </Folder>
 
