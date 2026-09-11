@@ -47,11 +47,11 @@ const NH = {
 
 const PECA = {
   /* arquivo dentro de public/ do projeto Remotion, JA convertido pra H264 */
-  video: "newhair/conferemesa_h264.mp4",
+  video: "newhair/conferemesa_v2_h264.mp4",
 
   /* MEDIDO com medir-fita.py, nunca herdado da peca anterior.
      endCard = segundo em que a logo/animacao final entra. null se a fita nao tiver. */
-  endCard: null,
+  endCard: 10.95,
 
   /* MEDIDO. true = B-roll em cima e rosto embaixo (dois planos no mesmo quadro). */
   splitScreen: false,
@@ -85,8 +85,8 @@ const TITULO = {
   modo: "temporario" as "temporario" | "permanente",
 
   inicio: 0.15, // quando a primeira letra aparece
-  seguraAte: 3.4, // corte/fade aos 3.65s
-  saiEm: 3.65, // saída sobre o corte
+  seguraAte: 3.2, // fita nova mais curta (11.2s), sem cortes cedo — segura menos
+  saiEm: 3.4,
 };
 
 /* LEGENDA DE RODAPE, frase a frase, colada na fala.
@@ -106,37 +106,37 @@ type Cue = {
    e com janela menor que 16 frames f1-8 fica <= f0+8, quebrando a interpolação. */
 const CUES: Cue[] = [
   {
-    start: 4.2,
-    end: 5.2,
-    lines: [{ text: "Porque organizar É UMA COISA.", size: 36, gold: true }],
+    start: 3.7,
+    end: 4.5,
+    lines: [{ text: "Porque organizar É UMA COISA.", size: 34, gold: true }],
   },
   {
-    start: 5.2,
-    end: 6.0,
+    start: 4.5,
+    end: 5.2,
     lines: [{ text: "CONFERIR é outra.", size: 40, gold: true }],
   },
   {
-    start: 6.3,
+    start: 5.4,
+    end: 7.0,
+    lines: [
+      { text: "Na New Hair, a montagem não termina", size: 28 },
+      { text: "quando tudo está no lugar.", size: 28, gold: true },
+    ],
+  },
+  {
+    start: 7.2,
     end: 8.8,
     lines: [
-      { text: "Na New Hair, a montagem não termina", size: 30 },
-      { text: "quando tudo está no lugar.", size: 30, gold: true },
+      { text: "Existe REVISÃO, SUPERVISÃO", size: 30, gold: true },
+      { text: "e responsabilidade antes da cirurgia seguir.", size: 22 },
     ],
   },
   {
-    start: 10.1,
-    end: 12.1,
+    start: 9.0,
+    end: 10.8,
     lines: [
-      { text: "Existe REVISÃO, SUPERVISÃO", size: 32, gold: true },
-      { text: "e responsabilidade antes da cirurgia seguir.", size: 24 },
-    ],
-  },
-  {
-    start: 12.4,
-    end: 14.5,
-    lines: [
-      { text: "Porque detalhe pequeno", size: 30 },
-      { text: "não pode virar PROBLEMA GRANDE.", size: 32, gold: true },
+      { text: "Porque detalhe pequeno", size: 28 },
+      { text: "não pode virar PROBLEMA GRANDE.", size: 30, gold: true },
     ],
   },
 ];

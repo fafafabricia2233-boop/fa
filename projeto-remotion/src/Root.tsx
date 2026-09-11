@@ -915,8 +915,8 @@ export const RemotionRoot: React.FC = () => {
             width={1080}
             height={1920}
             fps={30}
-            durationInFrames={Math.round(14.6 * 30)}
-            defaultProps={{ durationSeconds: 14.6, video: "newhair/conferemesa_h264.mp4" }}
+            durationInFrames={Math.round(11.2 * 30)}
+            defaultProps={{ durationSeconds: 11.2, video: "newhair/conferemesa_v2_h264.mp4" }}
           />
         </Folder>
 
