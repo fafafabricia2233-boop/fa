@@ -65,6 +65,7 @@ import { NewHairLimiteSaque, type NewHairLimiteSaqueProps } from "./compositions
 import { NewHairContinuidade, type NewHairContinuidadeProps } from "./compositions/NewHairContinuidade";
 import { NewHairEgo, type NewHairEgoProps } from "./compositions/NewHairEgo";
 import { NewHairSaidaSala, type NewHairSaidaSalaProps } from "./compositions/NewHairSaidaSala";
+import { NewHairPedirLicenca, type NewHairPedirLicencaProps } from "./compositions/NewHairPedirLicenca";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -774,6 +775,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(19.833 * 30)}
             defaultProps={{ durationSeconds: 19.833, video: "newhair/saidasala_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-PedirLicenca">
+          <Composition
+            id="NewHairPedirLicenca"
+            component={NewHairPedirLicenca as React.FC<NewHairPedirLicencaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(14.467 * 30)}
+            defaultProps={{ durationSeconds: 14.467, video: "newhair/pedirlicenca_h264.mp4" }}
           />
         </Folder>
 
