@@ -75,6 +75,7 @@ import { NewHairChamarResolver, type NewHairChamarResolverProps } from "./compos
 import { NewHairAtencaoPaciente, type NewHairAtencaoPacienteProps } from "./compositions/NewHairAtencaoPaciente";
 import { NewHairRapidoMelhor, type NewHairRapidoMelhorProps } from "./compositions/NewHairRapidoMelhor";
 import { NewHairPesoResponsabilidade, type NewHairPesoResponsabilidadeProps } from "./compositions/NewHairPesoResponsabilidade";
+import { NewHairConfereMesa, type NewHairConfereMesaProps } from "./compositions/NewHairConfereMesa";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -904,6 +905,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(17.333 * 30)}
             defaultProps={{ durationSeconds: 17.333, video: "newhair/pesoresponsabilidade_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-ConfereMesa">
+          <Composition
+            id="NewHairConfereMesa"
+            component={NewHairConfereMesa as React.FC<NewHairConfereMesaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(14.6 * 30)}
+            defaultProps={{ durationSeconds: 14.6, video: "newhair/conferemesa_h264.mp4" }}
           />
         </Folder>
 
