@@ -68,6 +68,7 @@ import { NewHairSaidaSala, type NewHairSaidaSalaProps } from "./compositions/New
 import { NewHairPedirLicenca, type NewHairPedirLicencaProps } from "./compositions/NewHairPedirLicenca";
 import { NewHairNivelEquipe, type NewHairNivelEquipeProps } from "./compositions/NewHairNivelEquipe";
 import { NewHairRitmoCirurgiao, type NewHairRitmoCirurgiaoProps } from "./compositions/NewHairRitmoCirurgiao";
+import { NewHairLeitura, type NewHairLeituraProps } from "./compositions/NewHairLeitura";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -813,6 +814,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(10.133 * 30)}
             defaultProps={{ durationSeconds: 10.133, video: "newhair/ritmocirurgiao_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Leitura">
+          <Composition
+            id="NewHairLeitura"
+            component={NewHairLeitura as React.FC<NewHairLeituraProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(14.833 * 30)}
+            defaultProps={{ durationSeconds: 14.833, video: "newhair/leitura_h264.mp4" }}
           />
         </Folder>
 
