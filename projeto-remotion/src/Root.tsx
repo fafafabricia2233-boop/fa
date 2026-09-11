@@ -80,6 +80,7 @@ import { NewHairConfiaEnxerto, type NewHairConfiaEnxertoProps } from "./composit
 import { NewHairPassoFrente, type NewHairPassoFrenteProps } from "./compositions/NewHairPassoFrente";
 import { NewHairReforcaConduta, type NewHairReforcaCondutaProps } from "./compositions/NewHairReforcaConduta";
 import { NewHairEtapaProxima, type NewHairEtapaProximaProps } from "./compositions/NewHairEtapaProxima";
+import { NewHairAprendeComVoce, type NewHairAprendeComVoceProps } from "./compositions/NewHairAprendeComVoce";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -969,6 +970,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(13.907 * 30)}
             defaultProps={{ durationSeconds: 13.907, video: "newhair/etapaproxima_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-AprendeComVoce">
+          <Composition
+            id="NewHairAprendeComVoce"
+            component={NewHairAprendeComVoce as React.FC<NewHairAprendeComVoceProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(11.133 * 30)}
+            defaultProps={{ durationSeconds: 11.133, video: "newhair/aprendecomvoce_h264.mp4" }}
           />
         </Folder>
 
