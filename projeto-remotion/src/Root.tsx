@@ -71,6 +71,7 @@ import { NewHairRitmoCirurgiao, type NewHairRitmoCirurgiaoProps } from "./compos
 import { NewHairLeitura, type NewHairLeituraProps } from "./compositions/NewHairLeitura";
 import { NewHairObservaAntes, type NewHairObservaAntesProps } from "./compositions/NewHairObservaAntes";
 import { NewHairRapidaApressada, type NewHairRapidaApressadaProps } from "./compositions/NewHairRapidaApressada";
+import { NewHairChamarResolver, type NewHairChamarResolverProps } from "./compositions/NewHairChamarResolver";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -852,6 +853,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(11.867 * 30)}
             defaultProps={{ durationSeconds: 11.867, video: "newhair/rapidaapressada_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-ChamarResolver">
+          <Composition
+            id="NewHairChamarResolver"
+            component={NewHairChamarResolver as React.FC<NewHairChamarResolverProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(11.767 * 30)}
+            defaultProps={{ durationSeconds: 11.767, video: "newhair/chamarresolver_h264.mp4" }}
           />
         </Folder>
 
