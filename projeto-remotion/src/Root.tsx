@@ -76,6 +76,7 @@ import { NewHairAtencaoPaciente, type NewHairAtencaoPacienteProps } from "./comp
 import { NewHairRapidoMelhor, type NewHairRapidoMelhorProps } from "./compositions/NewHairRapidoMelhor";
 import { NewHairPesoResponsabilidade, type NewHairPesoResponsabilidadeProps } from "./compositions/NewHairPesoResponsabilidade";
 import { NewHairConfereMesa, type NewHairConfereMesaProps } from "./compositions/NewHairConfereMesa";
+import { NewHairConfiaEnxerto, type NewHairConfiaEnxertoProps } from "./compositions/NewHairConfiaEnxerto";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -917,6 +918,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(11.2 * 30)}
             defaultProps={{ durationSeconds: 11.2, video: "newhair/conferemesa_v2_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-ConfiaEnxerto">
+          <Composition
+            id="NewHairConfiaEnxerto"
+            component={NewHairConfiaEnxerto as React.FC<NewHairConfiaEnxertoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(11.074 * 30)}
+            defaultProps={{ durationSeconds: 11.074, video: "newhair/confiaenxerto_h264.mp4" }}
           />
         </Folder>
 
