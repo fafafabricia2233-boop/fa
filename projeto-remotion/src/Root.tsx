@@ -79,6 +79,7 @@ import { NewHairConfereMesa, type NewHairConfereMesaProps } from "./compositions
 import { NewHairConfiaEnxerto, type NewHairConfiaEnxertoProps } from "./compositions/NewHairConfiaEnxerto";
 import { NewHairPassoFrente, type NewHairPassoFrenteProps } from "./compositions/NewHairPassoFrente";
 import { NewHairReforcaConduta, type NewHairReforcaCondutaProps } from "./compositions/NewHairReforcaConduta";
+import { NewHairEtapaProxima, type NewHairEtapaProximaProps } from "./compositions/NewHairEtapaProxima";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -956,6 +957,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(14.6 * 30)}
             defaultProps={{ durationSeconds: 14.6, video: "newhair/reforcaconduta_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-EtapaProxima">
+          <Composition
+            id="NewHairEtapaProxima"
+            component={NewHairEtapaProxima as React.FC<NewHairEtapaProximaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(13.907 * 30)}
+            defaultProps={{ durationSeconds: 13.907, video: "newhair/etapaproxima_h264.mp4" }}
           />
         </Folder>
 
