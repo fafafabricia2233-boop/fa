@@ -66,6 +66,7 @@ import { NewHairContinuidade, type NewHairContinuidadeProps } from "./compositio
 import { NewHairEgo, type NewHairEgoProps } from "./compositions/NewHairEgo";
 import { NewHairSaidaSala, type NewHairSaidaSalaProps } from "./compositions/NewHairSaidaSala";
 import { NewHairPedirLicenca, type NewHairPedirLicencaProps } from "./compositions/NewHairPedirLicenca";
+import { NewHairNivelEquipe, type NewHairNivelEquipeProps } from "./compositions/NewHairNivelEquipe";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -787,6 +788,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(14.467 * 30)}
             defaultProps={{ durationSeconds: 14.467, video: "newhair/pedirlicenca_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-NivelEquipe">
+          <Composition
+            id="NewHairNivelEquipe"
+            component={NewHairNivelEquipe as React.FC<NewHairNivelEquipeProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(12.3 * 30)}
+            defaultProps={{ durationSeconds: 12.3, video: "newhair/nivelequipe_h264.mp4" }}
           />
         </Folder>
 
