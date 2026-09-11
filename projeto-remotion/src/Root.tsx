@@ -73,6 +73,7 @@ import { NewHairObservaAntes, type NewHairObservaAntesProps } from "./compositio
 import { NewHairRapidaApressada, type NewHairRapidaApressadaProps } from "./compositions/NewHairRapidaApressada";
 import { NewHairChamarResolver, type NewHairChamarResolverProps } from "./compositions/NewHairChamarResolver";
 import { NewHairAtencaoPaciente, type NewHairAtencaoPacienteProps } from "./compositions/NewHairAtencaoPaciente";
+import { NewHairRapidoMelhor, type NewHairRapidoMelhorProps } from "./compositions/NewHairRapidoMelhor";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -878,6 +879,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(16.3 * 30)}
             defaultProps={{ durationSeconds: 16.3, video: "newhair/atencaopaciente_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-RapidoMelhor">
+          <Composition
+            id="NewHairRapidoMelhor"
+            component={NewHairRapidoMelhor as React.FC<NewHairRapidoMelhorProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(16.136 * 30)}
+            defaultProps={{ durationSeconds: 16.136, video: "newhair/rapidomelhor_h264.mp4" }}
           />
         </Folder>
 
