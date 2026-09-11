@@ -60,6 +60,7 @@ import { NewHairImagem, type NewHairImagemProps } from "./compositions/NewHairIm
 import { NewHairPadronizacao, type NewHairPadronizacaoProps } from "./compositions/NewHairPadronizacao";
 import { NewHairLerFluxo, type NewHairLerFluxoProps } from "./compositions/NewHairLerFluxo";
 import { NewHairEnsinarDependencia, type NewHairEnsinarDependenciaProps } from "./compositions/NewHairEnsinarDependencia";
+import { NewHairContagem, type NewHairContagemProps } from "./compositions/NewHairContagem";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -709,6 +710,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(15.067 * 30)}
             defaultProps={{ durationSeconds: 15.067, video: "newhair/ensinardependencia_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Contagem">
+          <Composition
+            id="NewHairContagem"
+            component={NewHairContagem as React.FC<NewHairContagemProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(11.533 * 30)}
+            defaultProps={{ durationSeconds: 11.533, video: "newhair/contagem_h264.mp4" }}
           />
         </Folder>
 
