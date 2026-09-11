@@ -77,6 +77,7 @@ import { NewHairRapidoMelhor, type NewHairRapidoMelhorProps } from "./compositio
 import { NewHairPesoResponsabilidade, type NewHairPesoResponsabilidadeProps } from "./compositions/NewHairPesoResponsabilidade";
 import { NewHairConfereMesa, type NewHairConfereMesaProps } from "./compositions/NewHairConfereMesa";
 import { NewHairConfiaEnxerto, type NewHairConfiaEnxertoProps } from "./compositions/NewHairConfiaEnxerto";
+import { NewHairPassoFrente, type NewHairPassoFrenteProps } from "./compositions/NewHairPassoFrente";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -930,6 +931,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(11.074 * 30)}
             defaultProps={{ durationSeconds: 11.074, video: "newhair/confiaenxerto_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-PassoFrente">
+          <Composition
+            id="NewHairPassoFrente"
+            component={NewHairPassoFrente as React.FC<NewHairPassoFrenteProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(11.733 * 30)}
+            defaultProps={{ durationSeconds: 11.733, video: "newhair/passofrente_h264.mp4" }}
           />
         </Folder>
 
