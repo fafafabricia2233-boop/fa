@@ -64,6 +64,7 @@ import { NewHairContagem, type NewHairContagemProps } from "./compositions/NewHa
 import { NewHairLimiteSaque, type NewHairLimiteSaqueProps } from "./compositions/NewHairLimiteSaque";
 import { NewHairContinuidade, type NewHairContinuidadeProps } from "./compositions/NewHairContinuidade";
 import { NewHairEgo, type NewHairEgoProps } from "./compositions/NewHairEgo";
+import { NewHairSaidaSala, type NewHairSaidaSalaProps } from "./compositions/NewHairSaidaSala";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -761,6 +762,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(11.133 * 30)}
             defaultProps={{ durationSeconds: 11.133, video: "newhair/ego_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-SaidaSala">
+          <Composition
+            id="NewHairSaidaSala"
+            component={NewHairSaidaSala as React.FC<NewHairSaidaSalaProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(19.833 * 30)}
+            defaultProps={{ durationSeconds: 19.833, video: "newhair/saidasala_h264.mp4" }}
           />
         </Folder>
 
