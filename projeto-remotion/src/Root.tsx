@@ -70,6 +70,7 @@ import { NewHairNivelEquipe, type NewHairNivelEquipeProps } from "./compositions
 import { NewHairRitmoCirurgiao, type NewHairRitmoCirurgiaoProps } from "./compositions/NewHairRitmoCirurgiao";
 import { NewHairLeitura, type NewHairLeituraProps } from "./compositions/NewHairLeitura";
 import { NewHairEnxertos, type NewHairEnxertosProps } from "./compositions/NewHairEnxertos";
+import { NewHairMudaRumo, type NewHairMudaRumoProps } from "./compositions/NewHairMudaRumo";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -815,6 +816,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(10.133 * 30)}
             defaultProps={{ durationSeconds: 10.133, video: "newhair/ritmocirurgiao_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-MudaRumo">
+          <Composition
+            id="NewHairMudaRumo"
+            component={NewHairMudaRumo as React.FC<NewHairMudaRumoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(13.814 * 30)}
+            defaultProps={{ durationSeconds: 13.814, video: "newhair/mudarumo_h264.mp4" }}
           />
         </Folder>
 
