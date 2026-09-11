@@ -73,6 +73,7 @@ import { NewHairEnxertos, type NewHairEnxertosProps } from "./compositions/NewHa
 import { NewHairMudaRumo, type NewHairMudaRumoProps } from "./compositions/NewHairMudaRumo";
 import { NewHairCuidaPaciente, type NewHairCuidaPacienteProps } from "./compositions/NewHairCuidaPaciente";
 import { NewHairConfiar, type NewHairConfiarProps } from "./compositions/NewHairConfiar";
+import { NewHairPreparo, type NewHairPreparoProps } from "./compositions/NewHairPreparo";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -818,6 +819,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(10.133 * 30)}
             defaultProps={{ durationSeconds: 10.133, video: "newhair/ritmocirurgiao_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Preparo">
+          <Composition
+            id="NewHairPreparo"
+            component={NewHairPreparo as React.FC<NewHairPreparoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(17.033 * 30)}
+            defaultProps={{ durationSeconds: 17.033, video: "newhair/preparo_h264.mp4" }}
           />
         </Folder>
 
