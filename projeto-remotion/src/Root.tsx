@@ -63,6 +63,7 @@ import { NewHairEnsinarDependencia, type NewHairEnsinarDependenciaProps } from "
 import { NewHairContagem, type NewHairContagemProps } from "./compositions/NewHairContagem";
 import { NewHairLimiteSaque, type NewHairLimiteSaqueProps } from "./compositions/NewHairLimiteSaque";
 import { NewHairContinuidade, type NewHairContinuidadeProps } from "./compositions/NewHairContinuidade";
+import { NewHairEgo, type NewHairEgoProps } from "./compositions/NewHairEgo";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -748,6 +749,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(16.8 * 30)}
             defaultProps={{ durationSeconds: 16.8, video: "newhair/continuidade_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Ego">
+          <Composition
+            id="NewHairEgo"
+            component={NewHairEgo as React.FC<NewHairEgoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(11.133 * 30)}
+            defaultProps={{ durationSeconds: 11.133, video: "newhair/ego_h264.mp4" }}
           />
         </Folder>
 
