@@ -108,37 +108,31 @@ type Cue = {
 const CUES: Cue[] = [
   {
     start: 5.0,
-    end: 6.4,
+    end: 7.2,
     lines: [
       { text: "Durante uma cirurgia,", size: 30 },
       { text: "ANTECIPAÇÃO muda tudo.", size: 38, gold: true },
     ],
   },
   {
-    start: 7.5,
-    end: 8.1,
-    lines: [{ text: "MATERIAL pronto.", size: 40, gold: true }],
+    start: 7.4,
+    end: 9.2,
+    lines: [
+      { text: "MATERIAL pronto.", size: 32, gold: true },
+      { text: "PRÓXIMA ETAPA organizada.", size: 32, gold: true },
+      { text: "FUNÇÕES alinhadas.", size: 32, gold: true },
+    ],
   },
   {
-    start: 8.1,
-    end: 8.7,
-    lines: [{ text: "PRÓXIMA ETAPA organizada.", size: 34, gold: true }],
-  },
-  {
-    start: 8.7,
-    end: 9.3,
-    lines: [{ text: "FUNÇÕES alinhadas.", size: 38, gold: true }],
-  },
-  {
-    start: 9.5,
-    end: 10.6,
+    start: 9.4,
+    end: 10.4,
     lines: [
       { text: "Na New Hair, a equipe não espera", size: 26 },
       { text: "o fluxo parar para começar a agir.", size: 26, gold: true },
     ],
   },
   {
-    start: 10.8,
+    start: 10.6,
     end: 11.7,
     lines: [
       { text: "Ela acompanha a cirurgia para", size: 26 },
