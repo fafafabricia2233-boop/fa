@@ -62,6 +62,7 @@ import { NewHairLerFluxo, type NewHairLerFluxoProps } from "./compositions/NewHa
 import { NewHairEnsinarDependencia, type NewHairEnsinarDependenciaProps } from "./compositions/NewHairEnsinarDependencia";
 import { NewHairContagem, type NewHairContagemProps } from "./compositions/NewHairContagem";
 import { NewHairLimiteSaque, type NewHairLimiteSaqueProps } from "./compositions/NewHairLimiteSaque";
+import { NewHairContinuidade, type NewHairContinuidadeProps } from "./compositions/NewHairContinuidade";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -735,6 +736,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(14.767 * 30)}
             defaultProps={{ durationSeconds: 14.767, video: "newhair/limitesaque_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Continuidade">
+          <Composition
+            id="NewHairContinuidade"
+            component={NewHairContinuidade as React.FC<NewHairContinuidadeProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(16.8 * 30)}
+            defaultProps={{ durationSeconds: 16.8, video: "newhair/continuidade_h264.mp4" }}
           />
         </Folder>
 
