@@ -61,6 +61,7 @@ import { NewHairPadronizacao, type NewHairPadronizacaoProps } from "./compositio
 import { NewHairLerFluxo, type NewHairLerFluxoProps } from "./compositions/NewHairLerFluxo";
 import { NewHairEnsinarDependencia, type NewHairEnsinarDependenciaProps } from "./compositions/NewHairEnsinarDependencia";
 import { NewHairContagem, type NewHairContagemProps } from "./compositions/NewHairContagem";
+import { NewHairLimiteSaque, type NewHairLimiteSaqueProps } from "./compositions/NewHairLimiteSaque";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -722,6 +723,18 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(11.533 * 30)}
             defaultProps={{ durationSeconds: 11.533, video: "newhair/contagem_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-LimiteSaque">
+          <Composition
+            id="NewHairLimiteSaque"
+            component={NewHairLimiteSaque as React.FC<NewHairLimiteSaqueProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(14.767 * 30)}
+            defaultProps={{ durationSeconds: 14.767, video: "newhair/limitesaque_h264.mp4" }}
           />
         </Folder>
 
