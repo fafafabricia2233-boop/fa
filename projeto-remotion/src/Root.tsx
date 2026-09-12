@@ -77,6 +77,7 @@ import { NewHairPreparo, type NewHairPreparoProps } from "./compositions/NewHair
 import { NewHairFuncoes, type NewHairFuncoesProps } from "./compositions/NewHairFuncoes";
 import { NewHairConferencia, type NewHairConferenciaProps } from "./compositions/NewHairConferencia";
 import { NewHairEficiencia, type NewHairEficienciaProps } from "./compositions/NewHairEficiencia";
+import { KitNewHairPilot } from "./kit-referencia/video";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -822,6 +823,20 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(10.133 * 30)}
             defaultProps={{ durationSeconds: 10.133, video: "newhair/ritmocirurgiao_h264.mp4" }}
+          />
+        </Folder>
+
+        {/* Referencia aprovada do kit (Stephanie integracao v1). So o trecho do
+            gancho, 0-141 frames: e o unico pedaco que roda com os arquivos que
+            chegaram (clip0). Os cortes 1/3/4, o apoio e a logo estao faltando. */}
+        <Folder name="KIT-Referencia">
+          <Composition
+            id="KitNewHairPilotGancho"
+            component={KitNewHairPilot}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={141}
           />
         </Folder>
 

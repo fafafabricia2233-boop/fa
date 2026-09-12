@@ -1,0 +1,113 @@
+{
+  "fps": 30,
+  "duration": 910,
+  "endCard": 719,
+  "hookEnd": 141,
+  "clips": [
+    {
+      "name": "gancho",
+      "src": "clip0.mp4",
+      "sourceStartFrame": 219,
+      "sourceEndFrame": 360,
+      "start": 0,
+      "duration": 141
+    },
+    {
+      "name": "problema",
+      "src": "clip1.mp4",
+      "sourceStartFrame": 986,
+      "sourceEndFrame": 1143,
+      "start": 141,
+      "duration": 157
+    },
+    {
+      "name": "alerta",
+      "src": "clip2.mp4",
+      "sourceStartFrame": 1175,
+      "sourceEndFrame": 1227,
+      "start": 298,
+      "duration": 52
+    },
+    {
+      "name": "solucao",
+      "src": "clip3.mp4",
+      "sourceStartFrame": 1271,
+      "sourceEndFrame": 1453,
+      "start": 350,
+      "duration": 182
+    },
+    {
+      "name": "convite",
+      "src": "clip4.mp4",
+      "sourceStartFrame": 1747,
+      "sourceEndFrame": 1934,
+      "start": 532,
+      "duration": 187
+    }
+  ],
+  "title": [
+    "SUA EQUIPE É",
+    "DEIXADA DE FORA?"
+  ],
+  "titleTop": 270,
+  "captionBottom": 430,
+  "sealBottom": 300,
+  "sfx": [
+    [
+      "digitando.mp3",
+      0.15,
+      0,
+      1.25,
+      0.22
+    ],
+    [
+      "trocat-transicao.mp3",
+      4.466666666666667,
+      0.566666,
+      0.23333333333333334,
+      0.36
+    ],
+    [
+      "tencao.mp3",
+      9.416666666666675,
+      0,
+      2.05,
+      0.65
+    ],
+    [
+      "zoom.mp3",
+      5.566666666666666,
+      0.35,
+      0.7,
+      0.38
+    ],
+    [
+      "click.mp3",
+      11.666666666666666,
+      0.133333,
+      0.133333,
+      0.3
+    ]
+  ],
+  "musicSource": "ORIGEM_FORNECIDA/bittersweet - lofi hip hop type beat (FREE FOR PROFIT USE) - Prod. Riddiman (youtube).mp3",
+  "musicSourceStart": 4.3500000000000005,
+  "musicAttackTimeline": 4.7,
+  "voiceGain": 1.684016466140747,
+  "finalGain": 1.0,
+  "tensionEnd": 11.466666666666676,
+  "brolls": [
+    {
+      "fromFrame": 432,
+      "duration": 100,
+      "src": "apoio.mp4",
+      "mode": "band",
+      "position": "50% 50%"
+    }
+  ],
+  "zoomClip": 1,
+  "zoomFrame": 26,
+  "closeClips": [
+    2
+  ],
+  "titleShift": 90
+}

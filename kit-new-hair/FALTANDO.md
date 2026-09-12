@@ -1,10 +1,28 @@
 # Kit — o que chegou e o que falta
 
 Conferido em 12/09/2026 com `python3 kit-new-hair/conferir-kit.py`.
-**19 dos 35 arquivos do MANIFEST chegaram, todos com SHA-256 batendo.**
-Nenhum arquivo corrompido.
+**20 dos 35 arquivos do MANIFEST chegaram, todos com SHA-256 batendo.**
+Nenhum arquivo corrompido. A prancha `referencias/quadros-Stephanie.jpg`
+chegou no segundo lote.
 
-## Falta (16)
+## Verificação de equivalência (12/09/2026)
+
+O manual (§09) exige conferir a equivalência do ambiente novo pela referência
+renderizada. **Feito, no que os arquivos permitem:** a composição do kit foi
+registrada em `projeto-remotion` como `KitNewHairPilotGancho` e o trecho do
+gancho (frames 0–141, o único que roda com `clip0.mp4`) renderizou aqui com
+Remotion 4.0.434 / React 18 — o kit pede 4.0.410 / React 19 e rodou assim
+mesmo. Resultado em `kit-new-hair/verificacao/`:
+
+- `gancho-frame042.jpg` — título "SUA EQUIPE É / DEIXADA DE FORA?" no topo,
+  dourado na segunda linha, filete, selo no rodapé, base deslocada 90 px.
+  Bate com os quadros de 1,80 s e 3,68 s da prancha.
+- `filme-frame136.jpg` — a transição de filme (§06) nos 7 frames antes da
+  virada do gancho.
+
+Não verificado: som, cortes 2–5, apoio e logo (arquivos ausentes).
+
+## Falta (15)
 
 Em ordem de importância para o trabalho:
 
