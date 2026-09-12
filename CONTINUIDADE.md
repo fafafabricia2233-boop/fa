@@ -45,6 +45,26 @@ Trilha: nenhuma trilha nova foi introduzida — todas usam o áudio que já vinh
 na fita, mais o SFX de digitação. A curadoria de músicas
 (`kit-new-hair/musicas-ataques-por-hash.json`) ainda não foi usada aqui.
 
+## Divergências medidas contra a referência aprovada (12/09/2026)
+
+Comparação de composição entre a prancha `quadros-Stephanie.jpg` e as pranchas
+das nossas peças, geradas com `projeto-remotion/scripts/prancha.sh`. São
+divergências levantadas, **não decisões tomadas** — dependem da dona.
+
+1. **Tamanho do título.** A referência usa 48 px na linha de cima e 72 px na
+   dourada, com a legenda em 34/42: a headline é ~1,7× a legenda. As nossas
+   peças usam 36/44 com legenda até 46 — ou seja, a headline ficou do tamanho
+   da legenda, ou menor. O manual §09 lista exatamente isso como erro a manter
+   corrigido ("Título ficou pequeno para caber | Preservar headline... não
+   rebaixar ao tamanho de legenda").
+2. **Forma do gancho.** A referência CONDENSA a fala num gancho de duas linhas
+   curtas ("SUA EQUIPE É / DEIXADA DE FORA?") e o escreve grande. Nós viemos
+   transcrevendo a frase inteira do roteiro em 4 ou 5 linhas pequenas. O §03
+   autoriza a condensação fiel e proíbe só inventar fato, promessa ou vocativo.
+3. **Tamanhos de legenda.** A referência recente é rígida: 34 off-white + 42
+   dourada, duas linhas, sempre. Nós usamos 26 a 46, às vezes linha solta,
+   uma vez três linhas. O §03 diz que o exemplo recente prevalece.
+
 ## Pendências
 
 - Kit incompleto: faltam 16 dos 35 arquivos do MANIFEST (ver
