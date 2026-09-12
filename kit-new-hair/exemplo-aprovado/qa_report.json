@@ -1,0 +1,109 @@
+{
+  "file": "NH_Stephanie_integracao_equipe_v1.mp4",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1920,
+        "r_frame_rate": "30/1",
+        "start_time": "0.000000",
+        "duration": "30.333333",
+        "nb_frames": "910",
+        "side_data_list": [
+          {}
+        ]
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "r_frame_rate": "0/0",
+        "start_time": "0.000000",
+        "duration": "30.333000",
+        "nb_frames": "1423"
+      }
+    ],
+    "format": {
+      "duration": "30.333333",
+      "size": "33445140"
+    }
+  },
+  "audio_sync_to_master": [
+    {
+      "window": [
+        1,
+        3
+      ],
+      "lag_ms": 0.0,
+      "correlation": 0.9999943799236461
+    },
+    {
+      "window": [
+        10,
+        13
+      ],
+      "lag_ms": 0.0,
+      "correlation": 0.9999521569549551
+    },
+    {
+      "window": [
+        19,
+        22
+      ],
+      "lag_ms": 0.0,
+      "correlation": 0.9999950137843716
+    }
+  ],
+  "decode": "pass",
+  "frame_count": "pass",
+  "expected_film_black_frames": [
+    139,
+    140
+  ],
+  "voice_cuts": [
+    {
+      "name": "gancho",
+      "src": "clip0.mp4",
+      "sourceStartFrame": 219,
+      "sourceEndFrame": 360,
+      "start": 0,
+      "duration": 141
+    },
+    {
+      "name": "problema",
+      "src": "clip1.mp4",
+      "sourceStartFrame": 986,
+      "sourceEndFrame": 1143,
+      "start": 141,
+      "duration": 157
+    },
+    {
+      "name": "alerta",
+      "src": "clip2.mp4",
+      "sourceStartFrame": 1175,
+      "sourceEndFrame": 1227,
+      "start": 298,
+      "duration": 52
+    },
+    {
+      "name": "solucao",
+      "src": "clip3.mp4",
+      "sourceStartFrame": 1271,
+      "sourceEndFrame": 1453,
+      "start": 350,
+      "duration": 182
+    },
+    {
+      "name": "convite",
+      "src": "clip4.mp4",
+      "sourceStartFrame": 1747,
+      "sourceEndFrame": 1934,
+      "start": 532,
+      "duration": 187
+    }
+  ],
+  "scope": "Piloto para revisão do dono, sem publicação. Cenas e som selecionados nesta sessão. Inspeção visual por quadros amostrados, transcrição do áudio montado e medição; não equivale a julgamento perceptual humano integral."
+}

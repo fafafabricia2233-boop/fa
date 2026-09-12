@@ -1,0 +1,293 @@
+{
+  "folder": "stephanie01",
+  "rawPath": "ORIGEM_FORNECIDA/Médico a equipe terceirizada que você contrata exclui os profissionais da sua clínica .MOV",
+  "cuts": [
+    [
+      "gancho",
+      219,
+      360
+    ],
+    [
+      "problema",
+      986,
+      1143
+    ],
+    [
+      "alerta",
+      1175,
+      1227
+    ],
+    [
+      "solucao",
+      1271,
+      1453
+    ],
+    [
+      "convite",
+      1747,
+      1934
+    ]
+  ],
+  "solutionClip": 3,
+  "problemClip": 2,
+  "problemWordEnd": 40.7,
+  "zoomClip": 1,
+  "zoomFrame": 26,
+  "closeClips": [
+    2
+  ],
+  "title": [
+    "SUA EQUIPE É",
+    "DEIXADA DE FORA?"
+  ],
+  "titleShift": 90,
+  "musicFile": "bittersweet - lofi hip hop type beat (FREE FOR PROFIT USE) - Prod. Riddiman (youtube).mp3",
+  "musicAttackSource": 9.05,
+  "broll": {
+    "clip": 3,
+    "offset": 82,
+    "frames": 100,
+    "sourceStart": 2,
+    "source": "organizando/Organizando_mesa.mov"
+  },
+  "rows": [
+    [
+      1,
+      32.8667,
+      33.75,
+      [
+        [
+          "São",
+          34,
+          false
+        ],
+        [
+          "GROSSEIROS",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      1,
+      33.75,
+      35.48,
+      [
+        [
+          "com a equipe",
+          34,
+          false
+        ],
+        [
+          "DA SUA CLÍNICA?",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      1,
+      35.48,
+      36.78,
+      [
+        [
+          "Exclui eles",
+          34,
+          false
+        ],
+        [
+          "DA CIRURGIA?",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      1,
+      36.78,
+      38.1,
+      [
+        [
+          "Não deixa",
+          34,
+          false
+        ],
+        [
+          "ELES ENTRAREM?",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      2,
+      39.1667,
+      40.9,
+      [
+        [
+          "Tem algo de",
+          34,
+          false
+        ],
+        [
+          "ERRADO COM ISSO.",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      3,
+      42.3667,
+      43.34,
+      [
+        [
+          "Na",
+          34,
+          false
+        ],
+        [
+          "NEW HAIR,",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      3,
+      43.34,
+      45.2,
+      [
+        [
+          "a gente soma",
+          34,
+          false
+        ],
+        [
+          "COM A SUA CLÍNICA.",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      3,
+      45.2,
+      46.5,
+      [
+        [
+          "A gente trabalha",
+          34,
+          false
+        ],
+        [
+          "EM CONJUNTO",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      3,
+      46.5,
+      48.4333,
+      [
+        [
+          "com todos os profissionais",
+          34,
+          false
+        ],
+        [
+          "DA SUA CLÍNICA.",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      4,
+      58.2333,
+      59.43,
+      [
+        [
+          "Se você quer",
+          34,
+          false
+        ],
+        [
+          "UMA EQUIPE",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      4,
+      59.43,
+      61.05,
+      [
+        [
+          "que some",
+          34,
+          false
+        ],
+        [
+          "NA SUA CLÍNICA,",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      4,
+      61.05,
+      62.18,
+      [
+        [
+          "que trabalhe",
+          34,
+          false
+        ],
+        [
+          "EM CONJUNTO",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      4,
+      62.18,
+      63.32,
+      [
+        [
+          "com seus",
+          34,
+          false
+        ],
+        [
+          "PROFISSIONAIS,",
+          42,
+          true
+        ]
+      ]
+    ],
+    [
+      4,
+      63.32,
+      64.4667,
+      [
+        [
+          "clique no",
+          34,
+          false
+        ],
+        [
+          "LINK DA BIO.",
+          42,
+          true
+        ]
+      ]
+    ]
+  ]
+}

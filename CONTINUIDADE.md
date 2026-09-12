@@ -1,0 +1,56 @@
+# CONTINUIDADE — edição de vídeo New Hair
+
+Arquivo exigido pelo manual (§09). Anexar numa conversa nova junto com
+`kit-new-hair/GUIA-INTEGRAL.md`. Regra geral fica na seção "Regras gerais";
+ajuste que vale só para uma peça fica na linha daquela peça.
+
+Última atualização: 12/09/2026.
+
+## Regras gerais refinadas (valem para as próximas peças)
+
+- **Marca d'água no fim de toda peça**, com a trilha da fita continuando por
+  baixo (ordem da dona, 25/08/2026). Script: `projeto-remotion/scripts/fechar-peca.sh`.
+- **Offset do render medido, não herdado.** O manual proíbe o −40 ms fixo. A
+  medição neste ambiente deu **42 ms** de atraso do áudio, cinco peças
+  seguidas. Conserto: remux com `-itsoffset -0.042`; conferir volta a 0,0 ms.
+- **Número de `medir-fita.py` é suspeito até olhar o frame.** Já acusou end
+  card que era plano escuro (NewHairEnxertos, NewHairMudaRumo) e split screen
+  que era parede branca (NewHairConfiar).
+- **Fita curta manda no texto.** Se o roteiro pede mais leitura que a fita
+  comporta, corta-se o texto e avisa-se o que saiu (decisão da dona,
+  11/09/2026, peça NewHairCuidaPaciente).
+- **Título centralizado no meio do quadro** no motor de legenda (desde
+  NewHairCusta2). Sai preferencialmente em cima de um corte ou dentro de uma
+  passagem pelo preto.
+- **Digitação do título nunca passa de 2 s**, com o SFX morrendo na última
+  letra (igual ao manual §04).
+
+## Fila / peças entregues nesta frente
+
+Todas pelo motor B (fita já cortada + roteiro escrito), branch
+`claude/remotion-editing-8hmpig`. Nenhuma recebeu aprovação por escrito ainda.
+
+| Peça | Fita | Duração | Observação |
+|---|---|---|---|
+| NewHairEnxertos | enxertos_h264 | 17,533 s | fade a preto em 16,45 s |
+| NewHairMudaRumo | mudarumo_h264 | 13,814 s | cortes 5,25 / 8,45 / 10,40 s |
+| NewHairCuidaPaciente | cuidapaciente_h264 | 6,133 s | **texto cortado**: ficaram de fora "técnica sem atenção também pesa na experiência" e o fechamento da New Hair. Fita é mosaico 3×3 → campo `mosaico` |
+| NewHairConfiar | confiar_h264 | 14,813 s | primeira com `fitaClara`; falso positivo de split screen |
+| NewHairPreparo | preparo_h264 | 17,033 s | título sai na virada de 2,65 s |
+| NewHairFuncoes | funcoes_h264 | 11,433 s | **texto cortado**: ficou de fora "Porque você não deveria gastar atenção organizando quem deveria estar te dando suporte" |
+| NewHairConferencia | conferencia_h264 | 14,600 s | roteiro coube inteiro |
+| NewHairEficiencia | eficiencia_h264 | 16,067 s | gancho de 112 caracteres em 5 linhas |
+
+Trilha: nenhuma trilha nova foi introduzida — todas usam o áudio que já vinha
+na fita, mais o SFX de digitação. A curadoria de músicas
+(`kit-new-hair/musicas-ataques-por-hash.json`) ainda não foi usada aqui.
+
+## Pendências
+
+- Kit incompleto: faltam 16 dos 35 arquivos do MANIFEST (ver
+  `kit-new-hair/FALTANDO.md`). Sem as duas referências MP4 não dá pra comparar
+  ritmo e som com o resultado aprovado.
+- Banco de apoios no Drive ainda não configurado (§12) — falta o link.
+- Identidade da Fabrícia Satza não definida: o motor está cravado na New Hair.
+- Sem Whisper neste ambiente: fluxo A depende de transcrição fornecida ou de
+  instalar o transcritor.
