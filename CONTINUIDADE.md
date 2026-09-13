@@ -79,6 +79,10 @@ dBTP em loudnorm de duas passadas.
 Remotion renderiza imagem MUDA e o áudio entra no mux. Medido: 0 ms nas três
 janelas. É exatamente por isso que o §07 manda montar nessa ordem.
 
+**v3 (13/09):** mais 30% no grave. Ganho 0,455 → 0,319 — o stem sozinho caiu
+6,2 dB desde a v1. Só o áudio refeito de novo. Ainda está 3× acima do ganho
+0,11 que o §05 registra como reprovado por inaudível.
+
 **v2 (13/09):** a dona pediu o SFX de tensão 30% mais baixo. Ganho 0,65 → 0,455,
 só o áudio refeito — a imagem aprovada foi reaproveitada, como o §02 manda
 ("revisão pequena continua pequena"). Master a −16,2 LUFS / −1,5 dBTP, offset 0
