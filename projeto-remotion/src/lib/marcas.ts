@@ -15,6 +15,7 @@
    ============================================================================= */
 
 import { loadCormorantNH, loadMontserratNH } from "./newhairFonts";
+import { loadFabriciaDisplay, loadFabriciaTexto } from "./fabriciaFonts";
 
 export type Marca = {
   id: string;
@@ -31,6 +32,8 @@ export type Marca = {
 
   fontes: {
     corpo: () => { fontFamily: string };
+    /** face de título/display. Sem ela, o título usa a do corpo. */
+    display?: () => { fontFamily: string };
     /** usada em frase de impacto pontual; opcional */
     serif?: () => { fontFamily: string };
   };
@@ -51,6 +54,22 @@ export type Marca = {
     paddingLateral: number;
   };
 
+  /**
+   * Assinatura permanente no alto do quadro, um rótulo em cada canto. É o que
+   * identifica a peça quando ela é printada e recompartilhada sem o perfil
+   * junto. null = esta marca não usa.
+   */
+  cabecalho: {
+    esquerda: string;
+    /** muda por tema: "Queda capilar", "Alopecia", "Tricoscopia"… */
+    direita: string;
+    tamanho: number;
+    /** em px, já convertido do tracking em em */
+    letterSpacing: number;
+    top: number;
+    opacidade: number;
+  } | null;
+
   /** linha de compliance. texto null = esta marca não usa selo. */
   selo: {
     texto: string | null;
@@ -60,10 +79,15 @@ export type Marca = {
     opacidade: number;
   };
 
-  /** animação final. arquivo null = esta marca ainda não tem logo no projeto. */
+  /** fechamento da peça. arquivo null = esta marca não tem assinatura final. */
   logo: {
     arquivo: string | null;
     frames: number;
+    /** "video" = animação; "imagem" = logo parada sobre um fundo da marca */
+    tipo: "video" | "imagem";
+    /** só para tipo "imagem": cor de fundo e largura da logo em px */
+    fundo?: string;
+    largura?: number;
   };
 
   /**
@@ -92,6 +116,7 @@ export const NEW_HAIR: Marca = {
     corpo: loadMontserratNH,
     serif: loadCormorantNH,
   },
+  cabecalho: null,
   titulo: {
     top: 270,
     tamanhoLinha: 48,
@@ -116,68 +141,105 @@ export const NEW_HAIR: Marca = {
     // mesmo asset da marca d'água: 191 frames, conferido contra o manual §06
     arquivo: "newhair/marca_dagua_30fps.mp4",
     frames: 191,
+    tipo: "video",
   },
   pendencias: [],
 };
 
 /* -----------------------------------------------------------------------------
-   FABRÍCIA SATZA — a gramática de montagem já está pronta (é a mesma); o que
-   falta é a identidade dela.
+   FABRÍCIA SATZA — identidade recebida em 13/09/2026 (ZIP oficial: paleta com
+   tabela de contraste, três faces de fonte, logo em cinco cores, manual e tom
+   de voz). Instalada em marcas/fabricia-satza/.
 
-   NÃO herdar a paleta da New Hair por preguiça: peça dela com azul-marinho e
-   dourado da clínica é peça da clínica com o rosto errado. Os campos abaixo
-   ficam com os valores da NEW HAIR só como ESQUELETO de geometria (que é
-   medida de tela, não identidade) — cor, fonte, selo e logo estão declarados
-   como pendência e o motor se recusa a renderizar até serem preenchidos.
+   O manual dela é feito pra CARROSSEL 1080×1440 sobre fundo claro. Vídeo é
+   outro suporte: o texto mora sobre imagem, não sobre papel. As escolhas
+   abaixo são a tradução, e cada uma sai de uma regra escrita no manual dela —
+   nenhuma é gosto:
 
-   Hipótese levantada em 12/09, NÃO confirmada: dois carrosséis deste
-   repositório usam uma paleta diferente da New Hair — preto #0a0a0a, dourado
-   mais claro #C9A96E, azul profundo #1a2a6c, display "Catchy Mager". Mas
-   esses arquivos estão assinados @newhair_fue, então não servem como prova da
-   identidade dela. Precisa de um carrossel dela de verdade.
+   · FUNDO/VÉU = café profundo #28201F. O manual dá a ele dois papéis: "texto
+     sobre claro E fundo escuro neutro". É o escuro sóbrio; o vinho ameixa é o
+     escuro de virada, forte demais pra ficar a peça inteira no ar.
+
+   · DESTAQUE = champagne #C9B39B, não terracota. Esta é a regra que o manual
+     dela mais insiste, porque já quebrou uma versão do CSS: "taupe e champagne
+     se invertem conforme o fundo". Sobre escuro, champagne dá 7,9:1 e vira o
+     acento; marrom terracota cai pra 2,8:1 (reprovado) e terracota suave pra
+     4,0:1 — que só passa de 45px pra cima. Legenda de 42px em terracota seria
+     exatamente o erro que ela documentou.
+
+   · TEXTO = branco suave #FCFAF7, 15,3:1 sobre café.
+
+   · TIPOGRAFIA: título na face Alt (o "a" de um andar, que o manual reserva
+     pra display) e legenda na Light. A ênfase é peso 500 REAL (face Medium),
+     nunca negrito sintético.
+
+   · TAMANHOS: o piso dela é 37px em texto corrido — a legenda da New Hair
+     (34/42) fica ABAIXO desse piso e não serve aqui. Então legenda 45/52
+     ("texto" e "subtítulo" da escala dela) e título 52/88 ("subtítulo" e
+     "título"), mantendo a headline ~1,7x a legenda, que é a proporção do
+     padrão aprovado.
+
+   · MARGEM 80px, a da grade dela (a New Hair usa 90/100).
+
+   · CABEÇALHO: "FABRÍCIA SATZA TRICOLOGIA" à esquerda e o eixo do tema à
+     direita, 22px, tracking .30em (= 6,6px). O manual diz "todo slide, sem
+     exceção" — é o que faz a peça continuar identificada quando é printada e
+     recompartilhada sem o perfil junto. O campo `direita` muda por peça.
+
+   · FIM: ela não tem animação de logo, tem lockup parado. Então o fechamento é
+     a logo em marfim sobre café profundo. 90 frames = 3 s.
+
+   · SELO: não tem. Peça de tricologia dela não é ato cirúrgico da clínica, e
+     o selo da New Hair não atravessa pra cá.
 ----------------------------------------------------------------------------- */
 export const FABRICIA: Marca = {
   id: "fabricia",
   nome: "Fabrícia Satza",
   cores: {
-    fundo: "#0B2436",
-    destaque: "#C9A24A",
-    texto: "#F7F3EA",
+    fundo: "#28201F", // café profundo
+    destaque: "#C9B39B", // champagne — o acento sobre escuro
+    texto: "#FCFAF7", // branco suave
   },
   fontes: {
-    corpo: loadMontserratNH,
+    corpo: loadFabriciaTexto,
+    display: loadFabriciaDisplay,
+  },
+  cabecalho: {
+    esquerda: "FABRÍCIA SATZA TRICOLOGIA",
+    direita: "SAÚDE CAPILAR",
+    tamanho: 22,
+    letterSpacing: 6.6, // .30em a 22px
+    top: 64, // grade dela: cabeçalho a 64px do topo
+    opacidade: 0.75,
   },
   titulo: {
-    top: 270,
-    tamanhoLinha: 48,
-    tamanhoRemate: 72,
-    letterSpacing: 2.4,
-    paddingLateral: 90,
+    top: 170, // grade dela: conteúdo começa a 170px do topo
+    tamanhoLinha: 52, // subtítulo
+    tamanhoRemate: 88, // título
+    letterSpacing: 1.5,
+    paddingLateral: 80, // margem lateral da grade dela
   },
   legenda: {
     bottom: 430,
-    corpo: 34,
-    destaque: 42,
-    paddingLateral: 100,
+    corpo: 45, // "texto" — e o piso dela é 37
+    destaque: 52, // "subtítulo"
+    paddingLateral: 80,
   },
   selo: {
     texto: null,
     bottom: 300,
-    tamanho: 20,
-    letterSpacing: 1.2,
-    opacidade: 0.6,
+    tamanho: 22,
+    letterSpacing: 6.6,
+    opacidade: 0.75,
   },
   logo: {
-    arquivo: null,
-    frames: 0,
+    arquivo: "marcas/fabricia/logo/fs-lockup-marfim.png",
+    frames: 90,
+    tipo: "imagem",
+    fundo: "#28201F",
+    largura: 620,
   },
-  pendencias: [
-    "cores: fundo, destaque e texto (os valores aqui são os da New Hair, de esqueleto)",
-    "fontes: família do corpo e do destaque + os arquivos em public/marcas/fabricia/fontes/",
-    "selo: se a peça dela leva linha de compliance e qual é o texto exato",
-    "logo/assinatura do fim: arquivo e duração em frames",
-    "referência aprovada: pelo menos um carrossel ou vídeo dela pra comparar",
-  ],
+  pendencias: [],
 };
 
 export const MARCAS: Record<string, Marca> = {

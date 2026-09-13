@@ -71,9 +71,11 @@ A identidade saiu do código das peças e virou dado em
 `projeto-remotion/src/lib/marcas.ts`. Cada peça declara de quem ela é.
 
 - `newhair` — completa, com os números do exemplo aprovado.
-- `fabricia` — **pendente**. Enquanto houver pendência, o motor `ReelFalado`
-  se recusa a renderizar e mostra na tela o que falta. Isso é proposital: peça
-  dela com a paleta da clínica é peça da clínica com o rosto errado.
+- `fabricia` — **completa desde 13/09/2026**. Kit oficial em
+  `marcas/fabricia-satza/`. Café profundo de véu, champagne de destaque (não
+  terracota: sobre escuro ele cai pra 4,0:1 e o manual dela documenta esse erro),
+  branco suave de texto, fonte própria em três faces, cabeçalho permanente,
+  lockup parado no fim e sem selo.
 
 Skill nova: `.claude/skills/editor-fabricia-satza/SKILL.md`, irmã da
 `editor-new-hair` — mesma gramática de montagem, identidade separada.
@@ -89,8 +91,7 @@ igual, e a mesma peça declarada como `fabricia` se recusa a sair.
   ritmo e som com o resultado aprovado.
 - Banco de apoios no Drive: **configurado** em 13/09 (22 vídeos sondados, 66
   quadros lidos). Ver `CONFIGURACAO-NEW-HAIR.md` e `banco-apoios/CATALOGO.md`.
-- Identidade da Fabrícia Satza: **ainda falta** — cores, fontes, selo (se
-  houver), assinatura do fim e uma referência aprovada dela. Basta um carrossel
-  dela pra eu extrair.
+- Fabrícia Satza: identidade instalada e conferida em render. Falta só uma
+  **referência aprovada em vídeo** dela — a primeira peça vai servir de piloto.
 - Sem Whisper neste ambiente: fluxo A depende de transcrição fornecida ou de
   instalar o transcritor.

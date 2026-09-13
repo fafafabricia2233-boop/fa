@@ -30,6 +30,7 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Img,
   OffthreadVideo,
   Sequence,
   interpolate,
@@ -181,7 +182,9 @@ const Digitada: React.FC<{
   familia: string;
   letterSpacing: number;
   corCursor: string;
-}> = ({ texto, inicio, fim, size, cor, peso, familia, letterSpacing, corCursor }) => {
+  /** sombra na cor da MARCA — não pode ficar cravada no azul da New Hair */
+  sombra: string;
+}> = ({ texto, inicio, fim, size, cor, peso, familia, letterSpacing, corCursor, sombra }) => {
   const f = useCurrentFrame();
   const n = Math.round(lerp(f, [inicio * 30, fim * 30], [0, texto.length]));
   const escrevendo = f >= inicio * 30 && f < fim * 30;
@@ -195,7 +198,7 @@ const Digitada: React.FC<{
         letterSpacing,
         lineHeight: 1,
         marginBottom: 4,
-        textShadow: "0 2px 18px rgba(11,36,54,0.9)",
+        textShadow: `0 2px 18px ${sombra}`,
         textAlign: "center",
       }}
     >
@@ -324,6 +327,8 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
 
   const corpo = m.fontes.corpo();
   const serif = m.fontes.serif ? m.fontes.serif() : corpo;
+  /* face de display pro título; quem não tem, usa a do corpo */
+  const display = m.fontes.display ? m.fontes.display() : corpo;
 
   const tituloOpacity = lerp(frame, [plano.hookEnd - 14, plano.hookEnd - 7], [1, 0]);
   const ativo = frame < plano.endCard;
@@ -369,17 +374,33 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
         </Sequence>
       ))}
 
-      {/* logo limpa: sem legenda, selo, título ou véu por cima */}
+      {/* fechamento limpo: sem legenda, selo, cabeçalho, título ou véu por cima.
+          Duas formas: animação (New Hair) ou lockup parado (Fabrícia). */}
       {m.logo.arquivo && (
         <Sequence
           from={plano.endCard}
           durationInFrames={plano.duration - plano.endCard}
         >
-          <OffthreadVideo
-            src={staticFile(m.logo.arquivo)}
-            muted
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          {m.logo.tipo === "video" ? (
+            <OffthreadVideo
+              src={staticFile(m.logo.arquivo)}
+              muted
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          ) : (
+            <AbsoluteFill
+              style={{
+                backgroundColor: m.logo.fundo ?? m.cores.fundo,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Img
+                src={staticFile(m.logo.arquivo)}
+                style={{ width: m.logo.largura ?? 620, height: "auto" }}
+              />
+            </AbsoluteFill>
+          )}
         </Sequence>
       )}
 
@@ -406,6 +427,35 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
               background: `linear-gradient(to top,${rgbFundo(0.62)} 0%,${rgbFundo(0)} 45%)`,
             }}
           />
+
+          {m.cabecalho && (
+            <div
+              style={{
+                position: "absolute",
+                top: m.cabecalho.top,
+                left: m.titulo.paddingLateral,
+                right: m.titulo.paddingLateral,
+                display: "flex",
+                justifyContent: "space-between",
+                fontFamily: corpo.fontFamily,
+                fontWeight: 300,
+                fontSize: m.cabecalho.tamanho,
+                letterSpacing: m.cabecalho.letterSpacing,
+                color: m.cores.destaque,
+                opacity:
+                  m.cabecalho.opacidade *
+                  lerp(
+                    frame,
+                    [12, 26, plano.endCard - 12, plano.endCard - 2],
+                    [0, 1, 1, 0]
+                  ),
+                textShadow: `0 1px 14px ${rgbFundo(0.85)}`,
+              }}
+            >
+              <span>{m.cabecalho.esquerda}</span>
+              <span>{m.cabecalho.direita}</span>
+            </div>
+          )}
 
           {frame < plano.hookEnd && (
             <div
@@ -439,9 +489,10 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
                 size={m.titulo.tamanhoLinha}
                 cor={m.cores.texto}
                 peso={300}
-                familia={corpo.fontFamily}
+                familia={display.fontFamily}
                 letterSpacing={m.titulo.letterSpacing}
                 corCursor={m.cores.destaque}
+                sombra={rgbFundo(0.9)}
               />
               <Digitada
                 texto={plano.title[1]}
@@ -450,9 +501,10 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
                 size={m.titulo.tamanhoRemate}
                 cor={m.cores.destaque}
                 peso={500}
-                familia={corpo.fontFamily}
+                familia={display.fontFamily}
                 letterSpacing={m.titulo.letterSpacing}
                 corCursor={m.cores.destaque}
+                sombra={rgbFundo(0.9)}
               />
               {/* o filete cresce junto com a última linha: é parte da escrita */}
               <div

@@ -80,6 +80,7 @@ import { NewHairEficiencia, type NewHairEficienciaProps } from "./compositions/N
 import { KitNewHairPilot } from "./kit-referencia/video";
 import { ReelFalado } from "./compositions/ReelFalado";
 import { PLANO_KIT, CUES_KIT } from "./kit-referencia/adaptar";
+import { PLANO_TESTE, CUES_TESTE } from "./compositions/testeFabricia";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -843,16 +844,16 @@ export const RemotionRoot: React.FC = () => {
             durationInFrames={141}
             defaultProps={{ marca: "newhair", plano: PLANO_KIT, cues: CUES_KIT }}
           />
-          {/* Mesma peca declarada como Fabricia: tem que se RECUSAR a renderizar
-              e listar o que falta de identidade. */}
+          {/* Tokens da marca Fabricia Satza sobre fita neutra de teste. Nao e
+              peca — e a conferencia de cor, fonte, cabecalho, escala e fecho. */}
           <Composition
-            id="ReelFaladoFabricia"
+            id="TesteMarcaFabricia"
             component={ReelFalado}
             width={1080}
             height={1920}
             fps={30}
-            durationInFrames={141}
-            defaultProps={{ marca: "fabricia", plano: PLANO_KIT, cues: CUES_KIT }}
+            durationInFrames={270}
+            defaultProps={{ marca: "fabricia", plano: PLANO_TESTE, cues: CUES_TESTE }}
           />
           <Composition
             id="KitNewHairPilotGancho"

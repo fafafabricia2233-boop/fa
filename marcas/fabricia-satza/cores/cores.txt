@@ -1,0 +1,27 @@
+FABRÍCIA SATZA TRICOLOGIA — PALETA OFICIAL
+
+Branco suave        #FCFAF7    fundo padrão
+Marfim quente       #F4EFE8    fundo alternado
+Taupe               #A99B91    fio de 1px sobre claro
+Champagne           #C9B39B    acento e fio sobre escuro
+Terracota suave     #B06F53    destaque de 45px pra cima
+Marrom terracota    #8A5A44    números, rótulos, palavra destacada
+Vinho ameixa        #4A2634    fundo de virada, o mais marcante
+Café profundo       #28201F    texto sobre claro, e virada sóbria
+
+A logo original vem em #8B5C46 — dois pontos de diferença do marrom
+terracota da paleta. Na prática, a mesma cor.
+
+CONTRASTE (mínimo 4,5:1 para texto corrido, 3,0:1 de 45px pra cima)
+
+                     claro    café    vinho
+Café profundo         15,3      —       —
+Vinho ameixa          12,5      —       —
+Marrom terracota       5,6     2,8     2,2
+Terracota suave        3,8     4,0     3,2
+Taupe                  2,6     5,9     4,8
+Champagne              1,9     7,9     6,4
+Branco suave            —     15,3    12,5
+
+Taupe e champagne se invertem conforme o fundo: sobre claro são pálidos
+demais para texto, sobre escuro viram o acento.

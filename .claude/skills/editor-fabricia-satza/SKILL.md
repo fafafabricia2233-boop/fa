@@ -13,22 +13,44 @@ marcas."*
 Fonte da gramática: `kit-new-hair/GUIA-INTEGRAL.md`, seções 02 a 09. Leia antes
 de editar. O que muda pra ela está aqui.
 
-## Antes de tudo: a identidade dela ainda não existe no projeto
+## A identidade (recebida em 13/09/2026, instalada)
 
-`src/lib/marcas.ts` tem o perfil `fabricia` com a lista de pendências, e o motor
-`ReelFalado` **se recusa a renderizar** enquanto elas existirem — mostra um
-cartão preto listando o que falta. Isso é de propósito. Peça dela saindo com
-azul-marinho e dourado da clínica é peça da clínica com o rosto errado, e
-ninguém percebe até publicar.
+Kit oficial em `marcas/fabricia-satza/` — paleta com tabela de contraste, três
+faces de fonte, logo em cinco cores, manual e tom de voz. O perfil executável
+está em `projeto-remotion/src/lib/marcas.ts` sob `fabricia`.
 
-Falta: cores, fontes (família + arquivos), se tem selo e qual o texto, logo do
-fim, e pelo menos uma referência aprovada dela pra comparar. Basta um carrossel
-dela — arquivo, print ou link — que eu extraio e preencho.
+O manual dela foi escrito pra **carrossel 1080×1440 sobre fundo claro**. Vídeo é
+outro suporte: o texto mora sobre imagem. A tradução já está feita no perfil, e
+cada escolha sai de uma regra escrita no manual dela:
 
-**Nunca** preencher esses campos por semelhança nem por hipótese. Em 12/09 apareceu
-uma paleta candidata em dois carrosséis deste repositório (preto `#0a0a0a`,
-dourado `#C9A96E`, azul `#1a2a6c`, display *Catchy Mager*), mas os arquivos
-estão assinados `@newhair_fue` — não prova nada sobre a marca dela.
+| No vídeo | Valor | Por quê |
+|---|---|---|
+| Véu / fundo | café profundo `#28201F` | o manual dá a ele o papel de "fundo escuro neutro"; o vinho ameixa é o escuro de virada, forte demais pra ficar a peça inteira no ar |
+| Destaque | champagne `#C9B39B` | **a regra que ela mais insiste**: taupe e champagne se invertem conforme o fundo. Sobre escuro, champagne dá 7,9:1; marrom terracota cai pra 2,8:1 e terracota suave pra 4,0:1, que só passa de 45px pra cima |
+| Texto | branco suave `#FCFAF7` | 15,3:1 sobre café |
+| Título | face **Alt** (o `a` de um andar), 52 e 88px | a Alt é a face de display dela |
+| Legenda | face Light, 45 e 52px | o piso dela é 37px em texto corrido — a legenda da New Hair (34/42) fica **abaixo** desse piso e não serve aqui |
+| Ênfase | peso 500 real (face Medium) | negrito sintético destrói o desenho da letra; é proibido no manual dela |
+| Margem | 80px | a grade dela |
+| Cabeçalho | `FABRÍCIA SATZA TRICOLOGIA` + eixo do tema, 22px, tracking .30em | "todo slide, sem exceção" — é o que mantém a peça identificada quando é printada e recompartilhada sem o perfil |
+| Fecho | lockup marfim sobre café, 90 frames | ela não tem animação de logo, tem lockup parado |
+| Selo | **não tem** | peça de tricologia dela não é ato cirúrgico da clínica |
+
+O campo `cabecalho.direita` muda por peça: `Queda capilar`, `Alopecia`,
+`Tricoscopia`, `Saúde capilar`.
+
+## O tom de voz manda no texto da tela
+
+`marcas/fabricia-satza/manual/Tom de voz.md`. O que muda a edição:
+
+- **Frase curta, ponto final. Sem exclamação, sem emoji, sem "arrasta pra ver".**
+- **Sem promessa de resultado** — é conteúdo clínico, não anúncio.
+- O gancho promete **virada de entendimento**, não solução: *"Seu cabelo não
+  caiu de uma vez"*, não *"3 dicas para parar a queda"*.
+- O fim **convida**, não empurra: *"vale investigar"*, não *"AGENDE JÁ"*.
+- **Nunca atacar outro profissional** — critica-se a conduta, não quem aplica.
+- Se o texto não coube, **encurta o texto**; diminuir a fonte é a decisão que
+  estraga a peça.
 
 ## O que a peça dela NÃO leva
 

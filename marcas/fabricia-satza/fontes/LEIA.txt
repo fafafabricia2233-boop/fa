@@ -1,0 +1,27 @@
+FABRÍCIA SATZA — A FONTE
+
+instalar/   os .ttf. Instale estes no computador ou no celular para usar a
+            fonte no Canva, no Word, no Illustrator, nos stories.
+web/        os .woff2. Só para site e para os templates das peças.
+
+AS TRÊS FACES
+
+FabriciaSatzaLight-Regular      peso 300, o "a" de dois andares
+                                texto corrido e rótulos
+FabriciaSatzaLightAlt-Regular   peso 300, o "a" de um andar
+                                títulos e display
+FabriciaSatzaMedium-Regular     peso 500
+                                a ênfase — dois passos abaixo do negrito real
+
+Nunca use negrito sintético (o botão "B" de um programa que não tenha a face
+Medium instalada). O programa engorda a forma artificialmente e destrói o
+desenho da letra.
+
+LICENÇA
+
+Derivada da Jost* (indestructible type*) sob SIL Open Font License 1.1.
+Uso comercial liberado, inclusive para clientes.
+
+A única obrigação: quando você entregar o ARQUIVO da fonte para alguém — um
+designer, uma agência —, mande o OFL.txt junto. Publicar posts e vídeos
+feitos com ela não exige nada.
