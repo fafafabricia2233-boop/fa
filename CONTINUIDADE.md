@@ -8,6 +8,11 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 ## Regras gerais refinadas (valem para as próximas peças)
 
+- **Ganho da tensão padronizado em 0,319** (ordem da dona, 13/09/2026, depois de
+  dois cortes de 30% na peça NH_agilidade). Substitui os 0,65 do §05 do manual.
+  Junto com os outros ganhos de stem, mora em `projeto-remotion/padroes-audio.json`
+  e vale para as duas marcas. Piso conhecido: 0,11 foi reprovado por inaudível.
+
 - **Marca d'água no fim de toda peça**, com a trilha da fita continuando por
   baixo (ordem da dona, 25/08/2026). Script: `projeto-remotion/scripts/fechar-peca.sh`.
 - **Offset do render medido, não herdado.** O manual proíbe o −40 ms fixo. A

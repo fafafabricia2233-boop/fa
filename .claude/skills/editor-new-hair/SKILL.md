@@ -88,6 +88,23 @@ cinco peças seguidas. O conserto é remuxar com `-itsoffset -0.042` no áudio e
 conferir que a correlação volta a 0,0 ms. Medir sempre; o número pode mudar
 com a versão do Remotion.
 
+## Ganhos de SFX: um lugar só
+
+`projeto-remotion/padroes-audio.json`. Vale para **toda peça nova das duas
+marcas** — quem monta mix lê de lá em vez de repetir número no script.
+
+O que mudou em relação ao manual: a **tensão é 0,319**, não os 0,65 do §05. A
+dona pediu −30% e depois mais −30% na peça NH_agilidade, em 13/09/2026, e então
+mandou padronizar. Pelo §01 ("correção explícita mais recente da responsável
+prevalece"), 0,319 é o padrão e 0,65 virou histórico. O stem sozinho está 6,2 dB
+abaixo do que o manual descreve.
+
+Não descer mais sem pedido: 0,11 já foi reprovado por ficar inaudível, e um SFX
+que não se ouve mas continua somando no mix é pior que SFX nenhum.
+
+Cada ganho vale para o **arquivo de mesmo SHA-256**, igual ao critério do kit
+para ataques de música. Trocou o arquivo, remede antes de reutilizar.
+
 ## Campos de CONFIG criados aqui (motor B)
 
 - `mosaico: true` — a fita é um mosaico de vários clipes ao mesmo tempo; véu

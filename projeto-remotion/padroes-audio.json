@@ -1,0 +1,74 @@
+{
+  "_leia": [
+    "GANHOS PADRÃO DOS STEMS — valem para TODA peça nova, das duas marcas.",
+    "Quem monta mix lê daqui em vez de repetir número; assim a decisão vive num",
+    "lugar só e não se perde entre scripts.",
+    "",
+    "Cada ganho vale para o ARQUIVO de mesmo SHA-256. É o mesmo critério que o",
+    "kit usa para os ataques de música: número medido não é constante universal.",
+    "Se o arquivo do SFX mudar, o ganho se remede antes de reutilizar.",
+    "",
+    "Sobre o conflito com o manual: o §05 registra tensão 0,65 como 'referência",
+    "deste arquivo'. A dona pediu −30% em 13/09 e mais −30% no mesmo dia, e então",
+    "mandou padronizar. Pelo §01 ('correção explícita mais recente da responsável",
+    "prevalece'), 0,319 passa a ser o padrão e 0,65 vira histórico."
+  ],
+
+  "tencao": {
+    "ganho": 0.319,
+    "arquivo": "kit-new-hair/exemplo-aprovado/public/tencao.mp3",
+    "sha256": "b3e491a532b225cb5696313d799a81a48680a4099bb3725a9652067691f6b0dc",
+    "fonte_segundos": [0, 2.05],
+    "regra": "termina na ÚLTIMA PALAVRA DO PROBLEMA; entra em (fim_da_palavra − 2,05)",
+    "historico": "0,65 (manual §05) → 0,455 → 0,319, padronizado em 13/09/2026",
+    "piso_conhecido": "0,11 foi reprovado no passado por ficar inaudível — não descer até lá"
+  },
+
+  "digitando": {
+    "ganho": 0.22,
+    "arquivo": "projeto-remotion/public/newhair/digitando.mp3",
+    "fonte_segundos": [0, 1.25],
+    "regra": "começa na 1ª letra do título e morre na última; teto de 2 s de digitação"
+  },
+
+  "filme": {
+    "ganho": 0.36,
+    "arquivo": "kit-new-hair/exemplo-aprovado/public/trocat-transicao.mp3",
+    "fonte_segundos": [0.566666, 0.8],
+    "regra": "7 frames antes da virada do gancho"
+  },
+
+  "click": {
+    "ganho": 0.3,
+    "arquivo": "kit-new-hair/exemplo-aprovado/public/click.mp3",
+    "fonte_segundos": [0.133333, 0.266666],
+    "regra": "entrada da solução; não multiplicar cliques sem necessidade"
+  },
+
+  "sting_marca": {
+    "ganho": 0.9,
+    "arquivo": "projeto-remotion/public/newhair/marca_dagua_30fps.mp4",
+    "regra": "junto com a logo, no frame do end card"
+  },
+
+  "zoom": {
+    "ganho": 0.38,
+    "arquivo": "AUSENTE — zoom.mp3 não veio no kit",
+    "fonte_segundos": [0.35, 1.05],
+    "regra": "só existe se acompanhar movimento perceptível; sem o arquivo, não se inventa som"
+  },
+
+  "musica": {
+    "ganho": 0.1,
+    "arquivo": "AUSENTE — a curadoria não chegou, só a lista de ataques por hash",
+    "regra": "o recorte começa em (ataque − virada do gancho); alternar faixa entre vídeos e registrar a usada"
+  },
+
+  "normalizacao": {
+    "alvo_LUFS": -16,
+    "teto_dBTP": -1.5,
+    "LRA": 11,
+    "passadas": 2,
+    "por_que_duas": "a de uma passada errou 1,6 LU na primeira peça falada (13/09)"
+  }
+}
