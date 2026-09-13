@@ -81,6 +81,7 @@ import { KitNewHairPilot } from "./kit-referencia/video";
 import { ReelFalado } from "./compositions/ReelFalado";
 import { PLANO_KIT, CUES_KIT } from "./kit-referencia/adaptar";
 import { PLANO_TESTE, CUES_TESTE } from "./compositions/testeFabricia";
+import { PLANO_AGILIDADE, CUES_AGILIDADE } from "./compositions/planoAgilidade";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -832,6 +833,18 @@ export const RemotionRoot: React.FC = () => {
         {/* Referencia aprovada do kit (Stephanie integracao v1). So o trecho do
             gancho, 0-141 frames: e o unico pedaco que roda com os arquivos que
             chegaram (clip0). Os cortes 1/3/4, o apoio e a logo estao faltando. */}
+        <Folder name="NewHair-Agilidade">
+          <Composition
+            id="NewHairAgilidade"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={730}
+            defaultProps={{ marca: "newhair", plano: PLANO_AGILIDADE, cues: CUES_AGILIDADE }}
+          />
+        </Folder>
+
         <Folder name="KIT-Referencia">
           {/* Motor novo (ReelFalado) rodando o plano aprovado: prova que a
               gramatica foi portada sem perder o padrao. Mesmos 141 frames. */}

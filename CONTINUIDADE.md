@@ -45,6 +45,43 @@ Trilha: nenhuma trilha nova foi introduzida — todas usam o áudio que já vinh
 na fita, mais o SFX de digitação. A curadoria de músicas
 (`kit-new-hair/musicas-ataques-por-hash.json`) ainda não foi usada aqui.
 
+## Primeira peça pelo FLUXO A (13/09/2026) — NH_agilidade_v1
+
+Primeira vez que o caminho completo do manual rodou aqui: transcrever, escolher
+as falas, cortar, montar, apoio, render mudo, mix dos stems, mux e medição.
+
+**Fitas.** Duas, e elas não são equivalentes:
+- `IMG_9335.mov` — 15,7 s, **1080×1920 nativo**. Deu o gancho e a solução.
+- `copy_A479…mov` — 52,2 s, **480×854**. É uma cópia comprimida (o nome começa
+  com "copy_"). Deu o problema e o fecho, ampliada 2,25× com lanczos. **Se o
+  original aparecer, vale refazer: metade da peça ganha nitidez.**
+
+**Ordem.** A fala não veio em ordem de peça. O gancho mais forte estava no meio
+da fita B; o §02 autoriza abrir por ele. Montagem: gancho (B) → problema (A) →
+solução (B) → fecho (A).
+
+**Título.** A primeira versão ("SEPARAR RÁPIDO / NÃO É SEPARAR BEM.") estourava
+a caixa — 18 caracteres a 72 px não cabem em 900 px úteis. Redistribuí as
+linhas em vez de reduzir o corpo (§09: headline rebaixada ao tamanho de legenda
+é erro catalogado), e de quebra ficou literal.
+
+**Apoio.** Banda de folículos na placa (`contagem-foliculo/contando_foliculo`,
+6,0→9,6 s) sobre o corte do problema — que é justamente o de menor resolução.
+Resolve duas coisas: prova a fala ("machucar o folículo") e tira o corte mais
+fraco da tela cheia.
+
+**Som.** Voz equilibrada corte a corte (estavam entre −32,3 e −35,2 dBFS RMS),
+SFX de digitação, filme na virada, tensão terminando na última palavra do
+problema (6,35 s) e click na entrada da solução. Master a −16,3 LUFS / −1,5
+dBTP em loudnorm de duas passadas.
+
+**O offset de 42 ms não apareceu — e não era pra aparecer.** Neste fluxo o
+Remotion renderiza imagem MUDA e o áudio entra no mux. Medido: 0 ms nas três
+janelas. É exatamente por isso que o §07 manda montar nessa ordem.
+
+**Faltou e está registrado:** música (a curadoria não chegou, só a lista de
+hashes) e o `zoom.mp3` (não veio no kit), então o zoom ficou só visual.
+
 ## Divergências medidas contra a referência aprovada (12/09/2026)
 
 Comparação de composição entre a prancha `quadros-Stephanie.jpg` e as pranchas
