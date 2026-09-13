@@ -65,12 +65,32 @@ divergências levantadas, **não decisões tomadas** — dependem da dona.
    dourada, duas linhas, sempre. Nós usamos 26 a 46, às vezes linha solta,
    uma vez três linhas. O §03 diz que o exemplo recente prevalece.
 
+## Duas marcas, dois perfis (13/09/2026)
+
+A identidade saiu do código das peças e virou dado em
+`projeto-remotion/src/lib/marcas.ts`. Cada peça declara de quem ela é.
+
+- `newhair` — completa, com os números do exemplo aprovado.
+- `fabricia` — **pendente**. Enquanto houver pendência, o motor `ReelFalado`
+  se recusa a renderizar e mostra na tela o que falta. Isso é proposital: peça
+  dela com a paleta da clínica é peça da clínica com o rosto errado.
+
+Skill nova: `.claude/skills/editor-fabricia-satza/SKILL.md`, irmã da
+`editor-new-hair` — mesma gramática de montagem, identidade separada.
+
+Motor novo: `ReelFalado` (fluxo A, vídeo falado), portado do exemplo aprovado.
+Conferido em 13/09 contra o quadro aprovado: reproduz o gancho da Stephanie
+igual, e a mesma peça declarada como `fabricia` se recusa a sair.
+
 ## Pendências
 
 - Kit incompleto: faltam 16 dos 35 arquivos do MANIFEST (ver
   `kit-new-hair/FALTANDO.md`). Sem as duas referências MP4 não dá pra comparar
   ritmo e som com o resultado aprovado.
-- Banco de apoios no Drive ainda não configurado (§12) — falta o link.
-- Identidade da Fabrícia Satza não definida: o motor está cravado na New Hair.
+- Banco de apoios no Drive: **configurado** em 13/09 (22 vídeos sondados, 66
+  quadros lidos). Ver `CONFIGURACAO-NEW-HAIR.md` e `banco-apoios/CATALOGO.md`.
+- Identidade da Fabrícia Satza: **ainda falta** — cores, fontes, selo (se
+  houver), assinatura do fim e uma referência aprovada dela. Basta um carrossel
+  dela pra eu extrair.
 - Sem Whisper neste ambiente: fluxo A depende de transcrição fornecida ou de
   instalar o transcritor.

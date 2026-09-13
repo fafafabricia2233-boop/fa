@@ -78,6 +78,8 @@ import { NewHairFuncoes, type NewHairFuncoesProps } from "./compositions/NewHair
 import { NewHairConferencia, type NewHairConferenciaProps } from "./compositions/NewHairConferencia";
 import { NewHairEficiencia, type NewHairEficienciaProps } from "./compositions/NewHairEficiencia";
 import { KitNewHairPilot } from "./kit-referencia/video";
+import { ReelFalado } from "./compositions/ReelFalado";
+import { PLANO_KIT, CUES_KIT } from "./kit-referencia/adaptar";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -830,6 +832,28 @@ export const RemotionRoot: React.FC = () => {
             gancho, 0-141 frames: e o unico pedaco que roda com os arquivos que
             chegaram (clip0). Os cortes 1/3/4, o apoio e a logo estao faltando. */}
         <Folder name="KIT-Referencia">
+          {/* Motor novo (ReelFalado) rodando o plano aprovado: prova que a
+              gramatica foi portada sem perder o padrao. Mesmos 141 frames. */}
+          <Composition
+            id="ReelFaladoNewHair"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={141}
+            defaultProps={{ marca: "newhair", plano: PLANO_KIT, cues: CUES_KIT }}
+          />
+          {/* Mesma peca declarada como Fabricia: tem que se RECUSAR a renderizar
+              e listar o que falta de identidade. */}
+          <Composition
+            id="ReelFaladoFabricia"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={141}
+            defaultProps={{ marca: "fabricia", plano: PLANO_KIT, cues: CUES_KIT }}
+          />
           <Composition
             id="KitNewHairPilotGancho"
             component={KitNewHairPilot}
