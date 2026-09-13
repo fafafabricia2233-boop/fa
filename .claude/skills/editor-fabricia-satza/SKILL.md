@@ -83,8 +83,8 @@ clínica junto. Usar só quando a fala dela justificar e com a dona ciente.
    Digitação com teto de 2 s, SFX morrendo na última letra, filete crescendo até
    64 px. Enquanto o gancho é falado, **rodapé vazio**.
 5. **Legendas** frase a frase, coladas na fala: uma linha de contexto e uma de
-   sentido em caixa alta no destaque. O exemplo recente usa 34 e 42 px e é o que
-   prevalece. Máximo duas linhas por cue.
+   sentido em caixa alta no champagne. **45 e 52 px** — os 34/42 do padrão da
+   New Hair ficam abaixo do piso de 37 px dela. Máximo duas linhas por cue.
 6. **Apoio** que prova ou esclarece o que ela está dizendo. Conferir o quadro
    antes de usar — nome de pasta não prova conteúdo. O catálogo do banco está em
    `banco-apoios/CATALOGO.md` com os quadros lidos em `banco-apoios/quadros/`.
