@@ -93,5 +93,10 @@ igual, e a mesma peça declarada como `fabricia` se recusa a sair.
   quadros lidos). Ver `CONFIGURACAO-NEW-HAIR.md` e `banco-apoios/CATALOGO.md`.
 - Fabrícia Satza: identidade instalada e conferida em render. Falta só uma
   **referência aprovada em vídeo** dela — a primeira peça vai servir de piloto.
-- Sem Whisper neste ambiente: fluxo A depende de transcrição fornecida ou de
-  instalar o transcritor.
+- Transcritor: **instalado** em 13/09. faster-whisper medium int8/CPU com tempo
+  por palavra, `scripts/instalar-transcritor.sh` + `scripts/transcrever.py`.
+  Precisa reinstalar a cada sessão (container efêmero, modelo de 1,5 GB).
+  Validado contra a voz do exemplo aprovado: com o vocabulário do assunto
+  acerta o texto; sem ele escreveu "testerizada" e "Mético" no gancho. E mesmo
+  acertando, ainda junta frase e troca "deixa" por "deixe" — ou seja, o §02
+  continua valendo: transcrição não prova ausência de engasgo.

@@ -70,8 +70,15 @@ clínica junto. Usar só quando a fala dela justificar e com a dona ciente.
    frase. A última tentativa completa costuma ser a boa — confirmar na imagem,
    sem pegar o último take de outro assunto. ASR já omitiu retomada: reanalisar
    os trechos curtos ao redor de corte suspeito.
-   *Não há Whisper instalado neste ambiente.* Ou a transcrição vem pronta, ou
-   instalo o transcritor — o que não se faz é dizer que transcreveu.
+   **Transcritor instalado:** `bash scripts/instalar-transcritor.sh` uma vez
+   por sessão (o container é efêmero e o modelo tem 1,5 GB, não dá pra
+   versionar), depois `python3 scripts/transcrever.py <fita>`. É
+   faster-whisper medium int8/CPU com tempo por palavra, como o §02 pede.
+   Ele já entra com o vocabulário do assunto — sem isso, no teste de 13/09 ele
+   escreveu "testerizada" no lugar de "terceirizada" logo no gancho.
+   O JSON traz a probabilidade de cada palavra: prob baixa é sinal de conferir
+   na mídia, **não** é garantia de que o resto está certo. No mesmo teste o
+   erro do gancho passou com probabilidade alta.
 2. **Montar o plano editorial.** Gancho, contexto/problema, solução, convite —
    quando existirem na fala. Não inventar CTA nem promessa pra fechar estrutura.
    A duração sai do conteúdo útil, não de uma meta de 30 s.

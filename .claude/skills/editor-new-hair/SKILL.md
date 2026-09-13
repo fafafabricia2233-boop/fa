@@ -48,8 +48,17 @@ Fontes: o kit traz as fontes embutidas em `fonts.ts` (base64). O motor B usa
 Remotion aqui não confia na CA do proxy e o download do Google Fonts mata o
 render. Não trocar por `@remotion/google-fonts`.
 
-Transcrição: não há Whisper instalado. Se o fluxo A precisar de transcrição,
-pedir instalação ou receber a transcrição pronta — não fingir que transcreveu.
+Transcrição: instalada. `bash scripts/instalar-transcritor.sh` uma vez por
+sessão (container efêmero, modelo de 1,5 GB), depois
+`python3 scripts/transcrever.py <fita>` — faster-whisper medium int8/CPU com
+tempo por palavra e o vocabulário do assunto, como o §02 pede. Custa mais ou
+menos tempo real: 27 s pra 24 s de áudio.
+
+E vale o que o §02 já dizia: **transcrição não prova ausência de engasgo**. No
+teste de 13/09, contra a voz do próprio exemplo aprovado, o modelo acertou o
+corpo inteiro e errou o gancho ("Mético", "testerizada") — e sem vocabulário do
+assunto. Com vocabulário acertou, mas ainda juntou frase e trocou "deixa" por
+"deixe". Trecho suspeito se reanalisa na mídia.
 
 ## Decisões da dona posteriores ao manual
 
