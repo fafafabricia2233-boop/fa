@@ -110,7 +110,7 @@ As três estão embutidas em base64 nos templates — o arquivo abre em qualquer
 máquina, offline, sem instalar nada. Os `.ttf` para instalar (Canva, Word,
 Illustrator) ficam em `fonte-fabricia-satza-light/` na raiz do repositório.
 
-### Escala (peça 1080×1350)
+### Escala (peça 1080×1440, o 3:4 dela)
 
 ```
 display        116px   line-height 1.04    gancho da capa
@@ -122,8 +122,9 @@ rótulo          24px   tracking .30em      CAIXA ALTA
 cabeçalho       22px   tracking .30em      CAIXA ALTA
 ```
 
-**A fonte é Light — ela vive do espaço em volta.** Nada abaixo de 30px em peça
-de 1080px de largura, nada com `line-height` abaixo de 1.3 em texto corrido.
+**A fonte é Light — ela vive do espaço em volta.** Em peça de 1080px de
+largura, nada abaixo de 22px, e 22px só em caixa alta com tracking largo; em
+texto corrido, nada abaixo de 37px nem com `line-height` menor que 1.3.
 Apertar mata o efeito e faz a peça parecer amadora.
 
 ### Ênfase sem engrossar
@@ -143,7 +144,8 @@ o navegador engorda a forma artificialmente e destrói a letra.
 ## Grade
 
 ```
-peça          1080 × 1350 (4:5)
+peça          1080 × 1440 (3:4)   padrão dela
+              1080 × 1350 (4:5)   preset de carrossel do Instagram
 margem lateral        80px
 conteúdo         170px do topo, 160px da base
 cabeçalho         64px do topo
@@ -173,7 +175,10 @@ use com parcimônia, e nunca duas vezes no mesmo carrossel.
 
 ## Exportação
 
-Os templates exportam PNG 2160×2700 (`scale: 2`) num ZIP, via html2canvas.
+O `exportar.py` entrega um arquivo por slide em 2160×2880 (`scale: 2`), JPEG
+q95 — ou PNG com `--png`, para impressão. O botão **Baixar ZIP** do template
+faz o mesmo via html2canvas, mas só serve em computador: no celular o
+navegador não descompacta.
 
 O botão espera `document.fonts.ready` antes de renderizar. Sem isso o
 html2canvas mede o texto com a fonte de fallback e o layout sai deslocado — foi
