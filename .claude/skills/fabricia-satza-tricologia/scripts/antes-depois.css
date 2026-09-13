@@ -1,0 +1,99 @@
+
+/* ══ ANTES / DEPOIS ═══════════════════════════════════════════════════════
+   A seta branca e o clichê do nicho e ainda por cima tapa justamente o que a
+   pessoa precisa ver. Aqui o marcador e um anel fino com uma haste vertical
+   que sobe ate um rotulo em caixa alta: circunda a regiao sem cobrir o couro.
+     ANTES  -> anel tracejado, rotulo nomeia a perda
+     DEPOIS -> anel continuo na MESMA coordenada, rotulo nomeia o ganho
+   Repetir a coordenada nos dois lados e o que faz o olho comparar em vez de
+   so olhar duas fotos. Se cada lado marca um ponto diferente, o antes/depois
+   nao prova nada. */
+.par{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;z-index:1}
+.lado{position:relative;overflow:hidden}
+.lado img{width:100%;height:100%;object-fit:cover;display:block}
+.divisa{position:absolute;top:0;bottom:0;left:50%;width:1px;z-index:12;
+        background:rgba(252,250,247,.85)}
+
+/* Os marcadores vivem FORA de .lado. Dentro, o overflow:hidden que recorta a
+   foto recortava tambem o rotulo. */
+.marcas{position:absolute;top:0;bottom:0;width:50%;z-index:13}
+.marcas.a{left:0}
+.marcas.d{left:50%}
+
+.selo{position:absolute;bottom:186px;left:50%;transform:translateX(-50%);z-index:14;
+      font-family:var(--titulo);font-size:56px;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--branco);white-space:nowrap;
+      text-shadow:0 2px 22px rgba(0,0,0,.55)}
+
+/* Posicione com --x e --y em % DA METADE (nao da peca inteira):
+   <div class="marca perda" style="--x:46%;--y:40%;--r:150px">
+   --r  diametro do anel        --h  altura da haste
+   Use .abaixo quando o anel estiver perto do topo da foto. */
+.marca{position:absolute;left:var(--x);top:var(--y);width:var(--r,140px);
+       height:var(--r,140px);transform:translate(-50%,-50%);border-radius:50%;
+       border:1.5px solid rgba(252,250,247,.92);
+       box-shadow:0 0 0 1px rgba(0,0,0,.16),0 0 30px rgba(0,0,0,.30)}
+.marca.perda{border-style:dashed}
+.marca.ganho{border-style:solid}
+
+.marca .haste{position:absolute;left:50%;bottom:100%;width:1px;height:var(--h,74px);
+       background:rgba(252,250,247,.85);transform:translateX(-50%)}
+.marca .nome{position:absolute;left:50%;bottom:calc(100% + var(--h,74px) + 14px);
+       transform:translateX(-50%);font-size:23px;letter-spacing:.20em;
+       text-transform:uppercase;color:var(--branco);white-space:nowrap;
+       text-shadow:0 2px 14px rgba(0,0,0,.75)}
+.marca.abaixo .haste{bottom:auto;top:100%}
+.marca.abaixo .nome{bottom:auto;top:calc(100% + var(--h,74px) + 14px)}
+
+/* Ressalva. Vai NA IMAGEM, nao so na legenda: a legenda e cortada no "... mais"
+   e o print circula sem ela. Discreta o bastante para nao competir com a foto,
+   legivel o bastante para cumprir o papel. */
+.ressalva{position:absolute;left:80px;right:80px;bottom:118px;z-index:14;
+       text-align:center;font-size:20px;letter-spacing:.18em;text-transform:uppercase;
+       color:rgba(252,250,247,.78);text-shadow:0 1px 3px rgba(0,0,0,.6),
+       0 2px 16px rgba(0,0,0,.7)}
+
+/* Faixa de leitura no rodape: o que mudou, em uma linha. */
+.leitura{position:absolute;left:80px;right:80px;bottom:196px;z-index:14;
+       text-align:center;font-size:33px;line-height:1.44;color:var(--branco);
+       text-shadow:0 2px 18px rgba(0,0,0,.62)}
+.leitura .caixa{font-size:33px}
+
+/* ── EMPILHADO ─────────────────────────────────────────────────────────────
+   Para foto de topo de cabeca, que e larga. Lado a lado num 3:4 daria dois
+   paineis de 540x1440 — altos e estreitos demais, o object-fit jogaria fora
+   metade da foto. Empilhado cada painel fica 1080 de largura, proximo da
+   forma natural da imagem.
+   A geometria vive em variaveis porque os marcadores ficam FORA dos paineis
+   (o overflow deles recorta a foto e recortaria o rotulo junto): os dois
+   precisam ler os mesmos numeros ou o anel sai do lugar. */
+.slide.empilhado{--pa-topo:0px;--pa-alt:50%}
+.empilhado .par{display:block}
+.empilhado .lado{position:absolute;left:0;right:0;height:var(--pa-alt)}
+.empilhado .lado:nth-child(1){top:var(--pa-topo)}
+.empilhado .lado:nth-child(2){top:calc(var(--pa-topo) + var(--pa-alt))}
+.empilhado .divisa{left:0;right:0;width:auto;height:1px;bottom:auto;
+       top:calc(var(--pa-topo) + var(--pa-alt))}
+.empilhado .marcas{left:0;width:100%;height:var(--pa-alt);bottom:auto}
+.empilhado .marcas.a{top:var(--pa-topo)}
+.empilhado .marcas.d{top:calc(var(--pa-topo) + var(--pa-alt))}
+.empilhado .selo{left:auto;right:46px;bottom:auto;transform:none;font-size:36px;
+       letter-spacing:.16em}
+.empilhado .selo.a{top:calc(var(--pa-topo) + 118px)}
+.empilhado .selo.d{top:calc(var(--pa-topo) + var(--pa-alt) + 26px)}
+/* O veu de cima escureceria a foto de cima inteira; aqui ele so protege as
+   faixas do cabecalho e do rodape. */
+.empilhado .veu{background:linear-gradient(to bottom,rgba(0,0,0,.78) 0%,rgba(0,0,0,.30) 7%,
+       rgba(0,0,0,0) 14%,rgba(0,0,0,0) 78%,rgba(0,0,0,.34) 87%,rgba(0,0,0,.82) 100%)}
+
+/* Marcador de rotulo lateral. No painel empilhado sobra largura e falta altura:
+   haste para cima empurra o rotulo contra a borda e ele sai cortado. Deitando a
+   haste, o rotulo usa a largura que sobra e fica colado ao anel. */
+.marca.lateral .haste{left:auto;right:100%;bottom:auto;top:50%;
+       width:var(--h,96px);height:1px;transform:none}
+.marca.lateral .nome{left:auto;right:calc(100% + var(--h,96px) + 18px);
+       bottom:auto;top:50%;transform:translateY(-50%)}
+.marca.lateral.direita .haste{right:auto;left:100%}
+.marca.lateral.direita .nome{right:auto;left:calc(100% + var(--h,96px) + 18px)}
+/* Anel um pouco mais firme: sobre cabelo escuro o traco de 1,5px sumia. */
+.empilhado .marca{border-width:2px}
