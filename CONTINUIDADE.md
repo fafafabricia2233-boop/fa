@@ -79,6 +79,12 @@ dBTP em loudnorm de duas passadas.
 Remotion renderiza imagem MUDA e o áudio entra no mux. Medido: 0 ms nas três
 janelas. É exatamente por isso que o §07 manda montar nessa ordem.
 
+**v2 (13/09):** a dona pediu o SFX de tensão 30% mais baixo. Ganho 0,65 → 0,455,
+só o áudio refeito — a imagem aprovada foi reaproveitada, como o §02 manda
+("revisão pequena continua pequena"). Master a −16,2 LUFS / −1,5 dBTP, offset 0
+ms nas três janelas. A receita da mixagem virou `scripts/mix-agilidade.sh`, pra
+peça ser reprodutível em vez de viver num comando solto.
+
 **Faltou e está registrado:** música (a curadoria não chegou, só a lista de
 hashes) e o `zoom.mp3` (não veio no kit), então o zoom ficou só visual.
 
