@@ -110,6 +110,28 @@ clínica junto. Usar só quando a fala dela justificar e com a dona ciente.
    `-itsoffset -0.042` e conferir que a correlação volta a 0,0 ms. Medir de novo
    a cada peça — o número é do ambiente, não da física.
 
+## A mixagem tem receita: `scripts/mix-falado.sh`
+
+Não montar filtergraph à mão. O script recebe as POSIÇÕES por flag e lê os
+GANHOS do `padroes-audio.json`:
+
+```
+bash scripts/mix-falado.sh --voz VOZ.wav --sting STING.wav --saida MASTER.wav \
+     --dur <duração+folga> --filme <s> --sting-em <s> [--tensao-fim <s>] [--click <s>]
+```
+
+`--dur` decide também o início do fade final (`dur − 1,0 s`) — é por isso que ele
+não é a duração exata do vídeo, e sim ela com uma folga pequena.
+
+**`--tensao-fim` e `--click` são opcionais, e omiti-los é decisão editorial.** Se
+a peça não tem "problema" delimitado (o gancho já É o problema, e a virada está
+marcada pelo filme), não entra tensão: o §05 posiciona o grave na última palavra
+do problema, e forçá-lo sem problema é inventar estrutura. Foi o caso da
+NH_velocidade (14/09/2026).
+
+Conferido: rodando esse script com os parâmetros da NH_agilidade v3 ele
+reproduz o master já entregue **bit a bit** (mesmo md5).
+
 ## Ganhos de SFX: um lugar só
 
 `projeto-remotion/padroes-audio.json`. Vale para **toda peça nova das duas

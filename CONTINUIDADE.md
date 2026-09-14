@@ -4,7 +4,7 @@ Arquivo exigido pelo manual (§09). Anexar numa conversa nova junto com
 `kit-new-hair/GUIA-INTEGRAL.md`. Regra geral fica na seção "Regras gerais";
 ajuste que vale só para uma peça fica na linha daquela peça.
 
-Última atualização: 12/09/2026.
+Última atualização: 14/09/2026.
 
 ## Regras gerais refinadas (valem para as próximas peças)
 
@@ -97,6 +97,69 @@ peça ser reprodutível em vez de viver num comando solto.
 **Faltou e está registrado:** música (a curadoria não chegou, só a lista de
 hashes) e o `zoom.mp3` (não veio no kit), então o zoom ficou só visual.
 
+## Segunda peça pelo FLUXO A (14/09/2026) — NH_velocidade_v1
+
+Pedido da dona: *"o vídeo que te mandei tem mais falas do que as que você editou
+… gere outro vídeo com as falas que você não colocou nesse"*. Peça inteira
+montada com o que sobrou — **nenhuma frase se repete entre as duas**.
+
+**Fonte.** Só a fita A (`copy_A479…`, 480×854), três cortes ampliados 2,25× com
+lanczos + unsharp:
+
+| Corte | Fonte na fita | Fala |
+|---|---|---|
+| gancho (121 f) | 1,22 → 5,25 s | "Agilidade não é pegar o folículo de qualquer jeito…" |
+| definição (159 f) | 6,74 → 12,04 s | "Agilidade vem de treinamento, constância e cuidado com o folículo." |
+| solução (229 f) | 34,42 → 42,05 s | "É a velocidade que não cobra o preço do enxerto… sem danificar nenhuma estrutura." |
+
+**O que foi deixado de fora, de propósito.** "Porque" inicial (conector de uma
+pergunta que o espectador não ouviu) e "Isso não é agilidade" (5,36→6,30 s: diz
+o que o título já diz — §02 manda tirar redundância). E **"Sabe qual é a
+velocidade de voo?"** (32,80→34,42 s): o transcritor bateu "de voo" em três
+passadas com 0,93–0,98 de confiança, mas a expressão não fecha sentido e aqui
+não há escuta perceptual. Não se põe na tela palavra que não se confirmou —
+**isso continua pendente de conferência por ouvido da dona**.
+
+**Apoio.** Dois, e mais longos do que na NH_agilidade de propósito: a peça
+inteira é ampliada (a outra tinha metade em resolução nativa). Ambos cortados
+direto da URL do Drive, sem baixar o arquivo: `implanter em maos treinadas`
+(132 f, sobre "treinamento e constância") e `implantando_pinca` (120 f, sobre
+"sem danificar nenhuma estrutura").
+
+**Som — e por que NÃO tem tensão nem click.** Esta peça não tem "problema"
+narrativo separado: o gancho JÁ é o problema, e a virada é marcada pelo filme
+nos 7 frames antes do frame 121. O §05 posiciona a tensão na última palavra do
+problema; sem problema delimitado, forçá-la seria inventar estrutura. O click
+marca entrada de solução que o filme já marcou. Stems usados: voz equilibrada
+corte a corte, digitação, filme (3,800 s) e sting da marca (16,967 s).
+
+**Medido na entrega:** H264 1080×1920, 30 fps constante (todo frame a 0,033333),
+700 frames, 23,333 s, AAC 48 kHz mono, 27,5 MB. Decodificação inteira sem erro.
+Offset entrega × master: **0,0 ms nas três janelas** (2 / 8 / 20 ms) — de novo o
+fluxo A não sofre os 42 ms, porque a imagem sai muda e o áudio entra no mux.
+Master a −16,3 LUFS. **True peak −1,44 dBTP**, 0,06 dB acima do teto nominal de
+−1,5: é o mesmo comportamento do master já entregue da NH_agilidade v3 (−1,49) e
+vem da segunda passada do loudnorm em `linear=true`. Não foi "corrigido" por
+fora pra não quebrar a reprodutibilidade provada do script.
+
+**Sem escuta perceptual**, como sempre: o que está acima é medição, não audição.
+
+### `scripts/mix-falado.sh` — a mixagem virou receita genérica
+
+A `mix-agilidade.sh` tinha as posições cravadas no filtergraph. A versão
+genérica recebe as posições por flag (`--voz --sting --saida --dur --filme
+--sting-em`, e `--tensao-fim` / `--click` opcionais) e continua lendo os ganhos
+de `padroes-audio.json`.
+
+**Prova de que não mudou nada:** rodando o script genérico com os parâmetros da
+NH_agilidade v3, a saída é **bit a bit idêntica** ao `master_v3.wav` já
+entregue (mesmo md5, `af2bf390…86bb`). O primeiro teste tinha dado diferente
+por erro do teste, não do script: passei `--dur 24.333` onde a peça usa `24.34`,
+e o `--dur` decide também o início do fade (`dur − 1,0`).
+
+A flag `--tensao-fim` ser opcional é o ponto: peça sem problema narrativo sai
+sem tensão em vez de ganhar um grave que o manual não autoriza.
+
 ## Divergências medidas contra a referência aprovada (12/09/2026)
 
 Comparação de composição entre a prancha `quadros-Stephanie.jpg` e as pranchas
@@ -145,6 +208,10 @@ igual, e a mesma peça declarada como `fabricia` se recusa a sair.
   quadros lidos). Ver `CONFIGURACAO-NEW-HAIR.md` e `banco-apoios/CATALOGO.md`.
 - Fabrícia Satza: identidade instalada e conferida em render. Falta só uma
   **referência aprovada em vídeo** dela — a primeira peça vai servir de piloto.
+- **Conferir por ouvido**: na fita A, 32,80→34,42 s, o transcritor insiste em
+  "Sabe qual é a velocidade de voo?" com 0,93–0,98 de confiança. A expressão não
+  fecha sentido. Ficou fora da NH_velocidade; se a dona confirmar o que é, vira
+  material pra uma terceira peça.
 - Transcritor: **instalado** em 13/09. faster-whisper medium int8/CPU com tempo
   por palavra, `scripts/instalar-transcritor.sh` + `scripts/transcrever.py`.
   Precisa reinstalar a cada sessão (container efêmero, modelo de 1,5 GB).
