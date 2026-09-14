@@ -8,6 +8,14 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 ## Regras gerais refinadas (valem para as próximas peças)
 
+- **Vídeo ocupa a tela toda** (ordem da dona, 14/09/2026: *"esse negócio azul em
+  cima… prefiro que o vídeo fique na tela toda"*). Vale contra o exemplo
+  aprovado, que empurrava o plano pra baixo e usava apoio em faixa. Na prática:
+  apoio em `"full"`, `titleShift: 0`, e o motor com escala de cobertura como
+  rede de segurança (deslocar continua custando recorte, então evita-se).
+  Junto, o véu do título passou de 520 px com queda seca pra 900 px com cauda
+  longa — sem a faixa de fundo por trás, a borda dele aparecia na parede lisa.
+
 - **Fita com muita fala rende mais de uma peça** (ordem da dona, 14/09/2026):
   *"Sempre que eu te enviar um vídeo e tiver muitas falas e você identificar que
   dá pra gerar mais de 1 vídeo com sentido em cada fala, faça assim."* O
@@ -158,6 +166,15 @@ vem da segunda passada do loudnorm em `linear=true`. Não foi "corrigido" por
 fora pra não quebrar a reprodutibilidade provada do script.
 
 **Sem escuta perceptual**, como sempre: o que está acima é medição, não audição.
+
+**v3 (14/09):** a dona viu a faixa azul no topo e pediu o vídeo na tela toda. Os
+dois apoios passaram de `"band"` pra `"full"` e o `titleShift` de 140 pra 0 —
+ou seja, ninguém mais é empurrado, então não sobra fundo. **Nada de ampliar**:
+a fita é 9:16 exata e preencher com deslocamento custaria 15 a 17% de recorte
+num material já ampliado 2,25×. O véu do título foi alongado junto (520→900 px),
+porque sem a faixa por trás a borda dele aparecia na parede lisa. Só a imagem
+foi refeita; o áudio é o mesmo master. Conferido: **0 dos 700 frames** têm faixa
+chapada da cor do fundo no topo, offset segue 0,0 ms nas três janelas, 26,8 MB.
 
 ### `scripts/mix-falado.sh` — a mixagem virou receita genérica
 

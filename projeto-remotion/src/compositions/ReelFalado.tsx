@@ -116,6 +116,23 @@ const Base: React.FC<{
   const origem = i > 0 ? "50% 80%" : "50% 42%";
   const desloca = temApoioBanda ? 240 : i === 0 ? plano.titleShift : 0;
 
+  /* COBERTURA — ordem da dona, 14/09/2026: "prefiro que o vídeo fique na tela
+     toda". O `objectFit: cover` preenche exatamente 1080×1920; qualquer
+     translateY pra baixo descobre o fundo da marca lá em cima, e é isso que
+     virava a faixa azul reclamada na NH_velocidade v1 (209 px medidos).
+
+     O quanto a escala precisa crescer depende de ONDE fica a origem da
+     transformação: o topo do elemento vai parar em `desloca + oy*1920*(1−S)`,
+     então preencher exige S ≥ 1 + desloca/(oy*1920). Mais 0,5% de folga pra
+     arredondamento de subpixel não abrir um fio de fundo na borda.
+
+     Isto NÃO é convite pra deslocar: empurrar o plano custa recorte, e num
+     material já ampliado custa nitidez. É rede de segurança — a faixa não pode
+     voltar por descuido de plano. Quem não desloca não paga nada. */
+  const oy = i > 0 ? 0.8 : 0.42;
+  const cobertura = desloca > 0 ? (1 + desloca / (oy * 1920)) * 1.005 : 1;
+  const escalaFinal = Math.max(escala, cobertura);
+
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <OffthreadVideo
@@ -125,7 +142,7 @@ const Base: React.FC<{
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          transform: `translateY(${desloca}px) scale(${escala})`,
+          transform: `translateY(${desloca}px) scale(${escalaFinal})`,
           transformOrigin: origem,
         }}
       />
@@ -413,11 +430,20 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
               top: 0,
               left: 0,
               width: "100%",
-              height: 520,
+              /* 900 px com cauda longa, não 520 com queda seca. Enquanto o
+                 plano era empurrado pra baixo, a faixa de fundo escondia o fim
+                 do véu; com o vídeo ocupando a tela toda (14/09/2026) a queda
+                 de 0,62 a 0 em 140 px virou linha horizontal visível — medida
+                 na parede lisa: o brilho saltava de 87 pra 198 em 140 px. Os
+                 degraus abaixo imitam uma saída suave; a escuridão onde o
+                 título mora (270→470 px) não muda. */
+              height: 900,
               opacity: veuTopo,
               background: `linear-gradient(to bottom,${rgbFundo(0.52)} 0%,${rgbFundo(
                 0.62
-              )} 55%,${rgbFundo(0.62)} 73%,${rgbFundo(0)} 100%)`,
+              )} 30%,${rgbFundo(0.62)} 50%,${rgbFundo(0.44)} 64%,${rgbFundo(
+                0.24
+              )} 78%,${rgbFundo(0.1)} 89%,${rgbFundo(0)} 100%)`,
             }}
           />
           {/* véu de baixo: acompanha legenda e selo */}

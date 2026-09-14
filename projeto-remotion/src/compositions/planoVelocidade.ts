@@ -38,14 +38,24 @@ export const PLANO_VELOCIDADE: Plano = {
     { nome: "definicao", src: "newhair/falado2/clip1.mp4", start: 121, duration: 159 },
     { nome: "solucao", src: "newhair/falado2/clip2.mp4", start: 280, duration: 229 },
   ],
+  /* APOIO EM TELA CHEIA, não em faixa (ordem da dona, 14/09/2026: "prefiro que
+     o vídeo fique na tela toda"). A faixa obrigava a empurrar o plano dela 240 px
+     pra baixo pra cabeça não ficar atrás do apoio — e era esse empurrão que
+     descobria o fundo azul no topo. Em tela cheia o apoio é corte seco de
+     cobertura, a gramática de sempre: ela continua falando por baixo, a legenda
+     continua correndo, e nenhum dos dois planos precisa sair do lugar. */
   brolls: [
     // "treinamento e constância" → mãos treinadas carregando o implanter
-    { fromFrame: 135, duration: 132, src: "newhair/falado2/apoio_maos.mp4", mode: "band", position: "50% 50%" },
+    { fromFrame: 135, duration: 132, src: "newhair/falado2/apoio_maos.mp4", mode: "full", position: "50% 50%" },
     // "sem danificar nenhuma estrutura" → implante com pinça, movimento fino
-    { fromFrame: 380, duration: 120, src: "newhair/falado2/apoio_pinca.mp4", mode: "band", position: "50% 50%" },
+    { fromFrame: 380, duration: 120, src: "newhair/falado2/apoio_pinca.mp4", mode: "full", position: "50% 50%" },
   ],
   title: ["PEGAR DE QUALQUER JEITO", "NÃO É AGILIDADE."],
-  titleShift: 140,
+  /* 0, não 140: o título mora sobre a imagem, segurado pelo véu do topo. O
+     empurrão existia pra abrir céu acima da cabeça dela, mas custava faixa de
+     fundo à mostra — e a fita não tem imagem sobrando acima da cabeça pra
+     pagar isso sem ampliar ainda mais um material já ampliado 2,25×. */
+  titleShift: 0,
   zoomClip: 2,
   zoomFrame: 26,
   closeClips: [],

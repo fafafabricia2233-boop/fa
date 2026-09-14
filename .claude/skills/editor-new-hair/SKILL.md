@@ -88,6 +88,45 @@ cinco peças seguidas. O conserto é remuxar com `-itsoffset -0.042` no áudio e
 conferir que a correlação volta a 0,0 ms. Medir sempre; o número pode mudar
 com a versão do Remotion.
 
+## Vídeo ocupa a tela toda — ordem da dona (14/09/2026)
+
+*"Sabe esse negócio azul em cima? Não gostei, prefiro que o vídeo fique na tela
+toda."* Vale pelo §01 (correção explícita mais recente da responsável
+prevalece), **inclusive contra o exemplo aprovado**, que usava apoio em faixa
+com o plano empurrado pra baixo.
+
+**De onde vinha a faixa azul.** O `objectFit: cover` preenche exatamente
+1080×1920. O motor empurrava o plano dela pra baixo — 240 px nos cortes com
+apoio em faixa, `titleShift` no gancho — pra cabeça não ficar atrás do apoio e
+pro título ter céu. Empurrar 1920 px de imagem dentro de 1920 px de quadro
+descobre o fundo da marca em cima. Medido na NH_velocidade v1: **209 px**.
+
+**Não dá pra empurrar e preencher ao mesmo tempo de graça.** A fita é 9:16
+exata, igual ao quadro: não existe imagem sobrando. Preencher com deslocamento
+exige ampliar em `1 + deslocamento/(origem_y × 1920)` — 15 a 17% de recorte, num
+material que já vinha ampliado 2,25×. Então o conserto **não** é ampliar: é
+parar de empurrar.
+
+O que fazer em vez disso:
+
+1. **Apoio em `"full"`, não `"band"`.** Corte seco de cobertura, tela cheia, a
+   gramática de sempre — ela continua falando por baixo, a legenda continua
+   correndo, e nenhum dos dois planos sai do lugar. A faixa só existia pra
+   caber cabeça e apoio na mesma tela.
+2. **`titleShift: 0`.** Quem segura o título sobre a imagem é o véu do topo,
+   que é pra isso que ele existe.
+3. **Rede de segurança no motor.** Se um plano futuro deslocar mesmo assim, o
+   `Base` calcula a escala de cobertura e aplica (com 0,5% de folga de
+   subpixel). A faixa não volta por descuido — mas custa recorte, então
+   deslocar continua sendo decisão cara.
+
+**Efeito colateral que apareceu junto:** com a imagem ocupando tudo, o fim do
+véu do título virou linha horizontal visível na parede lisa — o brilho saltava
+de 87 pra 198 em 140 px. O véu passou de 520 px com queda seca pra 900 px com
+cauda longa; o maior salto caiu de 19,4 pra 9,7 por 20 px, e a escuridão onde o
+título mora (270→470 px) não mudou. Conferir isso faz parte do QA agora:
+**véu que acaba em cima de fundo liso denuncia a borda.**
+
 ## Fita com muita fala rende mais de uma peça — regra da dona (14/09/2026)
 
 **Ordem explícita:** *"Sempre que eu te enviar um vídeo e tiver muitas falas e
