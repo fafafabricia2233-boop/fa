@@ -238,6 +238,64 @@ e o `--dur` decide também o início do fade (`dur − 1,0`).
 A flag `--tensao-fim` ser opcional é o ponto: peça sem problema narrativo sai
 sem tensão em vez de ganhar um grave que o manual não autoriza.
 
+## Terceira peça pelo FLUXO A (14/09/2026) — NH_medo_v1
+
+Fita nova, pasta nova, pessoa diferente na câmera (jaleco vinho, parede lisa) —
+não é a mesma das duas primeiras. Tema: *"Médico, seu paciente precisa ficar com
+medo de falar durante uma cirurgia de horas?"*
+
+**A fita é a melhor que já chegou:** 4K **vertical nativa** (2160×3840 com
+`rotation=90`), HEVC, 60 fps, 57 s, **597 MB**. As duas peças anteriores vinham
+de uma cópia comprimida de 480×854. Aqui não há ampliação nenhuma: a fita já é
+9:16 e sobra resolução.
+
+**Como o tamanho foi resolvido** (a dona pediu "reduza o MB pra conseguir
+editar"): nada foi baixado inteiro. Áudio puxado sozinho por leitura de faixa
+(57 s em 7 segundos), transcrição feita em cima dele, e um proxy 1080×1920 a
+30 fps gerado direto da URL — 597 MB → 153 MB. Os cortes saem do proxy.
+
+**Uma peça só, e isso é conclusão.** Pela regra de 14/09, a pergunta era quantas
+peças inteiras existem. Existe **um** gancho, e concessão, virada, marca e fecho
+são todos resposta dele. Separar qualquer bloco o deixaria sem pergunta.
+
+**Gancho é a segunda tentativa.** A primeira (2,74→8,60) sai gaguejada — "Médico,
+médico, ..." — e diz "medo de falar EM uma cirurgia". A segunda sai limpa e diz
+"DURANTE uma cirurgia". §02: última tentativa completa.
+
+**As bordas, de novo, estavam todas erradas no JSON.** Medidas no envelope com
+`scripts/bordas.py`, as seis entradas de corte estavam de **70 a 320 ms
+atrasadas** no transcritor ("Médico" marcado em 8,98 começa em 8,72; "Orientar"
+marcado em 42,92 começa em 42,60). Cortar pelo JSON teria mastigado todos os
+seis cortes.
+
+**Ficou de fora, de propósito, e um item é decisão de editor:**
+- "se ele quiser ir ao banheiro, ele vai poder ir ao banheiro" — repete o que o
+  bloco da marca já diz melhor.
+- **O CTA** ("clique no link da bio", 48,94→55,38). Vem depois de uma gaguejada
+  ("Médico, se você / Se você") e é dito com hesitação: 1,5 s de buraco antes de
+  "preza" e outro antes de "clique". E a peça fecha mais forte em *"Orientar é
+  diferente de intimidar"*, que é a melhor frase da fita. **Isto não sai de
+  nenhuma regra do manual — é escolha de edição, e volta se a dona quiser.**
+
+**Apoio:** `implantacao.MOV` sobre "momentos delicados" e **`CONVERSANDO COM A
+PACIENTE`** sobre "falar / conversar / perguntar" — paciente na cadeira falando
+e gesticulando com a técnica, que é a prova literal da fala. Faixa mascarada com
+altura medida: o cabelo dela começa em 419 px, faixa em **490**.
+
+**Voz equilibrada corte a corte de verdade desta vez:** o espalhamento era de
+4,4 dB (ela vai ficando mais alta ao longo das tomadas). Igualados em −32,1
+dBFS, com o fecho deixado 1 dB acima de propósito por ser a frase de impacto.
+
+**Música:** `floating` (terceira faixa, alternando), ataque 20,705 → recorte em
+16,072. Entrada medida no stem: **+13,7 dB** na virada, de −53,7 pra −40,0 dBFS.
+
+**Medido na entrega:** 1080×1920, 30 fps constante, 1082 frames, 36,07 s, AAC
+48 kHz, decodificação inteira sem erro, **0 dos 1082 frames** com faixa de fundo
+no topo, offset entrega × master 0,0 ms nas três janelas, master −16,1 LUFS.
+Tensão termina na última palavra do problema (10,01 s) e o click entra na virada
+(10,10 s), conferidos por energia. Entrega reencodada em CRF 24 pra caber no
+limite de 30 MB (20 MB).
+
 ## Música entrou nas duas peças faladas (14/09/2026)
 
 A pasta `lofi` do banco chegou com 9 faixas e a pasta `sfx` com os SFX do kit —

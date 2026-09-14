@@ -250,6 +250,40 @@ NH_velocidade (14/09/2026).
 Conferido: rodando esse script com os parâmetros da NH_agilidade v3 ele
 reproduz o master já entregue **bit a bit** (mesmo md5).
 
+## Fita grande demais: proxy, não desistência (14/09/2026)
+
+Chegou uma fita de **597 MB — 4K VERTICAL nativa (2160×3840, rotação 90 nos
+metadados), HEVC, 60 fps**. É a melhor fonte que passou por aqui; as anteriores
+eram cópias comprimidas de 480×854. O caminho que funcionou, sem baixar o
+arquivo inteiro:
+
+1. **Sondar por faixa.** `ffprobe` na URL do Drive lê o cabeçalho sem baixar.
+   Conferir **rotação** sempre: 3840×2160 com `rotation=90` é vertical, não
+   horizontal — o §07 proíbe esticar fonte horizontal, mas aqui não havia o que
+   esticar.
+2. **Áudio primeiro, e só o áudio.** `-map 0:a:0` na URL trouxe os 57 s em
+   **7 segundos**. É o áudio que decide a edição inteira; o vídeo só é preciso
+   depois que os cortes estão escolhidos.
+3. **Transcrever o áudio**, não a fita.
+4. **Proxy de trabalho**: a URL direto pra `scale=1080:1920,fps=30` em H.264.
+   597 MB viraram 153 MB, e é desse proxy que saem os cortes. ~5 min.
+
+Nada disso precisa de disco pro arquivo original. O conector do Drive continua
+proibido pra vídeo (devolve base64 na conversa) — a URL
+`drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t` é o
+caminho.
+
+## `scripts/bordas.py` — a ferramenta do erro anterior
+
+Depois do "agilidade" mastigado, conferir borda virou passo obrigatório e
+ganhou ferramenta: `python3 scripts/bordas.py <audio> <tempo> [...]` desenha o
+envelope em volta de cada candidato e aponta o vale.
+
+Na fita de 14/09 ela pagou o investimento na primeira rodada: **as seis entradas
+de corte estavam de 70 a 320 ms atrasadas no JSON do transcritor** — "Médico"
+marcado em 8,98 começa em 8,72; "Orientar" marcado em 42,92 começa em 42,60.
+Confiar no JSON teria mastigado *todos* os cortes da peça, não um.
+
 ## Fronteira de palavra do ASR não é fronteira de corte (14/09/2026)
 
 Erro real, pego de ouvido pela dona na NH_velocidade: *"no gancho a palavra
