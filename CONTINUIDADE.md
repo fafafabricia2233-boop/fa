@@ -238,6 +238,53 @@ e o `--dur` decide também o início do fade (`dur − 1,0`).
 A flag `--tensao-fim` ser opcional é o ponto: peça sem problema narrativo sai
 sem tensão em vez de ganhar um grave que o manual não autoriza.
 
+## Quarta peça pelo FLUXO A (14/09/2026) — NH_saque_v1
+
+Fita `IMG_1607.MOV`: 4K vertical nativa, HEVC, 60 fps, 75,3 s, **789 MB**. Mesma
+pessoa da NH_medo, enquadramento bem mais aberto. Tema: o cuidado com o folículo
+desde o saque.
+
+**Método mais barato que o da peça anterior:** em vez do proxy completo (~6 min),
+os três cortes foram puxados **direto da URL** com busca em dois estágios —
+39 s por corte, contagem de frames exata. O proxy só compensa pra garimpar a
+fita inteira.
+
+**O achado da peça: o transcritor fundiu duas tentativas e apagou a boa.** Ele
+devolveu um segmento de 13,22→22,82 com o gancho inteiro. O envelope mostrou
+**fala** onde o JSON marcava silêncio (17,2→19,9). Reanalisado o trecho isolado,
+com e sem vocabulário, as duas passadas deram o mesmo: **a segunda tentativa,
+inteira e fluida, de 17,15 a 21,93**, com 0,99 de confiança. Ela tinha parado
+depois de "tratado" e recomeçado. Montar pelo JSON daria um gancho com buraco de
+3 s. Regra nova nas skills: **pausa longa dentro de um segmento do ASR é
+suspeita, não silêncio** — e ao reanalisar, rodar com e sem `initial_prompt`,
+porque o vocabulário faz o modelo completar a frase esperada.
+
+**Zero corte interno.** As três tomadas correm sem hesitação. Por isso o bloco
+escolhido foi o de 31,15 (versão completa e última) e não o resumo de 24,16 — a
+redundância aqui é o resumo. Ficaram de fora também o trecho 46,5→57,6 (mesma
+tese, mas com buracos de 2 a 3 s entre palavras), "para se revivir" (0,40 de
+confiança, palavra que não existe) e o CTA "segue o meu perfil", que é de perfil
+pessoal e não da clínica.
+
+**⚠ Uma palavra por confirmar:** em "não pode haver ___" o modelo escreve
+"compreensão" e **mantém mesmo com "compressão" no vocabulário**. Na lista
+(desidratado / ___ / queda), logo depois de "não pode apertar o folículo", só
+"compressão" fecha sentido — é o que está na legenda. Precisa de ouvido.
+
+**Faixa de apoio de 800 px**, o dobro das peças anteriores, porque o
+enquadramento é mais aberto e a cabeça dela só começa em 690 px. Os dois apoios
+foram cortados já em 1080×800, com recorte 27:20 da fonte vertical: nada
+esticado, nada desperdiçado fora da faixa. Apoios: folículos na cuba de
+hidratação sobre "não pode ser desidratado" e carregamento do implanter sobre
+"cuidado com o enxerto até a implantação".
+
+**Música:** `cosy` (quarta faixa, alternando), entrada de **+13,6 dB** na virada.
+
+**Medido:** 30 fps constante, 960 frames, 32,0 s, decodificação inteira sem erro,
+**0 dos 960 frames** com faixa de fundo no topo, offset entrega × master 0,0 ms
+nas três janelas, master −16,2 LUFS, tensão subindo 3,2 dB no grave até a última
+palavra do problema. Entrega 17 MB.
+
 ## Terceira peça pelo FLUXO A (14/09/2026) — NH_medo_v1
 
 Fita nova, pasta nova, pessoa diferente na câmera (jaleco vinho, parede lisa) —

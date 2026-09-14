@@ -273,6 +273,53 @@ proibido pra vídeo (devolve base64 na conversa) — a URL
 `drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t` é o
 caminho.
 
+## Fita grande: cortar direto da URL sai mais barato que o proxy
+
+Atualização do método de 14/09. Gerar o proxy inteiro custou 4m42 numa fita de
+57 s e ~6 min numa de 75 s. Se os cortes já estão escolhidos — e estão, porque
+quem decide é o áudio — sai mais rápido puxar só eles, com busca em dois
+estágios pra não perder precisão:
+
+    ffmpeg -ss <inicio-3> -i "<URL>" -ss 3 -t <dur> -vf "scale=1080:1920,fps=30" ...
+
+A busca rápida vai até 3 s antes (por keyframe, barata) e a fina completa por
+decodificação. Deu **39 s por corte** e contagem de frames exata. O proxy
+completo só compensa quando se vai garimpar a fita inteira no olho.
+
+**Nunca rodar isso em segundo plano com `&`:** o wrapper volta na hora, o
+processo é morto junto e o arquivo fica sem moov. Aconteceu duas vezes. Render
+e transcode longos ficam em primeiro plano.
+
+## O ASR funde tentativas e apaga a boa (14/09/2026)
+
+Erro que quase passou na peça NH_saque. O transcritor devolveu **um** segmento
+de 13,22 a 22,82 com a frase inteira do gancho. Era mentira em dois níveis:
+
+- entre "tratado" (16,4) e "com cuidado" (19,7) ele marcou **silêncio**, e o
+  envelope mostrava **fala** ali;
+- reanalisado o trecho isolado, o que existe é a **segunda tentativa inteira**,
+  de 17,15 a 21,93, fluida e com 0,99 de confiança em quase toda palavra.
+
+Ou seja: ela parou depois de "tratado", recomeçou a frase, e o modelo **colou
+as duas tentativas num segmento só e apagou o começo da segunda**. Montar pelo
+JSON daria um gancho com buraco de 3 s ou um corte no meio da frase.
+
+**Regra:** pausa longa DENTRO de um segmento do ASR é suspeita, não silêncio.
+Medir o envelope antes de aceitar. Achou energia onde o JSON diz que não há,
+recortar só aquele trecho e transcrever de novo.
+
+**Ao reanalisar, rodar as duas passadas — com e sem `initial_prompt`.** O
+vocabulário do assunto faz o modelo COMPLETAR a frase esperada: em janelas de
+2,5 e 3 s eu recebi a frase inteira como se estivesse toda ali. Só quando as
+duas passadas dão o mesmo texto, com tempo por palavra coerente com a duração
+do trecho, a leitura vale.
+
+E o contrário também aconteceu na mesma fita: em "não pode haver ___" o modelo
+escreve "compreensão" e **mantém isso mesmo com "compressão" no vocabulário** —
+prior de frequência da língua, não escuta. Quando o sentido da frase decide
+(lista de danos ao folículo, logo depois de "não pode apertar"), vale escrever
+o que faz sentido e **avisar a dona que aquela palavra precisa de ouvido**.
+
 ## `scripts/bordas.py` — a ferramenta do erro anterior
 
 Depois do "agilidade" mastigado, conferir borda virou passo obrigatório e
