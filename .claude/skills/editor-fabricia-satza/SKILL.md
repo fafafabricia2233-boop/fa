@@ -314,6 +314,19 @@ vocabulário do assunto faz o modelo COMPLETAR a frase esperada: em janelas de
 duas passadas dão o mesmo texto, com tempo por palavra coerente com a duração
 do trecho, a leitura vale.
 
+
+**Palavra de baixa confiança no FIM da frase também é trecho pra reanalisar, não
+lixo.** Na mesma fita, o ASR fechou a frase com "para se revivir" a 0,40 — e
+"revivir" nem existe em português. Descartei como ruído e cortei ali; a dona
+ouviu que a fala estava cortada. Reanalisado o trecho isolado, as duas passadas
+devolvem **"para a cirurgia"** com 0,82 e 0,87. Ou seja: a mesma regra que
+resolveu a entrada vale pra saída, e eu não a apliquei nas duas pontas.
+
+**Borda que termina em S, X, Z ou R se confere no AGUDO.** O /s/ de "mais" ia
+até 44,86 e o corte em 44,85 ainda o comia. Numa medição de banda larga a
+sibilante quase não aparece — quem a mostra é a banda acima de 3,5 kHz. O
+`bordas.py` mede banda larga: pra final sibilante, olhar o agudo também.
+
 E o contrário também aconteceu na mesma fita: em "não pode haver ___" o modelo
 escreve "compreensão" e **mantém isso mesmo com "compressão" no vocabulário** —
 prior de frequência da língua, não escuta. Quando o sentido da frase decide

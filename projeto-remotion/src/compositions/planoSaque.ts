@@ -28,11 +28,12 @@
    FONTE POR CORTE (bordas medidas no envelope):
      clip0 gancho  17,10 → 22,20  "Sua equipe sabe que o folículo precisa ser
                                    tratado com cuidado desde o momento do saque?"
-     clip1 bloco   31,15 → 44,85  "É muito importante ter cuidado com o folículo,
+     clip1 bloco   31,15 → 45,85  "É muito importante ter cuidado com o folículo,
                                    ele não pode ser desidratado, não pode haver
                                    compressão, não pode haver queda, tem que ter
                                    maior cuidado porque qualquer coisa ele pode
-                                   sofrer danos e não ser viável mais."
+                                   sofrer danos e não ser viável mais PARA A
+                                   CIRURGIA."
      clip2 tese    58,12 → 64,95  "ter todo o cuidado com o enxerto até a
                                    implantação para que ele possa ser implantado
                                    de forma viável."
@@ -43,8 +44,24 @@
    é a última, e corre sem hesitação. O §02 manda tirar redundância, e aqui a
    redundância é o resumo.
 
-   FICOU DE FORA: o resumo de 24,16 (acima); "para se revivir" (45,1→45,7, o ASR
-   deu 0,40 de confiança e a palavra não existe em português); o trecho de 46,5
+   ─── O FIM DA FRASE QUE EU TINHA CORTADO (corrigido em 14/09) ──────────────
+   A v1 terminava o bloco em 44,85, logo depois de "mais". A dona ouviu que a
+   fala estava cortada, e estava: a frase acaba em **"não ser viável mais PARA A
+   CIRURGIA"**. O transcritor da fita inteira escreveu ali "para se revivir" com
+   0,40 de confiança — palavra que nem existe em português — e eu tratei isso
+   como lixo em vez de reanalisar. Recortado o trecho e transcrito de novo, as
+   duas passadas (com e sem vocabulário) devolvem "para a cirurgia" com 0,82 e
+   0,87 de confiança.
+
+   A lição é a mesma que esta peça já tinha ensinado na entrada, aplicada à
+   saída: **palavra de baixa confiança no fim de uma frase não é ruído, é
+   trecho pra reanalisar.** Descartar sai mais caro que conferir.
+
+   E o /s/ de "mais" ia até 44,86: o corte em 44,85 ainda comia a sibilante. Numa
+   medição de banda larga a sibilante quase não aparece — quem a mostra é a
+   banda acima de 3,5 kHz. Borda que termina em S, X, Z ou R se confere no agudo.
+
+   FICOU DE FORA: o resumo de 24,16 (acima); o trecho de 46,5
    a 57,6, que diz a mesma tese do clip2 mas com buracos de 2 a 3 s entre as
    palavras; e o CTA "segue o meu perfil" (65,6→73,7) — é CTA de perfil pessoal,
    não da clínica, e as peças da New Hair fecham na marca. Volta se ela quiser.
@@ -59,13 +76,13 @@ import type { Cue, Plano } from "./ReelFalado";
 
 export const PLANO_SAQUE: Plano = {
   fps: 30,
-  duration: 960, // 769 de conteúdo + 191 da marca
-  endCard: 769,
+  duration: 990, // 799 de conteúdo + 191 da marca
+  endCard: 799,
   hookEnd: 153, // 5,10 s
   clips: [
     { nome: "gancho", src: "newhair/falado4/clip0.mp4", start: 0, duration: 153 },
-    { nome: "bloco", src: "newhair/falado4/clip1.mp4", start: 153, duration: 411 },
-    { nome: "tese", src: "newhair/falado4/clip2.mp4", start: 564, duration: 205 },
+    { nome: "bloco", src: "newhair/falado4/clip1.mp4", start: 153, duration: 441 },
+    { nome: "tese", src: "newhair/falado4/clip2.mp4", start: 594, duration: 205 },
   ],
   /* Faixa de 800 px — o dobro das peças anteriores, e medida igual: o
      enquadramento aqui é bem mais aberto e a cabeça dela só começa em 690 px.
@@ -75,7 +92,7 @@ export const PLANO_SAQUE: Plano = {
     // "não pode ser desidratado" → folículos na cuba de hidratação
     { fromFrame: 250, duration: 79, src: "newhair/falado4/apoio_hidrata.mp4", mode: "band", altura: 800, position: "50% 50%" },
     // "cuidado com o enxerto até a implantação" → carregamento do implanter
-    { fromFrame: 600, duration: 150, src: "newhair/falado4/apoio_implante.mp4", mode: "band", altura: 800, position: "50% 50%" },
+    { fromFrame: 630, duration: 150, src: "newhair/falado4/apoio_implante.mp4", mode: "band", altura: 800, position: "50% 50%" },
   ],
   title: ["SUA EQUIPE CUIDA DO FOLÍCULO", "DESDE O SAQUE?"],
   titleShift: 0,
@@ -103,16 +120,16 @@ export const CUES_SAQUE: Cue[] = [
   { start: 13.89, end: 16.85, lines: [
     { text: "porque qualquer coisa", size: 34 },
     { text: "ELE PODE SOFRER DANOS", size: 42, gold: true }] },
-  { start: 16.95, end: 18.75, lines: [
-    { text: "e não ser", size: 34 },
-    { text: "VIÁVEL MAIS.", size: 42, gold: true }] },
-  { start: 19.10, end: 20.48, lines: [
+  { start: 16.95, end: 19.72, lines: [
+    { text: "e não ser viável mais", size: 34 },
+    { text: "PARA A CIRURGIA.", size: 42, gold: true }] },
+  { start: 20.10, end: 21.48, lines: [
     { text: "Ter todo o cuidado", size: 34 },
     { text: "COM O ENXERTO", size: 42, gold: true }] },
-  { start: 20.54, end: 21.68, lines: [
+  { start: 21.54, end: 22.68, lines: [
     { text: "até a", size: 34 },
     { text: "IMPLANTAÇÃO,", size: 42, gold: true }] },
-  { start: 21.78, end: 25.50, lines: [
+  { start: 22.78, end: 26.50, lines: [
     { text: "para que ele possa ser", size: 34 },
     { text: "IMPLANTADO DE FORMA VIÁVEL.", size: 42, gold: true }] },
 ];

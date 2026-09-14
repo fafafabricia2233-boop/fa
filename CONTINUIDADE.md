@@ -280,10 +280,26 @@ hidratação sobre "não pode ser desidratado" e carregamento do implanter sobre
 
 **Música:** `cosy` (quarta faixa, alternando), entrada de **+13,6 dB** na virada.
 
-**Medido:** 30 fps constante, 960 frames, 32,0 s, decodificação inteira sem erro,
-**0 dos 960 frames** com faixa de fundo no topo, offset entrega × master 0,0 ms
-nas três janelas, master −16,2 LUFS, tensão subindo 3,2 dB no grave até a última
-palavra do problema. Entrega 17 MB.
+**v2 (14/09) — eu tinha cortado o fim da frase.** A dona ouviu: *"você cortou ela
+falando não ser viável mais"*. A frase acaba em **"não ser viável mais PARA A
+CIRURGIA"**. O transcritor da fita inteira escreveu ali "para se revivir" com 0,40
+de confiança — palavra que nem existe em português — e eu tratei como lixo em vez
+de reanalisar. Recortado o trecho e transcrito de novo, as duas passadas devolvem
+"para a cirurgia" com 0,82 e 0,87. **A regra que eu tinha acabado de criar pra
+entrada vale igual pra saída, e eu só apliquei numa ponta.**
+
+Junto: o /s/ de "mais" ia até 44,86 e o corte em 44,85 ainda comia a sibilante.
+Sibilante quase não aparece em medição de banda larga — quem mostra é a banda
+acima de 3,5 kHz. Borda terminada em S, X, Z ou R se confere no agudo.
+
+Bloco refeito até 45,85 (441 frames, +30), peça andou 30 frames: endCard 769→799,
+duração 960→990, apoio da tese 600→630, legenda do fecho virou "e não ser viável
+mais / PARA A CIRURGIA" e as da tese andaram 1,0 s.
+
+**Medido na v2:** 30 fps constante, 990 frames, 33,0 s, decodificação inteira sem
+erro, **0 dos 990 frames** com faixa de fundo no topo, offset entrega × master
+0,0 ms nas três janelas, master −16,1 LUFS, e ~150 ms de ar depois de "cirurgia"
+antes do corte. Entrega 17 MB.
 
 ## Terceira peça pelo FLUXO A (14/09/2026) — NH_medo_v1
 
