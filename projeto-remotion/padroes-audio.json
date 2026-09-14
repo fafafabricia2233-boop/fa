@@ -60,7 +60,7 @@
   },
 
   "musica": {
-    "abaixo_da_voz_dB": 9,
+    "abaixo_da_voz_dB": 3,
     "ganho": "CALCULADO POR PEÇA — scripts/ganho-musica.py",
     "arquivo": "banco do Drive, pasta lofi (9 faixas, chegou em 14/09/2026)",
     "curadoria": "kit-new-hair/musicas-ataques-por-hash.json — 8 das 9 faixas, casadas por SHA-256",
@@ -74,10 +74,16 @@
       "e a normalização só acontece no fim, no mix inteiro, então o nível do stem de",
       "voz muda de peça pra peça. A mesma folga dá ganhos diferentes em cada peça.",
       "",
-      "HISTÓRICO DA FOLGA: 15 dB foi a primeira tentativa, em 14/09/2026, e a dona",
-      "reprovou na hora — 'achei a música baixa demais'. Passou a 9 dB no mesmo dia.",
-      "Ela citou junto a virada do beat entrando no take pós-gancho: é o momento que",
-      "a música precisa marcar, e a 15 dB ele não chegava. Pelo §01, 9 é o padrão."
+      "HISTÓRICO DA FOLGA, tudo em 14/09/2026:",
+      "  15 dB — primeira tentativa. Reprovada na hora: 'achei a música baixa demais'.",
+      "          Ela citou junto a virada do beat entrando no take pós-gancho — é o",
+      "          momento que a música precisa marcar, e a 15 dB ele não chegava.",
+      "   9 dB — segunda. Também baixa pra ela.",
+      "   3 dB — ordem 'AUMENTE O LOFI EM 100%'. Cem por cento é o DOBRO da",
+      "          amplitude, ou seja +6,02 dB, então 9 − 6 = 3. Pelo §01, 3 é o padrão.",
+      "",
+      "A 3 dB a música fica quase do tamanho da voz. É decisão explícita da dona e",
+      "prevalece; quem mexer aqui remede a inteligibilidade da fala antes."
     ],
     "regra": "o recorte começa em (ataque − virada do gancho); ataque vem da curadoria casado por SHA-256, nunca chutado; alternar faixa entre vídeos e registrar a usada",
     "escolha_da_faixa": [

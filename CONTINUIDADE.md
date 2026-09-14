@@ -18,8 +18,12 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 - **Música: a folga é fixa, o ganho não** (14/09/2026, quando a pasta `lofi`
   chegou). O ganho 0,1 do §05 nunca tinha sido conferido contra arquivo e põe a
-  música a 1,0–2,6 dB da voz. O que se padroniza é `abaixo_da_voz_dB: 15`; o
-  ganho sai por peça de `scripts/ganho-musica.py`. Faixa só entra se o SHA-256
+  música a 1,0–2,6 dB da voz. O que se padroniza é `abaixo_da_voz_dB`, hoje em
+  **3** (15 → 9 → 3, todas correções da dona no mesmo dia; a última foi
+  "aumente o lofi em 100%", que é o dobro da amplitude = +6 dB). O
+  ganho sai por peça de `scripts/ganho-musica.py`. A 3 dB a voz ainda fica
+  13 dB acima da música **na banda da fala** (300 Hz–3,4 kHz), porque lofi é
+  grave-pesado — medir essa banda antes de entregar se trocar de gênero. Faixa só entra se o SHA-256
   bater com a curadoria de ataques — `scripts/conferir-musica.py` barra o resto.
 
 - **Vídeo ocupa a tela toda** (ordem da dona, 14/09/2026: *"esse negócio azul em
@@ -295,6 +299,14 @@ acima de 3,5 kHz. Borda terminada em S, X, Z ou R se confere no agudo.
 Bloco refeito até 45,85 (441 frames, +30), peça andou 30 frames: endCard 769→799,
 duração 960→990, apoio da tese 600→630, legenda do fecho virou "e não ser viável
 mais / PARA A CIRURGIA" e as da tese andaram 1,0 s.
+
+**v3 (14/09) — lofi +100%.** Ordem da dona. Cem por cento é o dobro da
+amplitude, +6,02 dB: a folga padrão passa de 9 pra **3 dB abaixo da voz** e o
+ganho desta peça de 0,0410 pra 0,0817 (×1,993). Conferido que não come a fala:
+na banda de inteligibilidade (300 Hz–3,4 kHz) a voz continua **13 dB acima** da
+música, porque o lofi concentra energia no grave. Só o áudio refeito; a imagem
+aprovada foi reaproveitada. As peças NH_agilidade, NH_velocidade e NH_medo
+continuam no padrão antigo de 9 dB — refazer é só remixar, a imagem não muda.
 
 **Medido na v2:** 30 fps constante, 990 frames, 33,0 s, decodificação inteira sem
 erro, **0 dos 990 frames** com faixa de fundo no topo, offset entrega × master

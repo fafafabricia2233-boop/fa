@@ -360,10 +360,16 @@ depois medindo a energia 300 ms antes e 300 ms depois da virada: tem que haver
 entrada de beat ali. Não confundir com "o maior ataque do trecho" — o refrão
 mais adiante quase sempre bate mais forte, e isso não invalida nada.
 
-**A folga é 9 dB, não 15.** 15 foi a primeira tentativa e a dona reprovou na
-hora: *"achei a música baixa demais"*, lembrando junto que a virada do beat
-entra no take pós-gancho — é o momento que a música tem que marcar, e a 15 dB
-ele não chegava. Pelo §01, 9 é o padrão.
+**A folga é 3 dB.** Três tentativas no mesmo dia (14/09/2026): 15 dB reprovado
+na hora (*"achei a música baixa demais"*, lembrando que a virada do beat entra no
+take pós-gancho e a 15 dB não chegava lá), 9 dB também baixo, e então *"AUMENTE
+O LOFI EM 100%"* — cem por cento é o DOBRO da amplitude, +6,02 dB, logo 9 − 6 = 3.
+
+**A 3 dB parece perigoso e não é, por causa do gênero.** Medido na banda onde a
+inteligibilidade da fala mora (300 Hz a 3,4 kHz), a voz continua **13 dB acima**
+da música — porque lofi é grave-pesado e quase toda a energia dela está abaixo
+dessa banda. A folga global de 3 dB é presença, não mascaramento. Quem mexer no
+número remede essa banda antes de entregar, porque com outro gênero a conta muda.
 
 **O ganho 0,1 do §05 não serve, e agora se sabe por quê.** Aquela entrada do
 JSON estava marcada AUSENTE: o número veio do manual e nunca tinha encostado num
