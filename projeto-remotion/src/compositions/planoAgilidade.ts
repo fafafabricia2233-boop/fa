@@ -40,6 +40,10 @@ export const PLANO_AGILIDADE: Plano = {
      ficou literal: é exatamente a frase dela. */
   title: ["SEPARAR RÁPIDO NÃO É", "SEPARAR BEM."],
   titleShift: 140, // ela está enquadrada alta; sem isto o título cai no rosto
+  /* 240 preserva a peça como ela foi entregue em 13/09. Peça NOVA não usa isto:
+     empurrar o plano descobre o fundo no topo (ver Plano.bandShift). Se esta for
+     refeita, o caminho é medir a cabeça e encurtar a faixa. */
+  bandShift: 240,
   zoomClip: 2, // o zoom vive no corte de resolução cheia, não no ampliado
   zoomFrame: 26,
   closeClips: [],

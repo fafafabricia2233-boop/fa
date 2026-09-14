@@ -55,8 +55,12 @@ export type Apoio = {
   fromFrame: number;
   duration: number;
   src: string;
-  /** "band" = faixa em cima com o rosto empurrado pra baixo; "full" = tela toda */
+  /** "band" = faixa mascarada em cima, fundida na imagem dela; "full" = tela toda */
   mode: "band" | "full";
+  /** altura da faixa em px. NÃO é número fixo: mede-se onde começa a cabeça
+      dela no corte e põe-se a faixa pra dissolver ali (ver comentário em Apoio).
+      Sem valor, 760 — que é o do exemplo aprovado, e só serve com deslocamento. */
+  altura?: number;
   position: string;
 };
 
@@ -73,6 +77,13 @@ export type Plano = {
   title: [string, string];
   /** empurra o plano do gancho pra baixo pra abrir espaço acima da cabeça */
   titleShift: number;
+  /** Empurra o plano pra baixo enquanto há apoio em faixa. PADRÃO 0.
+      Existe só pra peça antiga: empurrar descobre o fundo da marca no topo, e a
+      dona pediu o vídeo na tela toda (14/09/2026). O jeito certo de abrir espaço
+      pra faixa é MEDIR a cabeça e encurtar a faixa (`Apoio.altura`), não mover
+      o plano. Quem usar isto paga recorte: o motor amplia o quanto for preciso
+      pra não sobrar fundo. */
+  bandShift?: number;
   zoomClip: number;
   zoomFrame: number;
   closeClips: number[];
@@ -114,7 +125,11 @@ const Base: React.FC<{
         ? 1.08
         : 1;
   const origem = i > 0 ? "50% 80%" : "50% 42%";
-  const desloca = temApoioBanda ? 240 : i === 0 ? plano.titleShift : 0;
+  const desloca = temApoioBanda
+    ? (plano.bandShift ?? 0)
+    : i === 0
+      ? plano.titleShift
+      : 0;
 
   /* COBERTURA — ordem da dona, 14/09/2026: "prefiro que o vídeo fique na tela
      toda". O `objectFit: cover` preenche exatamente 1080×1920; qualquer
@@ -150,8 +165,17 @@ const Base: React.FC<{
   );
 };
 
-/* Apoio. Em "band" ele ocupa 760 px no topo, opaco até 82% e transparente em
-   100% — é a máscara de MISTURA, não substitui os véus de texto. */
+/* Apoio. Em "band" ele é uma faixa no topo, opaca até 82% e transparente em
+   100% — é a máscara de MISTURA (o apoio se funde na imagem dela em vez de
+   ser uma tarja colada), e não substitui os véus de texto.
+
+   A ALTURA se mede, não se herda. O que faz a máscara funcionar é a dissolução
+   cair no topo da cabeça dela: no exemplo aprovado a cabeça ficava a 85% da
+   altura da faixa, logo abaixo do limite opaco de 82%. Aquele 760 px só fecha
+   essa conta porque o plano estava empurrado 240 px pra baixo — e é o empurrão
+   que descobria o fundo da marca no topo (ordem da dona de 14/09: vídeo na tela
+   toda). Sem empurrão, mede-se onde a cabeça começa e divide-se por 0,85.
+   Na NH_velocidade a touca começa em 430 px, então a faixa é 500. */
 const Apoio: React.FC<{ b: Apoio }> = ({ b }) => {
   const f = useCurrentFrame();
   const fade = lerp(f, [0, 3, b.duration - 3, b.duration], [0, 1, 1, 0]);
@@ -166,7 +190,7 @@ const Apoio: React.FC<{ b: Apoio }> = ({ b }) => {
         top: 0,
         left: 0,
         width: 1080,
-        height: b.mode === "band" ? 760 : 1920,
+        height: b.mode === "band" ? (b.altura ?? 760) : 1920,
         overflow: "hidden",
         opacity: fade,
         maskImage: mascara,

@@ -11,8 +11,10 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 - **Vídeo ocupa a tela toda** (ordem da dona, 14/09/2026: *"esse negócio azul em
   cima… prefiro que o vídeo fique na tela toda"*). Vale contra o exemplo
   aprovado, que empurrava o plano pra baixo e usava apoio em faixa. Na prática:
-  apoio em `"full"`, `titleShift: 0`, e o motor com escala de cobertura como
-  rede de segurança (deslocar continua custando recorte, então evita-se).
+  **o mascaramento continua** (ela confirmou: *"quero que continue mascarando a
+  imagem junto com minha fala"*) — o que muda é que a ALTURA da faixa se mede
+  em vez de herdar 760: `altura = topo_da_cabeça ÷ 0,85`. Mais `titleShift: 0`,
+  `bandShift: 0` e a escala de cobertura no motor como rede de segurança.
   Junto, o véu do título passou de 520 px com queda seca pra 900 px com cauda
   longa — sem a faixa de fundo por trás, a borda dele aparecia na parede lisa.
 
@@ -167,8 +169,20 @@ fora pra não quebrar a reprodutibilidade provada do script.
 
 **Sem escuta perceptual**, como sempre: o que está acima é medição, não audição.
 
-**v3 (14/09):** a dona viu a faixa azul no topo e pediu o vídeo na tela toda. Os
-dois apoios passaram de `"band"` pra `"full"` e o `titleShift` de 140 pra 0 —
+**v4 (14/09):** a v3 tinha jogado fora o mascaramento junto com o problema. A
+dona: *"por que você removeu o mascaramento? quero que continue mascarando a
+imagem junto com minha fala"*. Estava certa — apoio em tela cheia resolve a
+faixa azul mas perde a fusão, que é justamente o que faz o apoio nascer dentro
+da imagem dela. As duas exigências não brigam: o que a máscara precisa é
+dissolver no topo da cabeça, não ter 760 px de altura. Medida a touca (430 px
+no clip1, 440 no clip2) e mantida a proporção do exemplo aprovado (cabeça a
+~85% da faixa), a faixa fica em **500 px** — dissolve no mesmo lugar relativo,
+rosto livre, zero fundo à mostra, zero ampliação. A altura virou campo do
+apoio (`altura`) e o empurrão virou campo do plano (`bandShift`, padrão 0,
+mantido em 240 só na NH_agilidade pra não alterar peça entregue).
+
+**v3 (14/09, substituída):** a dona viu a faixa azul no topo e pediu o vídeo na
+tela toda. Os dois apoios passaram de `"band"` pra `"full"` e o `titleShift` de 140 pra 0 —
 ou seja, ninguém mais é empurrado, então não sobra fundo. **Nada de ampliar**:
 a fita é 9:16 exata e preencher com deslocamento custaria 15 a 17% de recorte
 num material já ampliado 2,25×. O véu do título foi alongado junto (520→900 px),

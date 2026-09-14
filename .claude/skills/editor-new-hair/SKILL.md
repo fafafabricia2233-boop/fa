@@ -107,18 +107,33 @@ exige ampliar em `1 + deslocamento/(origem_y × 1920)` — 15 a 17% de recorte, 
 material que já vinha ampliado 2,25×. Então o conserto **não** é ampliar: é
 parar de empurrar.
 
-O que fazer em vez disso:
+**O MASCARAMENTO FICA** (ordem da dona, 14/09/2026: *"quero que continue
+mascarando a imagem junto com minha fala"*). Apoio em `"full"` resolve a faixa
+azul mas perde a fusão, e a fusão é o ponto: o apoio nasce dentro da imagem
+dela, não é tarja colada por cima. Trocar `band` por `full` pra fugir do
+problema é resposta errada.
 
-1. **Apoio em `"full"`, não `"band"`.** Corte seco de cobertura, tela cheia, a
-   gramática de sempre — ela continua falando por baixo, a legenda continua
-   correndo, e nenhum dos dois planos sai do lugar. A faixa só existia pra
-   caber cabeça e apoio na mesma tela.
-2. **`titleShift: 0`.** Quem segura o título sobre a imagem é o véu do topo,
+**A altura da faixa se MEDE, não se herda.** É aqui que as duas exigências
+deixam de brigar. O que a máscara precisa é dissolver no topo da cabeça — não
+ter 760 px. No exemplo aprovado a cabeça caía a ~85% da altura da faixa, logo
+abaixo do limite opaco de 82%; o 760 só fechava essa conta porque o plano ia
+240 px pra baixo. Então:
+
+1. **Medir onde começa a cabeça** no corte (a touca cirúrgica é fácil de achar
+   por cor). Na NH_velocidade: 430 px no clip1, 440 no clip2.
+2. **`altura = topo_da_cabeça ÷ 0,85`.** Deu 500 px. A faixa dissolve no mesmo
+   lugar relativo de sempre, o rosto fica livre, e ninguém sai do lugar.
+3. **`titleShift: 0`** — quem segura o título sobre a imagem é o véu do topo,
    que é pra isso que ele existe.
-3. **Rede de segurança no motor.** Se um plano futuro deslocar mesmo assim, o
-   `Base` calcula a escala de cobertura e aplica (com 0,5% de folga de
-   subpixel). A faixa não volta por descuido — mas custa recorte, então
-   deslocar continua sendo decisão cara.
+4. **`bandShift` é 0 por padrão** e só existe pra não alterar a peça já
+   entregue. Plano novo não usa: o motor até amplia o quanto for preciso pra
+   não sobrar fundo, mas isso custa recorte, e num material ampliado custa
+   nitidez.
+
+Vale a conta que mostra por que deslocar nunca compensa: com a cobertura no
+mínimo, a cabeça acaba em `topo_original × escala`. Pra devolver a cabeça aos
+617 px que o plano empurrado dava seria preciso ampliar **54%**. Faixa menor
+sai de graça; empurrão, não.
 
 **Efeito colateral que apareceu junto:** com a imagem ocupando tudo, o fim do
 véu do título virou linha horizontal visível na parede lisa — o brilho saltava

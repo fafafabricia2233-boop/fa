@@ -38,17 +38,24 @@ export const PLANO_VELOCIDADE: Plano = {
     { nome: "definicao", src: "newhair/falado2/clip1.mp4", start: 121, duration: 159 },
     { nome: "solucao", src: "newhair/falado2/clip2.mp4", start: 280, duration: 229 },
   ],
-  /* APOIO EM TELA CHEIA, não em faixa (ordem da dona, 14/09/2026: "prefiro que
-     o vídeo fique na tela toda"). A faixa obrigava a empurrar o plano dela 240 px
-     pra baixo pra cabeça não ficar atrás do apoio — e era esse empurrão que
-     descobria o fundo azul no topo. Em tela cheia o apoio é corte seco de
-     cobertura, a gramática de sempre: ela continua falando por baixo, a legenda
-     continua correndo, e nenhum dos dois planos precisa sair do lugar. */
+  /* APOIO EM FAIXA MASCARADA, com a ALTURA MEDIDA (ordem da dona, 14/09/2026:
+     mantém o mascaramento, e o vídeo na tela toda).
+
+     São duas exigências que pareciam brigar: a faixa de 760 px do exemplo
+     aprovado só cabia acima da cabeça dela porque o plano ia 240 px pra baixo —
+     e era esse empurrão que descobria o fundo azul no topo.
+
+     Não brigam. O que a máscara precisa é dissolver no topo da cabeça, não ter
+     760 px. Medida a touca azul nos dois cortes (clip1 em y=430, clip2 em
+     y=440) e mantida a mesma proporção do exemplo aprovado — cabeça a ~85% da
+     faixa, logo abaixo do limite opaco de 82% — a faixa fica em 500 px. O apoio
+     se funde na imagem dela igual, o rosto continua livre, e ninguém sai do
+     lugar: zero fundo à mostra e zero ampliação. */
   brolls: [
     // "treinamento e constância" → mãos treinadas carregando o implanter
-    { fromFrame: 135, duration: 132, src: "newhair/falado2/apoio_maos.mp4", mode: "full", position: "50% 50%" },
+    { fromFrame: 135, duration: 132, src: "newhair/falado2/apoio_maos.mp4", mode: "band", altura: 500, position: "50% 50%" },
     // "sem danificar nenhuma estrutura" → implante com pinça, movimento fino
-    { fromFrame: 380, duration: 120, src: "newhair/falado2/apoio_pinca.mp4", mode: "full", position: "50% 50%" },
+    { fromFrame: 380, duration: 120, src: "newhair/falado2/apoio_pinca.mp4", mode: "band", altura: 500, position: "50% 50%" },
   ],
   title: ["PEGAR DE QUALQUER JEITO", "NÃO É AGILIDADE."],
   /* 0, não 140: o título mora sobre a imagem, segurado pelo véu do topo. O
