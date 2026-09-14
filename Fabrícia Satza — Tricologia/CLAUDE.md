@@ -6,9 +6,9 @@ escreve e mantém o wiki inteiro.
 
 Leia este arquivo antes de qualquer operação.
 
-**O cofre está vazio.** Nenhuma fonte foi ingerida ainda, e `wiki/` só tem a
-página de entrada. A estrutura abaixo é o combinado; ela se preenche conforme
-as fontes chegam.
+**Antes de agir, leia o [[ESTADO]].** Ele diz onde o projeto parou, o que já
+foi decidido e por quê, e o que está pendente — e é o que te devolve o
+raciocínio depois de uma compactação de contexto.
 
 ---
 
@@ -29,6 +29,57 @@ Mais dois arquivos na raiz:
 entrada curada, temática, para leitura humana. O `index.md` é a lista completa,
 mantida pelo agente, que ele lê primeiro para achar as páginas de uma pergunta.
 Os dois precisam existir e não se substituem.
+
+---
+
+## Protocolo de entrega — obrigatório
+
+A Fabrícia trabalha no Obsidian do computador dela. Você trabalha num container
+na nuvem. **Nada que você escreve chega nela sozinho.**
+
+Essa lacuna já custou uma sessão inteira: cinco commits prontos, PR aberto, e a
+tela dela vazia. Ela cobrou, com razão. Não se repete.
+
+**Toda vez que você alterar o vault, sem ela pedir:**
+
+1. Commit e push na branch de trabalho
+2. Anexe a entrada no `log.md`
+3. Atualize o [[ESTADO]] se alguma decisão, pendência ou problema mudou
+4. **Gere o zip do vault e entregue pelo `SendUserFile`**
+5. Diga em uma linha o que mudou e o que ela precisa fazer
+
+```bash
+cd /home/user/fa && rm -f /tmp/vault.zip && \
+  zip -rq /tmp/vault.zip "Fabrícia Satza — Tricologia" -x '*.DS_Store'
+```
+
+O passo 4 não é opcional e não espera pedido. **Trabalho que não chegou no
+Obsidian dela não está entregue.**
+
+Isto deixa de ser necessário no dia em que ela rodar o Claude Code no próprio
+computador, aberto nesta pasta: aí o agente escreve direto no disco e o Obsidian
+atualiza ao lado, sem transporte. Até lá, o protocolo vale em todo turno.
+
+## Protocolo de retomada — depois de compactar
+
+O histórico da conversa não sobrevive à compactação. O que sobrevive são os
+arquivos. Então o estado do projeto mora em arquivo, não na conversa.
+
+**Ao voltar, leia nesta ordem:** [[ESTADO]] → `log.md` → este arquivo.
+
+**Ao longo do trabalho, escreva enquanto acontece** — não no fim, que é quando
+o contexto já pode ter sido cortado:
+
+| Aconteceu | Vai para |
+|---|---|
+| Decisão tomada, com o porquê | [[ESTADO]], tabela de decisões |
+| Pendência criada ou resolvida | [[ESTADO]], pendências |
+| Erro que custou tempo | [[ESTADO]], armadilhas |
+| Operação concluída (ingest, query, lint) | `log.md` |
+| Conteúdo | a página do wiki |
+
+Uma sessão bem registrada é a que o próximo agente retoma lendo três arquivos,
+sem precisar perguntar nada a ela que já foi respondido antes.
 
 ---
 

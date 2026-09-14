@@ -34,3 +34,21 @@ Gerou 18 páginas em `wiki/` e a página de resumo em `wiki/Fontes/`. Todas com
 `fontes: 1` e link de volta para a fonte. Pastas criadas pela regra das três
 páginas: Marca (6), Formatos (5) e Técnica (3); Decisões tomadas, Publicações e
 Banco de ideias ficaram na raiz.
+
+## [2026-09-14] estrutura | Protocolo de entrega e de retomada
+
+A Fabrícia apontou que nada do trabalho tinha chegado no Obsidian dela: cinco
+commits e um PR prontos, cofre vazio na tela. A causa é estrutural — o agente
+roda na nuvem, o Obsidian roda na máquina dela, e não há sincronia.
+
+Registrado como protocolo em três lugares, para não depender de memória de
+conversa:
+
+- `CLAUDE.md` na raiz do repo — para quem abrir a sessão em `/home/user/fa` e
+  nunca ler o schema do vault (o buraco que existia)
+- `CLAUDE.md` do vault — seções "Protocolo de entrega" e "Protocolo de retomada"
+- `ESTADO.md`, novo — documento de retomada pós-compactação: estado, decisões
+  com o porquê, pendências e as armadilhas já encontradas
+
+Toda alteração no vault passa a terminar com o zip entregue pelo SendUserFile,
+sem ela pedir.

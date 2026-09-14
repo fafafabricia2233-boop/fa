@@ -14,6 +14,7 @@ Para navegar lendo, comece por [[00 Início]] — este aqui é a lista completa.
 | Página | O que tem dentro |
 |---|---|
 | [[00 Início]] | porta de entrada curada, com os links por tema |
+| [[ESTADO]] | onde o projeto parou, decisões, pendências e armadilhas |
 
 ## Marca — 6 páginas
 
