@@ -263,6 +263,11 @@ depois medindo a energia 300 ms antes e 300 ms depois da virada: tem que haver
 entrada de beat ali. Não confundir com "o maior ataque do trecho" — o refrão
 mais adiante quase sempre bate mais forte, e isso não invalida nada.
 
+**A folga é 9 dB, não 15.** 15 foi a primeira tentativa e a dona reprovou na
+hora: *"achei a música baixa demais"*, lembrando junto que a virada do beat
+entra no take pós-gancho — é o momento que a música tem que marcar, e a 15 dB
+ele não chegava. Pelo §01, 9 é o padrão.
+
 **O ganho 0,1 do §05 não serve, e agora se sabe por quê.** Aquela entrada do
 JSON estava marcada AUSENTE: o número veio do manual e nunca tinha encostado num
 arquivo. Medido contra as duas peças faladas, 0,1 põe a música a **1,0 dB** da
@@ -274,6 +279,18 @@ pra peça (ela é equilibrada corte a corte e a normalização só acontece no f
 no mix inteiro). A mesma decisão de mixagem deu 0,0201 numa peça e 0,0241 na
 outra. O cálculo ignora as pausas: silêncio entre frases não pode puxar a média
 da voz pra baixo e fazer a música subir junto.
+
+**A faixa se escolhe pela FORÇA DA ENTRADA, não pelo nível médio.** Foi o erro
+da primeira tentativa: escolhi por estabilidade e caí na `wander`, que entra com
+só +5,9 dB — a virada não chegava. Medindo as oito (energia 300 ms depois do
+ataque menos 300 ms antes): imperfect +33,0 · lostmemories +26,7 · bittersweet
++18,0 · floating +13,7 · cosy +13,6 · harmony +10,2 · wander +5,9 · kickback
++1,8. Abaixo de ~+13 dB a faixa não marca a virada e não serve aqui.
+
+O formato certo é esse: **música quase inaudível debaixo do gancho e o beat
+entrando no take pós-gancho.** Confere-se no master, na banda grave (<200 Hz),
+onde a música mora e a voz não — nas duas peças o degrau na virada ficou em
++13 dB, com a música saindo de ~−53 pra ~−43 dBFS.
 
 **Alternar faixa entre vídeos e registrar qual foi** — fica em
 `padroes-audio.json` → `musica.usadas`.

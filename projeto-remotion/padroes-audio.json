@@ -60,7 +60,7 @@
   },
 
   "musica": {
-    "abaixo_da_voz_dB": 15,
+    "abaixo_da_voz_dB": 9,
     "ganho": "CALCULADO POR PEÇA — scripts/ganho-musica.py",
     "arquivo": "banco do Drive, pasta lofi (9 faixas, chegou em 14/09/2026)",
     "curadoria": "kit-new-hair/musicas-ataques-por-hash.json — 8 das 9 faixas, casadas por SHA-256",
@@ -72,13 +72,26 @@
       "",
       "O que é constante é a FOLGA, não o ganho. A voz é equilibrada corte a corte",
       "e a normalização só acontece no fim, no mix inteiro, então o nível do stem de",
-      "voz muda de peça pra peça. 15 dB abaixo da voz deu 0,0201 numa peça e 0,0241",
-      "na outra — dois ganhos diferentes pra mesma decisão de mixagem."
+      "voz muda de peça pra peça. A mesma folga dá ganhos diferentes em cada peça.",
+      "",
+      "HISTÓRICO DA FOLGA: 15 dB foi a primeira tentativa, em 14/09/2026, e a dona",
+      "reprovou na hora — 'achei a música baixa demais'. Passou a 9 dB no mesmo dia.",
+      "Ela citou junto a virada do beat entrando no take pós-gancho: é o momento que",
+      "a música precisa marcar, e a 15 dB ele não chegava. Pelo §01, 9 é o padrão."
     ],
     "regra": "o recorte começa em (ataque − virada do gancho); ataque vem da curadoria casado por SHA-256, nunca chutado; alternar faixa entre vídeos e registrar a usada",
+    "escolha_da_faixa": [
+      "Critério é a FORÇA DA ENTRADA no ataque, não o nível médio da faixa.",
+      "Medida: energia nos 300 ms depois do ataque menos os 300 ms antes.",
+      "Na primeira tentativa escolhi por estabilidade de nível e peguei a wander,",
+      "que entra com só +5,9 dB — o drop não chegava na virada. As oito, medidas:",
+      "imperfect +33,0 | lostmemories +26,7 | bittersweet +18,0 | floating +13,7 |",
+      "cosy +13,6 | harmony +10,2 | wander +5,9 | kickback +1,8.",
+      "Faixa abaixo de ~+13 dB não marca a virada e não serve pra esta gramática."
+    ],
     "usadas": {
-      "NH_agilidade": "wander (ataque 23,925 → recorte em 21,458)",
-      "NH_velocidade": "cosy (ataque 25,66 → recorte em 21,627)"
+      "NH_agilidade": "bittersweet (ataque 9,05 → recorte em 6,583; entrada +18,0 dB)",
+      "NH_velocidade": "imperfect (ataque 20,27 → recorte em 16,237; entrada +33,0 dB)"
     }
   },
 

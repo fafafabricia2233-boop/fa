@@ -220,20 +220,38 @@ SHA-256 exato com a curadoria de ataques do kit; a nona (`Soulful - L'indécis`)
 não está na lista e ficou de fora, porque sem ataque conferido não dá pra pôr o
 beat na virada.
 
-| Peça | Faixa | Ataque | Recorte começa | Entrada do beat na virada |
+| Peça | Faixa | Ataque | Recorte começa | Entrada no ataque |
 |---|---|---|---|---|
-| NH_agilidade_v4 | wander | 23,925 s | 21,458 s | 2,2× a energia de antes |
-| NH_velocidade_v5 | cosy | 25,66 s | 21,627 s | 6,7× |
+| NH_agilidade_v5 | bittersweet | 9,05 s | 6,583 s | +18,0 dB |
+| NH_velocidade_v6 | imperfect | 20,27 s | 16,237 s | +33,0 dB |
 
-Faixas escolhidas por medição, não por gosto: das 8, `cosy` (4,9) e `wander`
-(5,6) são as de nível mais estável na janela de 24 s — música que oscila pouco
-não bombeia debaixo da voz. `wander` foi pra NH_agilidade por ter menos energia
-grave (87,8% contra 94,1% da `cosy`), e essa é a peça que tem o SFX de tensão,
-que é justamente um grave. `lostmemories` saiu na triagem: 6 dB mais baixa que
-as outras e a mais instável de todas.
+**Duas correções da dona no mesmo dia, e as duas apontavam pro mesmo lugar.**
+Primeiro *"achei a música baixa demais"* — a folga passou de 15 pra 9 dB abaixo
+da voz. Junto ela lembrou que **a virada do beat entra no take pós-gancho**, e
+foi isso que expôs o erro de fundo: eu tinha escolhido as faixas por
+estabilidade de nível (`wander` e `cosy`), quando o critério que importa é a
+**força da entrada no ataque**. A `wander` entra com só +5,9 dB — medido no
+master, ela somava +1,4 dB na virada, ou seja, o drop não existia.
+
+Medidas as oito da curadoria (energia 300 ms depois do ataque menos 300 ms
+antes): imperfect +33,0 · lostmemories +26,7 · bittersweet +18,0 · floating
++13,7 · cosy +13,6 · harmony +10,2 · wander +5,9 · kickback +1,8.
+
+`imperfect` foi pra NH_velocidade porque essa peça **não tem tensão nem click**:
+o filme e a música são os únicos marcadores da virada, então ela leva o drop
+mais forte. `bittersweet` ficou na NH_agilidade, que já tem tensão e click
+marcando, e ainda é a segunda mais estável das fortes.
 
 **O ganho da música virou conta, não número.** Ver a regra nova em
-`padroes-audio.json` e nas duas skills: 0,1 punha a música a 1,0 dB da voz.
+`padroes-audio.json` e nas duas skills: 0,1 punha a música a 1,0 dB da voz. A
+folga padronizada é **9 dB** (15 foi reprovado por baixo demais).
+
+**O formato que ficou:** música quase inaudível debaixo do gancho e o beat
+entrando no take pós-gancho. Conferido no master, na banda grave (<200 Hz), onde
+a música manda e a voz não: degrau de **+13,7 dB** na NH_agilidade e **+12,8 dB**
+na NH_velocidade, com a música saindo de ~−53 pra ~−43 dBFS contra voz a −33.
+Conferido também que a tensão da NH_agilidade não foi mascarada: −15,2 dB com e
+sem música, idêntico.
 
 **Medido nas duas entregas:** 30 fps constante, frames previstos, AAC 48 kHz,
 decodificação inteira sem erro, offset entrega × master 0,0 ms nas três janelas,
