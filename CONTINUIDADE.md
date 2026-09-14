@@ -11,8 +11,13 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 - **Fita com muita fala rende mais de uma peça** (ordem da dona, 14/09/2026):
   *"Sempre que eu te enviar um vídeo e tiver muitas falas e você identificar que
   dá pra gerar mais de 1 vídeo com sentido em cada fala, faça assim."* O
-  inventário da fala passa a vir antes do plano de montagem, e a pergunta é
-  quantas peças inteiras existem na fita — não qual é o melhor trecho. Entregar
+  inventário da fala passa a vir antes do plano de montagem, com **duas
+  perguntas**: "qual é o melhor trecho desta fita?" (continua valendo, e vem
+  primeiro — decide o que abre, o que vira título e qual peça sai na frente) e
+  "quantas peças inteiras existem aqui?" (decide quantas). A segunda não
+  substitui a primeira; ela só impede que o resto da fita seja descartado
+  depois que a primeira já escolheu o melhor. Ordem de entrega: a melhor
+  primeiro. Entregar
   todas, uma de cada vez, sem perguntar antes. Critério do que vira peça
   (gancho próprio, desenvolvimento, fecho, nada repetido, imagem que sustente)
   está nas duas skills. Bloco que não fecha sentido **não** vira peça forçada:

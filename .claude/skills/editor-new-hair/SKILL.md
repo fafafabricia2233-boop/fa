@@ -95,10 +95,27 @@ você identificar que dá pra gerar mais de 1 vídeo com sentido em cada fala,
 faça assim."*
 
 Ou seja: **uma fita não é uma peça.** Depois de transcrever, o inventário da
-fala vem antes do plano de montagem, e a pergunta não é "qual é o melhor
-trecho?" e sim **"quantas peças inteiras existem aqui?"**. Não perguntar antes,
-não entregar uma e guardar o resto: entregar todas, uma de cada vez, na mesma
-conversa.
+fala vem antes do plano de montagem. E são **duas perguntas, não uma**:
+
+- **"Qual é o melhor trecho desta fita?"** — continua valendo, e é a primeira.
+  É ela que decide o que abre, o que vira título, qual corte ganha o zoom e o
+  apoio melhor, e qual peça sai na frente.
+- **"Quantas peças inteiras existem aqui?"** — a pergunta nova, que decide
+  quantas.
+
+A segunda não substitui a primeira: **ela impede que o resto da fita seja
+jogado fora depois que a primeira já escolheu o melhor.** Responder só a
+primeira desperdiça material; responder só a segunda nivela tudo por baixo e
+entrega duas peças mornas no lugar de uma boa e uma boa.
+
+Na prática: escolhe-se o melhor trecho, monta-se a melhor peça com ele, e
+**então** se pergunta o que sobrou dá em pé sozinho. Foi literalmente o que
+aconteceu aqui — a NH_agilidade levou o gancho mais forte e o único corte em
+resolução nativa; a NH_velocidade veio do que sobrou, e por isso ganhou apoio
+mais longo pra compensar. As duas são peças; elas não são gêmeas.
+
+Não perguntar antes, não entregar uma e guardar o resto: entregar todas, uma
+de cada vez, na mesma conversa, **a melhor primeiro**.
 
 ### Como decidir se um bloco que sobrou vira peça
 
