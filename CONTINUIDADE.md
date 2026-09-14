@@ -8,6 +8,12 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 ## Regras gerais refinadas (valem para as próximas peças)
 
+- **Música: a folga é fixa, o ganho não** (14/09/2026, quando a pasta `lofi`
+  chegou). O ganho 0,1 do §05 nunca tinha sido conferido contra arquivo e põe a
+  música a 1,0–2,6 dB da voz. O que se padroniza é `abaixo_da_voz_dB: 15`; o
+  ganho sai por peça de `scripts/ganho-musica.py`. Faixa só entra se o SHA-256
+  bater com a curadoria de ataques — `scripts/conferir-musica.py` barra o resto.
+
 - **Vídeo ocupa a tela toda** (ordem da dona, 14/09/2026: *"esse negócio azul em
   cima… prefiro que o vídeo fique na tela toda"*). Vale contra o exemplo
   aprovado, que empurrava o plano pra baixo e usava apoio em faixa. Na prática:
@@ -71,7 +77,7 @@ Todas pelo motor B (fita já cortada + roteiro escrito), branch
 | NewHairConferencia | conferencia_h264 | 14,600 s | roteiro coube inteiro |
 | NewHairEficiencia | eficiencia_h264 | 16,067 s | gancho de 112 caracteres em 5 linhas |
 
-Trilha: nenhuma trilha nova foi introduzida — todas usam o áudio que já vinha
+Trilha (motor B): nenhuma trilha nova foi introduzida — todas usam o áudio que já vinha
 na fita, mais o SFX de digitação. A curadoria de músicas
 (`kit-new-hair/musicas-ataques-por-hash.json`) ainda não foi usada aqui.
 
@@ -205,6 +211,38 @@ e o `--dur` decide também o início do fade (`dur − 1,0`).
 
 A flag `--tensao-fim` ser opcional é o ponto: peça sem problema narrativo sai
 sem tensão em vez de ganhar um grave que o manual não autoriza.
+
+## Música entrou nas duas peças faladas (14/09/2026)
+
+A pasta `lofi` do banco chegou com 9 faixas e a pasta `sfx` com os SFX do kit —
+entre eles o **`zoom.mp3` que faltava desde o começo**. 8 das 9 faixas batem
+SHA-256 exato com a curadoria de ataques do kit; a nona (`Soulful - L'indécis`)
+não está na lista e ficou de fora, porque sem ataque conferido não dá pra pôr o
+beat na virada.
+
+| Peça | Faixa | Ataque | Recorte começa | Entrada do beat na virada |
+|---|---|---|---|---|
+| NH_agilidade_v4 | wander | 23,925 s | 21,458 s | 2,2× a energia de antes |
+| NH_velocidade_v5 | cosy | 25,66 s | 21,627 s | 6,7× |
+
+Faixas escolhidas por medição, não por gosto: das 8, `cosy` (4,9) e `wander`
+(5,6) são as de nível mais estável na janela de 24 s — música que oscila pouco
+não bombeia debaixo da voz. `wander` foi pra NH_agilidade por ter menos energia
+grave (87,8% contra 94,1% da `cosy`), e essa é a peça que tem o SFX de tensão,
+que é justamente um grave. `lostmemories` saiu na triagem: 6 dB mais baixa que
+as outras e a mais instável de todas.
+
+**O ganho da música virou conta, não número.** Ver a regra nova em
+`padroes-audio.json` e nas duas skills: 0,1 punha a música a 1,0 dB da voz.
+
+**Medido nas duas entregas:** 30 fps constante, frames previstos, AAC 48 kHz,
+decodificação inteira sem erro, offset entrega × master 0,0 ms nas três janelas,
+masters a −16,2 e −16,1 LUFS. A NH_agilidade passou de 30 MB com a trilha nova e
+foi reencodada em CRF 21 a partir do render mudo (15,6 MB), como já tinha sido
+feito na v3.
+
+**O `zoom.mp3` está instalado mas NÃO foi usado** em nenhuma das duas: as peças
+foram fechadas sem ele e a dona pediu música, não SFX de zoom. Fica disponível.
 
 ## Divergências medidas contra a referência aprovada (12/09/2026)
 

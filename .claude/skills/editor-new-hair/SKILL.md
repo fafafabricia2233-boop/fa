@@ -228,6 +228,34 @@ NH_velocidade (14/09/2026).
 Conferido: rodando esse script com os parâmetros da NH_agilidade v3 ele
 reproduz o master já entregue **bit a bit** (mesmo md5).
 
+## Música: a folga é fixa, o ganho não (14/09/2026)
+
+A pasta `lofi` do Drive chegou com 9 faixas; 8 batem **SHA-256 exato** com
+`kit-new-hair/musicas-ataques-por-hash.json`, que traz o ataque medido de cada
+uma. A nona (`Soulful - L'indécis`) não está na curadoria e por isso não entra:
+sem ataque conferido não dá pra fazer o beat cair na virada, e chutar o ponto é
+pior que ficar sem música. `scripts/conferir-musica.py` barra isso sozinho.
+
+**O recorte começa em (ataque − virada do gancho)**, como o §05 manda. Confere-se
+depois medindo a energia 300 ms antes e 300 ms depois da virada: tem que haver
+entrada de beat ali. Não confundir com "o maior ataque do trecho" — o refrão
+mais adiante quase sempre bate mais forte, e isso não invalida nada.
+
+**O ganho 0,1 do §05 não serve, e agora se sabe por quê.** Aquela entrada do
+JSON estava marcada AUSENTE: o número veio do manual e nunca tinha encostado num
+arquivo. Medido contra as duas peças faladas, 0,1 põe a música a **1,0 dB** da
+voz numa e **2,6 dB** na outra — isso não é fundo, é duelo.
+
+O que é constante é a **folga**: `musica.abaixo_da_voz_dB` = 15. O ganho sai por
+peça, de `scripts/ganho-musica.py`, porque o nível do stem de voz muda de peça
+pra peça (ela é equilibrada corte a corte e a normalização só acontece no fim,
+no mix inteiro). A mesma decisão de mixagem deu 0,0201 numa peça e 0,0241 na
+outra. O cálculo ignora as pausas: silêncio entre frases não pode puxar a média
+da voz pra baixo e fazer a música subir junto.
+
+**Alternar faixa entre vídeos e registrar qual foi** — fica em
+`padroes-audio.json` → `musica.usadas`.
+
 ## Ganhos de SFX: um lugar só
 
 `projeto-remotion/padroes-audio.json`. Vale para **toda peça nova das duas

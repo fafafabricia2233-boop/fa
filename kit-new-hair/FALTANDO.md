@@ -1,3 +1,6 @@
+> **14/09/2026:** `zoom.mp3` e as faixas de música deixaram de faltar — vieram
+> nas pastas `sfx` e `lofi` do Drive. Ver CONTINUIDADE.md.
+
 # Kit — o que chegou e o que falta
 
 Conferido em 12/09/2026 com `python3 kit-new-hair/conferir-kit.py`.

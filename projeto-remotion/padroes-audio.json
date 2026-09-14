@@ -53,15 +53,33 @@
 
   "zoom": {
     "ganho": 0.38,
-    "arquivo": "AUSENTE — zoom.mp3 não veio no kit",
+    "arquivo": "projeto-remotion/public/newhair/zoom.mp3 — CHEGOU em 14/09/2026, pasta sfx do Drive",
+    "sha256": "7021b29020cddb0ec0114d1aea0090718210a6c5b7a8c5066fbd01be8c8d0fff",
     "fonte_segundos": [0.35, 1.05],
-    "regra": "só existe se acompanhar movimento perceptível; sem o arquivo, não se inventa som"
+    "regra": "só existe se acompanhar movimento perceptível; ainda NÃO usado em peça nenhuma — as duas entregues foram fechadas sem ele"
   },
 
   "musica": {
-    "ganho": 0.1,
-    "arquivo": "AUSENTE — a curadoria não chegou, só a lista de ataques por hash",
-    "regra": "o recorte começa em (ataque − virada do gancho); alternar faixa entre vídeos e registrar a usada"
+    "abaixo_da_voz_dB": 15,
+    "ganho": "CALCULADO POR PEÇA — scripts/ganho-musica.py",
+    "arquivo": "banco do Drive, pasta lofi (9 faixas, chegou em 14/09/2026)",
+    "curadoria": "kit-new-hair/musicas-ataques-por-hash.json — 8 das 9 faixas, casadas por SHA-256",
+    "por_que_nao_e_ganho_fixo": [
+      "O §05 registra 0,1. Medido em 14/09/2026 contra as duas peças faladas,",
+      "0,1 põe a música a 1,0 dB da voz na NH_agilidade e 2,6 dB na NH_velocidade:",
+      "não é fundo, é duelo. O número nunca tinha sido conferido contra arquivo —",
+      "esta entrada estava marcada AUSENTE até a pasta lofi chegar.",
+      "",
+      "O que é constante é a FOLGA, não o ganho. A voz é equilibrada corte a corte",
+      "e a normalização só acontece no fim, no mix inteiro, então o nível do stem de",
+      "voz muda de peça pra peça. 15 dB abaixo da voz deu 0,0201 numa peça e 0,0241",
+      "na outra — dois ganhos diferentes pra mesma decisão de mixagem."
+    ],
+    "regra": "o recorte começa em (ataque − virada do gancho); ataque vem da curadoria casado por SHA-256, nunca chutado; alternar faixa entre vídeos e registrar a usada",
+    "usadas": {
+      "NH_agilidade": "wander (ataque 23,925 → recorte em 21,458)",
+      "NH_velocidade": "cosy (ataque 25,66 → recorte em 21,627)"
+    }
   },
 
   "normalizacao": {
