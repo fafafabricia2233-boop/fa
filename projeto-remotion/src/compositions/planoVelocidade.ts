@@ -4,8 +4,14 @@
    da NH_agilidade. Nada aqui repete texto que já foi ao ar na outra.
 
    FONTE POR CORTE — tudo da fita A (copy_A479…, 480×854, ampliada 2,25×):
-     clip0 gancho   fonte  1,22 →  5,25   "Agilidade não é pegar o folículo de
+     clip0 gancho   fonte  1,100 → 5,233  "Agilidade não é pegar o folículo de
                                            qualquer jeito, contar de qualquer jeito."
+       O corte original começava em 1,22 e comia o começo de "agilidade" — a dona
+       ouviu (14/09/2026). O transcritor marcava a palavra em 1,30, mas ele ancora
+       na SÍLABA FORTE: medida a energia de 10 em 10 ms, "que" termina em 1,09 e o
+       "a" de agilidade vai de 1,13 a 1,28. O corte em 1,22 caía no meio da vogal.
+       1,100 é o vale entre as duas palavras — não há silêncio ali, "porque" e
+       "agilidade" são ditos emendados, então o corte mora no ponto mais baixo.
      clip1 definição fonte  6,74 → 12,04  "Agilidade vem de treinamento,
                                            constância e cuidado com o folículo."
      clip2 solução  fonte 34,42 → 42,05   "É a velocidade que não cobra o preço
@@ -13,7 +19,7 @@
                                            estrutura do folículo."
 
    O "Porque" inicial saiu: é conector de resposta a uma pergunta que o
-   espectador não ouviu. O "Isso não é agilidade" (5,36→6,30) também saiu, por
+   espectador não ouviu. Sai inteiro — o vale em 1,100 é logo depois dele. O "Isso não é agilidade" (5,36→6,30) também saiu, por
    dizer a mesma coisa que o título já diz — o §02 manda tirar redundância sem
    inverter a lógica.
 
@@ -30,13 +36,13 @@ import type { Cue, Plano } from "./ReelFalado";
 
 export const PLANO_VELOCIDADE: Plano = {
   fps: 30,
-  duration: 700, // 509 de conteúdo + 191 da marca
-  endCard: 509,
-  hookEnd: 121, // 4,033 s
+  duration: 703, // 512 de conteúdo + 191 da marca
+  endCard: 512,
+  hookEnd: 124, // 4,133 s
   clips: [
-    { nome: "gancho", src: "newhair/falado2/clip0.mp4", start: 0, duration: 121 },
-    { nome: "definicao", src: "newhair/falado2/clip1.mp4", start: 121, duration: 159 },
-    { nome: "solucao", src: "newhair/falado2/clip2.mp4", start: 280, duration: 229 },
+    { nome: "gancho", src: "newhair/falado2/clip0.mp4", start: 0, duration: 124 },
+    { nome: "definicao", src: "newhair/falado2/clip1.mp4", start: 124, duration: 159 },
+    { nome: "solucao", src: "newhair/falado2/clip2.mp4", start: 283, duration: 229 },
   ],
   /* APOIO EM FAIXA MASCARADA, com a ALTURA MEDIDA (ordem da dona, 14/09/2026:
      mantém o mascaramento, e o vídeo na tela toda).
@@ -53,9 +59,9 @@ export const PLANO_VELOCIDADE: Plano = {
      lugar: zero fundo à mostra e zero ampliação. */
   brolls: [
     // "treinamento e constância" → mãos treinadas carregando o implanter
-    { fromFrame: 135, duration: 132, src: "newhair/falado2/apoio_maos.mp4", mode: "band", altura: 500, position: "50% 50%" },
+    { fromFrame: 138, duration: 132, src: "newhair/falado2/apoio_maos.mp4", mode: "band", altura: 500, position: "50% 50%" },
     // "sem danificar nenhuma estrutura" → implante com pinça, movimento fino
-    { fromFrame: 380, duration: 120, src: "newhair/falado2/apoio_pinca.mp4", mode: "band", altura: 500, position: "50% 50%" },
+    { fromFrame: 383, duration: 120, src: "newhair/falado2/apoio_pinca.mp4", mode: "band", altura: 500, position: "50% 50%" },
   ],
   title: ["PEGAR DE QUALQUER JEITO", "NÃO É AGILIDADE."],
   /* 0, não 140: o título mora sobre a imagem, segurado pelo véu do topo. O
@@ -69,19 +75,19 @@ export const PLANO_VELOCIDADE: Plano = {
 };
 
 export const CUES_VELOCIDADE: Cue[] = [
-  { start: 4.20, end: 6.90, lines: [
+  { start: 4.30, end: 7.00, lines: [
     { text: "Agilidade vem de", size: 34 },
     { text: "TREINAMENTO E CONSTÂNCIA,", size: 42, gold: true }] },
-  { start: 6.95, end: 9.20, lines: [
+  { start: 7.05, end: 9.30, lines: [
     { text: "e cuidado com", size: 34 },
     { text: "O FOLÍCULO, PRINCIPALMENTE.", size: 42, gold: true }] },
-  { start: 9.50, end: 11.85, lines: [
+  { start: 9.60, end: 11.95, lines: [
     { text: "É a velocidade que", size: 34 },
     { text: "NÃO COBRA O PREÇO DO ENXERTO.", size: 42, gold: true }] },
-  { start: 11.95, end: 14.40, lines: [
+  { start: 12.05, end: 14.50, lines: [
     { text: "É aquela velocidade em que", size: 34 },
     { text: "A GENTE CONSEGUE IR RÁPIDO,", size: 42, gold: true }] },
-  { start: 14.45, end: 16.85, lines: [
+  { start: 14.55, end: 16.95, lines: [
     { text: "mas sem danificar", size: 34 },
     { text: "NENHUMA ESTRUTURA DO FOLÍCULO.", size: 42, gold: true }] },
 ];

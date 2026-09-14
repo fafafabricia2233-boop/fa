@@ -250,6 +250,31 @@ NH_velocidade (14/09/2026).
 Conferido: rodando esse script com os parâmetros da NH_agilidade v3 ele
 reproduz o master já entregue **bit a bit** (mesmo md5).
 
+## Fronteira de palavra do ASR não é fronteira de corte (14/09/2026)
+
+Erro real, pego de ouvido pela dona na NH_velocidade: *"no gancho a palavra
+'agilidade' está cortada"*.
+
+O que tinha acontecido: o transcritor dava `Porque` = 0,78→1,30 e `agilidade` =
+1,30→1,82, então cortar em 1,22 parecia seguro, 80 ms ANTES da palavra. Medida a
+energia de 10 em 10 ms, a fita conta outra história: "que" termina em 1,09 e o
+"a" de agilidade vai de 1,13 a 1,28. **O corte caiu no meio da vogal.**
+
+**O ASR ancora na sílaba tônica, não no início do som.** Ele marcou "agilidade"
+em 1,30 porque é ali que está o "gi", a sílaba forte. A vogal átona que abre a
+palavra ficou do lado de fora, contada como parte da palavra anterior. Isso não
+é bug do modelo, é como ele alinha — e vale pra toda palavra que começa em vogal
+átona, que em português é meia língua.
+
+**Regra:** corte que encosta em palavra se confirma no ENVELOPE, não no JSON.
+Perfil de 10 ms em volta do ponto, e o corte mora no VALE entre as duas palavras.
+Quando não há vale — fala emendada, "porqueagilidade", que é o caso normal — usa-se
+o ponto mais baixo, e se nem isso existir a palavra anterior entra inteira ou se
+procura outro take. Encurtar 120 ms não vale uma palavra mastigada.
+
+E o de sempre: **transcrição não prova o corte**. O §02 já dizia que ela não prova
+ausência de engasgo; agora se sabe que também não prova onde a palavra começa.
+
 ## Música: a folga é fixa, o ganho não (14/09/2026)
 
 A pasta `lofi` do Drive chegou com 9 faixas; 8 batem **SHA-256 exato** com

@@ -840,8 +840,10 @@ export const RemotionRoot: React.FC = () => {
             component={ReelFalado}
             width={1080}
             height={1920}
-            fps={30}
-            durationInFrames={700}
+            fps={PLANO_VELOCIDADE.fps}
+            /* sai do plano, nunca cravado: o número existir em dois lugares já
+               custou um render de 700 frames num plano de 703 (14/09/2026) */
+            durationInFrames={PLANO_VELOCIDADE.duration}
             defaultProps={{ marca: "newhair", plano: PLANO_VELOCIDADE, cues: CUES_VELOCIDADE }}
           />
         </Folder>
@@ -852,8 +854,8 @@ export const RemotionRoot: React.FC = () => {
             component={ReelFalado}
             width={1080}
             height={1920}
-            fps={30}
-            durationInFrames={730}
+            fps={PLANO_AGILIDADE.fps}
+            durationInFrames={PLANO_AGILIDADE.duration}
             defaultProps={{ marca: "newhair", plano: PLANO_AGILIDADE, cues: CUES_AGILIDADE }}
           />
         </Folder>

@@ -8,6 +8,14 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 ## Regras gerais refinadas (valem para as próximas peças)
 
+- **Fronteira de palavra do ASR não é fronteira de corte** (14/09/2026, erro
+  pego de ouvido pela dona na NH_velocidade). O transcritor ancora na sílaba
+  TÔNICA: marcou "agilidade" em 1,30 s porque ali está o "gi", mas a vogal átona
+  que abre a palavra começa em 1,13. Cortar em 1,22 — 80 ms "antes" da palavra
+  segundo o JSON — caiu no meio da vogal. Corte que encosta em palavra se
+  confirma no envelope de 10 ms e mora no VALE entre as duas; sem vale, a
+  palavra anterior entra inteira ou se troca de take.
+
 - **Música: a folga é fixa, o ganho não** (14/09/2026, quando a pasta `lofi`
   chegou). O ganho 0,1 do §05 nunca tinha sido conferido contra arquivo e põe a
   música a 1,0–2,6 dB da voz. O que se padroniza é `abaixo_da_voz_dB: 15`; o
@@ -174,6 +182,24 @@ vem da segunda passada do loudnorm em `linear=true`. Não foi "corrigido" por
 fora pra não quebrar a reprodutibilidade provada do script.
 
 **Sem escuta perceptual**, como sempre: o que está acima é medição, não audição.
+
+**v7 (14/09):** a dona ouviu que **"agilidade" estava cortada no gancho** e
+pediu a fala sem cortar a palavra. Estava mesmo: o corte começava em 1,220 s e o
+"a" da palavra vai de 1,13 a 1,28 — caía no meio da vogal. O transcritor dizia
+1,30 porque ancora na sílaba tônica ("gi"), não no início do som. Corte refeito
+em **1,100 s**, o vale entre "que" e "agilidade" (não há silêncio ali: ela diz
+as duas emendadas). O gancho passou de 121 pra **124 frames** e a peça inteira
+andou 3 frames: endCard 509→512, duração 700→703, apoios 135→138 e 380→383,
+legendas todas +0,1 s, e os pontos da mixagem junto (filme 3,900 · sting 17,067 ·
+recorte da música 16,137). Conferido: legenda entra com voz no ar nas cinco,
+fala acaba em 17,05 s e a última legenda sai em 16,95, antes do end card. Drop do
+beat na virada nova: **+13,6 dB**. Zero faixa de fundo nos 703 frames.
+
+Achado de quebra: o `durationInFrames` da composição estava **cravado em 700** no
+`Root.tsx` enquanto o plano dizia 703 — o primeiro render saiu truncado. Os dois
+números viraram um só: a composição agora lê `PLANO.duration` e `PLANO.fps`. A
+NewHairAgilidade tinha o mesmo problema latente (730 cravado) e foi ligada
+também.
 
 **v4 (14/09):** a v3 tinha jogado fora o mascaramento junto com o problema. A
 dona: *"por que você removeu o mascaramento? quero que continue mascarando a
