@@ -85,6 +85,7 @@ import { PLANO_AGILIDADE, CUES_AGILIDADE } from "./compositions/planoAgilidade";
 import { PLANO_VELOCIDADE, CUES_VELOCIDADE } from "./compositions/planoVelocidade";
 import { PLANO_MEDO, CUES_MEDO } from "./compositions/planoMedo";
 import { PLANO_SAQUE, CUES_SAQUE } from "./compositions/planoSaque";
+import { PLANO_ANTECIPA, CUES_ANTECIPA } from "./compositions/planoAntecipa";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -836,6 +837,18 @@ export const RemotionRoot: React.FC = () => {
         {/* Referencia aprovada do kit (Stephanie integracao v1). So o trecho do
             gancho, 0-141 frames: e o unico pedaco que roda com os arquivos que
             chegaram (clip0). Os cortes 1/3/4, o apoio e a logo estao faltando. */}
+        <Folder name="NewHair-Antecipa">
+          <Composition
+            id="NewHairAntecipa"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_ANTECIPA.fps}
+            durationInFrames={PLANO_ANTECIPA.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_ANTECIPA, cues: CUES_ANTECIPA }}
+          />
+        </Folder>
+
         <Folder name="NewHair-Saque">
           <Composition
             id="NewHairSaque"

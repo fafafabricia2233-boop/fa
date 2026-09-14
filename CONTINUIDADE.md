@@ -242,6 +242,56 @@ e o `--dur` decide também o início do fade (`dur − 1,0`).
 A flag `--tensao-fim` ser opcional é o ponto: peça sem problema narrativo sai
 sem tensão em vez de ganhar um grave que o manual não autoriza.
 
+## Quinta peça pelo FLUXO A (14/09/2026) — NH_antecipa_v1
+
+Fita `IMG_1606.MOV`: 4K vertical nativa, HEVC, 60 fps, 57,1 s, **762 MB**. Mesma
+pessoa e mesmo set da NH_saque. Tema: equipe que antecipa o próximo passo em vez
+de esperar o médico pedir.
+
+**Aqui nenhuma REGIÃO de fala se perdeu** — conferido varrendo o envelope da fita
+inteira contra a cobertura do ASR, região por região, o que virou passo padrão.
+O que se perdeu foi **texto dentro de trechos anotados**, três vezes:
+
+| O ASR escreveu | O que é |
+|---|---|
+| "adiantar a" e nada por 3,4 s | "adiantar a **mesa organizada**, adiantar a **próxima etapa**" |
+| "separar os folhinhos / folíquios" | "separar os **folículos**" |
+| "para que a cirurgia **fua / fuja**" | "para que a cirurgia **flua**" |
+
+Todas resolvidas recortando o trecho e transcrevendo de novo, com e sem
+vocabulário. Terceira peça seguida em que isso acontece: **o JSON da fita
+inteira não é a transcrição, é um rascunho dela.**
+
+**⚠ O que não se resolveu:** entre "pedir tudo" e "a sua equipe", no gancho, pode
+haver um "ou" — a frase só fecha sentido como pergunta de contraste. As duas
+passadas não confirmam e a fala ali é corrida. Por isso o título **não** usa o
+contraste: condensa só a parte certa (`SUA EQUIPE ANTECIPA / O PRÓXIMO PASSO?`).
+Confirmado o "ou", vira `VOCÊ PRECISA PEDIR TUDO / OU A EQUIPE ANTECIPA?`.
+
+**Quatro cortes, zero corte interno.** Ficaram de fora "Uma equipe organizada
+consegue" (repete o clip1), "sem que o médico peça tudo…" (reafirma a premissa
+que o gancho já estabelece) e o CTA de perfil pessoal. **Sem tensão e sem
+click**, como na NH_velocidade: não há bloco de problema, o gancho é a pergunta
+e a virada está marcada pelo filme.
+
+**Apoio literal ao texto:** pinças sendo dispostas em ordem sobre "antecipar o
+próximo passo", e a mesa sendo montada sobre "adiantar a mesa organizada". Faixa
+de 680 px (cabeça em 580 ÷ 0,85), cortada já em 1080×680 da fonte — recorte
+puro, sem nenhuma escala.
+
+**Música:** `lostmemories` (quinta faixa, alternando), entrada de **+26,7 dB** na
+virada, a mais dramática das oito.
+
+**E a ressalva que eu tinha escrito virou fato na primeira oportunidade:** a
+folga de 3 dB é medida em banda larga, e o que ela deixa na **banda da fala**
+depende do gênero. Com `cosy` sobrou 13 dB; com `lostmemories`, que tem mais
+médio, sobram **8,6 dB**. Continua legível e é o padrão que a dona pediu, mas
+esta peça tem a música mais presente de todas. Registrado pra ela decidir.
+
+**Medido:** 30 fps constante, 1121 frames, 37,37 s, decodificação inteira sem
+erro, **0 dos 1121 frames** com faixa de fundo no topo, offset entrega × master
+0,0 ms nas três janelas, master −16,1 LUFS. Entrega 20 MB.
+
 ## Quarta peça pelo FLUXO A (14/09/2026) — NH_saque_v1
 
 Fita `IMG_1607.MOV`: 4K vertical nativa, HEVC, 60 fps, 75,3 s, **789 MB**. Mesma

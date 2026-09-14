@@ -304,6 +304,14 @@ Ou seja: ela parou depois de "tratado", recomeçou a frase, e o modelo **colou
 as duas tentativas num segmento só e apagou o começo da segunda**. Montar pelo
 JSON daria um gancho com buraco de 3 s ou um corte no meio da frase.
 
+**Antes de tudo, varra a fita inteira.** Passo padrão desde 14/09: listar as
+regiões com energia acima do piso e comparar com a cobertura do JSON, região por
+região. Ou aparece região que o ASR ignorou (foi o caso da NH_saque), ou
+aparecem buracos dentro de trechos anotados — e aí o que se perdeu foi TEXTO, não
+região. Na NH_antecipa foram três palavras corrompidas dentro de trechos que ele
+achava que tinha transcrito: "adiantar a" comendo duas frases inteiras,
+"folhinhos" no lugar de "folículos" e "fuja" no lugar de "flua".
+
 **Regra:** pausa longa DENTRO de um segmento do ASR é suspeita, não silêncio.
 Medir o envelope antes de aceitar. Achou energia onde o JSON diz que não há,
 recortar só aquele trecho e transcrever de novo.
