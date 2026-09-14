@@ -8,6 +8,16 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 ## Regras gerais refinadas (valem para as próximas peças)
 
+- **Fita com muita fala rende mais de uma peça** (ordem da dona, 14/09/2026):
+  *"Sempre que eu te enviar um vídeo e tiver muitas falas e você identificar que
+  dá pra gerar mais de 1 vídeo com sentido em cada fala, faça assim."* O
+  inventário da fala passa a vir antes do plano de montagem, e a pergunta é
+  quantas peças inteiras existem na fita — não qual é o melhor trecho. Entregar
+  todas, uma de cada vez, sem perguntar antes. Critério do que vira peça
+  (gancho próprio, desenvolvimento, fecho, nada repetido, imagem que sustente)
+  está nas duas skills. Bloco que não fecha sentido **não** vira peça forçada:
+  registra-se o que sobrou e a dona decide.
+
 - **Ganho da tensão padronizado em 0,319** (ordem da dona, 13/09/2026, depois de
   dois cortes de 30% na peça NH_agilidade). Substitui os 0,65 do §05 do manual.
   Junto com os outros ganhos de stem, mora em `projeto-remotion/padroes-audio.json`
@@ -208,6 +218,14 @@ igual, e a mesma peça declarada como `fabricia` se recusa a sair.
   quadros lidos). Ver `CONFIGURACAO-NEW-HAIR.md` e `banco-apoios/CATALOGO.md`.
 - Fabrícia Satza: identidade instalada e conferida em render. Falta só uma
   **referência aprovada em vídeo** dela — a primeira peça vai servir de piloto.
+- **Fita de 13/09 está esgotada** (conferido em 14/09, já pela regra nova): o
+  vão de 16 s que a transcrição da fita A deixa entre 16,02 e 32,80 s foi medido
+  janela a janela e é **ruído de sala a ~−52 dBFS** — a fala desta gravação vive
+  entre −32 e −35 dBFS. Não é fala que o ASR perdeu, é pausa mesmo. Somando as
+  duas peças, sobrou só "Por que o folículo importa?" (42,20→43,78 s, pergunta
+  sem resposta própria: a resposta já foi o fecho da NH_agilidade) e a frase
+  não confirmada abaixo. **Não dá uma terceira peça.**
+
 - **Conferir por ouvido**: na fita A, 32,80→34,42 s, o transcritor insiste em
   "Sabe qual é a velocidade de voo?" com 0,93–0,98 de confiança. A expressão não
   fecha sentido. Ficou fora da NH_velocidade; se a dona confirmar o que é, vira

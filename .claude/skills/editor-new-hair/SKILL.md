@@ -88,6 +88,53 @@ cinco peças seguidas. O conserto é remuxar com `-itsoffset -0.042` no áudio e
 conferir que a correlação volta a 0,0 ms. Medir sempre; o número pode mudar
 com a versão do Remotion.
 
+## Fita com muita fala rende mais de uma peça — regra da dona (14/09/2026)
+
+**Ordem explícita:** *"Sempre que eu te enviar um vídeo e tiver muitas falas e
+você identificar que dá pra gerar mais de 1 vídeo com sentido em cada fala,
+faça assim."*
+
+Ou seja: **uma fita não é uma peça.** Depois de transcrever, o inventário da
+fala vem antes do plano de montagem, e a pergunta não é "qual é o melhor
+trecho?" e sim **"quantas peças inteiras existem aqui?"**. Não perguntar antes,
+não entregar uma e guardar o resto: entregar todas, uma de cada vez, na mesma
+conversa.
+
+### Como decidir se um bloco que sobrou vira peça
+
+Vira peça quando o bloco sustenta sozinho, **sem depender de ter visto a outra**:
+
+1. **Gancho próprio.** Uma frase que abre sentido sem precisar da peça anterior.
+   Conector de resposta ("Porque…", "Aí…", "Então…") não é gancho — ou se corta
+   fora, ou o bloco não tem abertura.
+2. **Desenvolvimento.** Pelo menos uma fala que explica, define ou prova o
+   gancho. Gancho solto vira frase de efeito, não peça.
+3. **Fechamento.** Alguma frase que encerra a ideia. Não se inventa CTA nem
+   promessa pra fechar estrutura — se não existe fecho na fala, o bloco fecha
+   na última frase boa.
+4. **Não repete a outra.** Nenhuma frase que já foi ao ar na peça anterior.
+   Assunto parecido pode; frase igual, não.
+5. **Tem imagem pra sustentar.** Se o bloco todo vem do mesmo plano, o apoio do
+   banco precisa cobrir mais tempo (foi o que a NH_velocidade fez: fita
+   ampliada, então os dois apoios ficaram mais longos que os da NH_agilidade).
+
+Se um bloco falha em 1, 2 ou 3, **ele não vira peça forçada**: registra-se o que
+sobrou e por quê, e a dona decide. Encher tempo com fala que não fecha sentido é
+pior que entregar uma peça a menos.
+
+### Cada peça é peça inteira
+
+Título próprio (o gancho daquela peça, não uma variação do outro), legendas
+próprias, apoio escolhido pelo que aquela fala diz, e os SFX pela estrutura
+**daquela** peça — a NH_velocidade saiu sem tensão e sem click porque o gancho
+dela já era o problema. Copiar a receita de som da peça irmã é erro.
+
+### O que registrar
+
+No plano de cada peça (`planoXXX.ts`), em comentário: de onde veio cada corte na
+fita, e **o que ficou de fora de propósito, com o motivo**. É isso que impede a
+terceira peça de repetir a primeira, e é o que deixa a dona conferir a escolha.
+
 ## A mixagem tem receita: `scripts/mix-falado.sh`
 
 Não montar filtergraph à mão. O script recebe as POSIÇÕES por flag e lê os
