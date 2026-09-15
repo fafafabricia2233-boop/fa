@@ -568,10 +568,31 @@ corte deveria entrar. **Código 1 é portão: não renderiza, refaz o corte.**
   região, porque o falso começo é curto (0,82 s) e a pausa entre eles também
   (250 ms). Foi assim que a NH_medico v1 saiu.
 
-**Como se lê o resultado:** gagueira é a região seguinte **REPETIR a abertura**
-da anterior. Região que **CONTINUA** a frase ("…pode dominar", "…paciente não é
-um número", "…tranquilo") é respiro e fica. O script marca os dois casos; quem
-edita decide.
+**DOIS SINAIS, porque o primeiro sozinho deixou passar um caso real.** Na mesma
+tarde a dona pegou DOIS falsos começos na mesma peça, e só o primeiro tinha
+pausa de verdade:
+
+- **(A) região separada** — a tentativa abandonada vira região própria. Pegou o
+  "O paciente… O paciente escolheu" da NH_medico v1.
+- **(B) palavra esticada** — quando o vale entre as duas tentativas **não desce
+  até o piso** (respiração, sala viva), (A) funde tudo numa região só e não vê
+  nada. Mas o transcritor deixa a digital: **estica UMA palavra por cima do
+  buraco.** Na abertura da NH_medico v2 o JSON deu **"para" de 0,42 a 1,52 —
+  1,10 s numa preposição** — e o trecho isolado, sem vocabulário, diz "porque
+  pra nó, porque pra nó". Mesma assinatura do "a" de 14,66→19,72 na fita 9332.
+  Toda palavra curta que dura mais que o razoável é recortada e retranscrita
+  sozinha.
+
+**Três casos no resultado, e só um é defeito:**
+
+| o que aparece | é | o que fazer |
+|---|---|---|
+| a região abandonada é um **pedaço** da boa (texto contido nela, ou bem mais curta) | gagueira | refazer o corte, entrando onde o script aponta |
+| as duas **abrem igual e seguem diferente** ("…de olho em qualquer coisa" / "…de olho no paciente") | **anáfora**, recurso de fala dela | **fica** — foi a estrutura da NH_comunicacao |
+| a região seguinte **continua** a frase ("…pode dominar") | respiro de vírgula | fica |
+
+Essa distinção não é cosmética: sem ela o script reprovava a NH_comunicacao
+inteira, que é construída em cima da anáfora.
 
 **E vale para a escolha do take também:** o erro da NH_medico v1 não foi pegar a
 tentativa errada — as 13 falas daquele lote eram todas a última. Foi **entrar

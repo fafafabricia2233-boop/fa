@@ -18,14 +18,29 @@ E por que os passos que já existiam não pegaram:
 
 O que pega é varrer o CORTE, com vão curto, e transcrever cada região sozinha.
 
-DOIS VÃOS, e nenhum substitui o outro:
-  0,12  acha o falso começo (foi o que faltou na NH_medico v1)
-  0,07  pica a frase inteira e serve pra confirmar que o resto é respiro
+DOIS SINAIS, porque o primeiro sozinho deixou passar um caso real:
 
-COMO SE LÊ. Gagueira é a região seguinte REPETIR a abertura da anterior
-("o paciente" → "O paciente escolheu…"). Região que CONTINUA a frase
-("…pode dominar", "…paciente não é um número") é respiro de vírgula, e fica.
-O script marca sozinho os dois casos; a decisão continua sendo de quem edita.
+  (A) REGIÃO SEPARADA — a tentativa abandonada vira região própria e a seguinte
+      repete a abertura dela. Pega o falso começo com pausa de verdade.
+      Rodar em dois vãos: 0,12 acha, 0,07 confirma que o resto é respiro.
+
+  (B) PALAVRA LONGA DEMAIS — quando o vale entre as duas tentativas não desce
+      até o piso (respiração, sala viva), (A) funde as duas numa região só e não
+      vê nada. Mas o transcritor deixa a digital: ele estica UMA palavra por
+      cima do buraco. Na NH_medico v2 a fita abria com "Porque pra nós… porque
+      pra nós" e o JSON deu **"para" de 0,40 a 1,54 s** — 1,14 s numa preposição.
+      Mesma assinatura do "a" de 14,66→19,72 na fita 9332.
+      Então: toda palavra curta que dura mais que o razoável é recortada e
+      retranscrita sozinha, SEM vocabulário — é aí que a repetição aparece.
+
+COMO SE LÊ, três casos e só um é defeito:
+  GAGUEIRA  — a região abandonada é um PEDAÇO da boa ("o paciente" → "O paciente
+              escolheu…"): texto contido na seguinte, ou bem mais curta. Refaz.
+  ANÁFORA   — as duas abrem igual e SEGUEM DIFERENTE ("…estar de olho em qualquer
+              coisa" / "…estar de olho no paciente"). É recurso de fala dela e
+              FICA — foi a estrutura da NH_comunicacao. O script marca "anáfora?"
+              e não reprova.
+  RESPIRO   — a região seguinte CONTINUA a frase ("…pode dominar"). Fica.
 
 Uso:  python3 scripts/varrer-corte.py <corte.wav|corte.mp4> [...] [--vao 0.12]
       python3 scripts/varrer-corte.py public/newhair/falado13/*.wav
@@ -61,6 +76,32 @@ def regioes(arq, vao):
             i += 1
     return fora
 
+SILABAS = "aeiouáéíóúâêôàãõy"
+
+def reinicia(pal):
+    """Diz se a lista de palavras contém um RECOMEÇO.
+
+    Não basta procurar palavra dobrada: "porque pra nó, porque pra nó" não tem
+    nenhuma palavra repetida em seguida — o que se repete é o BLOCO de abertura.
+    Então: existe k>=2 e j>=1 tal que pal[:k] == pal[j:j+k]?  Também vale a
+    palavra imediatamente dobrada ("você você"), que é a gagueira curta.
+    """
+    if any(pal[i] == pal[i+1] for i in range(len(pal) - 1)):
+        return True
+    for k in range(2, len(pal) // 2 + 1):
+        for j in range(1, len(pal) - k + 1):
+            if pal[:k] == pal[j:j+k]:
+                return True
+    return False
+
+def silabas(p):
+    n = 0; ant = False
+    for c in p:
+        v = c in SILABAS
+        if v and not ant: n += 1
+        ant = v
+    return max(1, n)
+
 def main():
     args = sys.argv[1:]
     vao = 0.12
@@ -73,37 +114,72 @@ def main():
     tmp = tempfile.mkdtemp()
     suspeitos = []
 
+    def trecho(arq, a, b, voc=False):
+        o = os.path.join(tmp, "r.wav")
+        subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", str(max(0, a)),
+                        "-t", str(b - max(0, a)), "-i", arq, "-ac", "1", "-ar", "16000", o],
+                       check=True)
+        segs, _ = modelo.transcribe(o, language="pt", condition_on_previous_text=False,
+                                    vad_filter=False, beam_size=5,
+                                    initial_prompt=("Transcrição sobre transplante capilar."
+                                                    if voc else None))
+        return " ".join(x.text.strip() for x in segs)
+
     for arq in args:
+        # ---- sinal A: regiões separadas ----
         regs = regioes(arq, vao)
         print(f"\n--- {arq}: {len(regs)} região(ões), vão {vao:.2f} s ---")
-        textos = []
-        for a, b in regs:
-            o = os.path.join(tmp, "r.wav")
-            subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", str(a),
-                            "-t", str(b - a), "-i", arq, "-ac", "1", "-ar", "16000", o],
-                           check=True)
-            segs, _ = modelo.transcribe(o, language="pt", condition_on_previous_text=False,
-                                        vad_filter=False, beam_size=5)
-            textos.append(" ".join(s.text.strip() for s in segs))
-            print(f"  {a:6.2f} → {b:6.2f} ({b-a:5.2f}s)  {textos[-1]}")
-
-        # falso começo: a região seguinte REPETE a abertura da anterior
+        textos = [trecho(arq, a, b) for a, b in regs]
+        for (a, b), t in zip(regs, textos):
+            print(f"  {a:6.2f} → {b:6.2f} ({b-a:5.2f}s)  {t}")
         for k in range(len(regs) - 1):
-            a, b = normaliza(textos[k]), normaliza(textos[k+1])
-            if not a or not b: continue
-            n = min(len(a), len(b), 3)
-            if n >= 1 and a[:n] == b[:n]:
-                suspeitos.append((arq, regs[k], regs[k+1], textos[k], textos[k+1]))
-                print(f"  ⚠ FALSO COMEÇO: a região {regs[k][0]:.2f} repete a abertura "
-                      f"da de {regs[k+1][0]:.2f} — o corte deve entrar em "
+            x, y = normaliza(textos[k]), normaliza(textos[k+1])
+            if not x or not y: continue
+            n = min(len(x), len(y), 3)
+            if n < 1 or x[:n] != y[:n]:
+                continue
+            # abertura repetida. Agora: recomeço ou ANÁFORA?
+            # Recomeço = a tentativa abandonada é um PEDAÇO da boa: texto inteiro
+            #   contido nela, e bem mais curta.
+            # Anáfora = as duas são frases inteiras que DIVERGEM depois da
+            #   abertura comum ("estar de olho em qualquer coisa" / "estar de
+            #   olho no paciente"). É recurso dela, e fica.
+            dur_k = regs[k][1] - regs[k][0]; dur_s = regs[k+1][1] - regs[k+1][0]
+            prefixo = y[:len(x)] == x
+            curta = dur_k < 0.45 * dur_s
+            if prefixo or curta:
+                suspeitos.append(arq)
+                print(f"  ⚠ FALSO COMEÇO: {regs[k][0]:.2f} ({dur_k:.2f}s) é começo "
+                      f"abandonado de {regs[k+1][0]:.2f} — o corte entra em "
                       f"{regs[k+1][0]:.2f} s ou depois.")
+            else:
+                print(f"  · anáfora?: {regs[k][0]:.2f} e {regs[k+1][0]:.2f} abrem igual "
+                      f"mas seguem diferente — provável recurso de fala, conferir.")
+
+        # ---- sinal B: palavra esticada por cima de um buraco ----
+        segs, _ = modelo.transcribe(arq, language="pt", word_timestamps=True,
+                                    condition_on_previous_text=False, vad_filter=False,
+                                    beam_size=5)
+        for sg in segs:
+            for w in (sg.words or []):
+                p = w.word.strip()
+                dur = w.end - w.start
+                limite = 0.22 + 0.22 * silabas(p)     # folga generosa por sílaba
+                if dur > max(limite, 0.55):
+                    bruto = trecho(arq, w.start - 0.05, w.end + 0.05, voc=False)
+                    pal = normaliza(bruto)
+                    repete = reinicia(pal)
+                    marca = "⚠ REPETIÇÃO" if repete else "· conferir"
+                    print(f"  {marca}: \"{p}\" dura {dur:.2f}s ({w.start:.2f}→{w.end:.2f}), "
+                          f"esperado ≤{limite:.2f}s. Isolado diz: \"{bruto}\"")
+                    if repete: suspeitos.append(arq)
 
     if suspeitos:
         print(f"\n{len(suspeitos)} suspeita(s) de fala repetida. Refazer o corte "
               f"antes de renderizar.")
         return 1
-    print("\nNenhuma abertura repetida. As quebras que sobraram são respiro — "
-          "conferir se a região seguinte CONTINUA a frase.")
+    print("\nNada repetido. As quebras que sobraram são respiro — conferir que a "
+          "região seguinte CONTINUA a frase.")
     return 0
 
 if __name__ == "__main__":

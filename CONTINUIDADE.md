@@ -19,6 +19,19 @@ Testada contra o defeito que a originou: alimentada com o corte da NH_medico v1,
 ela acusa o falso começo e aponta 1,17 s (= 26,59 na fita), que é exatamente
 onde a v2 entrou.
 
+**NH_medico_v3 (15/09):** a dona pegou o SEGUNDO falso começo da mesma peça —
+*"o início 'porque pra nós' também está repetindo"*. A fita abre com a frase dita
+duas vezes e a v2 entrava na primeira. Corte foi pra **0,94**; a definitiva ataca
+em 1,08. A peça caiu pra 632 frames de conteúdo (823 no total).
+
+**E este escapou da varredura que eu tinha acabado de instalar.** O vale entre as
+duas tentativas não desce até o piso, então elas caem numa região só e o sinal de
+"região repetida" não vê nada. Quem denuncia é o transcritor **esticando uma
+palavra por cima do buraco**: "para" de 0,42 a 1,52 — 1,10 s numa preposição. O
+`varrer-corte.py` ganhou esse segundo sinal, e passou a distinguir **anáfora** de
+gagueira (sem isso ele reprovava a NH_comunicacao, que é construída em cima da
+anáfora). Passado em todos os cortes das três peças: só aquele defeito.
+
 Três passos sobre o corte pronto, nenhum substitui o outro: **transcrever** (pega
 palavra comida na borda), **varrer em 0,12** (pega falso começo) e **varrer em
 0,07** (confirma que o resto é respiro). Gagueira é a região seguinte REPETIR a
