@@ -62,6 +62,8 @@ const PECA = {
   splitScreen: false,
 
   geometria: {
+    // altura do gancho. Nesta fita o rosto comeca por volta de 550px, entao o
+    // bloco de titulo tem que acabar antes disso — conferido em still.
     tituloTop: 118,
     legendaBottom: 430,
     seloBottom: 300,
@@ -387,11 +389,12 @@ export const NewHairAcolhimento: React.FC<NewHairAcolhimentoProps> = ({ video })
   /* SCRIM EM DOIS. O de cima existe SO enquanto o titulo existe: depois que ele sai,
      o B-roll cirurgico (que e a prova) fica limpo, sem veu por cima.
      Peso maior em split screen, porque ali o titulo mora dentro da faixa de B-roll.
-     Gradiente ESTENDIDO ate ~76%: o titulo e centralizado no meio exato do
-     quadro (ordem da dona, fixada na NewHairCusta2), entao o veu precisa
-     acompanhar ate a metade da tela pra manter contraste do dourado contra
-     fundo claro — a versao antiga, que parava em 42%, era pro titulo no topo. */
-  const pesoTopo = PECA.splitScreen ? 0.82 : 0.72;
+     Aqui o veu volta a morrer na metade da tela, porque o titulo voltou pro
+     topo (ordem da dona, 15/09/2026 — ver o bloco do GANCHO la embaixo). O
+     peso de cima subiu de 0.72 pra 0.78: o fundo destas fitas e parede branca,
+     e off-white sobre branco sem veu nao le. Abaixo de 50% a imagem fica
+     limpa: e ali que esta o rosto. */
+  const pesoTopo = PECA.splitScreen ? 0.82 : 0.78;
   const scrimTopo = interpolate(
     frame,
     [0, 0.4 * fps, seguraAte * fps, saiEm * fps],
@@ -417,7 +420,7 @@ export const NewHairAcolhimento: React.FC<NewHairAcolhimentoProps> = ({ video })
       <AbsoluteFill
         style={{
           opacity: scrimTopo,
-          background: `linear-gradient(to bottom, rgba(11,36,54,${pesoTopo}) 0%, rgba(11,36,54,0.58) 20%, rgba(11,36,54,0.42) 38%, rgba(11,36,54,0.38) 50%, rgba(11,36,54,0.16) 64%, rgba(11,36,54,0) 76%)`,
+          background: `linear-gradient(to bottom, rgba(11,36,54,${pesoTopo}) 0%, rgba(11,36,54,0.66) 18%, rgba(11,36,54,0.44) 28%, rgba(11,36,54,0.20) 38%, rgba(11,36,54,0) 50%)`,
         }}
       />
       <AbsoluteFill
@@ -427,12 +430,18 @@ export const NewHairAcolhimento: React.FC<NewHairAcolhimentoProps> = ({ video })
         }}
       />
 
-      {/* ===== GANCHO = TITULO (centralizado no meio exato do quadro) ===== */}
+      {/* ===== GANCHO = TITULO (no alto, acima do rosto) =====
+           ORDEM DA DONA (15/09/2026), sobre estas quatro pecas de camera:
+           "o gancho nao pode ficar bem em cima da minha cara".
+           A regra de centralizar no meio exato do quadro nasceu nas pecas de
+           B-roll cirurgico, onde o meio da tela e prova e nao tem rosto. Aqui a
+           fita e a pessoa falando: o meio da tela E a cara dela. Entao o gancho
+           volta pro topo, em PECA.geometria.tituloTop, que e parede vazia.
+           So mexer se o bloco de titulo crescer a ponto de encostar no cabelo. */}
       <div
         style={{
           position: "absolute",
-          top: "50%",
-          transform: "translateY(-50%)",
+          top: PECA.geometria.tituloTop,
           width: "100%",
           textAlign: "center",
           padding: "0 150px",
