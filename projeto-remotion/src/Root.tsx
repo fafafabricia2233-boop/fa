@@ -81,6 +81,10 @@ import { NewHairPassoFrente, type NewHairPassoFrenteProps } from "./compositions
 import { NewHairReforcaConduta, type NewHairReforcaCondutaProps } from "./compositions/NewHairReforcaConduta";
 import { NewHairEtapaProxima, type NewHairEtapaProximaProps } from "./compositions/NewHairEtapaProxima";
 import { NewHairAprendeComVoce, type NewHairAprendeComVoceProps } from "./compositions/NewHairAprendeComVoce";
+import { NewHairAtencaoSaque, type NewHairAtencaoSaqueProps } from "./compositions/NewHairAtencaoSaque";
+import { NewHairAprendeJunto, type NewHairAprendeJuntoProps } from "./compositions/NewHairAprendeJunto";
+import { NewHairTresNumeros, type NewHairTresNumerosProps } from "./compositions/NewHairTresNumeros";
+import { NewHairAcolhimento, type NewHairAcolhimentoProps } from "./compositions/NewHairAcolhimento";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -982,6 +986,54 @@ export const RemotionRoot: React.FC = () => {
             fps={30}
             durationInFrames={Math.round(11.133 * 30)}
             defaultProps={{ durationSeconds: 11.133, video: "newhair/aprendecomvoce_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-AtencaoSaque">
+          <Composition
+            id="NewHairAtencaoSaque"
+            component={NewHairAtencaoSaque as React.FC<NewHairAtencaoSaqueProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(36.653 * 30)}
+            defaultProps={{ durationSeconds: 36.653, video: "newhair/atencaosaque_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-AprendeJunto">
+          <Composition
+            id="NewHairAprendeJunto"
+            component={NewHairAprendeJunto as React.FC<NewHairAprendeJuntoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(31.857 * 30)}
+            defaultProps={{ durationSeconds: 31.857, video: "newhair/aprendejunto_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-TresNumeros">
+          <Composition
+            id="NewHairTresNumeros"
+            component={NewHairTresNumeros as React.FC<NewHairTresNumerosProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(37.416 * 30)}
+            defaultProps={{ durationSeconds: 37.416, video: "newhair/tresnumeros_h264.mp4" }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Acolhimento">
+          <Composition
+            id="NewHairAcolhimento"
+            component={NewHairAcolhimento as React.FC<NewHairAcolhimentoProps>}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={Math.round(44.419 * 30)}
+            defaultProps={{ durationSeconds: 44.419, video: "newhair/acolhimento_h264.mp4" }}
           />
         </Folder>
 
