@@ -66,9 +66,15 @@ const PECA = {
   /* Geometria aprovada. So mexer se a medicao mostrar que o texto cai em cima da
      prova (area cirurgica) ou em fundo claro demais pra ler. */
   geometria: {
-    // altura do gancho. Nesta fita o rosto comeca por volta de 550px, entao o
-    // bloco de titulo tem que acabar antes disso — conferido em still.
-    tituloTop: 118,
+    // ORDEM DA DONA (15/09/2026): "coloque o gancho bem acima da cabeca, nao
+    // coloque muito no topo". Entao o titulo nao e ancorado no topo do quadro
+    // nem no meio: ele e pendurado logo acima do cabelo.
+    // MEDIDO com scripts/altura-cabeca.py na janela do gancho: o cabelo desta
+    // fita comeca em y=535px (menor valor de todos os frames — ela mexe
+    // a cabeca enquanto fala). O bloco de titulo tem 285px (4 linhas,
+    // mais o fio e o "Leia a legenda"). 535 - 45 de folga - 285 = 205.
+    // Se mudar o numero de linhas do gancho, refaz esta conta.
+    tituloTop: 205,
     legendaBottom: 430,
     seloBottom: 300,
   },
@@ -420,9 +426,11 @@ export const NewHairAtencaoSaque: React.FC<NewHairAtencaoSaqueProps> = ({ video 
            "o gancho nao pode ficar bem em cima da minha cara".
            A regra de centralizar no meio exato do quadro nasceu nas pecas de
            B-roll cirurgico, onde o meio da tela e prova e nao tem rosto. Aqui a
-           fita e a pessoa falando: o meio da tela E a cara dela. Entao o gancho
-           volta pro topo, em PECA.geometria.tituloTop, que e parede vazia.
-           So mexer se o bloco de titulo crescer a ponto de encostar no cabelo. */}
+           fita e a pessoa falando: o meio da tela E a cara dela.
+           E tambem nao e pra colar no topo: o gancho fica PENDURADO LOGO
+           ACIMA DA CABECA, em PECA.geometria.tituloTop, que sai da medicao
+           do cabelo (ver o comentario la em cima, no CONFIG).
+           So mexer se o gancho ganhar ou perder linha — ai refaz a conta. */}
       <div
         style={{
           position: "absolute",
