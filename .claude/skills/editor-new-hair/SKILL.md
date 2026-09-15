@@ -302,6 +302,15 @@ com a repetição dentro. Transcritas separadas, as duas tentativas aparecem nas
 duas passadas.
 
 
+
+**Trecho "embolado" merece a mesma reanálise que um vão suspeito.** Duas vezes
+seguidas, na mesma fita, o que eu tinha descartado como fala ruim era leitura
+ruim do ASR: "viabilidade curricular / tomamos cuidar" era "viabilidade
+FOLICULAR / tomamos CUIDADOS", e um buraco de 5,3 s no meio de uma frase era
+desalinhamento do JSON — a frase começava limpa 5 s depois. Antes de jogar fora
+um bloco por estar mal dito, recortar e transcrever isolado, com e sem
+vocabulário. Descartar sai mais caro que conferir.
+
 **Palavras coladas não têm corte limpo entre elas.** Quando a gagueira é a
 repetição imediata da mesma palavra ("você você precisa"), o vale entre as duas
 pode ter um frame só — e cortar ali abre o plano no meio da vogal da segunda.

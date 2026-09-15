@@ -25,15 +25,20 @@
      clip1 anáfora 79,98 →  86,35  "Cada médico tem o seu jeito, cada médico tem
                                     a forma com que gosta de montar a mesa, de
                                     conduzir a cirurgia,"
-     clip2 erro   107,05 → 113,85  "E o maior erro do mundo seria eu chegar na
+     clip2 anáf.C  93,68 →  96,95  "Cada médico tem a sua forma de trabalhar
+                                    com a nossa equipe."
+     clip3 erro   107,05 → 113,85  "E o maior erro do mundo seria eu chegar na
                                     clínica dele querendo impor padrão que
                                     funciona com outro profissional."
 
-   ⚠ A TERCEIRA BATIDA DA ANÁFORA FICOU DE FORA, e por um buraco: ela diz "cada"
-   em 88,76 e só retoma "médico tem a sua forma de trabalhar com a nossa equipe"
-   em 94,02 — **5,3 segundos de hesitação no meio da frase**. Emendar exigiria um
-   corte dentro da locução, e a anáfora já fica de pé com duas batidas. O que se
-   perde é a menção à equipe; o que se ganha é a frase correndo.
+   ⚠ A TERCEIRA BATIDA DA ANÁFORA QUASE FICOU DE FORA POR ERRO MEU. Na v1 eu li
+   o JSON e vi "cada@88,76" seguido de "médico@94,02" — 5,3 s de buraco no meio
+   da frase — e descartei a batida. O JSON estava desalinhado: medido no
+   envelope, o que existe em 88,10→90,30 é o fim da batida ANTERIOR ("…uma mesa,
+   de conduzir a cirurgia"), e a terceira batida começa limpa e inteira em
+   **93,74** ("Cada médico tem a sua forma de trabalhar com a nossa equipe"),
+   com o /k/ de "Cada" no ataque. Duas passadas do transcritor, isolado,
+   confirmam. A anáfora tem três batidas de novo, e a menção à equipe voltou.
 
    FICOU DE FORA TAMBÉM o bloco dos protocolos (125→143 s): a primeira tentativa
    termina em "temos todo…" e a segunda sai embolada ("viabilidade curricular",
@@ -55,20 +60,21 @@ import type { Cue, Plano } from "./ReelFalado";
 
 export const PLANO_IGUAIS: Plano = {
   fps: 30,
-  duration: 737, // 546 de conteúdo + 191 da marca
-  endCard: 546,
+  duration: 835, // 644 de conteúdo + 191 da marca
+  endCard: 644,
   hookEnd: 151, // 5,033 s
   clips: [
     { nome: "gancho", src: "newhair/falado9/clip0.mp4", start: 0, duration: 151 },
     { nome: "anafora", src: "newhair/falado9/clip1.mp4", start: 151, duration: 191 },
-    { nome: "erro", src: "newhair/falado9/clip2.mp4", start: 342, duration: 204 },
+    { nome: "anaforaC", src: "newhair/falado9/clip2b.mp4", start: 342, duration: 98 },
+    { nome: "erro", src: "newhair/falado9/clip2.mp4", start: 440, duration: 204 },
   ],
   brolls: [
     { fromFrame: 225, duration: 115, src: "newhair/falado9/apoio_mesa.mp4", mode: "band", altura: 570, position: "50% 50%" },
   ],
   title: ["ATENDEMOS VÁRIOS MÉDICOS", "E NENHUM IGUAL."],
   titleShift: 0,
-  zoomClip: 2,
+  zoomClip: 3,
   zoomFrame: 20,
   closeClips: [],
 };
@@ -83,13 +89,16 @@ export const CUES_IGUAIS: Cue[] = [
   { start: 8.23, end: 11.00, lines: [
     { text: "gosta de montar a mesa,", size: 34 },
     { text: "DE CONDUZIR A CIRURGIA.", size: 42, gold: true }] },
-  { start: 11.54, end: 13.35, lines: [
+  { start: 11.46, end: 14.55, lines: [
+    { text: "cada médico tem a sua forma", size: 34 },
+    { text: "DE TRABALHAR COM A NOSSA EQUIPE.", size: 42, gold: true }] },
+  { start: 14.78, end: 16.60, lines: [
     { text: "E o maior erro do mundo", size: 34 },
     { text: "SERIA EU CHEGAR", size: 42, gold: true }] },
-  { start: 13.40, end: 15.50, lines: [
+  { start: 16.64, end: 18.75, lines: [
     { text: "na clínica dele", size: 34 },
     { text: "QUERENDO IMPOR", size: 42, gold: true }] },
-  { start: 15.58, end: 18.10, lines: [
+  { start: 18.82, end: 21.35, lines: [
     { text: "padrão que funciona", size: 34 },
     { text: "COM OUTRO PROFISSIONAL.", size: 42, gold: true }] },
 ];

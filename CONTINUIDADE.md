@@ -265,17 +265,30 @@ Cada um tem desenvolvimento e fecho próprios e nenhuma frase se repete. Na
 NH_adapta a **ordem foi invertida de propósito**: na fita a pergunta vem no fim
 (183 s) e o "não engessar" vem antes (156 s); montada, a pergunta abre.
 
-**⚠ Uma batida da anáfora ficou de fora por um buraco.** Em "cada médico tem o
-seu jeito / cada médico tem a forma com que gosta de montar a mesa / cada
-médico…", a terceira batida tem **5,3 segundos de hesitação no meio da frase**
-(diz "cada" em 88,76 e só retoma "médico tem a sua forma…" em 94,02). Emendar
-exigiria corte dentro da locução; a anáfora fica de pé com duas batidas. Perde-se
-a menção à equipe, ganha-se a frase correndo.
+**v2 das duas (15/09) — eu tinha descartado dois blocos por engano.** A dona
+pediu mais vídeos; fui varrer a fita bloco a bloco e não havia terceira peça,
+mas havia **dois trechos que eu dei por imprestáveis e não eram**. Os dois
+voltaram, cada um no lugar exato:
 
-**Ficou de fora também o bloco dos protocolos** (125→143 s): a primeira tentativa
-termina em "temos todo…" e a segunda sai embolada ("viabilidade curricular",
-"tomamos cuidar"). Nenhuma das duas está publicável. **Se a dona quiser esse
-trecho, vale regravar a frase** — não dá pra salvar na edição.
+1. **A terceira batida da anáfora** (NH_iguais). Na v1 li no JSON "cada@88,76"
+   seguido de "médico@94,02" — 5,3 s de buraco no meio da frase — e descartei.
+   **O JSON estava desalinhado**: medido no envelope, 88,10→90,30 é o fim da
+   batida ANTERIOR, e a terceira começa limpa e inteira em **93,74** ("Cada
+   médico tem a sua forma de trabalhar com a nossa equipe"), com o /k/ no ataque.
+   A anáfora tem três batidas de novo e a menção à equipe voltou.
+2. **O bloco dos protocolos** (NH_adapta). O transcritor da fita inteira escreveu
+   "viabilidade CURRICULAR" e "tomamos CUIDAR", e eu li isso como fala embolada.
+   Reanalisado isolado, as duas passadas devolvem **"viabilidade FOLICULAR"** e
+   **"tomamos CUIDADOS"** — era erro do ASR, não dela. E o lugar é exatamente
+   antes do "MAS nós não tentamos engessar a cirurgia no médico", que na v1 não
+   tinha com o que contrastar. Agora a peça faz o movimento inteiro: temos
+   padrão, **mas** não engessamos.
+
+**Lição:** trecho descartado por "estar embolado" merece a mesma reanálise
+isolada que um vão suspeito. Duas vezes seguidas o que parecia fala ruim era
+leitura ruim.
+
+Durações novas: NH_iguais 24,6 → **27,8 s**; NH_adapta 25,6 → **32,9 s**.
 
 **Medido nas duas:** 30 fps constante, frames previstos, decodificação inteira
 sem erro, **0 frames** com faixa de fundo no topo, offset entrega × master 0,0 ms
