@@ -323,6 +323,17 @@ sem ultrapassar os limites.") viraram uma frase só no JSON, e eu montei a peça
 com a repetição dentro. Transcritas separadas, as duas tentativas aparecem nas
 duas passadas.
 
+
+**Palavras coladas não têm corte limpo entre elas.** Quando a gagueira é a
+repetição imediata da mesma palavra ("você você precisa"), o vale entre as duas
+pode ter um frame só — e cortar ali abre o plano no meio da vogal da segunda.
+Aconteceu na NH_comunicacao: o corte no vale (27,53) entrou com a energia já
+subindo, sem o ataque do "v", e o transcritor nem ouviu a palavra. **Ou entra a
+gagueira inteira, ou se começa DEPOIS dela** — ali o fecho passou a abrir em
+"precisa", com o /p/ inteiro, e a frase ficou "Precisa estar atento…", português
+corrente com sujeito implícito. Conferir sempre a ABERTURA do corte feito: ela
+tem que começar quieta e subir.
+
 **Emenda de tentativa removida se esconde debaixo do apoio.** Tirar a tentativa
 repetida deixa um corte no meio de um plano fixo. Fazer a faixa de apoio
 atravessar esse frame é o que suaviza — foi o que a NH_antecipa v2 fez no frame

@@ -242,6 +242,62 @@ e o `--dur` decide também o início do fade (`dur − 1,0`).
 A flag `--tensao-fim` ser opcional é o ponto: peça sem problema narrativo sai
 sem tensão em vez de ganhar um grave que o manual não autoriza.
 
+## Lote de três pelo FLUXO A (15/09/2026) — comunicação, padrão, isquemia
+
+Três fitas de uma vez (IMG_1603, IMG_1611, IMG_1610), 4K vertical nativa, HEVC,
+60 fps, ~42 s cada, mesma pessoa e mesmo set das peças NH_saque e NH_antecipa.
+
+| Peça | Título | Duração | Música |
+|---|---|---|---|
+| NH_comunicacao | PRECISA ORIENTAR A EQUIPE / VÁRIAS VEZES? | 34,2 s | bittersweet (+18,0) |
+| NH_padrao | DE QUALQUER JEITO / OU NO PADRÃO? | 26,4 s | imperfect (+33,0) |
+| NH_isquemia | QUANTO TEMPO O FOLÍCULO FICA / FORA DA SOLUÇÃO? | 31,7 s | cosy (+13,6) |
+
+**O Drive fechou a porta — e o conserto virou `scripts/baixar-drive.sh`.** As três
+chegaram com o endpoint público já em "Quota exceeded": nem download inteiro nem
+leitura por faixa. Duas descobertas resolveram:
+1. A cota é **por arquivo** e deixa passar ~128 MB antes de cortar. Leitura por
+   faixa segue funcionando quando o download inteiro já não funciona.
+2. Uma **cópia é um arquivo novo, com cota nova**. Copiar → baixar em pedaços →
+   mandar a cópia pro lixo resolve sem esperar 24 h. Feito um arquivo por vez
+   (pico de 450 MB na conta dela) e **as três cópias foram apagadas**.
+
+**`scripts/ler-fita.py`** junta num passo só a disciplina que as peças anteriores
+ensinaram: varre as regiões de fala, cruza com a cobertura do JSON, e transcreve
+**sozinha** cada região quando um segmento do ASR cobre mais de uma. O vão de
+união é parâmetro: fala corrida devolve uma região só, e isso é sinal de baixar
+o vão, não de que a fita é uma frase só.
+
+**O que a leitura pegou:**
+- **IMG_1603**: *"você VOCÊ precisa estar atento"*. E aqui a primeira correção não
+  bastou: cortar no vale entre os dois "você" (27,53) abriu o plano **no meio da
+  vogal** do segundo — a energia já entrava subindo, sem o ataque do "v". Palavras
+  coladas não têm corte limpo entre elas: ou entra a gagueira inteira, ou se
+  começa **depois** dela. O fecho passou a abrir em "precisa" (27,71), com o /p/
+  inteiro. Regra nova, registrada nas skills.
+- **IMG_1611**: *"Padrão é uma forma de proteger o folículo"* dito **duas vezes**,
+  e as duas **depois do CTA** na fita. Fica a segunda (a primeira abre com um
+  conector solto) e ela vira o fecho da peça.
+- **IMG_1610**: "sofre" sem vocabulário, **"sofra"** com — o subjuntivo é o que a
+  regência pede depois de "para que", e é o que vai na legenda.
+
+**Só a isquemia leva tensão e click:** é a única das três com bloco de problema
+("o folículo não pode ficar fora da solução", terminando em 12,00 s) seguido de
+solução ("por isso a equipe tem que ser organizada e ágil", 12,27 s). Nas outras
+o gancho já é a pergunta e a virada está marcada pelo filme.
+
+**Condensação registrada (NH_padrao):** ela diz "implantação" três vezes na mesma
+frase; a legenda condensa para "para que na hora da implantação / SEJA MAIS
+RÁPIDA." O §03 autoriza condensar fielmente, e o áudio continua inteiro.
+
+**Os CTAs "siga o meu perfil" ficaram de fora nas três**, mesmo critério das peças
+anteriores: é perfil pessoal, não da clínica.
+
+**Medido nas três:** 30 fps constante, frames previstos, decodificação inteira sem
+erro, **0 frames** com faixa de fundo no topo em nenhuma das três, offset entrega
+× master 0,0 ms nas três janelas, masters a −16,0/−16,1 LUFS. Folga na banda da
+fala: +9,0 / +9,9 / +11,3 dB. Entregas de 14, 13 e 12 MB.
+
 ## Quinta peça pelo FLUXO A (14/09/2026) — NH_antecipa_v1
 
 Fita `IMG_1606.MOV`: 4K vertical nativa, HEVC, 60 fps, 57,1 s, **762 MB**. Mesma

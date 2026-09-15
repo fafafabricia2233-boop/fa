@@ -17,14 +17,20 @@
                                    estar de olho em qualquer coisa que aconteça
                                    durante a cirurgia, de olho no paciente, de
                                    olho no monitor,"
-     clip3 fecho    27,53 → 33,93 "você precisa estar atento a qualquer detalhe
-                                   da cirurgia e, com isso, facilita o fluxo
-                                   da cirurgia."
+     clip3 fecho    27,71 → 33,94 "Precisa estar atento a qualquer detalhe da
+                                   cirurgia e, com isso, facilita o fluxo da
+                                   cirurgia."
 
-   ⚠ O FECHO COMEÇA EM 27,53 E NÃO EM 27,24 porque ela diz "você VOCÊ precisa":
-   o primeiro "você" (27,32→27,50) é gagueira e sai. O vale entre os dois está em
-   27,52. Sem a leitura palavra a palavra isso passa — foi o mesmo tipo de coisa
-   que a dona pegou de ouvido na NH_antecipa.
+   ⚠ O FECHO COMEÇA EM "PRECISA", E ISSO CUSTOU DUAS TENTATIVAS. Ela diz "você
+   VOCÊ precisa": o primeiro "você" vai de 27,32 a 27,50, o segundo de 27,54 a
+   27,72, e entre eles há UM frame de vale. Cortar ali (27,53) abriu o plano no
+   meio da vogal do segundo "você" — medido na abertura do corte, a energia já
+   entrava em 2 barras subindo, sem o ataque do "v", e o transcritor nem ouviu a
+   palavra. Palavras coladas não têm corte limpo entre elas: ou entra a gagueira
+   inteira, ou se começa DEPOIS dela. Começando em 27,71, o /p/ de "precisa" tem
+   o ataque inteiro e a frase fica "Precisa estar atento…", que é português
+   corrente com o sujeito implícito — e emenda bem no "de olho no monitor," que
+   vem antes.
 
    FICOU DE FORA: o CTA "siga o meu perfil" (34,7→41,4), de perfil pessoal e não
    da clínica — mesmo critério das peças anteriores.
@@ -39,14 +45,14 @@ import type { Cue, Plano } from "./ReelFalado";
 
 export const PLANO_COMUNICACAO: Plano = {
   fps: 30,
-  duration: 1031, // 840 de conteúdo + 191 da marca
-  endCard: 840,
+  duration: 1026, // 835 de conteúdo + 191 da marca
+  endCard: 835,
   hookEnd: 113, // 3,767 s
   clips: [
     { nome: "gancho", src: "newhair/falado6/clip0.mp4", start: 0, duration: 113 },
     { nome: "principio", src: "newhair/falado6/clip1.mp4", start: 113, duration: 181 },
     { nome: "anafora", src: "newhair/falado6/clip2.mp4", start: 294, duration: 354 },
-    { nome: "fecho", src: "newhair/falado6/clip3.mp4", start: 648, duration: 192 },
+    { nome: "fecho", src: "newhair/falado6/clip3.mp4", start: 648, duration: 187 },
   ],
   brolls: [
     { fromFrame: 495, duration: 150, src: "newhair/falado6/apoio_dupla.mp4", mode: "band", altura: 600, position: "50% 50%" },
@@ -80,10 +86,10 @@ export const CUES_COMUNICACAO: Cue[] = [
   { start: 19.32, end: 21.30, lines: [
     { text: "você precisa estar", size: 34 },
     { text: "DE OLHO NO MONITOR.", size: 42, gold: true }] },
-  { start: 21.63, end: 24.55, lines: [
-    { text: "Você precisa estar atento", size: 34 },
+  { start: 21.62, end: 24.45, lines: [
+    { text: "Precisa estar atento", size: 34 },
     { text: "A QUALQUER DETALHE DA CIRURGIA", size: 42, gold: true }] },
-  { start: 24.67, end: 27.90, lines: [
+  { start: 24.49, end: 27.75, lines: [
     { text: "e, com isso,", size: 34 },
     { text: "FACILITA O FLUXO DA CIRURGIA.", size: 42, gold: true }] },
 ];
