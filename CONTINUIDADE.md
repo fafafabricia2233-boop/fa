@@ -6,6 +6,24 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 14/09/2026.
 
+## ORDEM PERMANENTE (15/09/2026): varrer o corte pronto em toda peça falada
+
+*"Sempre refaça essa varredura nos próximos vídeos."*
+
+Ferramenta: `projeto-remotion/scripts/varrer-corte.py`, rodada nos cortes antes
+de renderizar, nos dois vãos (0,12 e 0,07). **Sai com código 1 quando suspeita
+de fala repetida e diz em que segundo o corte deveria entrar — código 1 é
+portão: refaz o corte, não renderiza.**
+
+Testada contra o defeito que a originou: alimentada com o corte da NH_medico v1,
+ela acusa o falso começo e aponta 1,17 s (= 26,59 na fita), que é exatamente
+onde a v2 entrou.
+
+Três passos sobre o corte pronto, nenhum substitui o outro: **transcrever** (pega
+palavra comida na borda), **varrer em 0,12** (pega falso começo) e **varrer em
+0,07** (confirma que o resto é respiro). Gagueira é a região seguinte REPETIR a
+abertura da anterior; região que CONTINUA a frase é respiro e fica.
+
 ## Regras gerais refinadas (valem para as próximas peças)
 
 - **Fronteira de palavra do ASR não é fronteira de corte** (14/09/2026, erro

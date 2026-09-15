@@ -498,6 +498,8 @@ O trabalho de leitura do bruto é onde o tempo deve ser gasto.
 
 ## Antes de entregar
 
+**Passo zero, ordem permanente da dona:** `scripts/varrer-corte.py` nos cortes, nos dois vãos. Código 1 = refaz o corte, não renderiza.
+
 Rever o MP4 inteiro, não a transcrição: abertura compreensível, sem retomada
 escondida, sílabas inteiras nas emendas, legenda acompanhando a fala, apoio com
 movimento do começo ao fim, tudo saindo antes da assinatura. Medir com ffprobe
@@ -558,31 +560,45 @@ arquivo só está mal etiquetado e converter lava a imagem. Conferido, feito no
 transcode final — que de quebra derrubou 64 MB pra 32 sem perda visível
 (crf 17 → 20, uma geração).
 
-## Transcrever o corte não basta: VARRER o corte (15/09/2026)
+## ORDEM PERMANENTE: varrer o corte pronto, sempre (15/09/2026)
 
-Erro real, pego de ouvido pela dona: *"a última fala geralmente é a fala
-definitiva, não pode ter fala repetida e gaguejando."* A NH_medico v1 entregou
-**"O paciente… O paciente escolheu o seu trabalho…"**.
+*"Lembre que a última fala geralmente é a fala definitiva, ajuste no vídeo, não
+pode ter fala repetida e gaguejando."* E, logo depois: **"sempre refaça essa
+varredura nos próximos vídeos."**
 
-O que aconteceu: dentro de UMA região de fala da fita (25,52 → 32,87) havia um
-falso começo de 0,82 s e, depois de uma pausa de 250 ms, a tomada definitiva. Eu
-li o primeiro ataque como o início da boa e cortei ali.
+Não é sugestão nem passo de peça difícil: **roda em toda peça falada, sempre**,
+antes de renderizar. Ferramenta: `projeto-remotion/scripts/varrer-corte.py`.
 
-**Por que a transcrição não pegou:** o transcritor funde as duas e devolve a
-frase uma vez só — é o mesmo defeito documentado aqui desde a NH_saque, e ele
-vale também para o corte já feito, não só para a fita.
+```
+python3 scripts/varrer-corte.py public/newhair/<pasta>/clip*.wav            # vão 0,12
+python3 scripts/varrer-corte.py public/newhair/<pasta>/clip*.wav --vao 0.07
+```
 
-**Por que a varredura da fita não pegou:** com vão de 0,18 s as duas tentativas
-viram uma região só. O falso começo é curto e a pausa é curta.
+Sai com código **1** quando suspeita de fala repetida, e diz em que segundo o
+corte deveria entrar. **Código 1 é portão: não renderiza, refaz o corte.**
 
-**O passo que pega:** varrer o CORTE PRONTO com vão curto e transcrever cada
-região isolada. Ali as duas aparecem separadas, e o falso começo se lê na hora.
-Rodar em **dois vãos**: 0,12 acha o falso começo; 0,07 mostra a frase inteira
-picada e serve pra confirmar que o que sobrou é pausa de vírgula, não gagueira.
-Sinal de gagueira é a região seguinte **REPETIR a abertura** da anterior; região
-que continua a frase ("…pode dominar", "…paciente não é um número") é respiro.
+**Os três passos sobre o corte pronto, e nenhum substitui o outro:**
 
-**Regra fechada, três passos sobre o corte pronto, nenhum substitui o outro:**
-1. transcrever o corte — foi assim que apareceu a palavra "número" comida;
-2. varrer o corte em 0,12 — foi assim que apareceu o falso começo;
-3. varrer em 0,07 — confirma que o resto é respiro.
+| passo | pega o quê | pegou na prática |
+|---|---|---|
+| transcrever o corte | palavra comida na borda | o "número" mastigado da NH_medico |
+| varrer com vão 0,12 | **falso começo / tentativa repetida** | o "O paciente… O paciente escolheu" da NH_medico v1 |
+| varrer com vão 0,07 | confirma que o resto é respiro | as quebras de vírgula da NH_frieza |
+
+**Por que os passos anteriores não bastam, e isto precisa existir:**
+- **Transcrever o corte não pega.** O modelo funde as duas tentativas e devolve
+  a frase uma vez só. É o mesmo defeito conhecido desde a NH_saque — e a lição
+  nova é que ele vale para o CORTE JÁ FEITO, não só para a fita bruta.
+- **Varrer a fita não pega.** Com vão de 0,18 s as duas tentativas caem na mesma
+  região, porque o falso começo é curto (0,82 s) e a pausa entre eles também
+  (250 ms). Foi assim que a NH_medico v1 saiu.
+
+**Como se lê o resultado:** gagueira é a região seguinte **REPETIR a abertura**
+da anterior. Região que **CONTINUA** a frase ("…pode dominar", "…paciente não é
+um número", "…tranquilo") é respiro e fica. O script marca os dois casos; quem
+edita decide.
+
+**E vale para a escolha do take também:** o erro da NH_medico v1 não foi pegar a
+tentativa errada — as 13 falas daquele lote eram todas a última. Foi **entrar
+cedo demais dentro da tentativa certa**. Última tentativa não garante entrada
+limpa; a entrada se mede, e depois se varre.
