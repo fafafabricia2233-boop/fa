@@ -86,6 +86,9 @@ import { PLANO_VELOCIDADE, CUES_VELOCIDADE } from "./compositions/planoVelocidad
 import { PLANO_MEDO, CUES_MEDO } from "./compositions/planoMedo";
 import { PLANO_SAQUE, CUES_SAQUE } from "./compositions/planoSaque";
 import { PLANO_ANTECIPA, CUES_ANTECIPA } from "./compositions/planoAntecipa";
+import { PLANO_COMUNICACAO, CUES_COMUNICACAO } from "./compositions/planoComunicacao";
+import { PLANO_PADRAO, CUES_PADRAO } from "./compositions/planoPadrao";
+import { PLANO_ISQUEMIA, CUES_ISQUEMIA } from "./compositions/planoIsquemia";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -837,6 +840,42 @@ export const RemotionRoot: React.FC = () => {
         {/* Referencia aprovada do kit (Stephanie integracao v1). So o trecho do
             gancho, 0-141 frames: e o unico pedaco que roda com os arquivos que
             chegaram (clip0). Os cortes 1/3/4, o apoio e a logo estao faltando. */}
+        <Folder name="NewHair-Comunicacao">
+          <Composition
+            id="NewHairComunicacao"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_COMUNICACAO.fps}
+            durationInFrames={PLANO_COMUNICACAO.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_COMUNICACAO, cues: CUES_COMUNICACAO }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Padrao">
+          <Composition
+            id="NewHairPadrao"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_PADRAO.fps}
+            durationInFrames={PLANO_PADRAO.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_PADRAO, cues: CUES_PADRAO }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Isquemia">
+          <Composition
+            id="NewHairIsquemia"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_ISQUEMIA.fps}
+            durationInFrames={PLANO_ISQUEMIA.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_ISQUEMIA, cues: CUES_ISQUEMIA }}
+          />
+        </Folder>
+
         <Folder name="NewHair-Antecipa">
           <Composition
             id="NewHairAntecipa"
