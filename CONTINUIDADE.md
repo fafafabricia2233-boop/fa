@@ -242,6 +242,49 @@ e o `--dur` decide também o início do fade (`dur − 1,0`).
 A flag `--tensao-fim` ser opcional é o ponto: peça sem problema narrativo sai
 sem tensão em vez de ganhar um grave que o manual não autoriza.
 
+## Uma fita, duas peças (15/09/2026) — NH_iguais e NH_adapta
+
+Fita "Nos atendemos vários médicos e não atendemos da mesma forma": **196 s**,
+quase 5× as outras, e **h264 1080×1920 nativo** (rotação 90), não 4K. É da OUTRA
+pessoa — touca, máscara e lupa, a mesma das peças NH_agilidade e NH_velocidade.
+
+**É um caderno de tomadas, não uma fala corrida.** O gancho aparece **oito
+vezes** entre 0 e 65 s, em versões diferentes ("não atende todos iguais" / "não
+trabalhamos com todos iguais" / "não trabalha com todos igual" / duas
+interrompidas). §02: vale a última completa, em 59,78 — que é também a mais bem
+dita. O fecho também é dito duas vezes seguidas; fica o segundo.
+
+**Duas peças, e isso é conclusão.** Existem dois ganchos de verdade:
+
+| Peça | Gancho | Duração | Música |
+|---|---|---|---|
+| NH_iguais | "não trabalhamos iguais com todos" | 24,6 s | floating (+13,7) |
+| NH_adapta | "não é o médico que tem que se adaptar à equipe?" | 25,6 s | lostmemories (+26,7) |
+
+Cada um tem desenvolvimento e fecho próprios e nenhuma frase se repete. Na
+NH_adapta a **ordem foi invertida de propósito**: na fita a pergunta vem no fim
+(183 s) e o "não engessar" vem antes (156 s); montada, a pergunta abre.
+
+**⚠ Uma batida da anáfora ficou de fora por um buraco.** Em "cada médico tem o
+seu jeito / cada médico tem a forma com que gosta de montar a mesa / cada
+médico…", a terceira batida tem **5,3 segundos de hesitação no meio da frase**
+(diz "cada" em 88,76 e só retoma "médico tem a sua forma…" em 94,02). Emendar
+exigiria corte dentro da locução; a anáfora fica de pé com duas batidas. Perde-se
+a menção à equipe, ganha-se a frase correndo.
+
+**Ficou de fora também o bloco dos protocolos** (125→143 s): a primeira tentativa
+termina em "temos todo…" e a segunda sai embolada ("viabilidade curricular",
+"tomamos cuidar"). Nenhuma das duas está publicável. **Se a dona quiser esse
+trecho, vale regravar a frase** — não dá pra salvar na edição.
+
+**Medido nas duas:** 30 fps constante, frames previstos, decodificação inteira
+sem erro, **0 frames** com faixa de fundo no topo, offset entrega × master 0,0 ms
+nas três janelas, masters a −16,0 LUFS. Transcritas as vozes montadas: nenhuma
+repetição e nenhum engasgo sobraram. Entregas de 12 e 13 MB.
+
+**Pendência antiga que segue:** a imagem desta fita continua espelhada (a logo do
+jaleco lê ao contrário), como nas duas primeiras peças faladas.
+
 ## Lote de três pelo FLUXO A (15/09/2026) — comunicação, padrão, isquemia
 
 Três fitas de uma vez (IMG_1603, IMG_1611, IMG_1610), 4K vertical nativa, HEVC,

@@ -89,6 +89,8 @@ import { PLANO_ANTECIPA, CUES_ANTECIPA } from "./compositions/planoAntecipa";
 import { PLANO_COMUNICACAO, CUES_COMUNICACAO } from "./compositions/planoComunicacao";
 import { PLANO_PADRAO, CUES_PADRAO } from "./compositions/planoPadrao";
 import { PLANO_ISQUEMIA, CUES_ISQUEMIA } from "./compositions/planoIsquemia";
+import { PLANO_IGUAIS, CUES_IGUAIS } from "./compositions/planoIguais";
+import { PLANO_ADAPTA, CUES_ADAPTA } from "./compositions/planoAdapta";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -840,6 +842,30 @@ export const RemotionRoot: React.FC = () => {
         {/* Referencia aprovada do kit (Stephanie integracao v1). So o trecho do
             gancho, 0-141 frames: e o unico pedaco que roda com os arquivos que
             chegaram (clip0). Os cortes 1/3/4, o apoio e a logo estao faltando. */}
+        <Folder name="NewHair-Iguais">
+          <Composition
+            id="NewHairIguais"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_IGUAIS.fps}
+            durationInFrames={PLANO_IGUAIS.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_IGUAIS, cues: CUES_IGUAIS }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Adapta">
+          <Composition
+            id="NewHairAdapta"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_ADAPTA.fps}
+            durationInFrames={PLANO_ADAPTA.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_ADAPTA, cues: CUES_ADAPTA }}
+          />
+        </Folder>
+
         <Folder name="NewHair-Comunicacao">
           <Composition
             id="NewHairComunicacao"
