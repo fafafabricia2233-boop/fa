@@ -483,3 +483,52 @@ entre fita e entrega. Entregar `NH_assunto_vN.mp4`, registrar o que mudou em
 Ver §11 e §12 do manual e `CONFIGURACAO-NEW-HAIR.md` na raiz. Esta sessão tem
 ferramentas de Google Drive disponíveis; o acesso à pasta só pode ser
 declarado depois de abrir um vídeo de verdade, não pelo nome da pasta.
+
+## Enquadramento sem céu: o texto desce e a faixa mascarada não cabe (15/09/2026)
+
+**Ordem da dona, no meio do trabalho:** *"nesse deixa o texto embaixo, na altura
+do peito e mão."* Vale pelo §01, e a fita explica por quê.
+
+**Medir a cabeça é passo, não formalidade.** Naquela fita, quadro a quadro: a
+touca começa entre **72 e 400 px** e a máscara cirúrgica pendurada vai até
+**1290 px**. Sobra ~110 px de céu e nada de chão antes da legenda.
+
+1. **O título desce.** `Plano.tituloTop` (sem valor, vale o da marca). Naquelas
+   três peças: **1330**, na faixa do peito, e a legenda de rodapé 430 já morava
+   ali — o texto todo passou a viver numa faixa só, com o rosto inteiro livre.
+2. **O véu desce junto e muda de forma.** Véu de topo tem uma borda só, porque a
+   outra é a borda do quadro. Título baixo não encosta em nada: precisa de
+   **cauda dos dois lados** (lá: faixa de 470 px, transparente → 0,6 → transparente),
+   senão viram duas linhas visíveis na parede lisa — o mesmo defeito de 14/09.
+3. **E a faixa mascarada pode simplesmente NÃO CABER.** `altura = topo ÷ 0,85`
+   deu 85 a 470 px: sliver inútil. Ancorar embaixo não salva — a máscara
+   pendurada desce até 1290 e a legenda começa em ~1380. Nesse caso o apoio vira
+   **corte seco de tela cheia, curto (72 frames)**, e isso se ANOTA como exceção
+   medida. Não é o `full` preguiçoso que a dona reprovou em 14/09: lá a faixa
+   existia e eu fugi dela; aqui ela não existe. Fita com um palmo de céu, a
+   faixa volta.
+
+**Regra geral:** antes de escolher apoio, medir topo da cabeça E base do rosto.
+São os dois números que dizem se há faixa, onde ela vai, e onde o texto cabe.
+
+## Transcreva o CORTE PRONTO, não só a fita (15/09/2026)
+
+Passo novo, e pagou na primeira rodada. Depois de cortar os planos, transcrever
+**cada arquivo cortado** e comparar com o texto pretendido.
+
+Foi assim que apareceu que um corte tinha **comido a palavra "número"**: o
+detector de cauda parou em 4,55 (limiar alto demais) e a palavra ia até 5,24.
+Nenhuma medida na fita tinha acusado — a fita estava certa, o corte é que não.
+Dois minutos de transcrição contra uma palavra mastigada na entrega.
+
+## Faixa de cor: conferir contra o que já foi entregue (15/09/2026)
+
+O render saiu em **faixa cheia** (luma 0–255, tag `pc`) numa fita de iPhone,
+enquanto as entregas anteriores eram **faixa limitada** (11–245, tag `tv`).
+Player que assume `tv` estoura o contraste de um arquivo `pc`.
+
+**Medir antes de converter:** se YMIN/YMAX forem mesmo 0/255, o dado é full
+range e o `scale=in_range=pc:out_range=tv` é legítimo; se já forem 16/235, o
+arquivo só está mal etiquetado e converter lava a imagem. Conferido, feito no
+transcode final — que de quebra derrubou 64 MB pra 32 sem perda visível
+(crf 17 → 20, uma geração).

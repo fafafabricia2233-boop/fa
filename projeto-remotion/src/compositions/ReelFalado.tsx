@@ -87,6 +87,14 @@ export type Plano = {
   zoomClip: number;
   zoomFrame: number;
   closeClips: number[];
+  /** altura do título em px, quando a fita não tem céu.
+      Ordem da dona em 15/09/2026, sobre a fita de três rolos: "deixa o texto
+      embaixo, na altura do peito e mão". Naquele enquadramento a cabeça dela
+      começa a ~110 px e a máscara pendurada vai até ~1290 — o título do padrão
+      (topo 270) cai em cima do rosto. Com este campo o título desce e o véu
+      desce junto, virando faixa com cauda dos dois lados em vez de véu de topo.
+      Sem valor, vale o da marca (§04). */
+  tituloTop?: number;
 };
 
 export type LinhaCue = { text: string; size: number; gold?: boolean; serif?: boolean };
@@ -384,6 +392,9 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
     [0, 1, 1, 0]
   );
   const cue = cues.find((c) => t >= c.start && t < c.end);
+  /* título baixo: ver o campo tituloTop no tipo Plano */
+  const topoTitulo = plano.tituloTop ?? m.titulo.top;
+  const tituloBaixo = plano.tituloTop != null;
 
   const rgbFundo = (op: number) => {
     const h = m.cores.fundo.replace("#", "");
@@ -463,6 +474,7 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
                  título mora (270→470 px) não muda. */
               height: 900,
               opacity: veuTopo,
+              display: tituloBaixo ? "none" : undefined,
               background: `linear-gradient(to bottom,${rgbFundo(0.52)} 0%,${rgbFundo(
                 0.62
               )} 30%,${rgbFundo(0.62)} 50%,${rgbFundo(0.44)} 64%,${rgbFundo(
@@ -470,6 +482,29 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
               )} 78%,${rgbFundo(0.1)} 89%,${rgbFundo(0)} 100%)`,
             }}
           />
+          {/* véu do título BAIXO: como não encosta em borda nenhuma, precisa de
+              cauda dos dois lados, senão vira duas linhas na parede lisa — foi
+              o defeito que apareceu em 14/09 quando o vídeo passou a ocupar a
+              tela toda e o véu de cima acabava no meio do nada. */}
+          {tituloBaixo && (
+            <div
+              style={{
+                position: "absolute",
+                left: 0,
+                width: "100%",
+                top: Math.max(0, (topoTitulo as number) - 130),
+                height: 470,
+                opacity: veuTopo,
+                background: `linear-gradient(to bottom,${rgbFundo(0)} 0%,${rgbFundo(
+                  0.22
+                )} 12%,${rgbFundo(0.46)} 24%,${rgbFundo(0.6)} 36%,${rgbFundo(
+                  0.6
+                )} 62%,${rgbFundo(0.44)} 76%,${rgbFundo(0.2)} 88%,${rgbFundo(
+                  0
+                )} 100%)`,
+              }}
+            />
+          )}
           {/* véu de baixo: acompanha legenda e selo */}
           <AbsoluteFill
             style={{
@@ -510,7 +545,7 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
           {frame < plano.hookEnd && (
             <div
               style={
-                m.titulo.top === null
+                topoTitulo === null
                   ? {
                       position: "absolute",
                       top: "50%",
@@ -523,7 +558,7 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
                     }
                   : {
                       position: "absolute",
-                      top: m.titulo.top,
+                      top: topoTitulo,
                       width: "100%",
                       boxSizing: "border-box",
                       padding: `0 ${m.titulo.paddingLateral}px`,

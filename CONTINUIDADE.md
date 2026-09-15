@@ -93,6 +93,69 @@ Trilha (motor B): nenhuma trilha nova foi introduzida — todas usam o áudio qu
 na fita, mais o SFX de digitação. A curadoria de músicas
 (`kit-new-hair/musicas-ataques-por-hash.json`) ainda não foi usada aqui.
 
+## A fita de três rolos que era uma fala só (15/09/2026) — NH_maltratado, NH_frieza, NH_medico
+
+A dona mandou uma PASTA com três arquivos e a frase *"são 3 mas são 1 só, se der
+mais ok"*. Confirmado antes de cortar: mesmo enquadramento, mesma sala, mesma
+roupa, fala contínua. 358 s de bruto (IMG_9332 73,5 s · IMG_9333 183,6 s ·
+IMG_9334 101,0 s), 4K vertical nativo (3840×2160 com rotação 90), 30 fps.
+
+**Rendeu três peças**, na ordem do §02 (melhor trecho primeiro, depois "quantas
+peças inteiras existem"):
+
+| peça | gancho | conteúdo | música |
+|---|---|---|---|
+| NH_maltratado | NÃO FOI A CIRURGIA / QUE MARCOU ELE. | 27,2 s | bittersweet (+18,0) |
+| NH_frieza | ELE CHEGA COM MEDO. / ENCONTRA FRIEZA? | 29,1 s | cosy (+13,6) |
+| NH_medico | MÉDICO, A SUA EQUIPE / FAZ PARTE. | 23,0 s | imperfect (+33,0) |
+
+A NH_maltratado saiu na frente porque é a única com CASO: um paciente real,
+operado por outra equipe, e o que ficou nele não foi a cirurgia. O resto da fita
+é tese. As três não repetem nenhuma frase.
+
+**ORDEM NOVA DA DONA, no meio do trabalho: "nesse deixa o texto embaixo, na
+altura do peito e mão".** Está certa, e a fita explica por quê: medida quadro a
+quadro, a touca dela começa entre **72 e 400 px** e a máscara cirúrgica
+pendurada vai até **1290 px**. O título do padrão (topo 270) caía em cima do
+rosto. Motor ganhou o campo `Plano.tituloTop`; nestas três vale **1330**, na
+faixa do peito, e a legenda (rodapé 430) já morava ali — o texto todo passou a
+viver numa faixa só. O véu acompanhou: título baixo não encosta em borda
+nenhuma, então virou faixa de 470 px com cauda dos dois lados, senão vira duas
+linhas visíveis na parede lisa (mesmo defeito de 14/09).
+
+**E A FAIXA MASCARADA NÃO COUBE.** Pela regra de 14/09 (`altura = topo_da_cabeça
+÷ 0,85`) a faixa daria 85 a 470 px — sliver inútil. Ancorar embaixo também não
+resolve: a máscara pendurada desce até 1290 e a legenda mora a partir de 1380.
+Então nestas três o apoio é **corte seco de tela cheia, 72 frames**, nos pontos
+em que a imagem prova a fala. É exceção medida, não preguiça: se a fita vier com
+um palmo de céu, a faixa volta.
+
+**Três bordas salvas pela medição** (todas teriam entregado palavra mastigada):
+1. NH_frieza, saída do gancho: o `bordas.py` apontou vale em 49,62 e o
+   transcritor fecha "frieza" em 49,48 — mas o /za/ vai até **49,88** e o vale
+   real tem 60 ms, antes da tentativa abandonada de 49,96.
+2. NH_medico, entrada do fecho: o ASR marca 43,62 e a varredura de regiões acusa
+   fala em 43,05; tudo até 44,47 é piso de ruído e a voz só ataca em **44,51**.
+3. NH_medico, clip1: o primeiro corte **comeu "número"** — o detector de cauda
+   parou em 4,55 e a palavra vai até 5,24. **Só apareceu porque transcrevi o
+   CORTE PRONTO, não a fita.** Virou passo obrigatório.
+
+**"Cuidamos", não "codamos".** O transcritor devolve "codamos" nas duas passadas
+do trecho isolado (0,65 e 0,84) — palavra que não existe. No stem montado ele
+escreve "cuidamos", e é o que o sentido pede. Vale um ouvido dela.
+
+**Faixa de cor.** Estas saíram do render em **faixa cheia** (luma 0–255, tag
+`pc`), ao contrário das entregas anteriores (11–245, tag `tv`). Medido antes de
+mexer: o dado é mesmo full range, então a conversão `pc→tv` é legítima. Feita no
+transcode final, que de quebra derrubou os arquivos de 64 MB pra 32.
+
+**QA:** H264 1080×1920, 30 fps, 1007/1063/880 frames como no plano, AAC 48 kHz,
+decodificação inteira sem erro, **offset 0,0 ms** nas três janelas (2/8/20 ms,
+r = 1,000) contra o master, **0 quadros com topo liso**, e o degrau do beat na
+virada do gancho em **+15,2 / +11,2 / +16,7 dB**.
+
+**Sem escuta perceptual**, como sempre: dá pra medir, não pra ouvir.
+
 ## Primeira peça pelo FLUXO A (13/09/2026) — NH_agilidade_v1
 
 Primeira vez que o caminho completo do manual rodou aqui: transcrever, escolher

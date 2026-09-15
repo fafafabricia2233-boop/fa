@@ -91,6 +91,9 @@ import { PLANO_PADRAO, CUES_PADRAO } from "./compositions/planoPadrao";
 import { PLANO_ISQUEMIA, CUES_ISQUEMIA } from "./compositions/planoIsquemia";
 import { PLANO_IGUAIS, CUES_IGUAIS } from "./compositions/planoIguais";
 import { PLANO_ADAPTA, CUES_ADAPTA } from "./compositions/planoAdapta";
+import { PLANO_MALTRATADO, CUES_MALTRATADO } from "./compositions/planoMaltratado";
+import { PLANO_FRIEZA, CUES_FRIEZA } from "./compositions/planoFrieza";
+import { PLANO_MEDICO, CUES_MEDICO } from "./compositions/planoMedico";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -851,6 +854,42 @@ export const RemotionRoot: React.FC = () => {
             fps={PLANO_IGUAIS.fps}
             durationInFrames={PLANO_IGUAIS.duration}
             defaultProps={{ marca: "newhair", plano: PLANO_IGUAIS, cues: CUES_IGUAIS }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Maltratado">
+          <Composition
+            id="NewHairMaltratado"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_MALTRATADO.fps}
+            durationInFrames={PLANO_MALTRATADO.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_MALTRATADO, cues: CUES_MALTRATADO }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Frieza">
+          <Composition
+            id="NewHairFrieza"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_FRIEZA.fps}
+            durationInFrames={PLANO_FRIEZA.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_FRIEZA, cues: CUES_FRIEZA }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Medico">
+          <Composition
+            id="NewHairMedico"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_MEDICO.fps}
+            durationInFrames={PLANO_MEDICO.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_MEDICO, cues: CUES_MEDICO }}
           />
         </Folder>
 
