@@ -31,10 +31,10 @@
 
    FONTE POR CORTE (bordas medidas nas duas bandas, larga e >3,5 kHz):
      clip0 gancho    4,68 →  8,41  a pergunta
-     clip1 principio 9,42 → 18,35  "Uma cirurgia organizada, a equipe consegue
-                                    antecipar o próximo passo do médico, sem
-                                    interromper o médico, sem ultrapassar os
-                                    limites."
+     clip1 principio 9,42 → 13,35  "Uma cirurgia organizada, a equipe consegue
+                                    antecipar o próximo passo do médico"
+     clip1b limites 15,18 → 18,35  "sem interromper o médico, sem ultrapassar
+                                    os limites."
      clip2 anafora  21,10 → 31,17  "adiantar um processo, adiantar a mesa
                                     organizada, adiantar a próxima etapa,
                                     separar os folículos da melhor forma
@@ -43,7 +43,26 @@
                                     ter antecipação para que a cirurgia flua da
                                     melhor forma possível."
 
-   FICOU DE FORA: "Uma equipe organizada consegue" (18,8→20,7), que repete o
+   ─── A REPETIÇÃO QUE O ASR COSTUROU (corrigido em 15/09) ───────────────────
+   A dona ouviu: *"ela repetiu 'sem interromper o médico' 2 vezes, deixe só a
+   última fala"*. Estava lá mesmo. Na fita são TRÊS regiões de fala separadas:
+
+     13,40 → 15,00   "sem interromper."                    ← tentativa 1, PARA
+     15,26 → 18,35   "sem interromper o médico, sem
+                      ultrapassar os limites."             ← tentativa 2, inteira
+
+   Transcritas separadas, as duas passadas mostram as duas tentativas. Transcrito
+   o trecho INTEIRO, o modelo funde tudo em "sem interromper o médico, sem
+   ultrapassar os limites." — a repetição some do texto. É o mesmo modo de falha
+   do gancho da NH_saque, agora no meio da peça.
+
+   **Regra nova:** a varredura de regiões acha onde há fala, mas não basta. Quando
+   o texto de um segmento do ASR cobre MAIS DE UMA região separada, transcrever
+   cada região sozinha — é aí que a tentativa repetida aparece. Foi exatamente o
+   que eu não fiz na v1: vi as três regiões, li o texto costurado e tratei como
+   uma frase só.
+
+   FICOU DE FORA: a primeira tentativa acima; "Uma equipe organizada consegue" (18,8→20,7), que repete o
    clip1; "sem que o médico peça tudo, sem que o médico esteja comandando todas
    as etapas" (32,1→38,9), que reafirma a premissa que o gancho já estabelece; e
    o CTA "siga meu perfil" (49,7→55,5), de perfil pessoal e não da clínica —
@@ -58,27 +77,30 @@ import type { Cue, Plano } from "./ReelFalado";
 
 export const PLANO_ANTECIPA: Plano = {
   fps: 30,
-  duration: 1121, // 930 de conteúdo + 191 da marca
-  endCard: 930,
+  duration: 1066, // 875 de conteúdo + 191 da marca
+  endCard: 875,
   hookEnd: 112, // 3,733 s
   clips: [
     { nome: "gancho", src: "newhair/falado5/clip0.mp4", start: 0, duration: 112 },
-    { nome: "principio", src: "newhair/falado5/clip1.mp4", start: 112, duration: 268 },
-    { nome: "anafora", src: "newhair/falado5/clip2.mp4", start: 380, duration: 302 },
-    { nome: "fecho", src: "newhair/falado5/clip3.mp4", start: 682, duration: 248 },
+    { nome: "principio", src: "newhair/falado5/clip1.mp4", start: 112, duration: 118 },
+    { nome: "limites", src: "newhair/falado5/clip1b.mp4", start: 230, duration: 95 },
+    { nome: "anafora", src: "newhair/falado5/clip2.mp4", start: 325, duration: 302 },
+    { nome: "fecho", src: "newhair/falado5/clip3.mp4", start: 627, duration: 248 },
   ],
   /* Faixa de 680 px: a cabeça dela começa em 580 px neste enquadramento
      (580 ÷ 0,85). Cortadas já em 1080×680 da fonte, que depois da rotação dos
      metadados já é 1080×1920 — recorte puro, sem nenhuma escala. */
   brolls: [
-    // "antecipar o próximo passo" → pinças sendo dispostas em ordem
+    /* "antecipar o próximo passo" → pinças sendo dispostas em ordem. A faixa
+       atravessa de propósito o corte do frame 230, que é onde a tentativa
+       repetida foi removida: apoio por cima de emenda é o que a suaviza. */
     { fromFrame: 150, duration: 150, src: "newhair/falado5/apoio_pinca.mp4", mode: "band", altura: 680, position: "50% 50%" },
     // "adiantar a mesa organizada" → a mesa sendo montada, literal
-    { fromFrame: 440, duration: 150, src: "newhair/falado5/apoio_mesa.mp4", mode: "band", altura: 680, position: "50% 50%" },
+    { fromFrame: 385, duration: 150, src: "newhair/falado5/apoio_mesa.mp4", mode: "band", altura: 680, position: "50% 50%" },
   ],
   title: ["SUA EQUIPE ANTECIPA", "O PRÓXIMO PASSO?"],
   titleShift: 0,
-  zoomClip: 3, // o empurrão mora no fecho
+  zoomClip: 4, // o empurrão mora no fecho
   zoomFrame: 20,
   closeClips: [],
 };
@@ -90,31 +112,31 @@ export const CUES_ANTECIPA: Cue[] = [
   { start: 5.15, end: 7.45, lines: [
     { text: "a equipe consegue antecipar", size: 34 },
     { text: "O PRÓXIMO PASSO DO MÉDICO,", size: 42, gold: true }] },
-  { start: 7.59, end: 11.15, lines: [
+  { start: 7.75, end: 9.34, lines: [
     { text: "sem interromper", size: 34 },
     { text: "O MÉDICO,", size: 42, gold: true }] },
-  { start: 11.25, end: 12.60, lines: [
+  { start: 9.44, end: 10.75, lines: [
     { text: "sem ultrapassar", size: 34 },
     { text: "OS LIMITES.", size: 42, gold: true }] },
-  { start: 12.75, end: 14.35, lines: [
+  { start: 10.92, end: 12.52, lines: [
     { text: "Adiantar", size: 34 },
     { text: "UM PROCESSO,", size: 42, gold: true }] },
-  { start: 14.85, end: 16.60, lines: [
+  { start: 13.02, end: 14.77, lines: [
     { text: "adiantar a", size: 34 },
     { text: "MESA ORGANIZADA,", size: 42, gold: true }] },
-  { start: 17.77, end: 19.10, lines: [
+  { start: 15.94, end: 17.27, lines: [
     { text: "adiantar a", size: 34 },
     { text: "PRÓXIMA ETAPA,", size: 42, gold: true }] },
-  { start: 20.33, end: 22.55, lines: [
+  { start: 18.50, end: 20.72, lines: [
     { text: "separar os folículos", size: 34 },
     { text: "DA MELHOR FORMA POSSÍVEL.", size: 42, gold: true }] },
-  { start: 22.80, end: 24.75, lines: [
+  { start: 20.97, end: 22.92, lines: [
     { text: "A cirurgia", size: 34 },
     { text: "É DELE, CLARO,", size: 42, gold: true }] },
-  { start: 24.85, end: 27.95, lines: [
+  { start: 23.02, end: 26.12, lines: [
     { text: "mas você precisa ter", size: 34 },
     { text: "ANTECIPAÇÃO", size: 42, gold: true }] },
-  { start: 28.10, end: 30.85, lines: [
+  { start: 26.27, end: 29.02, lines: [
     { text: "para que a cirurgia", size: 34 },
     { text: "FLUA DA MELHOR FORMA POSSÍVEL.", size: 42, gold: true }] },
 ];

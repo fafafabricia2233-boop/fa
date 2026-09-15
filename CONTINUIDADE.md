@@ -288,7 +288,39 @@ depende do gênero. Com `cosy` sobrou 13 dB; com `lostmemories`, que tem mais
 médio, sobram **8,6 dB**. Continua legível e é o padrão que a dona pediu, mas
 esta peça tem a música mais presente de todas. Registrado pra ela decidir.
 
-**Medido:** 30 fps constante, 1121 frames, 37,37 s, decodificação inteira sem
+**v2 (15/09) — ela repetiu "sem interromper" e eu deixei as duas.** A dona
+ouviu. Na fita são três regiões separadas: `13,40→15,00` "sem interromper."
+(tentativa que ela abandona), pausa, `15,26→18,35` "sem interromper o médico,
+sem ultrapassar os limites." (inteira). Transcritas separadas, as duas passadas
+mostram as duas tentativas; transcrito o trecho inteiro, **o modelo funde tudo
+numa frase só** e a repetição some do texto — o mesmo modo de falha do gancho da
+NH_saque, agora no meio da peça.
+
+O erro foi meu de leitura: a varredura de regiões, que eu já fazia, mostrou as
+três regiões; eu li o texto costurado e tratei como uma frase. **Regra nova: se
+o texto de um segmento do ASR cobre mais de uma região separada, transcrever
+cada região sozinha.**
+
+Corte da tentativa 1 removido: o princípio virou dois cortes (118 + 95 frames) e
+a peça encolheu 55 frames — endCard 930→875, duração 1121→1066, apoio da mesa
+440→385, legendas do meio e do fecho adiantadas 1,83 s. A faixa de apoio das
+pinças foi mantida **atravessando o frame 230**, que é onde a emenda ficou:
+apoio por cima de emenda é o que a suaviza.
+
+**Percalço registrado:** ao refazer o corte, o Drive respondeu **"Quota
+exceeded"** — as leituras por faixa estouraram o limite de download do arquivo, e
+nem ffmpeg nem curl conseguiam mais abrir a fita. Não foi preciso esperar: o
+corte anterior, que cobria o trecho, **estava commitado no git**, e os dois novos
+saíram dele (`git show HEAD:...clip1.mp4`). Vale como lembrete de que versionar a
+mídia recortada não é só rastreabilidade — é o backup da fonte quando o Drive
+fecha a porta.
+
+**Medido na v2:** 30 fps constante, 1066 frames, 35,53 s, decodificação inteira
+sem erro, **0 dos 1066 frames** com faixa de fundo no topo, offset entrega ×
+master 0,0 ms nas três janelas, e a transcrição da voz montada traz
+"interromper" **uma única vez**. Entrega 19 MB.
+
+**Medido na v1:** 30 fps constante, 1121 frames, 37,37 s, decodificação inteira sem
 erro, **0 dos 1121 frames** com faixa de fundo no topo, offset entrega × master
 0,0 ms nas três janelas, master −16,1 LUFS. Entrega 20 MB.
 

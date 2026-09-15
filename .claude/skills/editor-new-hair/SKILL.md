@@ -290,6 +290,22 @@ região. Na NH_antecipa foram três palavras corrompidas dentro de trechos que e
 achava que tinha transcrito: "adiantar a" comendo duas frases inteiras,
 "folhinhos" no lugar de "folículos" e "fuja" no lugar de "flua".
 
+
+**Varredura de regiões não basta: transcreva cada região sozinha.** A varredura
+diz ONDE há fala; ela não diz que duas regiões vizinhas são duas TENTATIVAS da
+mesma frase. Quando o texto de um segmento do ASR cobre mais de uma região
+separada, transcrever cada região isolada — é aí que a repetição aparece.
+Aconteceu na NH_antecipa, pego de ouvido pela dona: três regiões
+(13,40→15,00 "sem interromper." / pausa / 15,26→18,35 "sem interromper o médico,
+sem ultrapassar os limites.") viraram uma frase só no JSON, e eu montei a peça
+com a repetição dentro. Transcritas separadas, as duas tentativas aparecem nas
+duas passadas.
+
+**Emenda de tentativa removida se esconde debaixo do apoio.** Tirar a tentativa
+repetida deixa um corte no meio de um plano fixo. Fazer a faixa de apoio
+atravessar esse frame é o que suaviza — foi o que a NH_antecipa v2 fez no frame
+230.
+
 **Regra:** pausa longa DENTRO de um segmento do ASR é suspeita, não silêncio.
 Medir o envelope antes de aceitar. Achou energia onde o JSON diz que não há,
 recortar só aquele trecho e transcrever de novo.
