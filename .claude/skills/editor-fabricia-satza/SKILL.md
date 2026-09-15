@@ -557,3 +557,32 @@ range e o `scale=in_range=pc:out_range=tv` é legítimo; se já forem 16/235, o
 arquivo só está mal etiquetado e converter lava a imagem. Conferido, feito no
 transcode final — que de quebra derrubou 64 MB pra 32 sem perda visível
 (crf 17 → 20, uma geração).
+
+## Transcrever o corte não basta: VARRER o corte (15/09/2026)
+
+Erro real, pego de ouvido pela dona: *"a última fala geralmente é a fala
+definitiva, não pode ter fala repetida e gaguejando."* A NH_medico v1 entregou
+**"O paciente… O paciente escolheu o seu trabalho…"**.
+
+O que aconteceu: dentro de UMA região de fala da fita (25,52 → 32,87) havia um
+falso começo de 0,82 s e, depois de uma pausa de 250 ms, a tomada definitiva. Eu
+li o primeiro ataque como o início da boa e cortei ali.
+
+**Por que a transcrição não pegou:** o transcritor funde as duas e devolve a
+frase uma vez só — é o mesmo defeito documentado aqui desde a NH_saque, e ele
+vale também para o corte já feito, não só para a fita.
+
+**Por que a varredura da fita não pegou:** com vão de 0,18 s as duas tentativas
+viram uma região só. O falso começo é curto e a pausa é curta.
+
+**O passo que pega:** varrer o CORTE PRONTO com vão curto e transcrever cada
+região isolada. Ali as duas aparecem separadas, e o falso começo se lê na hora.
+Rodar em **dois vãos**: 0,12 acha o falso começo; 0,07 mostra a frase inteira
+picada e serve pra confirmar que o que sobrou é pausa de vírgula, não gagueira.
+Sinal de gagueira é a região seguinte **REPETIR a abertura** da anterior; região
+que continua a frase ("…pode dominar", "…paciente não é um número") é respiro.
+
+**Regra fechada, três passos sobre o corte pronto, nenhum substitui o outro:**
+1. transcrever o corte — foi assim que apareceu a palavra "número" comida;
+2. varrer o corte em 0,12 — foi assim que apareceu o falso começo;
+3. varrer em 0,07 — confirma que o resto é respiro.

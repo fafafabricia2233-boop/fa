@@ -20,7 +20,7 @@
      clip1 tese   9334  0,03 →  5,30  "Porque para nós, o paciente não é a
                                        cirurgia do dia. O paciente não é um
                                        número."
-     clip2 corpo  9334 25,42 → 33,11  "O paciente escolheu o seu trabalho como
+     clip2 corpo  9334 26,42 → 33,11  "O paciente escolheu o seu trabalho como
                                        médico e o nosso trabalho como equipe
                                        para realizar o grande sonho dele."
      clip3 fecho  9334 44,42 → 48,45  "E ele precisa sentir segurança em cada
@@ -31,7 +31,20 @@
    de 3,5 s), 78,38 (abandonada em "que eu…") e 80,60, que é a limpa. Fica a
    quarta.
 
-   ⚠ DUAS BORDAS CORRIGIDAS AQUI. (1) O transcritor marca o fecho começando em
+   ⚠ v2 — O FALSO COMEÇO DO clip2, QUE A DONA OUVIU. Ordem dela: "a última fala
+   geralmente é a fala definitiva, não pode ter fala repetida e gaguejando."
+   A v1 abria o clip2 em 25,42 e entregava "O paciente… O paciente escolheu".
+   Aquilo que eu tinha lido como o início da tomada boa (25,52) era um falso
+   começo de 0,82 s; a definitiva só ataca em 26,59. Corte foi pra 26,42.
+
+   COMO PASSOU E COMO NÃO PASSA MAIS: a varredura de regiões dentro do CORTE
+   PRONTO, com vão de 0,12 s, mostra as duas regiões na cara — "o paciente" e
+   depois "O paciente escolheu…". Eu tinha transcrito o corte (e por isso peguei
+   o "número" comido), mas não tinha VARRIDO o corte. O transcritor funde as
+   duas e devolve uma frase só, que foi exatamente o que me enganou. Agora os
+   dois passos são obrigatórios, e rodados também com vão curto (0,07).
+
+   ⚠ DUAS BORDAS CORRIGIDAS NA v1. (1) O transcritor marca o fecho começando em
    43,62 e a varredura de regiões acusa fala em 43,05; medido, tudo até 44,47 é
    piso de ruído e a voz só ataca em 44,51 — o corte foi pra 44,42. (2) O
    primeiro corte de clip1 comeu "número": o detector de cauda parou em 4,55 e
@@ -54,18 +67,18 @@ import type { Cue, Plano } from "./ReelFalado";
 
 export const PLANO_MEDICO: Plano = {
   fps: 30,
-  duration: 880, // 689 de conteúdo + 191 da marca
-  endCard: 689,
+  duration: 850, // 659 de conteúdo + 191 da marca
+  endCard: 659,
   hookEnd: 179, // 5,967 s — fim de "…da sua clínica"
   clips: [
     { nome: "gancho", src: "newhair/falado13/clip0.mp4", start: 0, duration: 179 },
     { nome: "tese", src: "newhair/falado13/clip1.mp4", start: 179, duration: 158 },
-    { nome: "corpo", src: "newhair/falado13/clip2.mp4", start: 337, duration: 231 },
-    { nome: "fecho", src: "newhair/falado13/clip3.mp4", start: 568, duration: 121 },
+    { nome: "corpo", src: "newhair/falado13/clip2.mp4", start: 337, duration: 201 },
+    { nome: "fecho", src: "newhair/falado13/clip3.mp4", start: 538, duration: 121 },
   ],
   brolls: [
     /* "o nosso trabalho como equipe" — a dupla trabalhando junto */
-    { fromFrame: 453, duration: 72, src: "newhair/falado13/apoio_equipe.mp4", mode: "full", position: "50% 50%" },
+    { fromFrame: 423, duration: 72, src: "newhair/falado13/apoio_equipe.mp4", mode: "full", position: "50% 50%" },
   ],
   title: ["MÉDICO, A SUA EQUIPE", "FAZ PARTE."],
   titleShift: 0,
@@ -79,22 +92,22 @@ export const PLANO_MEDICO: Plano = {
 };
 
 export const CUES_MEDICO: Cue[] = [
-  { start: 7.00, end: 9.65, lines: [
+  { start: 7.00, end: 9.68, lines: [
     { text: "Porque para nós, o paciente", size: 34 },
     { text: "NÃO É A CIRURGIA DO DIA.", size: 42, gold: true }] },
-  { start: 9.70, end: 11.35, lines: [
+  { start: 9.72, end: 11.35, lines: [
     { text: "O paciente", size: 34 },
     { text: "NÃO É UM NÚMERO.", size: 42, gold: true }] },
-  { start: 12.32, end: 14.75, lines: [
-    { text: "O paciente escolheu o seu", size: 34 },
+  { start: 11.44, end: 13.78, lines: [
+    { text: "O paciente escolheu seu", size: 34 },
     { text: "TRABALHO COMO MÉDICO", size: 42, gold: true }] },
-  { start: 14.78, end: 16.70, lines: [
+  { start: 13.80, end: 15.72, lines: [
     { text: "e o nosso", size: 34 },
     { text: "TRABALHO COMO EQUIPE", size: 42, gold: true }] },
-  { start: 16.72, end: 19.00, lines: [
+  { start: 15.74, end: 17.95, lines: [
     { text: "para realizar", size: 34 },
     { text: "O GRANDE SONHO DELE.", size: 42, gold: true }] },
-  { start: 19.04, end: 22.95, lines: [
+  { start: 18.04, end: 21.95, lines: [
     { text: "E ele precisa sentir segurança", size: 34 },
     { text: "EM CADA ETAPA DO PROCEDIMENTO.", size: 42, gold: true }] },
 ];

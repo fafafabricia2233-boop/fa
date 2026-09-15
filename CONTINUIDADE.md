@@ -154,6 +154,20 @@ decodificação inteira sem erro, **offset 0,0 ms** nas três janelas (2/8/20 ms
 r = 1,000) contra o master, **0 quadros com topo liso**, e o degrau do beat na
 virada do gancho em **+15,2 / +11,2 / +16,7 dB**.
 
+**NH_medico_v2 (15/09):** a dona ouviu **"O paciente… O paciente escolheu"** e
+mandou a regra de volta: *"a última fala geralmente é a fala definitiva, não pode
+ter fala repetida e gaguejando."* Estava certa. Dentro de uma única região da
+fita (25,52 → 32,87) havia um falso começo de 0,82 s e, 250 ms depois, a tomada
+boa; cortei no primeiro ataque. Corte foi pra **26,42**, a peça encolheu 30
+frames (689 → 659 de conteúdo, 880 → 850 de duração), o apoio andou de 453 pra
+423 e as legendas do clip2 em diante adiantaram ~0,9 s.
+
+Passo novo, e agora obrigatório: **varrer o CORTE PRONTO**, não só transcrevê-lo.
+Transcrição funde as duas tentativas e devolve a frase uma vez só — foi o que me
+enganou. Varridas as outras duas peças nos mesmos dois vãos (0,12 e 0,07), as
+quebras que aparecem são respiro de vírgula: a região seguinte CONTINUA a frase
+em vez de repetir a abertura. As duas ficam como estão.
+
 **Sem escuta perceptual**, como sempre: dá pra medir, não pra ouvir.
 
 ## Primeira peça pelo FLUXO A (13/09/2026) — NH_agilidade_v1
