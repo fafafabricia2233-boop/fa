@@ -14,9 +14,12 @@ POR QUE ISTO EXISTE
   "logo acima do cabelo" e um numero que muda de fita pra fita.
 
 COMO O NUMERO VIRA tituloTop
-  tituloTop = cabeca - folga - altura_do_bloco
-  folga ~45px. altura do bloco de titulo: ~285px com 4 linhas de gancho,
-  ~333px com 5 (conta ja inclui o fio dourado e o "Leia a legenda").
+  tituloTop = cabeca + 20 - altura_do_bloco
+  altura do bloco de titulo: ~285px com 4 linhas de gancho, ~333px com 5
+  (a conta ja inclui o fio dourado e o "Leia a legenda").
+  O +20 e de proposito: o pe do bloco encosta 20px no alto do cabelo, entao o
+  gancho fica APOIADO na cabeca em vez de flutuar. Quem encosta e so a linha
+  "Leia a legenda", a mais leve do bloco — o texto do gancho passa longe.
   Depois de colar o numero, CONFIRA num still: e a unica prova.
 
 POR QUE O MENOR VALOR E NAO A MEDIA
@@ -63,7 +66,7 @@ def main():
         cabeca = mede(video, float(ate))
         print("%-34s cabeca comeca em y=%d px" % (video.split("/")[-1], cabeca))
         for linhas, bloco in ((4, 285), (5, 333)):
-            print("      gancho de %d linhas -> tituloTop: %d" % (linhas, cabeca - 45 - bloco))
+            print("      gancho de %d linhas -> tituloTop: %d" % (linhas, cabeca + 20 - bloco))
 
 
 if __name__ == "__main__":

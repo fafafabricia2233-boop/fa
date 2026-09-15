@@ -72,9 +72,12 @@ const PECA = {
     // MEDIDO com scripts/altura-cabeca.py na janela do gancho: o cabelo desta
     // fita comeca em y=535px (menor valor de todos os frames — ela mexe
     // a cabeca enquanto fala). O bloco de titulo tem 285px (4 linhas,
-    // mais o fio e o "Leia a legenda"). 535 - 45 de folga - 285 = 205.
+    // mais o fio e o "Leia a legenda").
+    // 535 + 20 - 285 = 270: o pe do bloco encosta 20px no alto do cabelo, de
+    // proposito. O gancho fica APOIADO na cabeca, nao flutuando acima dela —
+    // e o que encosta e so o "Leia a legenda", que e a linha mais leve.
     // Se mudar o numero de linhas do gancho, refaz esta conta.
-    tituloTop: 205,
+    tituloTop: 270,
     legendaBottom: 430,
     seloBottom: 300,
   },
