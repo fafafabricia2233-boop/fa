@@ -169,9 +169,13 @@ def main():
                     bruto = trecho(arq, w.start - 0.05, w.end + 0.05, voc=False)
                     pal = normaliza(bruto)
                     repete = reinicia(pal)
+                    # a PRIMEIRA palavra do corte sempre sai longa: o modelo
+                    # a ancora em 0,00 e a folga de entrada entra na conta. Não
+                    # é motivo pra suspeitar — quem decide é o isolado.
+                    borda = " (1ª palavra: carrega a folga de entrada)" if w.start < 0.08 else ""
                     marca = "⚠ REPETIÇÃO" if repete else "· conferir"
                     print(f"  {marca}: \"{p}\" dura {dur:.2f}s ({w.start:.2f}→{w.end:.2f}), "
-                          f"esperado ≤{limite:.2f}s. Isolado diz: \"{bruto}\"")
+                          f"esperado ≤{limite:.2f}s{borda}. Isolado diz: \"{bruto}\"")
                     if repete: suspeitos.append(arq)
 
     if suspeitos:

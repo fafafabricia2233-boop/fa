@@ -32,6 +32,15 @@ palavra por cima do buraco**: "para" de 0,42 a 1,52 — 1,10 s numa preposição
 gagueira (sem isso ele reprovava a NH_comunicacao, que é construída em cima da
 anáfora). Passado em todos os cortes das três peças: só aquele defeito.
 
+**Catálogo inteiro varrido (15/09/2026).** Passado o portão nos **33 cortes** de
+todas as peças faladas já entregues: **nenhum falso começo e nenhuma repetição
+colada.** O único aviso foi a anáfora da NH_comunicacao ("você precisa estar de
+olho em qualquer coisa… no paciente… no monitor"), que é recurso dela e fica —
+e foi justamente esse caso que ensinou o script a não reprovar anáfora. Os
+avisos de "palavra longa" que sobraram são a 1ª palavra de cada corte, que sai
+esticada porque o modelo a ancora em 0,00 e a folga de entrada entra na conta;
+todos se resolvem no trecho isolado.
+
 Três passos sobre o corte pronto, nenhum substitui o outro: **transcrever** (pega
 palavra comida na borda), **varrer em 0,12** (pega falso começo) e **varrer em
 0,07** (confirma que o resto é respiro). Gagueira é a região seguinte REPETIR a
