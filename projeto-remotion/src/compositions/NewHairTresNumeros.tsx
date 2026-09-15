@@ -69,7 +69,7 @@ const PECA = {
     // 520 + 20 - 285 = 255: o pe do bloco encosta 20px no alto do cabelo, de
     // proposito. O gancho fica APOIADO na cabeca, nao flutuando acima dela —
     // e o que encosta e so o "Leia a legenda", que e a linha mais leve.
-    // Se mudar o numero de linhas do gancho, refaz esta conta.
+    // Remedir sempre que a fita for recortada: o menor valor muda.
     tituloTop: 255,
     legendaBottom: 430,
     seloBottom: 300,
@@ -91,8 +91,8 @@ const TITULO = {
   modo: "temporario" as "temporario" | "permanente",
 
   inicio: 0.15,
-  seguraAte: 5.4, // gancho falado acaba em 5.56 ("diferentes?")
-  saiEm: 5.7, // sai no respiro antes da 1a legenda (5.92)
+  seguraAte: 5.12, // gancho falado acaba em 5.24 ("diferentes?")
+  saiEm: 5.32, // sai no respiro antes da 1a legenda (5.40)
 };
 
 /* LEGENDA DE RODAPE, frase a frase, colada na fala.
@@ -112,8 +112,8 @@ type Cue = {
    e com janela menor que 16 frames f1-8 fica <= f0+8, quebrando a interpolação. */
 const CUES: Cue[] = [
   {
-    start: 5.90,
-    end: 9.50,
+    start: 5.36,
+    end: 8.84,
     lines: [
       { text: "Uma pessoa fala que CONTOU,", size: 28, gold: true },
       { text: "a outra tenta lembrar", size: 26 },
@@ -121,66 +121,66 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 9.62,
-    end: 12.95,
+    start: 8.90,
+    end: 12.28,
     lines: [
       { text: "e você fica PERDIDO", size: 34, gold: true },
       { text: "no meio de tanta informação.", size: 26 },
     ],
   },
   {
-    start: 13.25,
-    end: 16.15,
+    start: 12.38,
+    end: 15.22,
     lines: [
       { text: "Para uma boa contagem, a gente precisa", size: 24 },
       { text: "de ORGANIZAÇÃO,", size: 34, gold: true },
     ],
   },
   {
-    start: 16.28,
-    end: 18.30,
+    start: 15.32,
+    end: 17.30,
     lines: [{ text: "RESPONSABILIDADE e COMUNICAÇÃO", size: 28, gold: true }],
   },
   {
-    start: 18.42,
-    end: 20.25,
+    start: 17.36,
+    end: 19.08,
     lines: [{ text: "durante todo o procedimento.", size: 28 }],
   },
   {
-    start: 20.40,
-    end: 23.48,
+    start: 19.14,
+    end: 22.22,
     lines: [
       { text: "Na New Hair, isso faz parte do", size: 26 },
       { text: "ACOMPANHAMENTO da cirurgia.", size: 30, gold: true },
     ],
   },
   {
-    start: 23.62,
-    end: 26.52,
+    start: 22.32,
+    end: 25.28,
     lines: [
       { text: "Nossa equipe mantém a", size: 26 },
       { text: "CONTAGEM ATUALIZADA com o médico", size: 26, gold: true },
     ],
   },
   {
-    start: 26.65,
-    end: 30.70,
+    start: 25.34,
+    end: 29.00,
     lines: [
       { text: "para que você possa conduzir", size: 26 },
       { text: "as etapas com mais SEGURANÇA.", size: 32, gold: true },
     ],
   },
   {
-    start: 31.15,
-    end: 34.95,
+    start: 29.04,
+    end: 33.04,
     lines: [
       { text: "Precisa de uma equipe ORGANIZADA,", size: 28, gold: true },
       { text: "capacitada nos seus procedimentos?", size: 26 },
     ],
   },
   {
-    start: 35.20,
-    end: 37.32,
+    start: 33.18,
+    end: 35.14,
     lines: [
       { text: "Entre em contato com a gente", size: 26 },
       { text: "pelo LINK NA BIO.", size: 36, gold: true },
@@ -191,6 +191,34 @@ const CUES: Cue[] = [
 /* Selo de compliance. Linha APROVADA, nao se reescreve. Ele e o que separa
    instrumentacao de ato medico na tela, e a imagem mostra cirurgia. */
 const SELO = "Procedimento realizado por médico · a New Hair realiza a instrumentação";
+
+/* TRILHA E SFX POSICIONADO — ORDEM DA DONA (15/09/2026):
+   "voce nao colocou os sfx posicionado e nem lofi".
+
+   O motor do padrao nunca punha musica porque a fita chegava do CapCut ja com
+   musica dentro. Estas quatro chegaram CRUAS, direto do celular: se a trilha
+   nao entrar aqui, nao entra em lugar nenhum.
+
+   A trilha NAO tem fade de saida: ela e continuada, no mesmo ponto e no mesmo
+   volume, por scripts/fechar-peca-camera.sh, embaixo da marca d'agua. Se mudar
+   arquivo ou volume aqui, mude tambem la — sao o mesmo som.
+
+   "Posicionado" quer dizer instante medido, nao batida solta:
+     whoosh — a saida do gancho, um quadro antes de o titulo comecar a sumir
+     pop    — a entrada de CADA legenda, 0.06s antes da cue, pra o som chegar
+              junto com o texto e nao depois dele
+   Volumes da tabela do projeto (components/OVERLAYS_LIBRARY.md: pop 0.42,
+   whoosh 0.36) baixados um degrau, porque aqui embaixo ja tem voz e trilha. */
+const TRILHA = {
+  arquivo: "new sfx/lofi 2.MP3",
+  volume: 0.08,
+  entrada: 0.6, // fade-in, pra trilha nao dar um soco no primeiro quadro
+};
+
+const SFX = {
+  whoosh: { arquivo: "sfx/whoosh_short.MP3", volume: 0.3, antes: 0.12 },
+  pop: { arquivo: "new sfx/ui_pop.mp3", volume: 0.26, antes: 0.06 },
+};
 
 /* =============================================================================
    NAO MEXER DAQUI PRA BAIXO
@@ -305,6 +333,26 @@ const SfxDigitacao: React.FC<{ inicio: number; fim: number; fps: number }> = ({
   );
 };
 
+/* SFX PONTUAL. Um <Sequence> por disparo, pelo mesmo motivo do SfxDigitacao:
+   dentro de <Loop> o frame reinicia e o volume vira outra coisa. Aqui cada
+   disparo e um Sequence com inicio proprio, entao o instante e exato. */
+const SfxPontual: React.FC<{
+  disparos: { t: number; arquivo: string; volume: number }[];
+  fps: number;
+}> = ({ disparos, fps }) => (
+  <>
+    {disparos.map((d, i) => (
+      <Sequence
+        key={i}
+        from={Math.max(0, Math.round(d.t * fps))}
+        durationInFrames={Math.round(1.4 * fps)}
+      >
+        <Audio src={staticFile(d.arquivo)} volume={d.volume} />
+      </Sequence>
+    ))}
+  </>
+);
+
 /* LINHA ESCRITA QUE NAO TREME.
    Texto centralizado escrito letra a letra se RECENTRA a cada caractere, e a 30fps
    isso vira tremida. Um span fantasma com o texto COMPLETO reserva a largura final
@@ -358,6 +406,15 @@ export const NewHairTresNumeros: React.FC<NewHairTresNumerosProps> = ({ video })
   const permanente = TITULO.modo === "permanente";
   const seguraAte = permanente ? FIM - 0.35 : TITULO.seguraAte;
   const saiEm = permanente ? FIM : TITULO.saiEm;
+
+  /* disparos de SFX: a saida do gancho e a entrada de cada legenda */
+  const disparos = React.useMemo(
+    () => [
+      { t: saiEm - SFX.whoosh.antes, ...SFX.whoosh },
+      ...CUES.map((c) => ({ t: c.start - SFX.pop.antes, ...SFX.pop })),
+    ],
+    [saiEm]
+  );
 
   const tituloOpacity = interpolate(frame, [seguraAte * fps, saiEm * fps], [1, 0], {
     extrapolateLeft: "clamp",
@@ -413,6 +470,21 @@ export const NewHairTresNumeros: React.FC<NewHairTresNumerosProps> = ({ video })
       />
 
       <SfxDigitacao inicio={SFX_INICIO} fim={SFX_FIM} fps={fps} />
+
+      {/* trilha: entra em fade e NAO sai — quem fecha e o fechar-peca-camera.sh */}
+      <Audio
+        src={staticFile(TRILHA.arquivo)}
+        volume={(f) =>
+          TRILHA.volume *
+          interpolate(f, [0, TRILHA.entrada * fps], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          })
+        }
+      />
+
+      <SfxPontual disparos={disparos} fps={fps} />
+
 
       <AbsoluteFill
         style={{

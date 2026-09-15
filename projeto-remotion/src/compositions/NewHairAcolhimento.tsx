@@ -66,14 +66,14 @@ const PECA = {
     // coloque muito no topo". Entao o titulo nao e ancorado no topo do quadro
     // nem no meio: ele e pendurado logo acima do cabelo.
     // MEDIDO com scripts/altura-cabeca.py na janela do gancho: o cabelo desta
-    // fita comeca em y=530px (menor valor de todos os frames — ela mexe
+    // fita comeca em y=535px (menor valor de todos os frames — ela mexe
     // a cabeca enquanto fala). O bloco de titulo tem 285px (4 linhas,
     // mais o fio e o "Leia a legenda").
-    // 530 + 20 - 285 = 265: o pe do bloco encosta 20px no alto do cabelo, de
+    // 535 + 20 - 285 = 270: o pe do bloco encosta 20px no alto do cabelo, de
     // proposito. O gancho fica APOIADO na cabeca, nao flutuando acima dela —
     // e o que encosta e so o "Leia a legenda", que e a linha mais leve.
-    // Se mudar o numero de linhas do gancho, refaz esta conta.
-    tituloTop: 265,
+    // Remedir sempre que a fita for recortada: o menor valor muda.
+    tituloTop: 270,
     legendaBottom: 430,
     seloBottom: 300,
   },
@@ -94,8 +94,8 @@ const TITULO = {
   modo: "temporario" as "temporario" | "permanente",
 
   inicio: 0.15,
-  seguraAte: 5.2, // gancho falado acaba em 5.42 ("isso?")
-  saiEm: 5.45, // a frase seguinte comeca em 5.40: aqui o respiro e curto mesmo
+  seguraAte: 5.10, // gancho falado acaba em 5.24 ("isso?")
+  saiEm: 5.30, // a frase seguinte comeca em 5.36: aqui o respiro e curto mesmo
 };
 
 /* LEGENDA DE RODAPE, frase a frase, colada na fala.
@@ -115,16 +115,16 @@ type Cue = {
    e com janela menor que 16 frames f1-8 fica <= f0+8, quebrando a interpolação. */
 const CUES: Cue[] = [
   {
-    start: 5.50,
-    end: 10.35,
+    start: 5.32,
+    end: 10.30,
     lines: [
       { text: "Pra você, o procedimento deu tudo certo,", size: 26 },
-      { text: "mas o paciente, ele passou HORAS ali.", size: 28, gold: true },
+      { text: "mas o paciente passou HORAS ali.", size: 28, gold: true },
     ],
   },
   {
-    start: 10.45,
-    end: 14.80,
+    start: 10.38,
+    end: 14.28,
     lines: [
       { text: "Ele ouviu cada CONVERSA,", size: 32, gold: true },
       { text: "ele percebeu a maneira", size: 26 },
@@ -132,16 +132,16 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 14.88,
-    end: 18.05,
+    start: 14.32,
+    end: 17.52,
     lines: [
       { text: "Se ele fez uma pergunta", size: 26 },
       { text: "e recebeu uma RESPOSTA SECA,", size: 30, gold: true },
     ],
   },
   {
-    start: 18.18,
-    end: 22.05,
+    start: 17.60,
+    end: 21.26,
     lines: [
       { text: "ou se até mesmo ele", size: 26 },
       { text: "apresentou desconforto", size: 26 },
@@ -149,24 +149,24 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 22.15,
-    end: 24.62,
+    start: 21.44,
+    end: 23.86,
     lines: [
       { text: "ele vai se LEMBRAR disso", size: 30, gold: true },
       { text: "no pós-operatório.", size: 26 },
     ],
   },
   {
-    start: 24.75,
-    end: 27.28,
+    start: 23.90,
+    end: 26.06,
     lines: [
       { text: "Na New Hair, a gente", size: 26 },
       { text: "ORIENTA o paciente,", size: 32, gold: true },
     ],
   },
   {
-    start: 27.38,
-    end: 32.40,
+    start: 26.30,
+    end: 31.20,
     lines: [
       { text: "EXPLICA e COMUNICA ao médico", size: 28, gold: true },
       { text: "todas as intercorrências", size: 26 },
@@ -174,8 +174,8 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 32.85,
-    end: 37.45,
+    start: 31.78,
+    end: 36.22,
     lines: [
       { text: "Porque o ACOLHIMENTO faz parte", size: 28, gold: true },
       { text: "do nosso trabalho", size: 26 },
@@ -183,16 +183,16 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 37.90,
-    end: 41.40,
+    start: 36.66,
+    end: 39.78,
     lines: [
       { text: "Você quer uma equipe que CUIDE", size: 28, gold: true },
       { text: "dessa experiência junto com você?", size: 26 },
     ],
   },
   {
-    start: 41.50,
-    end: 44.32,
+    start: 39.92,
+    end: 42.06,
     lines: [
       { text: "Entre em contato com a gente", size: 26 },
       { text: "pelo LINK NA BIO.", size: 36, gold: true },
@@ -203,6 +203,34 @@ const CUES: Cue[] = [
 /* Selo de compliance. Linha APROVADA, nao se reescreve. Ele e o que separa
    instrumentacao de ato medico na tela, e a imagem mostra cirurgia. */
 const SELO = "Procedimento realizado por médico · a New Hair realiza a instrumentação";
+
+/* TRILHA E SFX POSICIONADO — ORDEM DA DONA (15/09/2026):
+   "voce nao colocou os sfx posicionado e nem lofi".
+
+   O motor do padrao nunca punha musica porque a fita chegava do CapCut ja com
+   musica dentro. Estas quatro chegaram CRUAS, direto do celular: se a trilha
+   nao entrar aqui, nao entra em lugar nenhum.
+
+   A trilha NAO tem fade de saida: ela e continuada, no mesmo ponto e no mesmo
+   volume, por scripts/fechar-peca-camera.sh, embaixo da marca d'agua. Se mudar
+   arquivo ou volume aqui, mude tambem la — sao o mesmo som.
+
+   "Posicionado" quer dizer instante medido, nao batida solta:
+     whoosh — a saida do gancho, um quadro antes de o titulo comecar a sumir
+     pop    — a entrada de CADA legenda, 0.06s antes da cue, pra o som chegar
+              junto com o texto e nao depois dele
+   Volumes da tabela do projeto (components/OVERLAYS_LIBRARY.md: pop 0.42,
+   whoosh 0.36) baixados um degrau, porque aqui embaixo ja tem voz e trilha. */
+const TRILHA = {
+  arquivo: "new sfx/lofi 2.MP3",
+  volume: 0.08,
+  entrada: 0.6, // fade-in, pra trilha nao dar um soco no primeiro quadro
+};
+
+const SFX = {
+  whoosh: { arquivo: "sfx/whoosh_short.MP3", volume: 0.3, antes: 0.12 },
+  pop: { arquivo: "new sfx/ui_pop.mp3", volume: 0.26, antes: 0.06 },
+};
 
 /* =============================================================================
    NAO MEXER DAQUI PRA BAIXO
@@ -317,6 +345,26 @@ const SfxDigitacao: React.FC<{ inicio: number; fim: number; fps: number }> = ({
   );
 };
 
+/* SFX PONTUAL. Um <Sequence> por disparo, pelo mesmo motivo do SfxDigitacao:
+   dentro de <Loop> o frame reinicia e o volume vira outra coisa. Aqui cada
+   disparo e um Sequence com inicio proprio, entao o instante e exato. */
+const SfxPontual: React.FC<{
+  disparos: { t: number; arquivo: string; volume: number }[];
+  fps: number;
+}> = ({ disparos, fps }) => (
+  <>
+    {disparos.map((d, i) => (
+      <Sequence
+        key={i}
+        from={Math.max(0, Math.round(d.t * fps))}
+        durationInFrames={Math.round(1.4 * fps)}
+      >
+        <Audio src={staticFile(d.arquivo)} volume={d.volume} />
+      </Sequence>
+    ))}
+  </>
+);
+
 /* LINHA ESCRITA QUE NAO TREME.
    Texto centralizado escrito letra a letra se RECENTRA a cada caractere, e a 30fps
    isso vira tremida. Um span fantasma com o texto COMPLETO reserva a largura final
@@ -370,6 +418,15 @@ export const NewHairAcolhimento: React.FC<NewHairAcolhimentoProps> = ({ video })
   const permanente = TITULO.modo === "permanente";
   const seguraAte = permanente ? FIM - 0.35 : TITULO.seguraAte;
   const saiEm = permanente ? FIM : TITULO.saiEm;
+
+  /* disparos de SFX: a saida do gancho e a entrada de cada legenda */
+  const disparos = React.useMemo(
+    () => [
+      { t: saiEm - SFX.whoosh.antes, ...SFX.whoosh },
+      ...CUES.map((c) => ({ t: c.start - SFX.pop.antes, ...SFX.pop })),
+    ],
+    [saiEm]
+  );
 
   const tituloOpacity = interpolate(frame, [seguraAte * fps, saiEm * fps], [1, 0], {
     extrapolateLeft: "clamp",
@@ -425,6 +482,21 @@ export const NewHairAcolhimento: React.FC<NewHairAcolhimentoProps> = ({ video })
       />
 
       <SfxDigitacao inicio={SFX_INICIO} fim={SFX_FIM} fps={fps} />
+
+      {/* trilha: entra em fade e NAO sai — quem fecha e o fechar-peca-camera.sh */}
+      <Audio
+        src={staticFile(TRILHA.arquivo)}
+        volume={(f) =>
+          TRILHA.volume *
+          interpolate(f, [0, TRILHA.entrada * fps], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          })
+        }
+      />
+
+      <SfxPontual disparos={disparos} fps={fps} />
+
 
       <AbsoluteFill
         style={{

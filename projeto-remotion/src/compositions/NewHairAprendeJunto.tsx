@@ -68,7 +68,7 @@ const PECA = {
     // 525 + 20 - 333 = 212: o pe do bloco encosta 20px no alto do cabelo, de
     // proposito. O gancho fica APOIADO na cabeca, nao flutuando acima dela —
     // e o que encosta e so o "Leia a legenda", que e a linha mais leve.
-    // Se mudar o numero de linhas do gancho, refaz esta conta.
+    // Remedir sempre que a fita for recortada: o menor valor muda.
     tituloTop: 212,
     legendaBottom: 430,
     seloBottom: 300,
@@ -97,8 +97,8 @@ const TITULO = {
   modo: "temporario" as "temporario" | "permanente",
 
   inicio: 0.15,
-  seguraAte: 6.6, // gancho falado acaba em 6.76 ("mundo?")
-  saiEm: 6.9, // sai no respiro antes da 1a legenda (7.18)
+  seguraAte: 6.42, // gancho falado acaba em 6.54 ("mundo?")
+  saiEm: 6.62, // sai no respiro antes da 1a legenda (6.68)
 };
 
 /* LEGENDA DE RODAPE, frase a frase, colada na fala.
@@ -118,24 +118,24 @@ type Cue = {
    e com janela menor que 16 frames f1-8 fica <= f0+8, quebrando a interpolação. */
 const CUES: Cue[] = [
   {
-    start: 7.10,
-    end: 10.45,
+    start: 6.64,
+    end: 9.70,
     lines: [
       { text: "Seu funcionário faz uma pergunta", size: 26 },
       { text: "e NINGUÉM EXPLICA.", size: 34, gold: true },
     ],
   },
   {
-    start: 10.60,
-    end: 14.05,
+    start: 9.78,
+    end: 12.96,
     lines: [
       { text: "Tenta acompanhar e percebe", size: 26 },
       { text: "que está INCOMODANDO.", size: 34, gold: true },
     ],
   },
   {
-    start: 14.20,
-    end: 18.60,
+    start: 13.02,
+    end: 17.34,
     lines: [
       { text: "O tempo vai passando e ele para", size: 26 },
       { text: "até mesmo de entrar no", size: 26 },
@@ -143,16 +143,16 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 18.80,
-    end: 22.65,
+    start: 17.42,
+    end: 21.06,
     lines: [
       { text: "E sua clínica PERDE A OPORTUNIDADE", size: 26, gold: true },
       { text: "de desenvolver pessoas.", size: 26 },
     ],
   },
   {
-    start: 23.75,
-    end: 29.35,
+    start: 21.74,
+    end: 27.42,
     lines: [
       { text: "Na New Hair, nós", size: 26 },
       { text: "COMPARTILHAMOS CONHECIMENTO", size: 28, gold: true },
@@ -161,8 +161,8 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 29.85,
-    end: 31.80,
+    start: 27.48,
+    end: 29.50,
     lines: [{ text: "Respeitando as FUNÇÕES DE CADA UM.", size: 28, gold: true }],
   },
 ];
@@ -170,6 +170,34 @@ const CUES: Cue[] = [
 /* Selo de compliance. Linha APROVADA, nao se reescreve. Ele e o que separa
    instrumentacao de ato medico na tela, e a imagem mostra cirurgia. */
 const SELO = "Procedimento realizado por médico · a New Hair realiza a instrumentação";
+
+/* TRILHA E SFX POSICIONADO — ORDEM DA DONA (15/09/2026):
+   "voce nao colocou os sfx posicionado e nem lofi".
+
+   O motor do padrao nunca punha musica porque a fita chegava do CapCut ja com
+   musica dentro. Estas quatro chegaram CRUAS, direto do celular: se a trilha
+   nao entrar aqui, nao entra em lugar nenhum.
+
+   A trilha NAO tem fade de saida: ela e continuada, no mesmo ponto e no mesmo
+   volume, por scripts/fechar-peca-camera.sh, embaixo da marca d'agua. Se mudar
+   arquivo ou volume aqui, mude tambem la — sao o mesmo som.
+
+   "Posicionado" quer dizer instante medido, nao batida solta:
+     whoosh — a saida do gancho, um quadro antes de o titulo comecar a sumir
+     pop    — a entrada de CADA legenda, 0.06s antes da cue, pra o som chegar
+              junto com o texto e nao depois dele
+   Volumes da tabela do projeto (components/OVERLAYS_LIBRARY.md: pop 0.42,
+   whoosh 0.36) baixados um degrau, porque aqui embaixo ja tem voz e trilha. */
+const TRILHA = {
+  arquivo: "new sfx/lofi 2.MP3",
+  volume: 0.08,
+  entrada: 0.6, // fade-in, pra trilha nao dar um soco no primeiro quadro
+};
+
+const SFX = {
+  whoosh: { arquivo: "sfx/whoosh_short.MP3", volume: 0.3, antes: 0.12 },
+  pop: { arquivo: "new sfx/ui_pop.mp3", volume: 0.26, antes: 0.06 },
+};
 
 /* =============================================================================
    NAO MEXER DAQUI PRA BAIXO
@@ -284,6 +312,26 @@ const SfxDigitacao: React.FC<{ inicio: number; fim: number; fps: number }> = ({
   );
 };
 
+/* SFX PONTUAL. Um <Sequence> por disparo, pelo mesmo motivo do SfxDigitacao:
+   dentro de <Loop> o frame reinicia e o volume vira outra coisa. Aqui cada
+   disparo e um Sequence com inicio proprio, entao o instante e exato. */
+const SfxPontual: React.FC<{
+  disparos: { t: number; arquivo: string; volume: number }[];
+  fps: number;
+}> = ({ disparos, fps }) => (
+  <>
+    {disparos.map((d, i) => (
+      <Sequence
+        key={i}
+        from={Math.max(0, Math.round(d.t * fps))}
+        durationInFrames={Math.round(1.4 * fps)}
+      >
+        <Audio src={staticFile(d.arquivo)} volume={d.volume} />
+      </Sequence>
+    ))}
+  </>
+);
+
 /* LINHA ESCRITA QUE NAO TREME.
    Texto centralizado escrito letra a letra se RECENTRA a cada caractere, e a 30fps
    isso vira tremida. Um span fantasma com o texto COMPLETO reserva a largura final
@@ -337,6 +385,15 @@ export const NewHairAprendeJunto: React.FC<NewHairAprendeJuntoProps> = ({ video 
   const permanente = TITULO.modo === "permanente";
   const seguraAte = permanente ? FIM - 0.35 : TITULO.seguraAte;
   const saiEm = permanente ? FIM : TITULO.saiEm;
+
+  /* disparos de SFX: a saida do gancho e a entrada de cada legenda */
+  const disparos = React.useMemo(
+    () => [
+      { t: saiEm - SFX.whoosh.antes, ...SFX.whoosh },
+      ...CUES.map((c) => ({ t: c.start - SFX.pop.antes, ...SFX.pop })),
+    ],
+    [saiEm]
+  );
 
   const tituloOpacity = interpolate(frame, [seguraAte * fps, saiEm * fps], [1, 0], {
     extrapolateLeft: "clamp",
@@ -392,6 +449,21 @@ export const NewHairAprendeJunto: React.FC<NewHairAprendeJuntoProps> = ({ video 
       />
 
       <SfxDigitacao inicio={SFX_INICIO} fim={SFX_FIM} fps={fps} />
+
+      {/* trilha: entra em fade e NAO sai — quem fecha e o fechar-peca-camera.sh */}
+      <Audio
+        src={staticFile(TRILHA.arquivo)}
+        volume={(f) =>
+          TRILHA.volume *
+          interpolate(f, [0, TRILHA.entrada * fps], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          })
+        }
+      />
+
+      <SfxPontual disparos={disparos} fps={fps} />
+
 
       <AbsoluteFill
         style={{
