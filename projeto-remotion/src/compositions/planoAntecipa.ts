@@ -35,10 +35,9 @@
                                     antecipar o próximo passo do médico"
      clip1b limites 15,18 → 18,35  "sem interromper o médico, sem ultrapassar
                                     os limites."
-     clip2 anafora  21,10 → 31,17  "adiantar um processo, adiantar a mesa
-                                    organizada, adiantar a próxima etapa,
-                                    separar os folículos da melhor forma
-                                    possível."
+     clip2 anafora  22,98 → 31,15  "adiantar a mesa organizada, adiantar a
+                                    próxima etapa, separar os folículos da
+                                    melhor forma possível."
      clip3 fecho    39,52 → 47,79  "A cirurgia é dele, claro, mas você precisa
                                     ter antecipação para que a cirurgia flua da
                                     melhor forma possível."
@@ -62,7 +61,19 @@
    que eu não fiz na v1: vi as três regiões, li o texto costurado e tratei como
    uma frase só.
 
-   FICOU DE FORA: a primeira tentativa acima; "Uma equipe organizada consegue" (18,8→20,7), que repete o
+   ─── A GAGUEIRA EM "ADIANTAR UM PROCESSO" (corrigido em 15/09) ─────────────
+   A dona ouviu. O primeiro item da anáfora sai gaguejado: dentro da palavra
+   "adiantar" (21,18→22,08) há uma quebra em 21,60→21,66, e entre ela e "um
+   processo" (22,20→22,92) há outra. A anáfora começa, portanto, tropeçando
+   justamente onde deveria embalar.
+
+   Cortado em **22,98**, o silêncio limpo entre "processo," e o segundo
+   "adiantar" (23,04). A anáfora perde um termo e ganha ritmo: agora abre direto
+   em "adiantar a mesa organizada". Restam duas batidas de "adiantar" (mesa,
+   próxima etapa) fechando em "separar os folículos" — a figura continua de pé,
+   e sem o tropeço ela embala desde a primeira palavra.
+
+   FICOU DE FORA: a gagueira acima; a primeira tentativa de "sem interromper"; "Uma equipe organizada consegue" (18,8→20,7), que repete o
    clip1; "sem que o médico peça tudo, sem que o médico esteja comandando todas
    as etapas" (32,1→38,9), que reafirma a premissa que o gancho já estabelece; e
    o CTA "siga meu perfil" (49,7→55,5), de perfil pessoal e não da clínica —
@@ -77,15 +88,15 @@ import type { Cue, Plano } from "./ReelFalado";
 
 export const PLANO_ANTECIPA: Plano = {
   fps: 30,
-  duration: 1066, // 875 de conteúdo + 191 da marca
-  endCard: 875,
+  duration: 1009, // 818 de conteúdo + 191 da marca
+  endCard: 818,
   hookEnd: 112, // 3,733 s
   clips: [
     { nome: "gancho", src: "newhair/falado5/clip0.mp4", start: 0, duration: 112 },
     { nome: "principio", src: "newhair/falado5/clip1.mp4", start: 112, duration: 118 },
     { nome: "limites", src: "newhair/falado5/clip1b.mp4", start: 230, duration: 95 },
-    { nome: "anafora", src: "newhair/falado5/clip2.mp4", start: 325, duration: 302 },
-    { nome: "fecho", src: "newhair/falado5/clip3.mp4", start: 627, duration: 248 },
+    { nome: "anafora", src: "newhair/falado5/clip2.mp4", start: 325, duration: 245 },
+    { nome: "fecho", src: "newhair/falado5/clip3.mp4", start: 570, duration: 248 },
   ],
   /* Faixa de 680 px: a cabeça dela começa em 580 px neste enquadramento
      (580 ÷ 0,85). Cortadas já em 1080×680 da fonte, que depois da rotação dos
@@ -96,7 +107,7 @@ export const PLANO_ANTECIPA: Plano = {
        repetida foi removida: apoio por cima de emenda é o que a suaviza. */
     { fromFrame: 150, duration: 150, src: "newhair/falado5/apoio_pinca.mp4", mode: "band", altura: 680, position: "50% 50%" },
     // "adiantar a mesa organizada" → a mesa sendo montada, literal
-    { fromFrame: 385, duration: 150, src: "newhair/falado5/apoio_mesa.mp4", mode: "band", altura: 680, position: "50% 50%" },
+    { fromFrame: 340, duration: 150, src: "newhair/falado5/apoio_mesa.mp4", mode: "band", altura: 680, position: "50% 50%" },
   ],
   title: ["SUA EQUIPE ANTECIPA", "O PRÓXIMO PASSO?"],
   titleShift: 0,
@@ -118,25 +129,22 @@ export const CUES_ANTECIPA: Cue[] = [
   { start: 9.44, end: 10.75, lines: [
     { text: "sem ultrapassar", size: 34 },
     { text: "OS LIMITES.", size: 42, gold: true }] },
-  { start: 10.92, end: 12.52, lines: [
-    { text: "Adiantar", size: 34 },
-    { text: "UM PROCESSO,", size: 42, gold: true }] },
-  { start: 13.02, end: 14.77, lines: [
-    { text: "adiantar a", size: 34 },
+  { start: 11.13, end: 13.35, lines: [
+    { text: "Adiantar a", size: 34 },
     { text: "MESA ORGANIZADA,", size: 42, gold: true }] },
-  { start: 15.94, end: 17.27, lines: [
+  { start: 14.05, end: 15.35, lines: [
     { text: "adiantar a", size: 34 },
     { text: "PRÓXIMA ETAPA,", size: 42, gold: true }] },
-  { start: 18.50, end: 20.72, lines: [
+  { start: 16.61, end: 18.85, lines: [
     { text: "separar os folículos", size: 34 },
     { text: "DA MELHOR FORMA POSSÍVEL.", size: 42, gold: true }] },
-  { start: 20.97, end: 22.92, lines: [
+  { start: 19.07, end: 21.02, lines: [
     { text: "A cirurgia", size: 34 },
     { text: "É DELE, CLARO,", size: 42, gold: true }] },
-  { start: 23.02, end: 26.12, lines: [
+  { start: 21.12, end: 24.22, lines: [
     { text: "mas você precisa ter", size: 34 },
     { text: "ANTECIPAÇÃO", size: 42, gold: true }] },
-  { start: 26.27, end: 29.02, lines: [
+  { start: 24.37, end: 27.12, lines: [
     { text: "para que a cirurgia", size: 34 },
     { text: "FLUA DA MELHOR FORMA POSSÍVEL.", size: 42, gold: true }] },
 ];

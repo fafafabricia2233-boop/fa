@@ -315,6 +315,25 @@ saíram dele (`git show HEAD:...clip1.mp4`). Vale como lembrete de que versionar
 mídia recortada não é só rastreabilidade — é o backup da fonte quando o Drive
 fecha a porta.
 
+**v3 (15/09) — "adiantar um processo" saiu, ela gagueja ali.** A dona ouviu.
+Dentro da própria palavra "adiantar" (21,18→22,08) há uma quebra em 21,60→21,66,
+e outra antes de "um processo" (22,20→22,92): a anáfora começava tropeçando
+justamente onde devia embalar. Cortado em **22,98**, o silêncio limpo entre
+"processo," e o segundo "adiantar" (23,04). Restam duas batidas de "adiantar"
+(mesa, próxima etapa) fechando em "separar os folículos" — a figura continua de
+pé e agora embala desde a primeira palavra.
+
+A anáfora foi de 302 pra 245 frames e a peça encolheu mais 57: endCard 875→818,
+duração 1066→1009, apoio da mesa 385→340, legendas do meio e do fecho adiantadas
+mais 1,90 s, e a legenda "Adiantar / UM PROCESSO," saiu junto. Material cortado
+do `clip2.mp4` local — o Drive segue com a cota estourada, e de novo a mídia
+versionada resolveu.
+
+**Medido na v3:** 30 fps constante, 1009 frames, 33,63 s, decodificação inteira
+sem erro, **0 dos 1009 frames** com faixa de fundo no topo, offset entrega ×
+master 0,0 ms nas três janelas. Transcrita a voz montada: "processo" **0×**,
+"adiantar" 2×, "interromper" 1×. Entrega 18 MB.
+
 **Medido na v2:** 30 fps constante, 1066 frames, 35,53 s, decodificação inteira
 sem erro, **0 dos 1066 frames** com faixa de fundo no topo, offset entrega ×
 master 0,0 ms nas três janelas, e a transcrição da voz montada traz
