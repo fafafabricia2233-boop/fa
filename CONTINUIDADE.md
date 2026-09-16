@@ -6,6 +6,62 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_couro_cachos v2 (16/09/2026) — a referência da legenda, o grade e o enquadramento
+
+Três correções da dona depois de ver a v1, com uma quarta referência em vídeo.
+Relatório em `entregas/FS_couro_cachos.md`.
+
+**A FONTE DA REFERÊNCIA É A DELA — e isso se prova, não se acredita.** Ela disse
+"a legenda que ela usa é a mesma que a minha". Confere: a legenda da referência
+tem o **"a" de um andar**, que só existe em Futura/Jost e derivadas, e a família
+dela é derivada da Jost*. A razão altura-de-x / ascendente medida na referência
+dá **0,654**; Jost dá 0,63 e Poppins daria 0,747. É Jost.
+
+**E o LEIA.txt do kit está errado sobre as faces.** Ele diz que a Light tem o
+"a" de dois andares e só a LightAlt tem o de um andar. Renderizadas, **as três
+faces saem com o "a" de um andar**. Consequência prática grande: a ênfase pode
+ir na Medium 500 **sem trocar o desenho da letra no meio da frase** — era o que
+me tinha feito descartar a face Alt na v1.
+
+**Tamanho de legenda se mede por ALTURA DE X, não por palpite.** Altura de x da
+referência: 17 px num quadro de 720 → 25,5 px em 1080. A família tem altura de x
+de 0,460 em, logo corpo ≈ 55 px. Conferido por largura também. Ficou **56 px**.
+
+**O champagne saiu da ênfase.** A referência marca a palavra só pelo PESO, em
+branco. Some a briga de contraste do champagne sobre imagem (que na v1 exigia
+véu a 0,66) e o véu caiu pra 0,40 — mais perto da referência, que não tem véu.
+
+**"Sem deixar a pele pesada" é um aviso contra copiar o grade ao pé da letra.**
+A referência tem p50=111 e p5=7,4; as fitas dela vinham com p50≈140 e p5≈33.
+Aplicar a curva da referência em pele parda escurece a pessoa. A curva que ficou
+**protege o meio-tom** (0,45→0,455, praticamente identidade) e tira o clima do
+alto puxado (0,87→0,795) mais a divisão de cor: sombra quente, meio menos
+vermelho, alta fria. Três curvas testadas lado a lado num close do rosto.
+
+**"Pele viva sem manchas" sem plástico: `smartblur` com limiar NEGATIVO.**
+`lr=3:ls=0.5:lt=-22`. Limiar negativo alisa só área lisa e preserva borda — some
+com mancha e mantém cílio, sobrancelha, fio e armação de óculos. `-30:0.8` já
+deixa plástico. Comparado num close da testa antes de escolher.
+
+**Reenquadrar é de graça porque a fita é 4K, e só se o recorte vier ANTES da
+redução.** 2160×3840 contra 1080×1920 de entrega dá 2x de folga: um recorte de
+540×960 no espaço da entrega são 1080×1920 px na fita, exatamente nativo. Os
+quatro planos foram fechados no rosto/cabelo e saíram do quadro a barriga, a
+saia, a prateleira do chuveiro e o fundo. Ordem da dona: *"foque sempre em MIM
+ou no cabelo... não gosto que mostre o fundo ou mostre meu corpo"*.
+
+Ferramenta nova: `projeto-remotion/scripts/cortar-fabricia.sh` — recorte,
+redução, grade e pele num passo só, com as coordenadas no espaço 1080×1920 (o
+mesmo das pranchas), não no da fita.
+
+**Armadilha que custou um render:** o script novo perdeu o `fps=30` da cadeia e
+os dois cortes de 60 fps saíram com 156 frames em vez de 78. Contar frame do
+corte pronto pegou na hora — é por isso que a contagem é passo.
+
+**QA:** 384 frames como no plano, 12,800 s, faixa limitada bt709, decodificação
+limpa, nenhum frame preto, pior contraste da legenda 5,3:1, emendas com luma
+106,3→105,3 · 104,4→96,9 · 102,1→93,4. Não aprovada.
+
 ## FS_couro_cachos (16/09/2026) — primeira peça de TEXTO FIXO, e motor novo
 
 Marca **Fabrícia Satza**, formato que não existia aqui: **rotina com texto

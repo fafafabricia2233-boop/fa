@@ -89,8 +89,14 @@ export type PlanoTextoFixo = {
     margemEsquerda: number;
     margemDireita: number;
     alinhamento: "left" | "center";
-    /** face: "corpo" (Light, o "a" de dois andares) ou "display" (Alt) */
+    /** face: "corpo" (Light) ou "display" (Alt) */
     face: "corpo" | "display";
+    /**
+     * Cor da ênfase. "texto" = a mesma cor do resto (o peso 500 sozinho marca
+     * a palavra) — é o que a referência que a dona mandou faz. "destaque" =
+     * champagne da marca, que exige véu mais pesado pra passar de 3,0:1.
+     */
+    enfaseCor: "texto" | "destaque";
   };
   /**
    * Cabeçalho permanente da marca no alto do quadro.
@@ -341,7 +347,10 @@ export const ReelTextoFixo: React.FC<{ plano: PlanoTextoFixo }> = ({ plano }) =>
                           key={si}
                           style={{
                             fontWeight: 500, // face Medium REAL, nunca sintética
-                            color: m.cores.destaque,
+                            color:
+                              t.enfaseCor === "destaque"
+                                ? m.cores.destaque
+                                : m.cores.texto,
                           }}
                         >
                           {parte.texto}

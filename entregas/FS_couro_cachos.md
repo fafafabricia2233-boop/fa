@@ -1,10 +1,11 @@
-# FS_couro_cachos_v1 — relatório de entrega
+# FS_couro_cachos — relatório de entrega
 
 Peça: Reel de **texto fixo** da marca pessoal **Fabrícia Satza | Tricologia e
 Terapia Capilar**. Montada em 16/09/2026. **Não aprovada** — falta a dona
 avaliar. Não publicada.
 
-Arquivo: `projeto-remotion/out/fabricia/FS_couro_cachos_v1.mp4`
+Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v2.mp4`
+A v1 continua em `..._v1.mp4` para comparação.
 
 ---
 
@@ -216,3 +217,86 @@ Projeto Remotion editável:
 
 As fitas brutas ficaram em `public/fabricia/bruto/` **fora do git** (1,8 GB) —
 baixam de novo com `scripts/baixar-drive.sh <ID> <saida>`.
+
+---
+
+# v2 (16/09/2026) — o que a dona pediu depois de ver a v1
+
+Ela mandou uma quarta referência (uma tricologista falando na câmera) e três
+correções. As três estão atendidas e MEDIDAS, não estimadas.
+
+## 1. "a legenda que ela usa é a mesma que a minha, quero a legenda desse jeito"
+
+**Ela está certa, e dá pra provar.** A legenda da referência tem o **"a" de um
+andar** — a letra que só existe em Futura/Jost e derivadas. A família dela É
+derivada da Jost*. Conferido no arquivo: as três faces do kit
+(Light, LightAlt e Medium) saem com o "a" de um andar por padrão, então a
+palavra em destaque pode ir no peso 500 **sem trocar o desenho da letra**.
+
+Medido na referência, quadro a quadro:
+
+| o que | medida na referência | o que a peça passou a usar |
+|---|---|---|
+| altura de x | 17 px num quadro de 720 → 25,5 px em 1080 | corpo **56 px** (altura de x da família = 0,460 em → 55,4 px) |
+| largura de "de nutrição de pequi." | 541 px em 1080 | a mesma frase mede 539 px a 58 px na fonte dela |
+| razão altura-de-x / ascendente | 0,654 | Jost dá 0,63 · Poppins daria 0,747 → **é Jost** |
+| alinhamento | centralizado, eixo em 49,7% | centralizado |
+| altura na tela | linha de base a 53% | bloco de 4 linhas em 1100→1444 px |
+| cor | branco, sem cor na ênfase | **branco**, ênfase só pelo peso 500 |
+| sombra | nenhuma (medido o entorno dos glifos) | nenhuma; véu leve no lugar |
+
+O champagne saiu da ênfase. Ele é a cor da marca sobre fundo escuro, mas aqui
+a referência marca a palavra **só pelo peso** — e isso resolve de quebra o
+contraste, que com champagne exigia véu pesado.
+
+## 2. "essa edição de imagem, mas sem deixar a pele pesada" / "a pele dela bonita e viva sem manchas"
+
+O grade da referência, medido: `p5=7,4 · p50=111 · p95=166`, sombras quentes
+(R−B +11,8), altas **frias** (R−B −3,7). As fitas dela vinham com `p5≈33 ·
+p50≈140 · p95≈202` e meio-tom muito quente (R−B de +25 a +42).
+
+**Copiar a referência ao pé da letra é justamente o erro que ela avisou.**
+`p50=111` sobre pele parda escurece a pessoa. Então a curva **protege o
+meio-tom**: preto fechado só no preto de verdade (0,08→0,05), a faixa onde a
+pele mora praticamente intocada (0,45→0,455), e o clima vindo do alto puxado
+(0,87→0,795) e da divisão de cor. Testei três curvas lado a lado num close do
+rosto antes de escolher.
+
+**Pele sem manchas, sem plástico:** `smartblur` com limiar **negativo**
+(`lr=3:ls=0.5:lt=-22`). Limiar negativo alisa só área lisa e preserva borda —
+some com mancha e mantém cílio, sobrancelha, fio de cabelo e a armação do
+óculos. Comparei três forças num close da testa: `lt=-30:ls=0.8` já deixa
+plástico; `-22:0.5` é o ponto.
+
+Resultado medido nos quatro cortes graduados: altas em R−B de −3 a −9 (a
+referência dá −3,7) e emendas com salto de luma de 1,0 · 7,5 · 8,7.
+
+## 3. "foque em MIM ou no cabelo, não mostre o fundo nem meu corpo"
+
+Todos os quatro planos foram **reenquadrados**, e isso só é de graça porque a
+fita é 4K: 2160×3840 contra 1080×1920 de entrega. Recortando ANTES de reduzir,
+um enquadramento bem fechado ainda chega em 1080 de largura com pixel de
+sobra — nenhum dos quatro amplia.
+
+| corte | recorte (espaço 1080×1920) | px da fita | o que saiu do quadro |
+|---|---|---|---|
+| 1 cachos | 788×1400 em (0, 110) | 1576×2800 | barriga, saia branca, cesto de roupa |
+| 2 volume | 788×1400 em (76, 90) | 1576×2800 | barriga, saia branca, cadeira |
+| 3 massagem | 540×960 em (370, 960) | 1080×1920 | prateleira do chuveiro, ombro, fundo |
+| 4 couro limpo | 540×960 em (350, 960) | 1080×1920 | prateleira do chuveiro, braço, fundo |
+
+O corte 4 passou a entrar em **0,70 s** (antes 0,90) pra pegar a risca aberta
+antes de a mão cobrir.
+
+Ferramenta nova: `projeto-remotion/scripts/cortar-fabricia.sh` — faz recorte,
+redução, grade e pele num passo só, e as coordenadas entram no espaço 1080×1920
+(o mesmo das pranchas de conferência), não no da fita.
+
+## QA da v2
+
+384 frames como no plano · 12,800 s · H264 High 1080×1920 30 fps constante ·
+faixa limitada bt709 · AAC 48 kHz · decodificação limpa · nenhum frame preto ·
+pior contraste da legenda **5,3:1** (piso 4,5:1) · emendas com luma
+106,3→105,3 · 104,4→96,9 · 102,1→93,4.
+
+Trilha, fecho e duração não mudaram. **Não aprovada** — falta ela avaliar.

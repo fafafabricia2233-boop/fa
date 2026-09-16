@@ -109,10 +109,6 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
         "Drive · usando secador · " +
         "'usando secador no cabelo, dando volume no cabelo crespo' " +
         "(1wl0D2pX1UbPrbsNnqlRGw9EMB5T3C6lu) · 68,30→71,00 s",
-      /* única correção de cor da peça: esta fita mede luma média 140,8 contra
-         128,5 / 126,7 / 128,4 das outras e saltava mais clara na emenda.
-         0,95 traz pra ~134. Nada de suavização de pele nem nitidez. */
-      cor: { brilho: 0.95 },
     },
     {
       src: "fabricia/cortes/clip3_massagem.mp4",
@@ -155,19 +151,34 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
   ],
 
   texto: {
-    tamanho: 54,
-    entrelinha: 1.46, // 78,8 px por linha
-    respiro: 28,
+    /* 56 px: MEDIDO na referência que a dona mandou em 16/09/2026. A altura de
+       x da legenda dela é 17 px num quadro de 720 de largura — 25,5 px em
+       1080 — e a família tem altura de x de 0,460 em, o que dá corpo ~55 px.
+       Conferido por largura também: "de nutrição de pequi." mede 541 px lá e
+       a mesma frase sai em 539 px a 58. 56 é o meio das duas medidas e cabe
+       na caixa (linha mais longa 793 px numa caixa de 840). */
+    tamanho: 56,
+    entrelinha: 1.42,
+    respiro: 26,
     /* bloco mede 4×78,8 + 28 = 343,4 px. bottom 415 ⇒ ocupa 1161,6 → 1505 px:
        começa muito abaixo dos 220 px de topo e sobra 55 px até os últimos
        360 px (1560), onde o nome, a legenda e o áudio do Reels vão aparecer.
        Conferido na prévia com a interface sobreposta: a coluna de botões da
        direita começa em x≈950 e a linha mais longa acaba em x=860. */
-    bottom: 415,
+    /* bloco: 4×79,5 + 26 = 344 px. bottom 476 ⇒ ocupa 1100 → 1444 px.
+       Fica abaixo do queixo nos dois planos de rosto (que acabam em ~900 e
+       ~830 com o enquadramento novo) e bem acima dos últimos 360 px. */
+    bottom: 476,
+    /* CENTRALIZADO, como a referência. A caixa é 90→930, então o eixo cai em
+       510: a linha mais longa (793 px) vai de 113 a 907 e não encosta na
+       coluna de botões do Reels, que começa por volta de x=950. */
     margemEsquerda: 90,
-    margemDireita: 180,
-    alinhamento: "left",
+    margemDireita: 150,
+    alinhamento: "center",
     face: "corpo",
+    /* A referência marca a palavra só pelo PESO, em branco. Some a questão de
+       contraste do champagne sobre imagem e fica igual ao que ela pediu. */
+    enfaseCor: "texto",
   },
 
   /* Sem cabeçalho: ver a nota no tipo. A marca fica identificada pela fonte
@@ -178,7 +189,10 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
   /* Véu localizado, não placa: gradiente com cauda dos DOIS lados (170 px),
      porque véu que acaba seco em cima de parede lisa vira linha horizontal —
      defeito já medido nesta casa em 14 e 15/09/2026. */
-  veu: { topo: 1130, base: 1545, cauda: 190, alfa: 0.66 },
+  /* Véu bem mais leve que na v1: a referência não tem véu nenhum, e o grade
+     novo já escureceu o fundo. 0,40 é o mínimo que ainda segura a legenda
+     sobre a camiseta verde-clara do corte 2 — conferido frame a frame. */
+  veu: { topo: 1060, base: 1470, cauda: 200, alfa: 0.4 },
 
   endCard: CENAS,
   duracao: TOTAL,
