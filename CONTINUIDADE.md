@@ -6,6 +6,36 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_couro_cachos v3 (16/09/2026) — centro de assunto se mede, não se olha
+
+*"Quero que o foco/couro cabeludo fique no meio da tela, a imagem está muito
+pra esquerda."* Ela está certa, e o erro era grande: no plano do couro
+cabeludo limpo a cabeça estava **168 px à esquerda** do centro do recorte.
+
+**Cada plano precisa de um detector diferente, porque o assunto é diferente.**
+Rosto = mediana da máscara de pele na metade de cima (R>G>B, R−B entre 18 e 95,
+luma entre 55 e 210). Ação no couro com espuma = mediana dos pixels claros e
+POUCO SATURADOS, ignorando o topo (a parede do chuveiro também é clara, mas
+está no topo). Cabeça no plano de cima = mediana da massa escura abaixo do
+topo. Medir "o escuro" em todos teria errado três dos quatro: no plano dos
+cachos a massa de cabelo tem mediana 568 enquanto o ROSTO está em 380.
+
+**Recorte encostado na borda não desliza — estreita.** O rosto dela mora a
+x=380 e o recorte já começava em x=0: empurrar era impossível. Com largura 756
+a metade é 378 e o rosto cai no centro com CX=2. Só é de graça porque a fita é
+4K: 756 no espaço da entrega são 1512 px na fita.
+
+**E os recortes da v2 não eram 9:16 exatos.** 788×1400 dá 0,5629 contra 0,5625
+— meio pixel de esticada em que ninguém tinha reparado. Passou a valer par
+exato: 756×1344, 792×1408, 540×960. **Conferir a razão do recorte é passo.**
+
+Conferência: linha vermelha desenhada no eixo central do corte pronto. Nos dois
+planos de rosto ela cai no rosto; no da massagem, na espuma sob os dedos; no do
+couro limpo, em cima da risca.
+
+**QA:** 384 frames, 12,800 s, decodificação limpa, nenhum frame preto, pior
+contraste da legenda 5,4:1, emendas 106,6→103,0 · 103,2→96,9 · 102,1→88,8.
+
 ## FS_couro_cachos v2 (16/09/2026) — a referência da legenda, o grade e o enquadramento
 
 Três correções da dona depois de ver a v1, com uma quarta referência em vídeo.

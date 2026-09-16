@@ -4,8 +4,8 @@ Peça: Reel de **texto fixo** da marca pessoal **Fabrícia Satza | Tricologia e
 Terapia Capilar**. Montada em 16/09/2026. **Não aprovada** — falta a dona
 avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v2.mp4`
-A v1 continua em `..._v1.mp4` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v3.mp4`
+As versões anteriores ficam em `..._v1.mp4` e `..._v2.mp4` para comparação.
 
 ---
 
@@ -300,3 +300,49 @@ pior contraste da legenda **5,3:1** (piso 4,5:1) · emendas com luma
 106,3→105,3 · 104,4→96,9 · 102,1→93,4.
 
 Trilha, fecho e duração não mudaram. **Não aprovada** — falta ela avaliar.
+
+---
+
+# v3 (16/09/2026) — recentrar o assunto
+
+Ordem dela: *"Quero que o foco/couro cabeludo fique no meio da tela, a imagem
+está muito pra esquerda, deixe no meio."*
+
+**O centro do assunto se MEDE.** Não dá pra reenquadrar no olho quando quatro
+planos têm assuntos diferentes (rosto em dois, couro cabeludo em dois). O que
+foi medido, quadro a quadro, no espaço do QUADRO CHEIO (1080×1920):
+
+| plano | como o assunto foi achado | centro medido | centro do recorte v2 | erro |
+|---|---|---|---|---|
+| 1 cachos | mediana da máscara de pele na metade de cima (o rosto) | x=380 | 394 | quase certo, mas o recorte começava em x=0 e não dava pra deslocar |
+| 2 volume | idem | x=580 | 470 | rosto 110 px à esquerda |
+| 3 massagem | mediana da ESPUMA (claro + pouco saturado, fora do topo) | x=576 | 640 | ação 64 px à esquerda |
+| 4 couro limpo | mediana da massa de cabelo abaixo do topo | x=452 | 620 | cabeça **168 px** à esquerda — o pior, e o que ela viu |
+
+**O recorte do plano 1 não podia só deslizar.** O rosto dela mora a x=380 no
+quadro cheio e o recorte já encostava na borda esquerda (CX=0), então empurrar
+pra direita era impossível. A saída foi **estreitar**: com largura 756, metade
+é 378 — o rosto cai no centro com CX=2. Só dá porque a fita é 4K: 756 no espaço
+da entrega são 1512 px na fita, ainda acima dos 1080 nativos.
+
+**De quebra, os recortes da v2 não eram 9:16 exatos.** 788×1400 dá 0,5629
+contra 0,5625 de 9:16 — meio pixel de esticada. Os quatro passaram a usar pares
+exatos: 756×1344, 792×1408, 540×960, 540×960.
+
+Recortes da v3 (espaço 1080×1920):
+
+| plano | recorte | px na fita |
+|---|---|---|
+| 1 cachos | 756×1344 em (2, 110) | 1512×2688 |
+| 2 volume | 792×1408 em (184, 86) | 1584×2816 |
+| 3 massagem | 540×960 em (306, 960) | 1080×1920 |
+| 4 couro limpo | 540×960 em (182, 960) | 1080×1920 |
+
+Conferido com uma linha vermelha desenhada no eixo central: nos dois primeiros
+ela cai no rosto, no terceiro na espuma sob os dedos, no quarto **em cima da
+risca**.
+
+**QA da v3:** 384 frames · 12,800 s · faixa limitada bt709 · decodificação
+limpa · nenhum frame preto · pior contraste da legenda 5,4:1 · emendas com luma
+106,6→103,0 · 103,2→96,9 · 102,1→88,8. Legenda, grade, trilha, fecho e duração
+não mudaram. Não aprovada.
