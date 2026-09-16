@@ -18,13 +18,18 @@
 
 import { useEffect, useState } from "react";
 import { cancelRender, continueRender, delayRender } from "remotion";
-import { loadFabriciaDisplay, loadFabriciaTexto } from "./fabriciaFonts";
+import {
+  loadFabriciaDisplay,
+  loadFabriciaFutura,
+  loadFabriciaTexto,
+} from "./fabriciaFonts";
 
 /** As únicas especificações de fonte que a marca tem de verdade. */
 export const FACES_FABRICIA = [
   '300 54px "Fabricia Satza"', // Light — texto corrido
   '500 54px "Fabricia Satza"', // Medium — a ênfase (peso 500 REAL)
   '300 88px "Fabricia Satza Alt"', // Light Alt — display
+  '300 58px "Fabricia"', // a fonte que a dona mandou em 16/09 (Futura PT)
 ] as const;
 
 export type FonteCarregada = {
@@ -50,6 +55,11 @@ export const FONTES_DECLARADAS: FonteCarregada[] = [
     peso: 300,
     arquivo: "marcas/fabricia/fontes/FabriciaSatzaLightAlt-Regular.woff2",
   },
+  {
+    familia: "Fabricia",
+    peso: 300,
+    arquivo: "marcas/fabricia/fontes/Fabricia-Light.woff2",
+  },
 ];
 
 /**
@@ -66,6 +76,7 @@ export const useFontesFabriciaProntas = (): boolean => {
     // injeta o @font-face antes de pedir o load
     loadFabriciaTexto();
     loadFabriciaDisplay();
+    loadFabriciaFutura();
 
     let vivo = true;
 

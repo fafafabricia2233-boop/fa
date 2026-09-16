@@ -92,6 +92,14 @@ export type PlanoTextoFixo = {
     /** face: "corpo" (Light) ou "display" (Alt) */
     face: "corpo" | "display";
     /**
+     * Família tipográfica desta peça, quando não é a do perfil da marca.
+     * Existe porque a dona mandou, em 16/09/2026, uma fonte "Fabrícia Light,
+     * idêntica à Futura PT" — família própria, um peso só — e pediu que a
+     * peça usasse ELA. Trocar o perfil da marca arrastaria junto as peças
+     * faladas, que não foram pedidas.
+     */
+    familia?: string;
+    /**
      * Cor da ênfase. "texto" = a mesma cor do resto (o peso 500 sozinho marca
      * a palavra) — é o que a referência que a dona mandou faz. "destaque" =
      * champagne da marca, que exige véu mais pesado pra passar de 3,0:1.
@@ -207,7 +215,10 @@ export const ReelTextoFixo: React.FC<{ plano: PlanoTextoFixo }> = ({ plano }) =>
   );
 
   const fonteCorpo =
-    t.face === "display" ? m.fontes.display?.().fontFamily : m.fontes.corpo().fontFamily;
+    t.familia ??
+    (t.face === "display"
+      ? m.fontes.display?.().fontFamily
+      : m.fontes.corpo().fontFamily);
 
   return (
     <AbsoluteFill style={{ backgroundColor: m.cores.fundo }}>

@@ -6,6 +6,38 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_couro_cachos v4 (16/09/2026) — chegou OUTRA fonte, e ela não é a do kit
+
+Ela mandou `Fabricia-Light_idêntica_a_futura_PT.otf` com "use para o vídeo".
+**Não é a mesma família do ZIP de 13/09.** O kit é derivado da **Jost\***, três
+faces, altura de x 0,460 em. Esta é **Futura PT**, UMA face (Light 300), altura
+de x **0,433 em**, e vem em OTF/CFF — convertida aqui pra woff2.
+
+**Trocar de fonte obriga a recalcular o corpo.** A altura de x da legenda da
+referência é 25,5 px em 1080. Com 0,460 em isso dava corpo 55,4; com 0,433 dá
+**58,9**. Ficou 58. Quem trocar fonte e mantiver o corpo muda o tamanho
+aparente da letra sem perceber — **o corpo é consequência da altura de x, não
+um número herdado.**
+
+**Conferência de que a fonte certa saiu no arquivo, agora contra a .otf nova:**
+largura da tinta da linha mais longa no frame renderizado = 807 px contra
+806,3 px de avanço previsto. Passo que já pegou fallback antes e continua
+valendo a cada troca.
+
+**Família de um peso só derruba a ênfase por peso.** A referência marca a
+palavra pelo peso; aqui não existe Medium. As três saídas eram: peso 500
+sintético (proibido pelo manual dela), Medium do kit antigo na mesma linha
+(Futura PT e Jost lado a lado são visivelmente diferentes — largura de letra e
+altura de x), ou tirar a marcação. Ficou a terceira, com o registro de que
+basta a face de ênfase DESTA família pra ela voltar.
+
+**A fonte nova NÃO entrou no perfil da marca**, de propósito: `marcas.ts` é
+compartilhado com as peças faladas, que ninguém pediu pra mudar. O motor ganhou
+`texto.familia` no plano, e só a peça que pediu usa a família nova.
+
+**QA:** 384 frames, 12,800 s, decodificação limpa, nenhum frame preto, pior
+contraste da legenda 5,5:1, emendas 106,5→102,9 · 103,1→96,7 · 101,9→88,6.
+
 ## FS_couro_cachos v3 (16/09/2026) — centro de assunto se mede, não se olha
 
 *"Quero que o foco/couro cabeludo fique no meio da tela, a imagem está muito

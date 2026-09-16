@@ -139,25 +139,25 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
     },
     {
       linhas: [
-        {
-          partes: [
-            { texto: "Mas não deixo " },
-            { texto: "o couro cabeludo", enfase: true },
-          ],
-        },
+        /* SEM ênfase de peso: a fonte que ela mandou vem com UM peso só (300).
+           Pedir 500 faria o navegador engordar a forma — negrito sintético,
+           que o manual dela proíbe — e usar a Medium do kit antigo colocaria
+           dois desenhos de letra na mesma linha. A palavra volta a ser marcada
+           assim que chegar a face de ênfase desta mesma família. */
+        { partes: [{ texto: "Mas não deixo o couro cabeludo" }] },
         { partes: [{ texto: "por último." }] },
       ],
     },
   ],
 
   texto: {
-    /* 56 px: MEDIDO na referência que a dona mandou em 16/09/2026. A altura de
-       x da legenda dela é 17 px num quadro de 720 de largura — 25,5 px em
-       1080 — e a família tem altura de x de 0,460 em, o que dá corpo ~55 px.
-       Conferido por largura também: "de nutrição de pequi." mede 541 px lá e
-       a mesma frase sai em 539 px a 58. 56 é o meio das duas medidas e cabe
-       na caixa (linha mais longa 793 px numa caixa de 840). */
-    tamanho: 56,
+    /* FONTE DA DONA (16/09/2026): "Fabrícia Light, idêntica à Futura PT".
+       O corpo teve que MUDAR junto com a fonte: a altura de x da legenda da
+       referência é 25,5 px em 1080, e esta família tem altura de x de 0,433 em
+       (a do kit antigo tinha 0,460). 25,5 ÷ 0,433 = 58,9. Ficou 58, que dá
+       25,1 px de altura de x e deixa a linha mais longa em 806 px numa caixa
+       de 840 — 59 caberia, mas com só 20 px de folga. */
+    tamanho: 58,
     entrelinha: 1.42,
     respiro: 26,
     /* bloco mede 4×78,8 + 28 = 343,4 px. bottom 415 ⇒ ocupa 1161,6 → 1505 px:
@@ -176,8 +176,10 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
     margemDireita: 150,
     alinhamento: "center",
     face: "corpo",
-    /* A referência marca a palavra só pelo PESO, em branco. Some a questão de
-       contraste do champagne sobre imagem e fica igual ao que ela pediu. */
+    /* A família que ela mandou. Não entra no perfil da marca de propósito: o
+       perfil é compartilhado com as peças faladas, que ela não pediu pra
+       mudar. */
+    familia: "Fabricia",
     enfaseCor: "texto",
   },
 

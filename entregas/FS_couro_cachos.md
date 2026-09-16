@@ -4,8 +4,8 @@ Peça: Reel de **texto fixo** da marca pessoal **Fabrícia Satza | Tricologia e
 Terapia Capilar**. Montada em 16/09/2026. **Não aprovada** — falta a dona
 avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v3.mp4`
-As versões anteriores ficam em `..._v1.mp4` e `..._v2.mp4` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v4.mp4`
+As versões anteriores ficam em `..._v1` a `..._v3` para comparação.
 
 ---
 
@@ -346,3 +346,64 @@ risca**.
 limpa · nenhum frame preto · pior contraste da legenda 5,4:1 · emendas com luma
 106,6→103,0 · 103,2→96,9 · 102,1→88,8. Legenda, grade, trilha, fecho e duração
 não mudaram. Não aprovada.
+
+---
+
+# v4 (16/09/2026) — a fonte que ela mandou
+
+Ela enviou `Fabricia-Light_idêntica_a_futura_PT.otf` e disse "use para o vídeo".
+
+**Não é a mesma fonte do ZIP de 13/09, e a diferença tem consequência.**
+
+| | kit de 13/09 ("Fabricia Satza") | a de 16/09 ("Fabrícia") |
+|---|---|---|
+| origem | derivada da **Jost\*** | **Futura PT** |
+| famílias | 3 faces (Light 300, Light Alt 300, Medium 500) | **1 face** (Light 300) |
+| altura de x | 0,460 em | **0,433 em** |
+| altura de maiúscula | 0,700 em | 0,715 em |
+| formato | TTF / woff2 | **OTF (CFF)**, convertida aqui pra woff2 |
+| acentos do texto da peça | completos | **completos** (conferido ç ã ú á é ê í ó) |
+
+**O corpo teve que mudar junto com a fonte.** A legenda da referência tem
+altura de x de 25,5 px num quadro de 1080. Com altura de x de 0,433 em isso
+pede corpo **58,9 px** — contra os 55,4 que a família antiga pedia. Ficou
+**58 px**: dá 25,1 px de altura de x e deixa a linha mais longa em 806 px numa
+caixa de 840. A 59 caberia, mas com 20 px de folga só.
+
+**Conferido que é ela mesma no arquivo entregue**, não um fallback: a largura
+da TINTA da linha "Mas não deixo o couro cabeludo" no frame renderizado mede
+**807 px** contra **806,3 px** de avanço previsto pela `.otf`. Fonte errada
+daria dezenas de px de diferença.
+
+## A palavra em negrito saiu — e por quê
+
+A referência marca "o couro cabeludo" pelo **peso**. Esta família veio com
+**um peso só**. As três saídas possíveis:
+
+1. pedir peso 500 → o navegador **engorda a forma sozinho** (negrito
+   sintético), que é o que o manual dela proíbe em letra maiúscula;
+2. usar a Medium do kit antigo → dois desenhos de letra na mesma linha, e
+   renderizadas lado a lado a Futura PT e a Jost são **visivelmente
+   diferentes** (largura da letra e altura de x);
+3. tirar a marcação.
+
+Ficou a 3. **Basta mandar a face de ênfase desta mesma família** (Medium,
+Book, Demi ou Bold da "Fabrícia") que a palavra volta a ser marcada — é uma
+linha no plano.
+
+## Onde a fonte foi instalada
+
+- original: `marcas/fabricia-satza/fontes/instalar/Fabricia-Light.otf`
+- para o render: `projeto-remotion/public/marcas/fabricia/fontes/Fabricia-Light.woff2`
+- carregador: `src/lib/fabriciaFonts.ts` → `loadFabriciaFutura()`
+- o portão de fonte (`fabriciaFontesProntas.ts`) espera por ela antes de pintar
+  o primeiro frame, como pelas outras
+
+**Ela NÃO entrou no perfil da marca** (`src/lib/marcas.ts`), de propósito: o
+perfil é compartilhado com as peças faladas, que ela não pediu pra mudar. A
+peça escolhe a família pelo campo `texto.familia` do plano.
+
+**QA da v4:** 384 frames · 12,800 s · faixa limitada bt709 · decodificação
+limpa · nenhum frame preto · pior contraste da legenda 5,5:1 · emendas com luma
+106,5→102,9 · 103,1→96,7 · 101,9→88,6. Enquadramento, grade, trilha, fecho e
+duração não mudaram. Não aprovada.

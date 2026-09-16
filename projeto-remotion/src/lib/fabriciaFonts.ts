@@ -29,6 +29,18 @@ let injetado = false;
 const podeUsarDom = () => typeof document !== "undefined" && !!document.head;
 
 const CSS = () => `
+  /* A FONTE QUE A DONA MANDOU EM 16/09/2026 — "Fabrícia Light, idêntica à
+     Futura PT". Família própria, um peso só (300). NÃO é a mesma coisa que a
+     "Fabricia Satza" do ZIP de 13/09: aquela é derivada da Jost* e tem altura
+     de x de 0,460 em; esta tem 0,433, que é a proporção clássica da Futura.
+     Isso muda o corpo necessário pra dar a mesma altura de letra na tela. */
+  @font-face {
+    font-family: 'Fabricia';
+    src: url('${staticFile("marcas/fabricia/fontes/Fabricia-Light.woff2")}') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: block;
+  }
   @font-face {
     font-family: 'Fabricia Satza';
     src: url('${staticFile("marcas/fabricia/fontes/FabriciaSatzaLight-Regular.woff2")}') format('woff2');
@@ -58,6 +70,7 @@ const aquecer = () => {
     '300 45px "Fabricia Satza"',
     '500 52px "Fabricia Satza"',
     '300 88px "Fabricia Satza Alt"',
+    '300 58px "Fabricia"',
   ]) {
     try {
       void document.fonts.load(spec);
@@ -81,6 +94,17 @@ const garantir = () => {
 export const loadFabriciaTexto = (): { fontFamily: string } => {
   garantir();
   return { fontFamily: "Fabricia Satza" };
+};
+
+/**
+ * A fonte que a dona mandou em 16/09/2026 ("idêntica à Futura PT").
+ * UM PESO SÓ: 300. Não existe Medium aqui, e pedir 500 faria o navegador
+ * engordar a forma — negrito sintético, que o manual dela proíbe. Enquanto
+ * ela não mandar a face de ênfase, peça que usa esta família vai num peso só.
+ */
+export const loadFabriciaFutura = (): { fontFamily: string } => {
+  garantir();
+  return { fontFamily: "Fabricia" };
 };
 
 /** Títulos e display — o "a" de um andar. */
