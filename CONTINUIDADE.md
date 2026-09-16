@@ -132,6 +132,34 @@ frames.
 +13,3 dB. Música: bittersweet (a rotação reiniciou). Faixa mascarada de 600
 (cabelo em 512 px). Olhar conferido nos cinco cortes; portão de gagueira: 0.
 
+## Auditoria do catálogo pelas pontas (16/09/2026) — e NH_comunicacao v2
+
+Depois que a dona pegou "cirurgia" comida, passei o sinal novo de borda nos
+**53 cortes das 16 peças faladas**. Duas reprovações, ambas de ENTRADA:
+
+**NH_comunicacao (falado6/clip3) — defeito real, corrigido.** O fecho abria em
+27,71, e "precisa" começa em **27,54**: o corte caía dentro da palavra. Pior, era
+uma correção minha: a v1 tinha tentado escapar da gagueira "você VOCÊ precisa"
+cortando *depois* dela, confiando num vale que o `bordas.py` da época apontava
+com piso medido dentro da janela. Existe silêncio de verdade em 26,76 → 27,31,
+antes de tudo. Corte foi pra **27,14** e o fecho passou a abrir em "Você precisa
+estar atento", inteiro — e de quebra a anáfora dela fica com os quatro tempos
+completos. Peça de 1026 → 1043 frames.
+
+**NH_isquemia (falado8/clip3) — falso positivo.** Aquela fita tem piso de ruído
+alto (o próprio plano registra isso): o decil mais baixo dá 257 contra 22 na
+fita da NH_comunicacao. Os primeiros 200 ms oscilam entre 238 e 698 sem ataque
+nenhum — é sala, não fala. **O limiar de borda fica marginal em fita
+barulhenta; ali a leitura é no ataque, não no valor absoluto.**
+
+As outras 51 passaram, com 8 avisos de "borda apertada" (30–50 ms de ar) que
+foram conferidos um a um: palavra inteira nos oito.
+
+**Outro falso positivo, do teste de topo liso:** ele acusou 1 quadro na
+NH_comunicacao. É o **frame 112, o último da transição de filme**, que vai a
+preto (RGB 0,0,0) — não a faixa da marca (#0B2436). O teste deveria ignorar
+preto puro.
+
 ## ORDEM PERMANENTE (15/09/2026): varrer o corte pronto em toda peça falada
 
 *"Sempre refaça essa varredura nos próximos vídeos."*

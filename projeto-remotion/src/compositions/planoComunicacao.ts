@@ -7,6 +7,19 @@
    450 MB. Baixada INTEIRA, em pedaços de 32 MB — ver o percalço no comentário
    da peça irmã (planoPadrao.ts) e em scripts/baixar-drive.sh.
 
+   ⚠ v2 (16/09/2026) — O FECHO ABRIA NO MEIO DE "PRECISA". A auditoria do
+   catálogo inteiro, feita depois que a dona pegou "cirurgia" comida na NH_somar,
+   reprovou este corte: entrada com 0 ms de ar. Medido na fita, o corte de 27,71
+   caía DENTRO da palavra — "precisa" começa em 27,54 — e o transcritor
+   reconstruía um "você" que não estava inteiro ali.
+
+   A v1 tinha tentado consertar a gagueira "você VOCÊ precisa" cortando depois
+   dela, em 27,71. O erro foi confiar num vale que o `bordas.py` da época
+   apontava com piso de ruído medido dentro da janela. Existe silêncio de
+   verdade em 26,76 → 27,31, antes de tudo: o corte foi pra **27,14**, e o fecho
+   passou a abrir em "Você precisa estar atento", com o /p/ e o "você" inteiros.
+   De quebra a anáfora dela fica com os quatro tempos completos.
+
    FONTE POR CORTE (bordas medidas nas duas bandas):
      clip0 gancho   2,80 →  6,58  "Na sua cirurgia, você precisa orientar a
                                    equipe várias vezes?"
@@ -17,7 +30,7 @@
                                    estar de olho em qualquer coisa que aconteça
                                    durante a cirurgia, de olho no paciente, de
                                    olho no monitor,"
-     clip3 fecho    27,71 → 33,94 "Precisa estar atento a qualquer detalhe da
+     clip3 fecho    27,14 → 33,94 "Você precisa estar atento a qualquer detalhe da
                                    cirurgia e, com isso, facilita o fluxo da
                                    cirurgia."
 
@@ -45,14 +58,14 @@ import type { Cue, Plano } from "./ReelFalado";
 
 export const PLANO_COMUNICACAO: Plano = {
   fps: 30,
-  duration: 1026, // 835 de conteúdo + 191 da marca
-  endCard: 835,
+  duration: 1043, // 852 de conteúdo + 191 da marca
+  endCard: 852,
   hookEnd: 113, // 3,767 s
   clips: [
     { nome: "gancho", src: "newhair/falado6/clip0.mp4", start: 0, duration: 113 },
     { nome: "principio", src: "newhair/falado6/clip1.mp4", start: 113, duration: 181 },
     { nome: "anafora", src: "newhair/falado6/clip2.mp4", start: 294, duration: 354 },
-    { nome: "fecho", src: "newhair/falado6/clip3.mp4", start: 648, duration: 187 },
+    { nome: "fecho", src: "newhair/falado6/clip3.mp4", start: 648, duration: 204 },
   ],
   brolls: [
     { fromFrame: 495, duration: 150, src: "newhair/falado6/apoio_dupla.mp4", mode: "band", altura: 600, position: "50% 50%" },
@@ -86,10 +99,10 @@ export const CUES_COMUNICACAO: Cue[] = [
   { start: 19.32, end: 21.30, lines: [
     { text: "você precisa estar", size: 34 },
     { text: "DE OLHO NO MONITOR.", size: 42, gold: true }] },
-  { start: 21.62, end: 24.45, lines: [
-    { text: "Precisa estar atento", size: 34 },
+  { start: 21.74, end: 24.95, lines: [
+    { text: "Você precisa estar atento", size: 34 },
     { text: "A QUALQUER DETALHE DA CIRURGIA", size: 42, gold: true }] },
-  { start: 24.49, end: 27.75, lines: [
+  { start: 25.20, end: 28.35, lines: [
     { text: "e, com isso,", size: 34 },
     { text: "FACILITA O FLUXO DA CIRURGIA.", size: 42, gold: true }] },
 ];
