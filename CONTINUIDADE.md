@@ -80,6 +80,40 @@ reprovando.
 **QA:** 1097 frames como no plano, offset 0,0 ms, 0 quadros com topo liso, beat
 na virada em **+14,0 dB**. Música: lostmemories (quinta da rotação).
 
+## NH_somar (16/09/2026)
+
+Fita de 62,1 s, 4K vertical HEVC 60 fps, mesma pessoa e cenário da
+NH_padraoseguir. Uma peça: pergunta → resposta → convite → CTA.
+
+**Entrada do gancho quase abriu com um suspiro.** A varredura de regiões marcava
+fala a partir de 13,65, mas ali é respiração — a voz só ataca em **14,37**. Mais
+um caso de região que começa antes da fala; o `ataque.py` é que resolve.
+
+**Descartado de propósito um fecho COMPLETO e bom** (44,60 → 50,44: "Então se
+você quer uma equipe que some com a sua clínica, a New Hair está aqui para
+isso."). Ele repete a construção do clip4 — "se você quer/procura uma equipe
+que…" — e é o clip4 que carrega o CTA. Pelo §02 assunto parecido pode, frase
+igual não, e aqui a FORMA é a mesma; ter os dois seria dizer a mesma coisa duas
+vezes seguidas.
+
+**A tensão saiu depois de medida.** Com ela, o degrau do beat na virada deu só
+**+6,9 dB** contra os +13 a +18 das outras peças: o grave da tensão termina no
+mesmo instante da virada e enche a banda justamente nos 300 ms que a medida
+compara. Tirada, o degrau voltou pra **+13,3 dB**. É o caso do §05 — o gancho já
+É o problema e a virada está no filme, então não havia problema separado pra
+tensão delimitar. Vale como regra: **quando `tensao-fim` cai em cima de
+`hookEnd`, a tensão está competindo com a entrada do beat, não somando.**
+
+**Colisão de id no Root.tsx.** Já existia uma peça de motor B chamada
+`NewHairSomar`; registrar a nova com o mesmo id derruba o render inteiro com
+"Multiple composition with id … are registered". A minha virou
+`NewHairSomarClinica`. Conferir ids duplicados antes de renderizar agora é
+passo.
+
+**QA:** 928 frames como no plano, offset 0,0 ms, 0 quadros com topo liso, beat
++13,3 dB. Música: bittersweet (a rotação reiniciou). Faixa mascarada de 600
+(cabelo em 512 px). Olhar conferido nos cinco cortes; portão de gagueira: 0.
+
 ## ORDEM PERMANENTE (15/09/2026): varrer o corte pronto em toda peça falada
 
 *"Sempre refaça essa varredura nos próximos vídeos."*

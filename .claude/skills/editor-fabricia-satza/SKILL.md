@@ -687,3 +687,25 @@ Regra de calibragem, pra quem mexer: qualquer ajuste se testa contra os dois
 fixtures conhecidos (`trab/reg_mesa.wav` e o corte antigo do "porque pra nós") —
 eles TÊM que continuar reprovando — e contra um lote de cortes bons, que TEM que
 passar.
+
+## Duas armadilhas do fechamento (16/09/2026)
+
+**1. Tensão em cima da virada não soma, atrapalha.** Quando o gancho JÁ É o
+problema, `--tensao-fim` cai no mesmo instante que `hookEnd` — e aí o grave da
+tensão enche a banda exatamente nos 300 ms que a medida do beat compara. Na
+NH_somar isso derrubou o degrau da virada de +13,3 pra **+6,9 dB**. Medir o
+degrau é o que denuncia; a correção é tirar a tensão, não abaixá-la.
+Regra: `tensao-fim` a menos de ~1 s de `hookEnd` = não há problema separado pra
+delimitar, então não entra tensão (§05 já proíbe forçá-la sem problema).
+
+**2. Id de composição colide silenciosamente até o render.** O repositório tem
+peças de motor B com nomes curtos ("NewHairSomar", "NewHairEquipe"…). Registrar
+uma peça falada com um id que já existe derruba o render inteiro com *"Multiple
+composition with id … are registered"* — e o erro só aparece no fim, depois de
+montar tudo. **Conferir antes de renderizar:**
+
+```
+grep -oE 'id="[A-Za-z0-9_-]+"' src/Root.tsx | sort | uniq -d
+```
+
+Saída vazia é o que se espera.

@@ -96,6 +96,7 @@ import { PLANO_FRIEZA, CUES_FRIEZA } from "./compositions/planoFrieza";
 import { PLANO_MEDICO, CUES_MEDICO } from "./compositions/planoMedico";
 import { PLANO_CORRENDO, CUES_CORRENDO } from "./compositions/planoCorrendo";
 import { PLANO_PADRAO_SEGUIR, CUES_PADRAO_SEGUIR } from "./compositions/planoPadraoSeguir";
+import { PLANO_SOMAR, CUES_SOMAR } from "./compositions/planoSomar";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -856,6 +857,18 @@ export const RemotionRoot: React.FC = () => {
             fps={PLANO_IGUAIS.fps}
             durationInFrames={PLANO_IGUAIS.duration}
             defaultProps={{ marca: "newhair", plano: PLANO_IGUAIS, cues: CUES_IGUAIS }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-SomarClinica">
+          <Composition
+            id="NewHairSomarClinica"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_SOMAR.fps}
+            durationInFrames={PLANO_SOMAR.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_SOMAR, cues: CUES_SOMAR }}
           />
         </Folder>
 
