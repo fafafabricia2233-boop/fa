@@ -82,6 +82,22 @@ curl -sSL -o foto.png \
   todas em bege e marrom; a de "parecem normais" foi de preto, justamente por
   isso. Antes de escolher, olhe as últimas três.
 
+### Nenhum efeito na foto
+
+**Corte e mais nada.** Ela foi explícita: "use as fotos originais, não coloque
+efeito em NADA". Então o preparo é recortar para 3:4 e salvar — sem
+redimensionar, sem `UnsharpMask`, sem mexer em exposição ou cor. Salve o
+recorte em PNG e deixe o encaixe para o navegador; assim os pixels que chegam
+ao slide são os do arquivo dela.
+
+Eu vinha aplicando nitidez depois de reduzir, para compensar a perda do
+redimensionamento. Em foto de pele e de cabelo isso cria borda onde não existe,
+e em tricoscopia pode inventar um contorno que o achado não tem. Não faça.
+
+O **véu** não é exceção a essa regra porque não é efeito na foto: é um degradê
+que fica por cima dela, só nas pontas, e sem ele o cabeçalho cai para 2,8:1
+sobre fundo claro. A imagem por baixo continua intacta.
+
 ### Dois defeitos do banco, para não tropeçar
 
 1. **Algumas imagens estão espelhadas.** Em "Retrato Colete Preto Segurando
