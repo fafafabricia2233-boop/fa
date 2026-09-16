@@ -198,7 +198,12 @@ def main():
                     pal = normaliza(bruto)
                     # dentro do vão cabem palavras que o modelo não escreveu:
                     # se o vão é fala e o texto isolado é curto, sumiu conteúdo.
-                    engoliu = fala > 0.5 and len(pal) < 1 + dur * 2.5
+                    # só vale como "engoliu" se o vão for GRANDE o bastante pra
+                    # caber uma tentativa inteira. Abaixo disso o sinal só produz
+                    # alarme falso: a 1ª palavra de todo corte carrega a folga de
+                    # entrada, e um trecho de 0,6 s transcrito sozinho volta vazio
+                    # ou com bobagem sem que nada tenha sumido.
+                    engoliu = fala > 0.5 and dur >= 1.2 and len(pal) < 1 + dur * 2.0
                     repete = reinicia(pal) or engoliu
                     # a PRIMEIRA palavra do corte sempre sai longa: o modelo
                     # a ancora em 0,00 e a folga de entrada entra na conta. Não

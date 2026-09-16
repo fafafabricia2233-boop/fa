@@ -669,3 +669,21 @@ frase era a segunda, e lá ela já estava na lente havia mais de um segundo.
 **Ordem de conferência que economiza trabalho:** escolher a última tentativa
 primeiro, conferir o olhar depois. Na maioria das vezes a última tentativa já
 resolve o olhar, porque ela entra falando e não se preparando.
+
+## Calibragem do sinal de palavra esticada (16/09/2026)
+
+O sinal "palavra esticada sobre FALA" precisa de um piso de duração, senão vira
+alarme falso. **Exige-se vão de pelo menos 1,2 s.** Abaixo disso não cabe uma
+tentativa inteira, e o que sobra é ruído: a 1ª palavra de todo corte sai longa
+porque carrega a folga de entrada, e um fragmento de 0,6 s transcrito sozinho
+volta vazio ou com bobagem sem que nada tenha sumido.
+
+Os dois defeitos reais que o sinal existe pra pegar passam folgado nesse piso:
+"desorganizada" com 2,16 s e 88% de fala; "para" com 1,10 s — esse último cai
+abaixo de 1,2 s, mas é pego pelo outro teste (bloco de abertura repetido).
+**Cada defeito é pego por pelo menos um dos sinais; nenhum sinal sozinho basta.**
+
+Regra de calibragem, pra quem mexer: qualquer ajuste se testa contra os dois
+fixtures conhecidos (`trab/reg_mesa.wav` e o corte antigo do "porque pra nós") —
+eles TÊM que continuar reprovando — e contra um lote de cortes bons, que TEM que
+passar.

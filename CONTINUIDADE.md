@@ -46,6 +46,40 @@ onde o rosto ia de 110 a 1290 px.
 48 kHz, decodificação limpa, offset 0,0 ms nas três janelas, 0 quadros com topo
 liso, beat na virada em **+18,5 dB**. Música: floating (quarta da rotação).
 
+## NH_padraoseguir (16/09/2026)
+
+Fita de 61,4 s, **4K vertical nativo HEVC a 60 fps** — a melhor fonte que passou
+por aqui. Terceira pessoa da série, sentada, enquadramento aberto. Uma peça só:
+roteiro fechado, problema → padrão → prova → CTA.
+
+**A frase-tese está dita TRÊS vezes e só a terceira sai limpa.** "Organização
+traz previsibilidade para a cirurgia": em 34,40 ela tropeça ("traz pré-vip… mas
+previsibilidade") e em 39,80 de novo ("traz previs… previsibilidade"). A terceira
+(43,92) é a boa. O transcritor da fita inteira devolvia as três como frases
+limpas — as tropeçadas só apareceram recortando janelas curtas, porque ele
+estica uma palavra por cima delas ("presibilidade" de 36,68 a 38,90).
+
+**Descartada de propósito a primeira enumeração** ("Organização, contagem,
+manipulação de folículo, implantação", 10,58→18,53): lista as MESMAS quatro
+tarefas que o clip3 lista como "um padrão de contagem, um padrão de manipulação,
+um padrão de implantação". Ter as duas é redundância, e a segunda fica do lado
+da solução. Saiu também "Cada um faz de uma forma", que repete o gancho.
+
+**Olhar conferido nos nove cortes** (folha a 2 quadros/s): nenhuma consulta
+lateral, ela fica na lente a fita inteira. **Portão de gagueira: código 0.**
+
+**Faixa mascarada** com altura 615 (cabelo em 524 px) e título no alto, o padrão.
+
+**O portão foi calibrado nesta fita.** O sinal de "palavra esticada sobre fala"
+estava reprovando a 1ª palavra de vários cortes — ela sempre sai longa porque
+carrega a folga de entrada. Passou a exigir **vão de pelo menos 1,2 s** pra
+contar como fala engolida: abaixo disso não cabe uma tentativa inteira, e o que
+sobra é alarme falso. Conferido que os dois defeitos reais conhecidos continuam
+reprovando.
+
+**QA:** 1097 frames como no plano, offset 0,0 ms, 0 quadros com topo liso, beat
+na virada em **+14,0 dB**. Música: lostmemories (quinta da rotação).
+
 ## ORDEM PERMANENTE (15/09/2026): varrer o corte pronto em toda peça falada
 
 *"Sempre refaça essa varredura nos próximos vídeos."*
