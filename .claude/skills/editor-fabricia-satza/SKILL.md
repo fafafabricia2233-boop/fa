@@ -734,3 +734,37 @@ olhar.
 recortar aquela peça — é achar por que a medição deixou passar e consertar a
 medição. Eu tinha visto esse mesmo mecanismo na NH_medico e tratei como caso
 isolado; ele voltou duas peças depois.
+
+## `bordas.py` também estava medindo errado — o conserto (16/09/2026)
+
+O mesmo vício do detector de cauda estava no `bordas.py`, a ferramenta que eu uso
+pra escolher CADA ponto de corte: o piso era `max(janela) * 0,18`, tirado de uma
+janela de 1 s. Ele mente nos dois sentidos — numa janela toda de fala fica ACIMA
+do ruído e acha "vale" dentro da palavra; com um pico alto na janela fica acima
+de uma consoante fraca e marca vale onde a palavra continua.
+
+Três correções, e cada uma sai de um erro que já custou uma palavra:
+
+1. **Piso do ARQUIVO, não da janela** — decil mais baixo do arquivo inteiro,
+   vezes 2. Janela de 1 s não tem silêncio suficiente pra estimar piso.
+2. **Vale é silêncio SUSTENTADO** — corrida de pelo menos 40 ms abaixo do piso,
+   e o candidato é o meio da corrida. Dentro de qualquer palavra há dips de um
+   quadro; cortar num deles come a palavra.
+3. **Quieto NAS DUAS BANDAS** — larga e acima de 3,5 kHz. **Fricativa some na
+   banda larga**: o /z/ de "frieza", o /s/ de "mais", o /ʃ/ de "chega" têm pouca
+   energia grave e muita aguda, e na banda larga parecem vale. Isto eu já tinha
+   escrito como regra depois do "mais" comido — e nunca tinha automatizado.
+
+**Conferido contra os quatro casos que ele errava:**
+
+| caso | antes | agora |
+|---|---|---|
+| fim de "frieza" (NH_frieza) | apontava 49,62, dentro da palavra | SEM VALE — fala emendada, inclua a palavra inteira |
+| fim de "cirurgia" (NH_somar) | aceitava 34,10, dentro da palavra | 34,46, depois do fim em 34,26 |
+| fim de "número" (NH_medico) | aceitava 5,24, no meio | SEM VALE — avisa em vez de oferecer vale falso |
+| entrada limpa de gancho | ok | ok, segue apontando o silêncio |
+
+**"SEM VALE" é resposta certa, não falha da ferramenta.** Quando duas palavras se
+emendam com 60 ms de ar ruidoso, não existe corte limpo ali: ou entra a palavra
+inteira, ou se procura outro ponto. Era exatamente o que faltava ouvir nas três
+vezes em que entreguei palavra mastigada.

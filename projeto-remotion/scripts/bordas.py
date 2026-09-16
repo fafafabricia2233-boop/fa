@@ -24,26 +24,79 @@ tempos = [float(a) for a in args]
 
 PASSO = 0.01
 
-def envelope(ini, dur):
+def envelope(ini, dur, agudo=False):
+    """Envelope em banda larga ou só acima de 3,5 kHz.
+
+    O agudo existe porque FRICATIVA SOME NA BANDA LARGA. O /z/ de "frieza", o
+    /s/ de "mais", o /ʃ/ de "chega" têm pouca energia grave e muita aguda: na
+    banda larga eles parecem VALE e o detector manda cortar no meio da palavra.
+    Silêncio de verdade é quieto nas duas bandas."""
+    filtro = ["-af", "highpass=f=3500"] if agudo else []
     raw = subprocess.run(
         ["ffmpeg", "-nostdin", "-v", "error", "-ss", str(max(0, ini)), "-t", str(dur),
-         "-i", audio, "-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
+         "-i", audio] + filtro + ["-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
         capture_output=True).stdout
     x = array.array("h"); x.frombytes(raw)
     w = int(16000 * PASSO)
     return [math.sqrt(sum(v*v for v in x[i*w:(i+1)*w]) / w) for i in range(len(x)//w)]
 
+
+def piso_do_arquivo(agudo=False):
+    """Piso de ruído do ARQUIVO INTEIRO — nunca uma fração do pico da janela.
+
+    Corrigido em 16/09/2026, depois de duas palavras comidas em peças entregues.
+    O piso em `max(janela) * 0,18` mente nos dois sentidos: numa janela toda de
+    fala ele fica ACIMA do ruído e acha "vale" dentro da palavra (foi o que
+    apontou 49,62 no meio de "frieza"); numa janela com um pico alto ele fica
+    acima de uma consoante fraca e marca vale onde a palavra continua.
+    Janela de 1 s não tem silêncio suficiente pra estimar piso — o arquivo tem.
+    """
+    filtro = ["-af", "highpass=f=3500"] if agudo else []
+    raw = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-i", audio] + filtro +
+                         ["-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
+                         capture_output=True).stdout
+    x = array.array("h"); x.frombytes(raw)
+    w = int(16000 * PASSO)
+    env = [math.sqrt(sum(v*v for v in x[i*w:(i+1)*w]) / w) for i in range(len(x)//w)]
+    if not env: return 1.0
+    ordenado = sorted(env)
+    return ordenado[max(0, len(ordenado) // 10)]
+
+PISO_ARQ = piso_do_arquivo()
+LIMIAR = PISO_ARQ * 2.0
+PISO_AG = piso_do_arquivo(agudo=True)
+LIMIAR_AG = PISO_AG * 2.0
+print(f"piso do arquivo: larga {PISO_ARQ:.0f} (limiar {LIMIAR:.0f}) | "
+      f"agudo>3,5kHz {PISO_AG:.0f} (limiar {LIMIAR_AG:.0f})")
+
 for t in tempos:
     ini = t - janela
     e = envelope(ini, janela * 2)
+    ea = envelope(ini, janela * 2, agudo=True)
     if not e:
         print(f"\n{t:.3f} s — sem áudio aqui"); continue
     mx = max(e) or 1
-    # vale = mínimo local mais próximo de t, entre trechos com fala dos dois lados
+    # vale = mínimo local mais próximo de t que esteja ABAIXO DO PISO DO ARQUIVO.
+    # Não vale mínimo local dentro da fala: "frieza" tem vale entre o /z/ e o /a/
+    # e cortar ali come a palavra.
     i_alvo = int(janela / PASSO)
-    piso = mx * 0.18
-    candidatos = [i for i in range(2, len(e)-2)
-                  if e[i] <= e[i-1] and e[i] <= e[i+1] and e[i] < piso]
+    # Vale não é um mínimo local: é SILÊNCIO SUSTENTADO. Dentro de uma palavra
+    # há dips de um quadro o tempo todo (entre o /z/ e o /a/ de "frieza", por
+    # exemplo) e cortar num deles come a palavra. Exige-se uma corrida de pelo
+    # menos MIN_VALE quadros abaixo do piso; o candidato é o meio da corrida.
+    MIN_VALE = 4  # 40 ms
+    def quieto(i):
+        # quieto NAS DUAS BANDAS: fricativa é alta no agudo e some na larga
+        return e[i] < LIMIAR and (i >= len(ea) or ea[i] < LIMIAR_AG)
+    candidatos, i = [], 0
+    while i < len(e):
+        if quieto(i):
+            j = i
+            while j < len(e) and quieto(j): j += 1
+            if j - i >= MIN_VALE: candidatos.append((i + j - 1) // 2)
+            i = j
+        else:
+            i += 1
     print(f"\n=== candidato {t:.3f} s " + "=" * 40)
     for i, v in enumerate(e):
         tt = ini + i * PASSO
