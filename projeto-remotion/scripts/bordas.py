@@ -11,6 +11,11 @@ próximo, que é onde o corte deve morar. Fala emendada pode não ter vale nenhu
 aí o script diz isso, e a decisão é incluir a palavra anterior inteira ou trocar
 de take — nunca cortar no meio da vogal.
 
+Para cada tempo pedido devolve TRÊS números, e são eles que decidem o corte:
+  · onde a fala acaba ANTES  -> quanto de cauda o corte deixa
+  · onde a fala começa DEPOIS -> quanto de folga de entrada o corte tem
+  · o vale sustentado mais próximo, se existir
+
 Uso: bordas.py <audio> <tempo> [tempo ...] [--janela 0.5]
 """
 import array, math, subprocess, sys
@@ -104,6 +109,23 @@ for t in tempos:
         if abs(tt - t) < PASSO / 2: marca += "  <<< o corte pedido"
         if candidatos and i == min(candidatos, key=lambda c: abs(c - i_alvo)): marca += "  <<< VALE"
         print(f"  {tt:7.3f}  {'#' * int(36 * v / mx):36s}{marca}")
+    # Onde a fala REALMENTE acaba antes e recomeça depois do ponto pedido.
+    # São estes dois números que definem quanto de ar o corte tem — e era
+    # exatamente aqui que os scripts de ocasião erravam, medindo o piso dentro
+    # da janela. Com o piso do arquivo e as duas bandas, eles são confiáveis.
+    antes = [i for i in range(i_alvo, -1, -1) if not quieto(i)]
+    depois = [i for i in range(i_alvo, len(e)) if not quieto(i)]
+    if antes:
+        fim_fala = ini + antes[0] * PASSO
+        print(f"  -> fala ANTES acaba em {fim_fala:.3f} s "
+              f"(cauda do corte pedido: {(t - fim_fala)*1000:+.0f} ms)")
+    if depois:
+        ini_fala = ini + depois[0] * PASSO
+        print(f"  -> fala DEPOIS comeca em {ini_fala:.3f} s "
+              f"(folga do corte pedido: {(ini_fala - t)*1000:+.0f} ms)")
+    if antes and depois and (t - (ini + antes[0]*PASSO)) < 0.03:
+        print("  !! o ponto pedido esta EM CIMA da fala anterior — palavra comida.")
+
     if candidatos:
         melhor = ini + min(candidatos, key=lambda c: abs(c - i_alvo)) * PASSO
         print(f"  -> vale mais proximo: {melhor:.3f} s  (pedido {t:.3f}, diferenca {abs(melhor-t)*1000:.0f} ms)")
