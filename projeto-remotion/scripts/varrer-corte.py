@@ -78,6 +78,29 @@ def regioes(arq, vao):
 
 SILABAS = "aeiouáéíóúâêôàãõy"
 
+def fracao_de_fala(arq, a, b):
+    """Quanto do intervalo tem ENERGIA de fala, de 0 a 1.
+
+    É isto que separa a pausa legítima da fala engolida. Uma palavra esticada
+    por cima de SILÊNCIO é só o modelo grudando a pausa nela ("Médico," antes do
+    vocativo respirar). Esticada por cima de FALA significa que ele engoliu
+    palavras — foi o caso do "desorganizada" de 2,16 s, que escondia a frase
+    dita duas vezes.
+    """
+    raw = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-ss", str(max(0, a)),
+                          "-t", str(b - max(0, a)), "-i", arq, "-ac", "1", "-ar", "16000",
+                          "-f", "s16le", "-"], capture_output=True).stdout
+    x = array.array("h"); x.frombytes(raw); w = 160
+    env = [math.sqrt(sum(v * v for v in x[i*w:(i+1)*w]) / w) for i in range(len(x)//w)]
+    if not env: return 0.0
+    # piso do próprio arquivo, não do trecho: o trecho pode ser todo fala
+    todo = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-i", arq, "-ac", "1",
+                           "-ar", "16000", "-f", "s16le", "-"], capture_output=True).stdout
+    y = array.array("h"); y.frombytes(todo)
+    envt = [math.sqrt(sum(v * v for v in y[i*w:(i+1)*w]) / w) for i in range(len(y)//w)]
+    piso = max(envt) * 0.08 if envt else 1
+    return sum(1 for e in env if e > piso) / len(env)
+
 def reinicia(pal):
     """Diz se a lista de palavras contém um RECOMEÇO.
 
@@ -166,16 +189,25 @@ def main():
                 dur = w.end - w.start
                 limite = 0.22 + 0.22 * silabas(p)     # folga generosa por sílaba
                 if dur > max(limite, 0.55):
+                    # O que separa pausa legítima de fala engolida é O QUE HÁ NO VÃO.
+                    # "Médico," esticado por uma pausa retórica: o vão é silêncio.
+                    # "desorganizada" esticado porque o modelo engoliu a segunda
+                    # tentativa: o vão é FALA. Mediu-se, não se adivinha.
+                    fala = fracao_de_fala(arq, w.start, w.end)
                     bruto = trecho(arq, w.start - 0.05, w.end + 0.05, voc=False)
                     pal = normaliza(bruto)
-                    repete = reinicia(pal)
+                    # dentro do vão cabem palavras que o modelo não escreveu:
+                    # se o vão é fala e o texto isolado é curto, sumiu conteúdo.
+                    engoliu = fala > 0.5 and len(pal) < 1 + dur * 2.5
+                    repete = reinicia(pal) or engoliu
                     # a PRIMEIRA palavra do corte sempre sai longa: o modelo
                     # a ancora em 0,00 e a folga de entrada entra na conta. Não
                     # é motivo pra suspeitar — quem decide é o isolado.
                     borda = " (1ª palavra: carrega a folga de entrada)" if w.start < 0.08 else ""
                     marca = "⚠ REPETIÇÃO" if repete else "· conferir"
                     print(f"  {marca}: \"{p}\" dura {dur:.2f}s ({w.start:.2f}→{w.end:.2f}), "
-                          f"esperado ≤{limite:.2f}s{borda}. Isolado diz: \"{bruto}\"")
+                          f"esperado ≤{limite:.2f}s{borda}, {fala*100:.0f}% do vão é fala. "
+                          f"Isolado diz: \"{bruto}\"")
                     if repete: suspeitos.append(arq)
 
     if suspeitos:

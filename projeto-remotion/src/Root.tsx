@@ -94,6 +94,7 @@ import { PLANO_ADAPTA, CUES_ADAPTA } from "./compositions/planoAdapta";
 import { PLANO_MALTRATADO, CUES_MALTRATADO } from "./compositions/planoMaltratado";
 import { PLANO_FRIEZA, CUES_FRIEZA } from "./compositions/planoFrieza";
 import { PLANO_MEDICO, CUES_MEDICO } from "./compositions/planoMedico";
+import { PLANO_CORRENDO, CUES_CORRENDO } from "./compositions/planoCorrendo";
 import prpPropsRaw from "../props.prp.json";
 
 const equipeCapacitadaProps = equipeCapacitadaPropsRaw as EquipeCapacitadaProps;
@@ -854,6 +855,18 @@ export const RemotionRoot: React.FC = () => {
             fps={PLANO_IGUAIS.fps}
             durationInFrames={PLANO_IGUAIS.duration}
             defaultProps={{ marca: "newhair", plano: PLANO_IGUAIS, cues: CUES_IGUAIS }}
+          />
+        </Folder>
+
+        <Folder name="NewHair-Correndo">
+          <Composition
+            id="NewHairCorrendo"
+            component={ReelFalado}
+            width={1080}
+            height={1920}
+            fps={PLANO_CORRENDO.fps}
+            durationInFrames={PLANO_CORRENDO.duration}
+            defaultProps={{ marca: "newhair", plano: PLANO_CORRENDO, cues: CUES_CORRENDO }}
           />
         </Folder>
 

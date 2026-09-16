@@ -6,6 +6,46 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 14/09/2026.
 
+## NH_correndo (16/09/2026) — "edite com máximo cuidado"
+
+Pasta com dois arquivos, "1" e "2": as duas partes de UMA peça roteirizada
+(problema na parte 1, solução e CTA na parte 2). Outra pessoa, outro cenário,
+parede clara. **Uma peça só** — o gancho e a solução são metades do mesmo
+argumento, não há bloco que se sustente sozinho.
+
+Pedido: *"não quero take olhando pro lado e nem gaguejando, geralmente a última
+fala é a melhor"*. As três viraram passo:
+
+1. **Última tentativa** em cada frase. O gancho é dito duas vezes (0,64 "refazer
+   o trabalho" / 9,39 "corrigir esse trabalho") e o par pergunta+CTA também
+   (12,70 / 21,15) — ficaram os segundos. Como pergunta e CTA são contíguos na
+   fita, entraram num corte só, sem emenda entre eles.
+2. **Sem gaguejar.** "A mesa ficou desorganizada" está dita DUAS VEZES e quase
+   passou: as tentativas se emendam num vale de 240 ms que não chega ao piso, e
+   a varredura por região via uma região só. Quem denunciou foi a palavra
+   esticada — "desorganizada" durando 2,16 s com **88% do vão em FALA**. Essa
+   medida de fração de fala entrou no `varrer-corte.py` e agora reprova o corte
+   antigo sozinha.
+3. **Sem olhar pro lado.** Folhas de contato a 2 quadros/s em todas as regiões,
+   e quadro a quadro nas entradas. Achou-se uma: em 17,90–18,00 ela está com a
+   cabeça virada, frontal só a partir de 18,10. Resolveu-se sozinho ao pegar a
+   segunda tentativa da frase.
+
+**Emenda de cláusula de propósito.** A frase "A comunicação se perde e o tempo
+que era para ser economizado acaba sendo gasto…" nunca sai inteira: na primeira
+vez ela trava 2,16 s antes de "economizado"; na segunda retoma já de "e o
+tempo…". Montada, sai inteira de dois cortes, sem repetir nada, com a faixa de
+apoio atravessando a emenda pra suavizar.
+
+**A faixa mascarada VOLTOU** — aqui cabe. O cabelo dela começa entre 512 e 564
+px, então há céu de verdade; altura = 512 ÷ 0,85 ≈ 610. E o título voltou pro
+alto (270): a ordem "deixa o texto embaixo" era daquela fita ("NESSE deixa…"),
+onde o rosto ia de 110 a 1290 px.
+
+**QA:** 1112 frames como no plano, H264 1080×1920 30 fps faixa limitada, AAC
+48 kHz, decodificação limpa, offset 0,0 ms nas três janelas, 0 quadros com topo
+liso, beat na virada em **+18,5 dB**. Música: floating (quarta da rotação).
+
 ## ORDEM PERMANENTE (15/09/2026): varrer o corte pronto em toda peça falada
 
 *"Sempre refaça essa varredura nos próximos vídeos."*

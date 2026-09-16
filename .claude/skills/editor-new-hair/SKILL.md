@@ -598,3 +598,49 @@ inteira, que é construída em cima da anáfora.
 tentativa errada — as 13 falas daquele lote eram todas a última. Foi **entrar
 cedo demais dentro da tentativa certa**. Última tentativa não garante entrada
 limpa; a entrada se mede, e depois se varre.
+
+## Palavra esticada: o que decide é se o VÃO É FALA (16/09/2026)
+
+Terceiro reforço do portão, e o que finalmente o deixa confiável.
+
+O sinal "palavra longa demais" sozinho dá muito ruído: a primeira palavra de
+todo corte sai longa (o modelo a ancora em 0,00), e um vocativo com pausa
+retórica também ("Médico," durou 1,22 s numa fita e estava perfeito).
+
+**O que separa a pausa legítima da fala engolida é o CONTEÚDO DO VÃO.**
+
+| a palavra está esticada por cima de… | o que é | exemplo |
+|---|---|---|
+| **silêncio** | o modelo grudou a pausa na palavra | "Médico," antes do vocativo respirar — fica |
+| **fala** | o modelo **engoliu palavras** ali dentro | "desorganizada" de 2,16 s com **88% do vão em fala**: escondia a frase dita duas vezes |
+
+`varrer-corte.py` mede essa fração e só reprova quando o vão tem fala. Dois
+casos reais que ele pega e que NENHUM outro sinal pegava, porque as duas
+tentativas se emendam e viram uma região só:
+
+- "A mesa ficou desorganizada" dita duas vezes (vale de 240 ms que não chega ao
+  piso) — 88% do vão é fala;
+- "Porque pra nós… porque pra nós" — 68% do vão é fala.
+
+**Regra:** vão de palavra esticada se MEDE. Silêncio é respiro; fala é conteúdo
+perdido, e conteúdo perdido quase sempre é tentativa repetida.
+
+## Olhar na câmera é passo, com folha de contato (16/09/2026)
+
+Ordem da dona: *"não quero take olhando pro lado"*. Não é exigência nova — o §02
+já contratava *"entrada: rosto já dirigido à câmera; sem consulta lateral"* — mas
+eu não estava conferindo.
+
+**Como se confere:** folha de contato de cada região candidata a **2 quadros/s**,
+mais quadro a quadro nos 0,5 s de cada ENTRADA. Tile de 220–260 px por quadro;
+abaixo disso o olhar não se lê e a folha engana (a 180 px eu "vi" olhar baixo em
+takes que estavam limpos).
+
+**O que apareceu na primeira fita em que rodei:** numa das entradas ela estava
+com a cabeça virada pra direita, voltando — frontal só a partir de 180 ms depois
+do primeiro som. E, nesse caso, a correção veio de graça: a tentativa BOA daquela
+frase era a segunda, e lá ela já estava na lente havia mais de um segundo.
+
+**Ordem de conferência que economiza trabalho:** escolher a última tentativa
+primeiro, conferir o olhar depois. Na maioria das vezes a última tentativa já
+resolve o olhar, porque ela entra falando e não se preparando.
