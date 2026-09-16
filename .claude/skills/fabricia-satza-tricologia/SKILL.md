@@ -38,6 +38,59 @@ Os `.html` são **gerados**. Para mudar o visual, edite `scripts/base.css`,
 Editar o `.html` de `assets/` direto funciona para uma peça, mas some na
 próxima geração.
 
+## O banco de imagens
+
+Ela mantém um banco no Drive, e ele é a primeira parada de qualquer peça —
+antes de pedir foto a ela.
+
+`https://drive.google.com/drive/folders/1qnQdPuNym83FXOJUOsXibb0T9pKSQQUl`
+
+| Pasta | ID | O que tem |
+|---|---|---|
+| fabricia satza | `1zAuXlS3bmiB6SRz1NhEPah1kMSiMnxXK` | 36 retratos dela, de estúdio |
+| imagens de tricoscopia | `1SMzF7C4msRUOH3l6lON_N-7lZD38Huo6` | 20 capturas macro de couro cabeludo |
+| cabelos | `1SQBZ45rgqlWYdXmoYHDIDs2ziWpfomqK` | 17 cenas de lavagem, cachos, aparelhos |
+| produtos de terapia capilar | `1C1gB7juxX9VyT4--zt-dXx4DALcx0kdF` | — |
+| medicações ou mesa pronta | `1xtD1ifhlmb3CW4e2Qe-Awanf85oaVzZl` | — |
+
+**Os nomes dos arquivos descrevem o conteúdo** ("Couro cabeludo com fios de
+diferentes espessuras", "Retrato Blazer Terracota Mão no Queixo Close"), então
+listar a pasta já basta para escolher. Liste com o Drive:
+
+```
+search_files: parentId = '<ID da pasta>'
+```
+
+**Para baixar, use HTTP direto, não a ferramenta do Drive.** O
+`download_file_content` devolve o arquivo em base64 e um PNG de 3 MB estoura o
+contexto. Isto resolve em um comando:
+
+```bash
+curl -sSL -o foto.png \
+  "https://drive.usercontent.google.com/download?id=<ID>&export=download"
+```
+
+### Escolher a foto
+
+- **Uma foto por frase, quando o conteúdo pede.** Ela autorizou usar o banco
+  livremente: "sempre que tiver a ver o conteúdo com a foto pode usar".
+- **Varie o tipo visual entre slides vizinhos.** Duas macros de couro cabeludo
+  parecidas em sequência leem como foto repetida. Intercale macro, cena de
+  clínica, cena de salão, retrato.
+- **A capa alterna o tom, para o feed ter contraste.** Ela pediu isso
+  explicitamente. Registre o que já saiu: desver e calvície e volume foram
+  todas em bege e marrom; a de "parecem normais" foi de preto, justamente por
+  isso. Antes de escolher, olhe as últimas três.
+
+### Dois defeitos do banco, para não tropeçar
+
+1. **Algumas imagens estão espelhadas.** Em "Retrato Colete Preto Segurando
+   Livro Manual de Transplante Capilar" o título do livro lê invertido. Não use
+   foto com texto legível sem antes conferir o sentido.
+2. **Falta uma foto de linha frontal / testa.** Para "minha testa sempre foi
+   grande" o mais próximo no banco é uma tricoscopia de unidades espaçadas. Se
+   ela puder fotografar a linha frontal, o banco ganha o que falta.
+
 ## Como montar um carrossel
 
 1. **Leia `referencias/tom.md`** e escreva o texto primeiro, fora do template.
