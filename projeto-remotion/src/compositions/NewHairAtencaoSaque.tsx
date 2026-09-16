@@ -101,8 +101,8 @@ const TITULO = {
   modo: "temporario" as "temporario" | "permanente",
 
   inicio: 0.15, // quando a primeira letra aparece
-  seguraAte: 5.45, // o gancho falado acaba em 5.56 ("puxando")
-  saiEm: 5.65, // sai no respiro antes da 1a legenda (5.72)
+  seguraAte: 5.38, // o gancho falado acaba em 5.50 ("puxando")
+  saiEm: 5.58, // sai no respiro antes da 1a legenda (5.64)
 };
 
 /* LEGENDA DE RODAPE, frase a frase, colada na fala.
@@ -122,45 +122,45 @@ type Cue = {
    e com janela menor que 16 frames f1-8 fica <= f0+8, quebrando a interpolação. */
 const CUES: Cue[] = [
   {
-    start: 5.68,
-    end: 9.28,
+    start: 5.60,
+    end: 9.26,
     lines: [
       { text: "Quem acompanha essa etapa precisa", size: 26 },
       { text: "perceber RESISTÊNCIA,", size: 34, gold: true },
     ],
   },
   {
-    start: 9.38,
-    end: 11.20,
+    start: 9.36,
+    end: 11.16,
     lines: [{ text: "ter CUIDADO com o manuseio,", size: 32, gold: true }],
   },
   {
-    start: 11.28,
-    end: 14.46,
+    start: 11.24,
+    end: 14.16,
     lines: [
       { text: "e saber COMUNICAR", size: 34, gold: true },
       { text: "todas as dificuldades.", size: 26 },
     ],
   },
   {
-    start: 14.55,
-    end: 19.18,
+    start: 14.24,
+    end: 18.82,
     lines: [
       { text: "Insistir em um saque que está difícil", size: 26 },
       { text: "pode DANIFICAR as estruturas do folículo.", size: 26, gold: true },
     ],
   },
   {
-    start: 19.35,
-    end: 23.12,
+    start: 18.90,
+    end: 22.64,
     lines: [
       { text: "Na New Hair, nós valorizamos", size: 28 },
       { text: "essa ATENÇÃO durante o procedimento.", size: 28, gold: true },
     ],
   },
   {
-    start: 23.30,
-    end: 28.38,
+    start: 22.78,
+    end: 27.86,
     lines: [
       { text: "Observar, comunicar e acompanhar", size: 26 },
       { text: "a sua orientação faz parte", size: 26 },
@@ -168,16 +168,16 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 28.46,
-    end: 31.92,
+    start: 27.90,
+    end: 31.40,
     lines: [
       { text: "Você precisa de uma equipe que", size: 26 },
       { text: "esteja ATENTA AOS DETALHES?", size: 32, gold: true },
     ],
   },
   {
-    start: 32.00,
-    end: 34.12,
+    start: 31.48,
+    end: 33.62,
     lines: [
       { text: "Entre em contato com a gente", size: 26 },
       { text: "pelo LINK NA BIO.", size: 36, gold: true },

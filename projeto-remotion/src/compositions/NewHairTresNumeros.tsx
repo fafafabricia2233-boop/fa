@@ -91,8 +91,8 @@ const TITULO = {
   modo: "temporario" as "temporario" | "permanente",
 
   inicio: 0.15,
-  seguraAte: 5.12, // gancho falado acaba em 5.24 ("diferentes?")
-  saiEm: 5.32, // sai no respiro antes da 1a legenda (5.40)
+  seguraAte: 5.08, // gancho falado acaba em 5.20 ("diferentes?")
+  saiEm: 5.28, // sai no respiro antes da 1a legenda (5.36)
 };
 
 /* LEGENDA DE RODAPE, frase a frase, colada na fala.
@@ -112,8 +112,8 @@ type Cue = {
    e com janela menor que 16 frames f1-8 fica <= f0+8, quebrando a interpolação. */
 const CUES: Cue[] = [
   {
-    start: 5.36,
-    end: 8.84,
+    start: 5.32,
+    end: 8.78,
     lines: [
       { text: "Uma pessoa fala que CONTOU,", size: 28, gold: true },
       { text: "a outra tenta lembrar", size: 26 },
@@ -121,66 +121,66 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 8.90,
-    end: 12.28,
+    start: 8.82,
+    end: 12.22,
     lines: [
       { text: "e você fica PERDIDO", size: 34, gold: true },
       { text: "no meio de tanta informação.", size: 26 },
     ],
   },
   {
-    start: 12.38,
-    end: 15.22,
+    start: 12.32,
+    end: 15.18,
     lines: [
       { text: "Para uma boa contagem, a gente precisa", size: 24 },
       { text: "de ORGANIZAÇÃO,", size: 34, gold: true },
     ],
   },
   {
-    start: 15.32,
-    end: 17.30,
+    start: 15.30,
+    end: 17.26,
     lines: [{ text: "RESPONSABILIDADE e COMUNICAÇÃO", size: 28, gold: true }],
   },
   {
-    start: 17.36,
-    end: 19.08,
+    start: 17.30,
+    end: 19.00,
     lines: [{ text: "durante todo o procedimento.", size: 28 }],
   },
   {
-    start: 19.14,
-    end: 22.22,
+    start: 19.04,
+    end: 22.26,
     lines: [
       { text: "Na New Hair, isso faz parte do", size: 26 },
       { text: "ACOMPANHAMENTO da cirurgia.", size: 30, gold: true },
     ],
   },
   {
-    start: 22.32,
-    end: 25.28,
+    start: 22.30,
+    end: 25.08,
     lines: [
       { text: "Nossa equipe mantém a", size: 26 },
       { text: "CONTAGEM ATUALIZADA com o médico", size: 26, gold: true },
     ],
   },
   {
-    start: 25.34,
-    end: 29.00,
+    start: 25.12,
+    end: 28.90,
     lines: [
       { text: "para que você possa conduzir", size: 26 },
       { text: "as etapas com mais SEGURANÇA.", size: 32, gold: true },
     ],
   },
   {
-    start: 29.04,
-    end: 33.04,
+    start: 28.94,
+    end: 32.92,
     lines: [
       { text: "Precisa de uma equipe ORGANIZADA,", size: 28, gold: true },
       { text: "capacitada nos seus procedimentos?", size: 26 },
     ],
   },
   {
-    start: 33.18,
-    end: 35.14,
+    start: 33.06,
+    end: 35.24,
     lines: [
       { text: "Entre em contato com a gente", size: 26 },
       { text: "pelo LINK NA BIO.", size: 36, gold: true },

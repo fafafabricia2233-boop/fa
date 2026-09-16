@@ -119,23 +119,23 @@ type Cue = {
 const CUES: Cue[] = [
   {
     start: 6.64,
-    end: 9.70,
+    end: 9.62,
     lines: [
       { text: "Seu funcionário faz uma pergunta", size: 26 },
       { text: "e NINGUÉM EXPLICA.", size: 34, gold: true },
     ],
   },
   {
-    start: 9.78,
-    end: 12.96,
+    start: 9.66,
+    end: 12.84,
     lines: [
       { text: "Tenta acompanhar e percebe", size: 26 },
       { text: "que está INCOMODANDO.", size: 34, gold: true },
     ],
   },
   {
-    start: 13.02,
-    end: 17.34,
+    start: 12.90,
+    end: 17.22,
     lines: [
       { text: "O tempo vai passando e ele para", size: 26 },
       { text: "até mesmo de entrar no", size: 26 },
@@ -143,27 +143,27 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 17.42,
-    end: 21.06,
+    start: 17.28,
+    end: 20.88,
     lines: [
       { text: "E sua clínica PERDE A OPORTUNIDADE", size: 26, gold: true },
       { text: "de desenvolver pessoas.", size: 26 },
     ],
   },
   {
-    start: 21.74,
-    end: 27.42,
+    start: 20.94,
+    end: 26.58,
     lines: [
       { text: "Na New Hair, nós", size: 26 },
       { text: "COMPARTILHAMOS CONHECIMENTO", size: 28, gold: true },
       { text: "e somamos com os profissionais", size: 24 },
-      { text: "da sua clínica.", size: 24 },
+      { text: "da sua clínica,", size: 24 },
     ],
   },
   {
-    start: 27.48,
-    end: 29.50,
-    lines: [{ text: "Respeitando as FUNÇÕES DE CADA UM.", size: 28, gold: true }],
+    start: 26.62,
+    end: 28.58,
+    lines: [{ text: "respeitando as FUNÇÕES DE CADA UM.", size: 28, gold: true }],
   },
 ];
 

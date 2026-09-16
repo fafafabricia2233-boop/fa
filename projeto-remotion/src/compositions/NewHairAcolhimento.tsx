@@ -94,8 +94,8 @@ const TITULO = {
   modo: "temporario" as "temporario" | "permanente",
 
   inicio: 0.15,
-  seguraAte: 5.10, // gancho falado acaba em 5.24 ("isso?")
-  saiEm: 5.30, // a frase seguinte comeca em 5.36: aqui o respiro e curto mesmo
+  seguraAte: 5.08, // gancho falado acaba em 5.22 ("isso?")
+  saiEm: 5.28, // a frase seguinte comeca em 5.34: aqui o respiro e curto mesmo
 };
 
 /* LEGENDA DE RODAPE, frase a frase, colada na fala.
@@ -115,16 +115,16 @@ type Cue = {
    e com janela menor que 16 frames f1-8 fica <= f0+8, quebrando a interpolação. */
 const CUES: Cue[] = [
   {
-    start: 5.32,
-    end: 10.30,
+    start: 5.30,
+    end: 10.28,
     lines: [
       { text: "Pra você, o procedimento deu tudo certo,", size: 26 },
       { text: "mas o paciente passou HORAS ali.", size: 28, gold: true },
     ],
   },
   {
-    start: 10.38,
-    end: 14.28,
+    start: 10.34,
+    end: 14.26,
     lines: [
       { text: "Ele ouviu cada CONVERSA,", size: 32, gold: true },
       { text: "ele percebeu a maneira", size: 26 },
@@ -132,16 +132,16 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 14.32,
-    end: 17.52,
+    start: 14.30,
+    end: 17.50,
     lines: [
       { text: "Se ele fez uma pergunta", size: 26 },
       { text: "e recebeu uma RESPOSTA SECA,", size: 30, gold: true },
     ],
   },
   {
-    start: 17.60,
-    end: 21.26,
+    start: 17.54,
+    end: 21.20,
     lines: [
       { text: "ou se até mesmo ele", size: 26 },
       { text: "apresentou desconforto", size: 26 },
@@ -149,24 +149,24 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 21.44,
-    end: 23.86,
+    start: 21.36,
+    end: 23.78,
     lines: [
       { text: "ele vai se LEMBRAR disso", size: 30, gold: true },
       { text: "no pós-operatório.", size: 26 },
     ],
   },
   {
-    start: 23.90,
-    end: 26.06,
+    start: 23.82,
+    end: 25.98,
     lines: [
       { text: "Na New Hair, a gente", size: 26 },
       { text: "ORIENTA o paciente,", size: 32, gold: true },
     ],
   },
   {
-    start: 26.30,
-    end: 31.20,
+    start: 26.22,
+    end: 31.08,
     lines: [
       { text: "EXPLICA e COMUNICA ao médico", size: 28, gold: true },
       { text: "todas as intercorrências", size: 26 },
@@ -174,8 +174,8 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 31.78,
-    end: 36.22,
+    start: 31.46,
+    end: 35.84,
     lines: [
       { text: "Porque o ACOLHIMENTO faz parte", size: 28, gold: true },
       { text: "do nosso trabalho", size: 26 },
@@ -183,16 +183,16 @@ const CUES: Cue[] = [
     ],
   },
   {
-    start: 36.66,
-    end: 39.78,
+    start: 36.28,
+    end: 39.38,
     lines: [
       { text: "Você quer uma equipe que CUIDE", size: 28, gold: true },
       { text: "dessa experiência junto com você?", size: 26 },
     ],
   },
   {
-    start: 39.92,
-    end: 42.06,
+    start: 39.52,
+    end: 41.78,
     lines: [
       { text: "Entre em contato com a gente", size: 26 },
       { text: "pelo LINK NA BIO.", size: 36, gold: true },

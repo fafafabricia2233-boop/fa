@@ -996,8 +996,8 @@ export const RemotionRoot: React.FC = () => {
             width={1080}
             height={1920}
             fps={30}
-            durationInFrames={Math.round(34.175 * 30)}
-            defaultProps={{ durationSeconds: 34.175, video: "newhair/atencaosaque_h264.mp4" }}
+            durationInFrames={Math.round(33.921 * 30)}
+            defaultProps={{ durationSeconds: 33.921, video: "newhair/atencaosaque_h264.mp4" }}
           />
         </Folder>
 
@@ -1008,8 +1008,8 @@ export const RemotionRoot: React.FC = () => {
             width={1080}
             height={1920}
             fps={30}
-            durationInFrames={Math.round(29.559 * 30)}
-            defaultProps={{ durationSeconds: 29.559, video: "newhair/aprendejunto_h264.mp4" }}
+            durationInFrames={Math.round(28.645 * 30)}
+            defaultProps={{ durationSeconds: 28.645, video: "newhair/aprendejunto_h264.mp4" }}
           />
         </Folder>
 
@@ -1020,8 +1020,8 @@ export const RemotionRoot: React.FC = () => {
             width={1080}
             height={1920}
             fps={30}
-            durationInFrames={Math.round(35.171 * 30)}
-            defaultProps={{ durationSeconds: 35.171, video: "newhair/tresnumeros_h264.mp4" }}
+            durationInFrames={Math.round(35.511 * 30)}
+            defaultProps={{ durationSeconds: 35.511, video: "newhair/tresnumeros_h264.mp4" }}
           />
         </Folder>
 
@@ -1032,8 +1032,8 @@ export const RemotionRoot: React.FC = () => {
             width={1080}
             height={1920}
             fps={30}
-            durationInFrames={Math.round(42.092 * 30)}
-            defaultProps={{ durationSeconds: 42.092, video: "newhair/acolhimento_h264.mp4" }}
+            durationInFrames={Math.round(42.071 * 30)}
+            defaultProps={{ durationSeconds: 42.071, video: "newhair/acolhimento_h264.mp4" }}
           />
         </Folder>
 
