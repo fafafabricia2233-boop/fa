@@ -79,6 +79,11 @@ import { NewHairConferencia, type NewHairConferenciaProps } from "./compositions
 import { NewHairEficiencia, type NewHairEficienciaProps } from "./compositions/NewHairEficiencia";
 import { KitNewHairPilot } from "./kit-referencia/video";
 import { ReelFalado } from "./compositions/ReelFalado";
+import { ReelTextoFixo } from "./compositions/ReelTextoFixo";
+import {
+  PLANO_COURO_CACHOS,
+  DURACAO_COURO_CACHOS,
+} from "./compositions/planoCourroCachos";
 import { PLANO_KIT, CUES_KIT } from "./kit-referencia/adaptar";
 import { PLANO_TESTE, CUES_TESTE } from "./compositions/testeFabricia";
 import { PLANO_AGILIDADE, CUES_AGILIDADE } from "./compositions/planoAgilidade";
@@ -1039,6 +1044,20 @@ export const RemotionRoot: React.FC = () => {
             fps={PLANO_AGILIDADE.fps}
             durationInFrames={PLANO_AGILIDADE.duration}
             defaultProps={{ marca: "newhair", plano: PLANO_AGILIDADE, cues: CUES_AGILIDADE }}
+          />
+        </Folder>
+
+        <Folder name="FabriciaSatza">
+          {/* Reel de TEXTO FIXO — formato "rotina com texto fixo".
+              Marca Fabrícia Satza; nada da New Hair atravessa pra cá. */}
+          <Composition
+            id="FabriciaCouroCachos"
+            component={ReelTextoFixo}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={DURACAO_COURO_CACHOS}
+            defaultProps={{ plano: PLANO_COURO_CACHOS }}
           />
         </Folder>
 

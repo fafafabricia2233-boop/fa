@@ -4,7 +4,82 @@ Arquivo exigido pelo manual (§09). Anexar numa conversa nova junto com
 `kit-new-hair/GUIA-INTEGRAL.md`. Regra geral fica na seção "Regras gerais";
 ajuste que vale só para uma peça fica na linha daquela peça.
 
-Última atualização: 14/09/2026.
+Última atualização: 16/09/2026.
+
+## FS_couro_cachos (16/09/2026) — primeira peça de TEXTO FIXO, e motor novo
+
+Marca **Fabrícia Satza**, formato que não existia aqui: **rotina com texto
+fixo**. Não há fala. Uma frase só fica parada na tela do frame 0 ao 321 e a
+imagem troca por baixo dela. Relatório completo em
+`entregas/FS_couro_cachos_v1.md`.
+
+**Motor novo: `ReelTextoFixo.tsx`.** O `ReelFalado` não serve e não é preguiça:
+ele nasce de fita falada — gancho virando título digitado, legenda por cue,
+beat caindo na virada. Aqui não há fala nem virada, e forçá-lo significaria
+digitação e legenda por cue, que é exatamente o que este formato proíbe.
+
+**O bloco de texto mora FORA das Sequences de vídeo.** Dentro, ele seria
+remontado a cada corte e piscaria na troca. Vale como regra do formato.
+
+**Portão de fonte, novo e permanente: `src/lib/fabriciaFontesProntas.ts`.**
+O `fabriciaFonts.ts` injetava o @font-face e aquecia as faces, mas **não
+segurava o render** — o Chromium podia pintar o frame 0 com a fonte de fallback
+e a quebra de linha sairia diferente, sem erro nenhum. Agora `delayRender()`
+espera `document.fonts.load()` das três faces e `document.fonts.ready`.
+E a conferência de que a fonte oficial saiu no arquivo virou medida: largura da
+TINTA no frame renderizado contra a métrica do `.ttf` (previsto 770,7 px,
+medido 765 px na linha mais longa). Fallback daria dezenas de px de diferença.
+
+**O tamanho do corpo sai da área útil, não do gosto.** Margem esquerda 90 +
+margem direita 180 (controles do Reels) deixam 810 px. A linha mais longa mede
+770,7 px a 54 px e **827,3 px a 58 px** — 58 estoura. Medir a linha contra o
+arquivo da fonte ANTES de escolher o corpo é passo.
+
+**O cabeçalho da marca foi DESLIGADO nesta peça, e é decisão medida.** O perfil
+põe o rótulo a 64 px do topo, que é onde o Instagram desenha o próprio "Reels".
+Sobre o azulejo branco do corte 4 ele caía a **2,5:1** mesmo com o véu
+reforçado (subiu pra 3,2:1, ainda baixo pra 22 px). Descê-lo pra dentro da área
+segura (abaixo de 220 px) o joga em cima do cabelo dela, que é o assunto.
+Virou chave no plano (`cabecalho: false`), não remoção do perfil.
+
+**Corte que obriga o texto a se mexer não entra.** A melhor fita do assunto
+"couro cabeludo" (o óleo pingado na risca, câmera direta) ficou fora porque o
+vidro fica na mão na altura do peito, exatamente onde o bloco mora. Texto fixo
+é fixo: ou o corte deixa a faixa livre, ou se escolhe outro corte.
+
+**Fita gravada contra espelho custa caro numa peça premium.** Duas fitas boas
+de "definição" saíram porque o tripé e o celular aparecem no quadro e a
+camiseta sai com o texto invertido. Espelhar consertaria a camiseta e
+inverteria todo o resto — alteração de imagem não se faz sem a dona mandar.
+
+**Cor: medir antes de corrigir.** Luma média dos quatro cortes: 128,5 / 140,8 /
+126,7 / 128,4. Só o segundo saltava, e levou brilho 0,95. Os outros três não
+foram tocados — a diferença entre o quarto e o chuveiro é luz de banheiro de
+verdade, não defeito.
+
+**Faixa de cor: o render do Remotion sai FULL RANGE de verdade.** Medido com
+`-pix_fmt yuvj420p` (sem conversão): YMIN 0, YMAX 255. Medir com `yuv420p`
+mente — o próprio ffmpeg converte e devolve 16/235 sempre. Então o
+`in_range=pc:out_range=tv` foi legítimo aqui, e a entrega saiu `tv`, igual às
+anteriores.
+
+**Trilha escolhida por ESTABILIDADE, não por força de entrada.** Peça sem fala
+e sem virada não precisa de beat caindo em lugar nenhum; precisa de cama que
+não chame atenção. Medido o desvio do nível em janelas de 12,8 s: cosy 2,04 dB,
+harmony 3,08, kickback 4,85. Ficou cosy, recortada em **97,616 s**, que é tempo
+forte de compasso (75 BPM, ataques de 1,6 em 1,6 s) — 12,8 s dá 4 compassos
+exatos. Entrega a −15,98 LUFS, pico real −3,42 dBTP.
+
+**Mix por fora e mux depois, como sempre**: correlação 1,0000 com o master,
+deslocamento **0,00 ms**. O atraso de 42 ms do render não entra por esse
+caminho.
+
+**QA:** 384 frames como no plano, 12,800 s, H264 High 1080×1920 30 fps
+constante, faixa limitada bt709, AAC 48 kHz, decodificação limpa, nenhum frame
+preto, nenhum corte com frame parado, pior contraste do texto 7,5:1 (branco) e
+3,9:1 (champagne). Conferido em prévia com a interface do Reels sobreposta.
+
+**Não aprovada** — falta a dona avaliar. Não publicada.
 
 ## NH_correndo (16/09/2026) — "edite com máximo cuidado"
 
