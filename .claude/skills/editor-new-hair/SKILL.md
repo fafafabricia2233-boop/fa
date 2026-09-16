@@ -684,3 +684,28 @@ grep -oE 'id="[A-Za-z0-9_-]+"' src/Root.tsx | sort | uniq -d
 ```
 
 Saída vazia é o que se espera.
+
+## Toda ponta de corte tem que abrir e fechar no SILÊNCIO (16/09/2026)
+
+Terceiro sinal do `varrer-corte.py`, e o que fecha o buraco que comeu duas
+palavras em peças entregues ("número" na NH_medico, "cirurgia" na NH_somar).
+
+**O erro de fundo era de MEDIDA, não de julgamento.** O detector de cauda tirava
+o piso de ruído da própria janela de 1,6 s. Quando a janela é quase toda fala —
+que é o caso normal no fim de uma frase — o piso sobe, o limiar vai junto e a
+última palavra inteira fica ABAIXO dele. O detector então informa "fim da fala"
+800 ms antes do fim, e o corte entra mastigado com aparência de folga.
+
+**A medida certa:** o piso é o silêncio do PRÓPRIO CORTE — decil mais baixo,
+vezes 2 — nunca uma fração do pico. Numa sala viva o ruído ambiente fica justo
+em 8% do pico, e um limiar assim reprova todo corte bom. Números medidos nesta
+fita: ruído ambiente 200–280, fala na ponta comida ~700.
+
+**A regra:** primeira e última fatia do corte abaixo do piso. Menos de 30 ms de
+ar em qualquer ponta = palavra comida, refazer. Entre 30 e 60 ms = apertado,
+olhar.
+
+**E a lição maior:** quando a dona pega uma palavra comida, o conserto não é
+recortar aquela peça — é achar por que a medição deixou passar e consertar a
+medição. Eu tinha visto esse mesmo mecanismo na NH_medico e tratei como caso
+isolado; ele voltou duas peças depois.

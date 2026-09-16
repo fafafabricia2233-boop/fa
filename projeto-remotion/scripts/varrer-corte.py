@@ -78,6 +78,43 @@ def regioes(arq, vao):
 
 SILABAS = "aeiouáéíóúâêôàãõy"
 
+def piso_do_arquivo(arq):
+    """Piso de ruído medido no ARQUIVO INTEIRO, não na janela.
+
+    Existe por causa de um erro real (NH_somar, 16/09/2026): o detector de cauda
+    tirava o piso da própria janela de 1,6 s, que era quase toda fala — o limiar
+    subiu acima da palavra e ele declarou "fim da fala" 800 ms antes do fim.
+    Resultado: a peça saiu com "cirurgia" cortada no meio, e a dona ouviu.
+    Janela pequena não tem silêncio suficiente pra estimar piso.
+    """
+    raw = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-i", arq, "-ac", "1",
+                          "-ar", "16000", "-f", "s16le", "-"], capture_output=True).stdout
+    x = array.array("h"); x.frombytes(raw); w = 160
+    env = [math.sqrt(sum(v * v for v in x[i*w:(i+1)*w]) / w) for i in range(len(x)//w)]
+    if not env: return 1.0, env
+    # O piso NÃO é uma fração do pico: numa fita com sala viva o ruído ambiente
+    # fica justo em 8% do pico e todo corte bom seria reprovado. O piso é o
+    # SILÊNCIO DO PRÓPRIO CORTE — decil mais baixo — e fala é o que passa bem
+    # acima dele. Medido nesta fita: ruído ~200, fala na borda comida ~700.
+    ordenado = sorted(env)
+    p10 = ordenado[max(0, len(ordenado) // 10)]
+    return max(p10 * 2.0, max(env) * 0.06), env
+
+def bordas_do_corte(arq):
+    """O corte ABRE e FECHA no silêncio? Devolve (folga_entrada, folga_saida) em ms.
+
+    Um corte bom tem ar nas duas pontas. Se a energia na primeira ou na última
+    fatia já está acima do piso, a borda pegou fala: consoante inicial comida ou
+    palavra final cortada no meio.
+    """
+    piso, env = piso_do_arquivo(arq)
+    if not env: return (0.0, 0.0)
+    ini = 0
+    while ini < len(env) and env[ini] <= piso: ini += 1
+    fim = len(env) - 1
+    while fim >= 0 and env[fim] <= piso: fim -= 1
+    return (ini * 10.0, (len(env) - 1 - fim) * 10.0)
+
 def fracao_de_fala(arq, a, b):
     """Quanto do intervalo tem ENERGIA de fala, de 0 a 1.
 
@@ -178,6 +215,16 @@ def main():
             else:
                 print(f"  · anáfora?: {regs[k][0]:.2f} e {regs[k+1][0]:.2f} abrem igual "
                       f"mas seguem diferente — provável recurso de fala, conferir.")
+
+        # ---- sinal C: o corte abre e fecha no silêncio? ----
+        fe, fs = bordas_do_corte(arq)
+        for nome, folga in (("ENTRADA", fe), ("SAÍDA", fs)):
+            if folga < 30:
+                suspeitos.append(arq)
+                print(f"  ⚠ BORDA {nome} SEM AR: só {folga:.0f} ms de silêncio na ponta "
+                      f"— o corte pegou fala. Palavra comida.")
+            elif folga < 60:
+                print(f"  · borda {nome.lower()} apertada: {folga:.0f} ms de ar.")
 
         # ---- sinal B: palavra esticada por cima de um buraco ----
         segs, _ = modelo.transcribe(arq, language="pt", word_timestamps=True,

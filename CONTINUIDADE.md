@@ -110,7 +110,25 @@ tensão delimitar. Vale como regra: **quando `tensao-fim` cai em cima de
 `NewHairSomarClinica`. Conferir ids duplicados antes de renderizar agora é
 passo.
 
-**QA:** 928 frames como no plano, offset 0,0 ms, 0 quadros com topo liso, beat
+**v2 (16/09): "CIRURGIA" ESTAVA CORTADA NO MEIO — e a culpa era da ferramenta.**
+A dona ouviu. O clip1 fechava em 33,75 e a palavra vai até **34,26**. O detector
+de cauda tirava o piso de ruído da própria janela de 1,6 s, que ali era quase
+toda fala: o limiar subiu ACIMA da palavra e ele declarou "fim da fala" 800 ms
+antes do fim. É o mesmo mecanismo que tinha comido "número" na NH_medico, e eu
+tinha tratado aquilo como caso isolado em vez de consertar a medida.
+
+**Conserto de verdade:** `varrer-corte.py` ganhou um TERCEIRO sinal — *toda ponta
+de corte tem que abrir e fechar no silêncio*. E o piso dele não é fração do pico
+(numa sala viva o ruído ambiente fica justo em 8% do pico e todo corte bom seria
+reprovado): é o **decil mais baixo do próprio corte, vezes 2**. Calibrado contra
+quatro cortes conhecidos — o comido tinha fala a 700 na ponta, os bons tinham
+ruído a 200–280.
+
+Passado nos cortes das três últimas peças (falado14, 15 e 16): **só o clip1
+reprovou**. O clip3, com 30 ms de ar, ganhou folga na mesma leva. Peça foi a 953
+frames.
+
+**QA v2:** 953 frames como no plano, offset 0,0 ms, 0 quadros com topo liso, beat
 +13,3 dB. Música: bittersweet (a rotação reiniciou). Faixa mascarada de 600
 (cabelo em 512 px). Olhar conferido nos cinco cortes; portão de gagueira: 0.
 
