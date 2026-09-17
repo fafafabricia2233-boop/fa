@@ -16,9 +16,13 @@
    prova precisa chegar na ordem em que a frase a promete, e a segunda metade
    é a que a peça existe pra defender.
 
-   1. "passando protetor termico no cabelo" (F) 3,70→6,50
-      Ela borrifa e trabalha o cacho com a mão. É o gesto de DEFINIÇÃO, com o
-      rosto na lente. Abre a peça direto na cena, sem vinheta.
+   1. "Mostrando cabelo bonito finalizado" (L) 17,00→19,80  ← TROCADO em 17/09
+      DE COSTAS, o cabelo inteiro na tela, cheio, com movimento de verdade
+      (ela sacode e levanta o cabelo). Pedido dela: abrir mostrando o cabelo
+      bonito finalizado de costas. É a prova do "eu cuido da definição" antes
+      de a frase ser lida — o resultado abre a peça, não o processo.
+      SAIU daqui o "passando protetor térmico" (F, 3,70→6,50): bom gesto e
+      rosto na lente, mas é o PROCESSO, e ela pediu o resultado.
    2. "usando secador no cabelo, dando volume" (R) 68,30→71,00
       Difusor, volume tomando forma, ela sorri e olha pra câmera. Fecha a
       primeira metade — "a definição" — no melhor momento de expressão da fita.
@@ -98,9 +102,10 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
       src: "fabricia/cortes/clip1_cachos.mp4",
       duracao: C1,
       origem:
-        "Drive · passando produto no cabelo · " +
-        "'passando protetor termico no cabelo, passando spray protetor no cabelo' " +
-        "(1ZCxmAleTExcVGIEjWXcSL1jnk8QRAcS-) · 3,70→6,50 s",
+        "Drive · Mostrando o cabelo · " +
+        "'Mostrando cabelo bonito finalizado repartindo ao meio o couro cabeludo' " +
+        "(1f3khS0vJfGb4O4nw10Z1zh_XJGyOq-T6) · 17,00→19,80 s · " +
+        "recorte 648×1152 em (126, 768)",
     },
     {
       src: "fabricia/cortes/clip2_volume.mp4",
@@ -108,7 +113,8 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
       origem:
         "Drive · usando secador · " +
         "'usando secador no cabelo, dando volume no cabelo crespo' " +
-        "(1wl0D2pX1UbPrbsNnqlRGw9EMB5T3C6lu) · 68,30→71,00 s",
+        "(1wl0D2pX1UbPrbsNnqlRGw9EMB5T3C6lu) · 68,30→71,00 s · " +
+        "recorte 792×1408 em (184, 86)",
     },
     {
       src: "fabricia/cortes/clip3_massagem.mp4",

@@ -6,6 +6,38 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_couro_cachos v5 (17/09/2026) — abertura: o resultado, não o processo
+
+*"Troque esse do início para um vídeo onde estou mostrando o cabelo bonito
+finalizado de costas."* Entrou a fita `Mostrando cabelo bonito finalizado`
+(17,00→19,80), saiu o `passando protetor térmico`.
+
+**A regra que isso deixa: peça de rotina abre pelo RESULTADO.** O corte que
+saiu tinha rosto na lente e gesto bom, mas era o processo. O que entra primeiro
+é a prova do que a frase vai afirmar.
+
+**Dentro da mesma fita, escolher o trecho é escolher o que NÃO repete.** Os
+três trechos bons dela são 8–11 s, 17–20 s e 22–27 s. Dois deles são ela
+abrindo a risca — que é exatamente o assunto do corte 4. Ficou o de 17–20 s,
+o único em que o cabelo inteiro está na tela com movimento. Abrir e fechar a
+peça com a mesma imagem é o defeito que isso evita.
+
+**Abertura se escolhe pelo PRIMEIRO FRAME, e mais aberto ganhou.** Testei
+576×1024 contra 648×1152. O fechado vira textura de cabelo e leva um tempo pra
+ser entendido; o aberto mostra a silhueta e o ombro e lê na hora. Numa abertura
+de Reel, reconhecer a imagem no primeiro frame é o que segura o dedo.
+
+**Quadro cheio de cabelo é mais escuro que plano de rosto — e a emenda acusa.**
+No primeiro render a emenda do frame 84 dava 80,0 → 102,9, salto de 23. Não é
+defeito de grade, é conteúdo; mas 23 se vê. Brilho +0,045 no corte 1 e −0,075
+no corte 2 derrubou pra 6,6, com o cabelo conferido num close pra garantir que
+não lavou. **Compensar emenda é ajuste de plano, não de curva** — a curva
+continua a mesma dos quatro.
+
+**QA:** 384 frames (a duração não mudou — o corte novo tem os mesmos 84),
+12,800 s, decodificação limpa, nenhum frame preto, pior contraste da legenda
+5,9:1, nenhum corte com frame parado.
+
 ## FS_couro_cachos v4 (16/09/2026) — chegou OUTRA fonte, e ela não é a do kit
 
 Ela mandou `Fabricia-Light_idêntica_a_futura_PT.otf` com "use para o vídeo".

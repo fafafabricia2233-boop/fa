@@ -4,8 +4,8 @@ Peça: Reel de **texto fixo** da marca pessoal **Fabrícia Satza | Tricologia e
 Terapia Capilar**. Montada em 16/09/2026. **Não aprovada** — falta a dona
 avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v4.mp4`
-As versões anteriores ficam em `..._v1` a `..._v3` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v5.mp4`
+As versões anteriores ficam em `..._v1` a `..._v4` para comparação.
 
 ---
 
@@ -407,3 +407,51 @@ peça escolhe a família pelo campo `texto.familia` do plano.
 limpa · nenhum frame preto · pior contraste da legenda 5,5:1 · emendas com luma
 106,5→102,9 · 103,1→96,7 · 101,9→88,6. Enquadramento, grade, trilha, fecho e
 duração não mudaram. Não aprovada.
+
+---
+
+# v5 (17/09/2026) — abertura trocada: o cabelo finalizado, de costas
+
+Pedido dela: *"Troque esse do início para um vídeo onde estou mostrando o
+cabelo bonito finalizado de costas."*
+
+**Entrou:** `Mostrando cabelo bonito finalizado repartindo ao meio o couro
+cabeludo` (`1f3khS0vJfGb4O4nw10Z1zh_XJGyOq-T6`), trecho **17,00 → 19,80 s**,
+recorte 648×1152 em (126, 768).
+
+Dessa fita, o trecho de 17 a 20 s é o único em que ela está **de costas com o
+cabelo inteiro na tela, cheio e em movimento de verdade** (ela levanta e sacode
+o cabelo). Os outros trechos bons da mesma fita — 8 a 11 s e 22 a 27 s — são
+ela **abrindo a risca**, e isso é o assunto do corte 4; repetir abriria e
+fecharia a peça com a mesma imagem.
+
+**Saiu:** `passando protetor térmico` (F, 3,70→6,50). Bom gesto e rosto na
+lente, mas é o **processo**; ela pediu o **resultado**. Fica registrado: essa
+fita continua boa e pode voltar em outra peça.
+
+**Por que não a outra fita de "cabelo finalizado":** a `M` (`17Te-o8Krs...`)
+também é de costas, mas é gravada contra o espelho — o tripé e o celular lilás
+entram no quadro. Mesma razão que já tinha barrado ela na v1.
+
+## Duas medidas que o corte novo obrigou
+
+**1. Enquadramento: mais aberto ganhou do mais fechado.** Testei 576×1024 e
+648×1152 lado a lado. O fechado vira textura de cabelo e o espectador leva um
+tempo pra entender o que está vendo; o aberto mostra a **silhueta** do cabelo e
+o ombro, e lê na hora como "ela mostrando o cabelo de costas". Numa abertura de
+Reel, o que segura o dedo é reconhecer a imagem no primeiro frame.
+
+**2. A emenda pediu compensação de exposição.** Um quadro cheio de cabelo é
+naturalmente mais escuro que um plano de rosto: no primeiro render a emenda do
+frame 84 dava **80,0 → 102,9** (salto de 23). Não é defeito de grade, é
+conteúdo — mas 23 se vê. Ajustado com brilho +0,045 no corte 1 e −0,075 no
+corte 2, o salto caiu pra **6,6**, e conferido num close que o cabelo **não**
+lavou.
+
+Emendas da v5: 89,3→95,9 · 96,2→96,7 · 101,9→88,6.
+
+**QA:** 384 frames · 12,800 s (a duração não mudou: o corte novo tem os mesmos
+84 frames) · faixa limitada bt709 · decodificação limpa · nenhum frame preto ·
+pior contraste da legenda **5,9:1** · nenhum dos quatro cortes com frame parado
+(movimento médio 14,7 · 5,6 · 13,2 · 5,5). Legenda, fonte, trilha e fecho não
+mudaram. Não aprovada.
