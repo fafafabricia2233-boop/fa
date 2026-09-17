@@ -6,6 +6,33 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_couro_cachos v6 (17/09/2026) — a largura do assunto manda no recorte
+
+*"Está muito perto, não tá dando pra ver o cabelo todo, afasta mais um pouco."*
+Recorte da abertura de 648×1152 pra **810×1440 em (0, 480)**.
+
+**Medir a LARGURA do assunto antes de escolher o recorte.** O cabelo mede ~800
+px de largura na fita; com 648 de recorte faltavam 150 px dos dois lados e o
+que aparecia era textura, não silhueta. E como 9:16 amarra altura à largura,
+810 de largura **obriga** 1440 de altura — não é escolha.
+
+**Consequência que não tem saída:** o cabelo é quase quadrado (800×835) e o
+quadro é 9:16, então qualquer recorte que contenha a largura sobra altura. A
+barra do boxe mora em y 690→770 e a fita não tem céu suficiente abaixo dela pra
+preencher. **Ver o cabelo inteiro e tirar a barra são incompatíveis nesta
+fita.** Testadas três larguras em três instantes: 864 deixa entrar o braço
+dela; 810 mostra o cabelo inteiro com a barra reduzida a uma diagonal discreta.
+
+**Compensação de emenda é refém do enquadramento — remede sempre.** O +0,045 de
+brilho que a v5 pôs no corte 1 existia porque o recorte fechado era escuro.
+Aberto, o mesmo ajuste levou o plano de 89 pra 118 de luma. Tirado o reforço, as
+emendas ficaram melhores do que nunca: 98,9→97,9 (1,0) e 98,2→96,7 (1,5), contra
+6,6 e 0,5 da v5. Herdar número de ajuste depois de mexer no recorte empurra o
+plano pro lado errado.
+
+**QA:** 384 frames, 12,800 s, decodificação limpa, nenhum frame preto, pior
+contraste da legenda 5,7:1, nenhum corte com frame parado.
+
 ## FS_couro_cachos v5 (17/09/2026) — abertura: o resultado, não o processo
 
 *"Troque esse do início para um vídeo onde estou mostrando o cabelo bonito

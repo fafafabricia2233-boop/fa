@@ -4,8 +4,8 @@ Peça: Reel de **texto fixo** da marca pessoal **Fabrícia Satza | Tricologia e
 Terapia Capilar**. Montada em 16/09/2026. **Não aprovada** — falta a dona
 avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v5.mp4`
-As versões anteriores ficam em `..._v1` a `..._v4` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v6.mp4`
+As versões anteriores ficam em `..._v1` a `..._v5` para comparação.
 
 ---
 
@@ -455,3 +455,46 @@ Emendas da v5: 89,3→95,9 · 96,2→96,7 · 101,9→88,6.
 pior contraste da legenda **5,9:1** · nenhum dos quatro cortes com frame parado
 (movimento médio 14,7 · 5,6 · 13,2 · 5,5). Legenda, fonte, trilha e fecho não
 mudaram. Não aprovada.
+
+---
+
+# v6 (17/09/2026) — a abertura afastou
+
+*"No primeiro vídeo está muito perto, não tá dando pra ver o cabelo todo,
+afasta mais um pouco."* Ela está certa: na v5 o recorte era 648 de largura e o
+cabelo mede **~800 px** de largura na fita. Faltavam 150 px de cabelo dos dois
+lados; o que se via era textura, não a silhueta.
+
+**Recorte novo: 810×1440 em (0, 480)** — antes 648×1152 em (126, 768).
+
+**A largura é o número que manda, e 9:16 amarra o resto.** Medido nos quadros
+do trecho: o cabelo ocupa x≈0→800 e y≈735→1570. Pra caber a largura de 800 o
+recorte precisa de 810; e como a proporção é fixa, 810 de largura obriga
+**1440 de altura**. Só existe 1920 de altura na fita, então o alto do recorte
+tem que começar em 480 — acima da barra do boxe, que mora em y 690→770.
+
+**Ou seja: não dá pra ver o cabelo inteiro E tirar a barra.** O cabelo é quase
+quadrado (800×835) e o quadro é 9:16; qualquer recorte que contenha a largura
+dele sobra altura, e a fita não tem céu suficiente abaixo da barra pra
+preencher. Testei três larguras lado a lado em três instantes do trecho:
+o de 864 ainda deixa entrar o braço dela à direita; o de 810 mostra o cabelo
+inteiro com a barra reduzida a uma diagonal discreta no alto. Ficou o 810.
+
+**A compensação de exposição da v5 teve que ser desfeita.** O recorte mais
+aberto pega mais parede branca, e o corte 1 passou de 89 pra 118 de luma média
+com o mesmo +0,045 de brilho. Tirado o reforço (corte 1 sem ajuste, corte 2 de
+volta a −0,065), as emendas ficaram **melhores do que nunca**:
+
+| emenda | v5 | v6 |
+|---|---|---|
+| corte 1 → 2 | 89,3 → 95,9 (6,6) | **98,9 → 97,9 (1,0)** |
+| corte 2 → 3 | 96,2 → 96,7 (0,5) | **98,2 → 96,7 (1,5)** |
+| corte 3 → 4 | 101,9 → 88,6 (13,3) | 101,9 → 88,6 (13,3) |
+
+Lição: **compensação de emenda é refém do enquadramento.** Mudou o recorte,
+remede o brilho — herdar o número de antes empurra o plano pro lado errado.
+
+**QA:** 384 frames · 12,800 s · faixa limitada bt709 · decodificação limpa ·
+nenhum frame preto · pior contraste da legenda **5,7:1** · nenhum corte com
+frame parado (movimento médio 11,6 · 5,6 · 13,2 · 5,5). Legenda, fonte, grade,
+trilha e fecho não mudaram. Não aprovada.

@@ -17,10 +17,16 @@
    é a que a peça existe pra defender.
 
    1. "Mostrando cabelo bonito finalizado" (L) 17,00→19,80  ← TROCADO em 17/09
-      DE COSTAS, o cabelo inteiro na tela, cheio, com movimento de verdade
-      (ela sacode e levanta o cabelo). Pedido dela: abrir mostrando o cabelo
-      bonito finalizado de costas. É a prova do "eu cuido da definição" antes
-      de a frase ser lida — o resultado abre a peça, não o processo.
+      DE COSTAS, o cabelo INTEIRO na tela — silhueta completa, não textura —,
+      cheio e com movimento de verdade (ela sacode e levanta o cabelo). Pedido
+      dela: abrir mostrando o cabelo bonito finalizado de costas. É a prova do
+      "eu cuido da definição" antes de a frase ser lida — o resultado abre a
+      peça, não o processo.
+      O recorte é 810×1440 em (0, 480), e a largura é o número que manda: o
+      cabelo mede ~800 px de largura na fita, então recorte mais estreito que
+      isso corta a silhueta. Como 9:16 amarra altura à largura, 810 de largura
+      pede 1440 de altura, e a barra do boxe (y 690→770) entra no alto. É o
+      preço de ver o cabelo inteiro: a fita não tem céu suficiente abaixo dela.
       SAIU daqui o "passando protetor térmico" (F, 3,70→6,50): bom gesto e
       rosto na lente, mas é o PROCESSO, e ela pediu o resultado.
    2. "usando secador no cabelo, dando volume" (R) 68,30→71,00
@@ -105,7 +111,7 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
         "Drive · Mostrando o cabelo · " +
         "'Mostrando cabelo bonito finalizado repartindo ao meio o couro cabeludo' " +
         "(1f3khS0vJfGb4O4nw10Z1zh_XJGyOq-T6) · 17,00→19,80 s · " +
-        "recorte 648×1152 em (126, 768)",
+        "recorte 810×1440 em (0, 480)",
     },
     {
       src: "fabricia/cortes/clip2_volume.mp4",
