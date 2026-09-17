@@ -142,55 +142,45 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
 
   /* Quebra em unidade de sentido, dois parágrafos = as duas metades da frase.
      O texto é o do pedido, palavra por palavra. */
+  /* UM bloco só, quatro linhas EQUILIBRADAS — o pedido de 17/09: "que a
+     legenda fique bonita alinhadinha minimalista".
+
+     A referência que ela apontou (a rotina no chuveiro) tem seis linhas com
+     larguras de 618, 566, 567 e 596 px em 1080: variação de 9%. É isso que o
+     olho lê como "alinhadinha" — não a quebra em unidade de sentido, e sim a
+     forma do bloco. Lá as linhas terminam em "but" e em "to" de propósito.
+
+     Aqui, medidas as quebras possíveis contra o arquivo da fonte, esta é a
+     mais equilibrada que ainda deixa cada linha legível:
+        413 · 625 · 525 · 473 px  (variação 212 contra 386 da versão anterior)
+     O preço é a linha 1 acabar em "da", que é exatamente o que a referência
+     faz. Sem respiro entre as frases: lá é um bloco corrido só. */
   paragrafos: [
     {
       linhas: [
-        { partes: [{ texto: "Eu cuido muito da definição" }] },
-        { partes: [{ texto: "dos meus cachos." }] },
-      ],
-    },
-    {
-      linhas: [
-        /* SEM ênfase de peso: a fonte que ela mandou vem com UM peso só (300).
-           Pedir 500 faria o navegador engordar a forma — negrito sintético,
-           que o manual dela proíbe — e usar a Medium do kit antigo colocaria
-           dois desenhos de letra na mesma linha. A palavra volta a ser marcada
-           assim que chegar a face de ênfase desta mesma família. */
-        { partes: [{ texto: "Mas não deixo o couro cabeludo" }] },
-        { partes: [{ texto: "por último." }] },
+        { partes: [{ texto: "Eu cuido muito da" }] },
+        { partes: [{ texto: "definição dos meus cachos." }] },
+        { partes: [{ texto: "Mas não deixo o couro" }] },
+        { partes: [{ texto: "cabeludo por último." }] },
       ],
     },
   ],
 
   texto: {
-    /* FONTE DA DONA (16/09/2026): "Fabrícia Light, idêntica à Futura PT".
-       O corpo teve que MUDAR junto com a fonte: a altura de x da legenda da
-       referência é 25,5 px em 1080, e esta família tem altura de x de 0,433 em
-       (a do kit antigo tinha 0,460). 25,5 ÷ 0,433 = 58,9. Ficou 58, que dá
-       25,1 px de altura de x e deixa a linha mais longa em 806 px numa caixa
-       de 840 — 59 caberia, mas com só 20 px de folga. */
-    tamanho: 58,
-    entrelinha: 1.42,
-    respiro: 26,
-    /* bloco mede 4×78,8 + 28 = 343,4 px. bottom 415 ⇒ ocupa 1161,6 → 1505 px:
-       começa muito abaixo dos 220 px de topo e sobra 55 px até os últimos
-       360 px (1560), onde o nome, a legenda e o áudio do Reels vão aparecer.
-       Conferido na prévia com a interface sobreposta: a coluna de botões da
-       direita começa em x≈950 e a linha mais longa acaba em x=860. */
-    /* bloco: 4×79,5 + 26 = 344 px. bottom 476 ⇒ ocupa 1100 → 1444 px.
-       Fica abaixo do queixo nos dois planos de rosto (que acabam em ~900 e
-       ~830 com o enquadramento novo) e bem acima dos últimos 360 px. */
-    bottom: 476,
-    /* CENTRALIZADO, como a referência. A caixa é 90→930, então o eixo cai em
-       510: a linha mais longa (793 px) vai de 113 a 907 e não encosta na
-       coluna de botões do Reels, que começa por volta de x=950. */
+    /* 54 px com entrelinha 1,22. A referência da legenda "alinhadinha" tem
+       passo de linha de 51 px em 1080 contra corpo de ~48 — razão 1,06, bem
+       apertada. Aqui 1,22 é o piso seguro: o português tem til e acento, e
+       medido a 54 px sobra 17 px entre o descendente de uma linha e o til da
+       seguinte. Abaixo disso eles se encostam. */
+    tamanho: 54,
+    entrelinha: 1.22,
+    respiro: 0, // bloco corrido, sem respiro entre frases
+    /* bloco: 4 × 65,9 = 264 px. bottom 522 ⇒ ocupa 1134 → 1398 px. */
+    bottom: 522,
     margemEsquerda: 90,
     margemDireita: 150,
     alinhamento: "center",
     face: "corpo",
-    /* A família que ela mandou. Não entra no perfil da marca de propósito: o
-       perfil é compartilhado com as peças faladas, que ela não pediu pra
-       mudar. */
     familia: "Fabricia",
     enfaseCor: "texto",
   },
@@ -206,7 +196,7 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
   /* Véu bem mais leve que na v1: a referência não tem véu nenhum, e o grade
      novo já escureceu o fundo. 0,40 é o mínimo que ainda segura a legenda
      sobre a camiseta verde-clara do corte 2 — conferido frame a frame. */
-  veu: { topo: 1060, base: 1470, cauda: 200, alfa: 0.4 },
+  veu: { topo: 1100, base: 1420, cauda: 190, alfa: 0.4 },
 
   endCard: CENAS,
   duracao: TOTAL,

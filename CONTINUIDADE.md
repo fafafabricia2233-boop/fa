@@ -6,6 +6,43 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_couro_cachos v7 (17/09/2026) — "alinhadinha" é a forma do bloco, não a quebra
+
+*"Quero que a legenda fique bonita alinhadinha minimalista aesthetic desse
+jeito aqui."* A referência apontada é a mesma rotina no chuveiro da primeira
+conversa (md5 idêntico).
+
+**O achado:** o que o olho lê como "alinhadinha" é a **variação de largura entre
+as linhas**, não a quebra em unidade de sentido. Medida a referência em 1080:
+618 · 566 · 567 · 596 px — **variação de 9%**. E pra chegar lá ela quebra em
+cima de palavra pequena de propósito: as linhas terminam em "but" e em "to".
+A legenda daqui tinha 661 · 420 · 806 · 255 — **48%**. Cada linha era uma
+unidade de sentido perfeita e o bloco parecia bagunçado mesmo assim.
+
+**Isso contraria o §07 do pedido original** ("quebras em unidades de sentido"),
+e a correção mais recente da dona prevalece. Quebra nova, escolhida medindo
+TODAS as divisões possíveis contra o arquivo da fonte: 413 · 625 · 525 · 473,
+variação 212. Testadas também a de 6 linhas (mais equilibrada ainda, 132, mas
+picotada e alta) e a de quebras "limpas" (volta a ser ragged).
+
+**Entrelinha: 1,22, não os 1,06 da referência, e o motivo é o português.**
+Medido a 54 px, com 1,22 sobram 17 px entre o descendente de uma linha e o til
+de "definição" na seguinte. A referência é em inglês e não carrega til nem
+acento agudo no meio do bloco. **Copiar entrelinha de referência em inglês
+encosta acento em descendente.**
+
+**O que NÃO se copia de referência: a fonte.** A legenda de lá é uma SERIFADA
+de livro, e a marca dela usa a Futura PT que ela mandou ontem. O §01 do pedido
+proíbe substituir por fonte "visualmente semelhante" — e trocar a identidade
+tipográfica por causa de uma referência é decisão da dona. Nem a cor: lá o
+texto é escuro sobre azulejo claro; aqui as quatro cenas são cabelo escuro e
+espuma.
+
+**QA:** 384 frames, 12,800 s, decodificação limpa, nenhum frame preto, pior
+contraste da legenda 5,4:1, emendas 99,4→98,8 · 99,0→97,1 · 102,5→88,3. Fonte
+reconferida no arquivo entregue: tinta da linha 2 mede 623 px contra 625,0
+previstos.
+
 ## FS_couro_cachos v6 (17/09/2026) — a largura do assunto manda no recorte
 
 *"Está muito perto, não tá dando pra ver o cabelo todo, afasta mais um pouco."*

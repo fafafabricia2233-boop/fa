@@ -4,8 +4,8 @@ Peça: Reel de **texto fixo** da marca pessoal **Fabrícia Satza | Tricologia e
 Terapia Capilar**. Montada em 16/09/2026. **Não aprovada** — falta a dona
 avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v6.mp4`
-As versões anteriores ficam em `..._v1` a `..._v5` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_couro_cachos_v7.mp4`
+As versões anteriores ficam em `..._v1` a `..._v6` para comparação.
 
 ---
 
@@ -497,4 +497,74 @@ remede o brilho — herdar o número de antes empurra o plano pro lado errado.
 **QA:** 384 frames · 12,800 s · faixa limitada bt709 · decodificação limpa ·
 nenhum frame preto · pior contraste da legenda **5,7:1** · nenhum corte com
 frame parado (movimento médio 11,6 · 5,6 · 13,2 · 5,5). Legenda, fonte, grade,
+trilha e fecho não mudaram. Não aprovada.
+
+---
+
+# v7 (17/09/2026) — legenda "alinhadinha"
+
+*"Quero que a legenda fique bonita alinhadinha minimalista aesthetic desse
+jeito aqui"*, apontando a rotina no chuveiro (o mesmo arquivo da referência 3
+da primeira conversa — md5 idêntico).
+
+**O que faz aquela legenda parecer "alinhadinha" não é a quebra em unidade de
+sentido — é a FORMA DO BLOCO.** Medidas as linhas dela em 1080 de largura:
+**618 · 566 · 567 · 596 px**. Variação de 9%. E para conseguir isso ela quebra
+em cima de palavra pequena de propósito: as linhas terminam em *"but"* e em
+*"to"*.
+
+A legenda da v6 tinha **661 · 420 · 806 · 255** — variação de **48%**. Daí a
+sensação de bagunça, mesmo com cada linha sendo uma unidade de sentido.
+
+**Quebra nova, escolhida medindo todas as divisões possíveis contra o arquivo
+da fonte:**
+
+```
+Eu cuido muito da            413 px
+definição dos meus cachos.   625 px
+Mas não deixo o couro        525 px
+cabeludo por último.         473 px
+```
+
+Variação **212 px** contra 386 da v6. O preço é a linha 1 acabar em "da" — que
+é exatamente o que a referência faz. Testei também a versão de 6 linhas (a mais
+equilibrada de todas, variação 132) e a de quebras "limpas": a de 6 fica
+picotada e alta, a "limpa" volta a ser ragged. A de 4 acima é a que o olho lê
+como bloco.
+
+**Outras duas medidas copiadas da referência:**
+
+| | referência | v6 | v7 |
+|---|---|---|---|
+| passo entre linhas | 51 px (razão 1,06) | 82 px (1,42) | **66 px (1,22)** |
+| linha mais larga | 618 px | 806 px | **625 px** |
+| respiro entre frases | nenhum (bloco corrido) | 26 px | **nenhum** |
+
+**1,22 e não 1,06 porque o português tem acento.** Medido a 54 px: com 1,22
+sobram 17 px entre o descendente de uma linha e o til de "definição" na
+seguinte. Mais apertado que isso e eles se encostam — a referência é em inglês
+e não tem esse problema.
+
+Bloco: 264 px de altura, em 1134→1398 px. Véu estreitado junto (1100→1420).
+
+## O que NÃO foi copiado, e por quê
+
+**A letra da referência é uma SERIFADA** — uma serifada de livro, tipo Times,
+com serifa marcada e aspa curva. Não é a "Fabrícia Light / Futura PT" que ela
+mandou ontem e mandou usar. **Mantive a fonte dela.** O §01 do pedido original
+é explícito: *"Não deduza a fonte pelo nome da marca. Não substitua por uma
+fonte visualmente semelhante."* Trocar a identidade tipográfica dela pela de
+uma referência é decisão da dona, não do editor.
+
+Se ela quiser a letra serifada também, **basta mandar uma serifada para a
+marca** — é o mesmo caminho da OTF de ontem e sai num render.
+
+**A cor também não:** a referência é texto ESCURO sobre azulejo claro. As
+quatro cenas daqui são cabelo escuro e espuma; texto escuro sumiria. Fica
+branco.
+
+**QA:** 384 frames · 12,800 s · faixa limitada bt709 · decodificação limpa ·
+nenhum frame preto · pior contraste da legenda **5,4:1** · emendas 99,4→98,8 ·
+99,0→97,1 · 102,5→88,3. Fonte reconferida no arquivo entregue: tinta da linha 2
+mede **623 px** contra **625,0** previstos pela `.otf`. Enquadramento, grade,
 trilha e fecho não mudaram. Não aprovada.
