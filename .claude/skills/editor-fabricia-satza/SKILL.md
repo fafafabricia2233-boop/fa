@@ -481,6 +481,91 @@ que não se ouve mas continua somando no mix é pior que SFX nenhum.
 Cada ganho vale para o **arquivo de mesmo SHA-256**, igual ao critério do kit
 para ataques de música. Trocou o arquivo, remede antes de reutilizar.
 
+## PADRÃO DE LEGENDA ALINHADA — ordem permanente (17/09/2026)
+
+*"Salve esse padrão de legenda bonita e alinhada."* Vale para **toda peça de
+texto fixo dela** daqui pra frente. Os números executáveis estão em
+`projeto-remotion/src/lib/legendaFabricia.ts`; esta seção é o porquê.
+
+**O achado, e é contraintuitivo:** o que o olho lê como legenda "alinhadinha"
+é a **variação de largura entre as linhas**, não a quebra em unidade de
+sentido. Medida a referência que ela apontou (a rotina no chuveiro), em
+1080 de largura: linhas de **618 · 566 · 567 · 596 px — variação de 9%**. E pra
+chegar nisso a referência quebra em cima de palavra pequena **de propósito**:
+as linhas dela terminam em *"but"* e em *"to"*.
+
+A legenda da FS_couro_cachos v6 media **661 · 420 · 806 · 255 — variação de
+48%**. Cada linha era uma unidade de sentido impecável e o bloco parecia
+bagunçado mesmo assim. **Isso revoga, para peça de texto fixo, o "quebras em
+unidades de sentido" do §07 do pedido original** — que continua valendo para
+legenda de peça FALADA, onde a legenda é colada na fala e a unidade é a frase.
+
+| medida | valor | de onde vem |
+|---|---|---|
+| variação entre linhas | **≤ 25%** | referência dá 9%; acima de ~40% lê como bagunça |
+| corpo | **54 px** | altura de x da referência (25,5 px em 1080) ÷ 0,433 em da fonte dela |
+| entrelinha | **1,22** | PISO para português — ver abaixo |
+| alinhamento | centralizado | |
+| respiro entre frases | **nenhum** | a referência é um bloco corrido só |
+| cor | branco suave `#FCFAF7` | |
+| ênfase | nenhuma enquanto a família tiver um peso só | negrito sintético é proibido |
+| margens | 90 esq · 150 dir | a direita é a coluna de botões do Reels |
+| caixa útil | 840 px | 1080 − 90 − 150 |
+| véu | gradiente café, alfa 0,40, cauda 190 px | mínimo que segura 4,5:1 sobre a camiseta clara |
+
+**A entrelinha 1,22 é piso, não gosto.** A referência usa 1,06 — mas é texto em
+inglês. O português carrega til e acento agudo no meio do bloco: medido a
+54 px, com 1,22 sobram 17 px entre o descendente de uma linha e o til de
+"definição" na seguinte. Abaixo disso eles se encostam. **Entrelinha copiada de
+referência em inglês encosta acento em descendente.**
+
+### Os números da peça pronta NÃO transferem — a conta transfere
+
+A quebra depende do texto. Rodar a cada peça:
+
+```
+python3 scripts/quebrar-legenda.py "<o texto inteiro da peça>" \
+        --corpo 54 --caixa 840 --linhas 3,4,5,6
+```
+
+Ele mede todas as divisões possíveis contra o **arquivo** da fonte, devolve a
+mais equilibrada de cada contagem de linhas com a variação de cada uma, e
+recusa a que estoura a caixa. Escolhe-se a de menor variação que ainda fique
+legível. Ele já evita que uma frase COMECE no meio de uma linha, e penaliza
+viúva (última linha com uma palavra curta sozinha).
+
+No plano da peça:
+
+```ts
+texto: { ...LEGENDA_ALINHADA, bottom: <a altura desta peça> },
+veu: veuDaLegenda(<o mesmo bottom>, <nº de linhas>),
+```
+
+**`bottom` é o único número que muda por peça**, porque depende de onde o rosto
+e o assunto caem no enquadramento. Área segura: o bloco começa abaixo de 220 px
+e termina acima de 1560 px.
+
+### O que NÃO se copia de uma referência
+
+- **A LETRA.** A da referência é uma serifada de livro; a marca usa a
+  "Fabrícia" (Futura PT) que a dona mandou em 16/09/2026. O §01 do pedido dela
+  é explícito: *"Não substitua por uma fonte visualmente semelhante."* Trocar a
+  identidade tipográfica é decisão da dona, nunca do editor. Se ela quiser a
+  serifada, manda o arquivo — igual fez com a Futura.
+- **A COR.** Lá o texto é escuro sobre azulejo claro. Sobre cabelo escuro e
+  espuma isso sumiria.
+- **A ENTRELINHA EXATA**, pelo motivo do til acima.
+
+### Conferência
+
+Depois de renderizar, medir a **largura da tinta** de uma linha no frame
+pronto e comparar com o avanço previsto pelo arquivo da fonte. Bate dentro de
+poucos px = a fonte oficial saiu no arquivo; dezenas de px de diferença = caiu
+em fallback. Na FS_couro_cachos v7: **623 px medidos contra 625,0 previstos**.
+
+E o de sempre: pior contraste do texto sobre a peça inteira, com piso de
+4,5:1 para o branco.
+
 ## Ferramentas deste repositório
 
 | O quê | Onde |
@@ -491,6 +576,10 @@ para ataques de música. Trocou o arquivo, remede antes de reutilizar.
 | Folha de contato pra conferir composição | `projeto-remotion/scripts/prancha.sh` |
 | Catálogo do banco de apoios | `banco-apoios/CATALOGO.md` |
 | Baixar apoio do Drive | `drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t` |
+| Padrão de legenda alinhada | `projeto-remotion/src/lib/legendaFabricia.ts` |
+| Achar a quebra equilibrada de um texto | `projeto-remotion/scripts/quebrar-legenda.py` |
+| Motor de peça sem fala (texto fixo) | `projeto-remotion/src/compositions/ReelTextoFixo.tsx` |
+| Cortar + reenquadrar + tratar um plano | `projeto-remotion/scripts/cortar-fabricia.sh` |
 | Gramática completa | `kit-new-hair/GUIA-INTEGRAL.md` |
 
 O `ReelFalado` recebe o plano pronto e executa; ele não escolhe corte por você.

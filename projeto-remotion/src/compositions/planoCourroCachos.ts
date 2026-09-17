@@ -89,6 +89,7 @@
    ============================================================================= */
 
 import type { PlanoTextoFixo } from "./ReelTextoFixo";
+import { LEGENDA_ALINHADA, veuDaLegenda } from "../lib/legendaFabricia";
 
 /* frames MEDIDOS nos arquivos cortados com ffprobe -count_frames */
 const C1 = 84; // 2,80 s
@@ -166,24 +167,12 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
     },
   ],
 
-  texto: {
-    /* 54 px com entrelinha 1,22. A referência da legenda "alinhadinha" tem
-       passo de linha de 51 px em 1080 contra corpo de ~48 — razão 1,06, bem
-       apertada. Aqui 1,22 é o piso seguro: o português tem til e acento, e
-       medido a 54 px sobra 17 px entre o descendente de uma linha e o til da
-       seguinte. Abaixo disso eles se encostam. */
-    tamanho: 54,
-    entrelinha: 1.22,
-    respiro: 0, // bloco corrido, sem respiro entre frases
-    /* bloco: 4 × 65,9 = 264 px. bottom 522 ⇒ ocupa 1134 → 1398 px. */
-    bottom: 522,
-    margemEsquerda: 90,
-    margemDireita: 150,
-    alinhamento: "center",
-    face: "corpo",
-    familia: "Fabricia",
-    enfaseCor: "texto",
-  },
+  /* PADRÃO DE LEGENDA ALINHADA — os números e o porquê estão em
+     src/lib/legendaFabricia.ts. Aqui só o que é desta peça: a altura do bloco
+     na tela, que depende de onde o rosto e o assunto caem no enquadramento.
+     bottom 522 ⇒ o bloco de 4 linhas (263,5 px) ocupa 1134 → 1398 px: abaixo
+     do queixo nos dois planos de rosto e bem acima dos últimos 360 px. */
+  texto: { ...LEGENDA_ALINHADA, bottom: 522 },
 
   /* Sem cabeçalho: ver a nota no tipo. A marca fica identificada pela fonte
      oficial, pelo champagne da ênfase, pelo café do véu e pelo lockup do fim —
@@ -193,10 +182,7 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
   /* Véu localizado, não placa: gradiente com cauda dos DOIS lados (170 px),
      porque véu que acaba seco em cima de parede lisa vira linha horizontal —
      defeito já medido nesta casa em 14 e 15/09/2026. */
-  /* Véu bem mais leve que na v1: a referência não tem véu nenhum, e o grade
-     novo já escureceu o fundo. 0,40 é o mínimo que ainda segura a legenda
-     sobre a camiseta verde-clara do corte 2 — conferido frame a frame. */
-  veu: { topo: 1100, base: 1420, cauda: 190, alfa: 0.4 },
+  veu: veuDaLegenda(522, 4),
 
   endCard: CENAS,
   duracao: TOTAL,

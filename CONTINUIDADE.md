@@ -6,6 +6,33 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## PADRÃO DE LEGENDA ALINHADA salvo (17/09/2026)
+
+*"Salve esse padrão de legenda bonita e alinhada."* Salvo em três lugares, e os
+três importam:
+
+1. **`projeto-remotion/src/lib/legendaFabricia.ts`** — o preset executável
+   (`LEGENDA_ALINHADA`, `veuDaLegenda`, `alturaDoBloco`) com o porquê de cada
+   número em comentário. A peça agora faz
+   `texto: { ...LEGENDA_ALINHADA, bottom: 522 }`.
+2. **`projeto-remotion/scripts/quebrar-legenda.py`** — a ferramenta. **É a
+   parte que realmente transfere**: os números da quebra da peça pronta valem
+   só pra aquele texto; a conta vale pra qualquer um. Ele mede todas as
+   divisões possíveis contra o arquivo da fonte, devolve a mais equilibrada de
+   cada contagem de linhas, recusa a que estoura a caixa, impede uma frase de
+   começar no meio da linha e penaliza viúva.
+3. **`.claude/skills/editor-fabricia-satza/SKILL.md`** — a seção com as medidas
+   da referência e o que NÃO se copia dela (a letra, a cor, a entrelinha).
+
+**Conferido que o preset reproduz a entrega:** renderizada a peça com os
+números na mão e de novo pelo preset, as duas passadas dão o **mesmo md5** dos
+frames. Padrão salvo é o que reproduz o resultado, não o que descreve.
+
+**A regra que isso revoga:** o §07 do pedido original pede "quebras em unidades
+de sentido". Para peça de TEXTO FIXO isso perde para o equilíbrio de largura —
+a referência dela quebra em "but" e em "to" de propósito. Continua valendo para
+peça FALADA, onde a legenda é colada na fala e a unidade é a frase.
+
 ## FS_couro_cachos v7 (17/09/2026) — "alinhadinha" é a forma do bloco, não a quebra
 
 *"Quero que a legenda fique bonita alinhadinha minimalista aesthetic desse
