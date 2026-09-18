@@ -20,11 +20,12 @@
    3. "Tricoscopia cabelo limpo" (P) 42,00→44,30
       O exame de perto — a luz do aparelho na risca aberta, a mão segurando o
       cabelo. Enquadrado SEM o rosto: aqui o assunto é o couro, não ela.
-   4. "Tricoscopia do couro cabeludo limpo" (O) 76,60→79,00
-      O que o aparelho mostra: o couro entre os fios, limpo.
-   5. "Tricoscopia do couro cabeludo limpo" (O) 67,80→70,30
-      Os fios grossos, separados e com brilho. Fecha a peça na prova de que o
-      "está bonito" da primeira linha continua verdadeiro de perto.
+   4. "Tricoscopia do couro cabeludo limpo" (O) 104,00→106,20
+      A TELA, com moldura à vista. Diz o que os dois planos seguintes são.
+   5. idem, 76,60→79,20 — dentro da imagem: o couro entre os fios, limpo.
+   6. idem, 67,80→70,70 — os fios grossos, separados e com brilho. Fecha a peça
+      na prova de que o "está bonito" da primeira linha continua verdadeiro
+      de perto.
 
    O QUE FICOU DE FORA, DE PROPÓSITO
 
@@ -55,15 +56,32 @@ import type { PlanoTextoFixo } from "./ReelTextoFixo";
 import { LEGENDA_ALINHADA, veuDaLegenda } from "../lib/legendaFabricia";
 
 /* frames MEDIDOS nos arquivos cortados com ffprobe -count_frames */
-const C1 = 63; // 2,10 s — GANCHO: o exame de perto, a luz na risca
-const C2 = 78; // 2,60 s — o cabelo finalizado
-const C3 = 66; // 2,20 s — ela levando o tricoscópio ao couro
-const C4 = 72; // 2,40 s — imagem do tricoscópio: o couro
-const C5 = 75; // 2,50 s — imagem do tricoscópio: os fios grossos
+const C1 = 57; // 1,90 s — GANCHO: o exame de perto, a luz na risca
+const C2 = 63; // 2,10 s — o cabelo finalizado
+const C3 = 57; // 1,90 s — ela levando o tricoscópio ao couro
+const C4 = 66; // 2,20 s — A TELA do tricoscópio, com a moldura à vista
+const C5 = 78; // 2,60 s — dentro da imagem: o couro
+const C6 = 87; // 2,90 s — dentro da imagem: os fios grossos
 
-const CENAS = C1 + C2 + C3 + C4 + C5; // 354 frames = 11,80 s
+const CENAS = C1 + C2 + C3 + C4 + C5 + C6; // 408 frames = 13,60 s
 const FECHO = 63; // 2,10 s de lockup parado
-const TOTAL = CENAS + FECHO; // 417 frames = 13,90 s
+const TOTAL = CENAS + FECHO; // 471 frames = 15,70 s
+
+/* v4 (18/09): "tá pouco tempo mostrando a tricoscopia, as pessoas têm que ver
+   um pouco da TELA". Duas mudanças, e a segunda é a que resolve de verdade:
+
+   · TEMPO: a tricoscopia passou de 4,90 s para **7,70 s** — de 42% para 57%
+     do tempo de cena. Os três planos dela encurtaram 0,20 a 0,50 s cada e a
+     peça foi de 13,90 s para 15,70 s.
+   · A TELA APARECE COMO TELA. Nas versões anteriores o recorte entrava tão
+     fundo na imagem que ela lia como macro abstrato — só o plano anterior
+     dizia que aquilo era a tela de um aparelho. Agora o primeiro dos três
+     cortes mostra a **moldura em cima e embaixo** e um pedaço do suporte:
+     lê-se "tela" na hora, e os dois seguintes entram na imagem já sabendo o
+     que é.
+     Bônus medido: esse enquadramento é 562×1000 no espaço da entrega, ou seja
+     **1124 px de largura na fita — mais que os 1080 da entrega**. É o único
+     dos três cortes de tela que NÃO amplia; ainda desce. */
 
 /* v2 (18/09): "que mostre mais imagens da tricoscopia por mais tempo, e uma
    tricoscopia de fios grossos e bonitos". A tela passou de UM corte de 2,90 s
@@ -104,16 +122,27 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
         "recorte 882×1568 em (59, 285) · brilho −0,058",
     },
     {
-      src: "fabricia/cortes-tricoscopia/c4_couro.mp4",
+      src: "fabricia/cortes-tricoscopia/c4_tela.mp4",
       duracao: C4,
+      /* A TELA COMO TELA: moldura em cima e embaixo, pedaço do suporte. É o
+         plano que informa o que os dois seguintes são. Recorte 562×1000 =
+         1124 px na fita: não amplia, desce. */
       origem:
         "Drive · Tricoscopia · 'Tricoscopia do couro cabeludo limpo' " +
-        "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 76,60→79,00 s · " +
+        "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 104,00→106,20 s · " +
+        "recorte 562×1000 em (260, 700) — a tela inteira, sem ajuste de brilho",
+    },
+    {
+      src: "fabricia/cortes-tricoscopia/c5_couro.mp4",
+      duracao: C5,
+      origem:
+        "Drive · Tricoscopia · 'Tricoscopia do couro cabeludo limpo' " +
+        "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 76,60→79,20 s · " +
         "recorte 387×688 em (458, 755) — DENTRO da tela · brilho −0,062",
     },
     {
-      src: "fabricia/cortes-tricoscopia/c5_fios.mp4",
-      duracao: C5,
+      src: "fabricia/cortes-tricoscopia/c6_fios.mp4",
+      duracao: C6,
       /* OS FIOS GROSSOS E BONITOS, pedido dela em 18/09. A janela não foi
          pescada no olho: medi a fita inteira em janelas do tamanho do corte,
          com três sinais — cobertura de fio, ESPESSURA MÉDIA (comprimento médio
@@ -125,8 +154,8 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
          engorda o traço. Sinal sozinho engana; a folha de contato decide. */
       origem:
         "Drive · Tricoscopia · 'Tricoscopia do couro cabeludo limpo' " +
-        "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 67,80→70,30 s · " +
-        "recorte 387×688 em (458, 755) — DENTRO da tela · brilho −0,062 −0,09",
+        "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 67,80→70,70 s · " +
+        "recorte 387×688 em (458, 755) — DENTRO da tela · brilho −0,09",
     },
   ],
 

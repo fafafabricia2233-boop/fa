@@ -6,6 +6,40 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_tricoscopia v4 (18/09/2026) — "ver a tela" não era só tempo, era LEGIBILIDADE
+
+*"Tá pouco tempo mostrando a tricoscopia, as pessoas têm que ver um pouco da
+tela."* O tempo subiu de 4,90 s para **7,70 s** (42% → 57% do tempo de cena),
+mas o que faltava mesmo era outra coisa.
+
+**O recorte fundo demais tinha tirado a tela de cena.** Entrando dentro da
+imagem, o plano lia como **macro abstrato** — só o plano anterior (ela com o
+aparelho na cabeça) dizia que aquilo era a tela de um tricoscópio. Quem entra
+no vídeo pelo meio não tem como saber. A correção foi um plano NOVO, antes dos
+dois macros, com a **moldura em cima e embaixo** e um pedaço do suporte: lê-se
+"tela" na hora, e os dois seguintes entram na imagem já sabendo o que é.
+
+**Regra que fica: imagem de aparelho precisa de UM plano que mostre o
+aparelho.** Cortar direto pro conteúdo economiza tempo e custa entendimento.
+
+**E o enquadramento mais aberto é o mais NÍTIDO — contraintuitivo, mas é
+aritmética.** 562×1000 no espaço da entrega são 1124 px de largura na fita,
+mais que os 1080 da entrega: é o único dos três cortes de tela que não amplia.
+Os dois macros ampliam 1,40×. **Mostrar mais da tela custou MENOS resolução.**
+
+**Brilho: o corte da tela vai sem ajuste.** A moldura preta e o suporte puxam a
+média sozinhos; com o −0,055 que eu tinha posto por reflexo, a emenda seguinte
+dava salto de 28 de luma. **Média escura por conteúdo não se corrige como se
+fosse exposição errada.**
+
+**Limite de duração registrado:** 15,70 s é até onde dá sem tirar plano. Mais
+tricoscopia daqui pra frente sai de TIRAR um plano, não de encurtar os outros —
+abaixo de 1,80 s os cortes com ela passam rápido demais pra se ver o que
+acontece.
+
+**QA:** 471 frames como no plano, 15,700 s, decodificação limpa, nenhum frame
+preto, pior contraste da legenda 4,9:1, nenhum corte congelado.
+
 ## FS_tricoscopia v3 (18/09/2026) — gancho sem contexto, e o negrito emprestado
 
 **Gancho: o exame de perto, não o cabelo bonito.** Ordem nova a pedido dela, e

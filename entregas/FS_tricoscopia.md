@@ -3,8 +3,8 @@
 Peça: Reel de **texto fixo** da marca **Fabrícia Satza**. Montada em
 17/09/2026. **Não aprovada** — falta a dona avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v3.mp4`
-As anteriores ficam em `..._v1.mp4` e `..._v2.mp4` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v4.mp4`
+As anteriores ficam em `..._v1` a `..._v3` para comparação.
 
 ---
 
@@ -242,3 +242,65 @@ congelado.
 Fonte reconferida no arquivo entregue: a tinta da linha com o negrito mede
 **594 px** contra **600,2** de avanço previsto pela soma das duas faces — bate,
 então as duas saíram no arquivo. Não aprovada.
+
+---
+
+# v4 (18/09/2026) — a tricoscopia toma a peça, e a tela aparece como tela
+
+*"Tá pouco tempo mostrando a tricoscopia, tem que mostrar mais tempo, as
+pessoas têm que ver um pouco da tela."*
+
+Duas mudanças — e a segunda é a que resolve de verdade.
+
+## 1. Tempo: 4,90 s → 7,70 s
+
+| | v3 | v4 |
+|---|---|---|
+| 1 exame de perto (gancho) | 2,10 s | 1,90 s |
+| 2 cabelo finalizado | 2,60 s | 2,10 s |
+| 3 tricoscopia (rosto) | 2,20 s | 1,90 s |
+| **4 A TELA, com moldura** | — | **2,20 s** |
+| 5 dentro da imagem: o couro | 2,40 s | 2,60 s |
+| 6 dentro da imagem: os fios | 2,50 s | 2,90 s |
+| **tricoscopia** | 4,90 s (42%) | **7,70 s (57%)** |
+| cena | 11,80 s | 13,60 s |
+| total | 13,90 s | **15,70 s** |
+
+Os três planos dela encurtaram 0,20 a 0,50 s cada e a peça cresceu 1,80 s.
+
+## 2. A tela agora aparece COMO tela — e era esse o buraco
+
+Nas versões anteriores o recorte entrava tão fundo na imagem que ela lia como
+**macro abstrato**: só o plano anterior (ela com o aparelho na cabeça) dizia
+que aquilo era a tela de um tricoscópio. Quem entrasse no vídeo pelo meio não
+tinha como saber.
+
+Agora o **primeiro** dos três cortes de tricoscopia mostra a **moldura em cima
+e embaixo** e um pedaço do suporte. Lê-se "tela" na hora, e os dois seguintes
+entram na imagem já sabendo o que é.
+
+**E esse enquadramento é o mais NÍTIDO dos três**, o que é contraintuitivo:
+562×1000 no espaço da entrega são **1124 px de largura na fita** — mais que os
+1080 da entrega. É o único dos três cortes de tela que **não amplia**: ainda
+desce. Os dois macros ampliam 1,40×. Mostrar mais da tela custou menos
+resolução, não mais.
+
+Brilho: o corte da tela veio sem ajuste (a moldura preta e o suporte puxam a
+média pra baixo sozinhos; com o −0,055 que eu tinha posto, a emenda seguinte
+dava salto de 28).
+
+## QA da v4
+
+471 frames como no plano · 15,700 s · H.264 High 1080×1920 30 fps constante ·
+faixa limitada bt709 · AAC 48 kHz · decodificação limpa · **nenhum frame
+preto** · pior contraste da legenda **4,9:1** (piso 4,5) · emendas 111,5→104,6
+· 103,5→108,9 · 109,8→119,2 · 110,2→116,4 · 115,3→102,0 · nenhum corte com
+frame congelado.
+
+Legenda, fonte, negrito, grade e fecho não mudaram. Trilha reajustada para os
+15,70 s (−16,68 LUFS). Não aprovada.
+
+**Uma ressalva de duração:** 15,70 s é o limite que eu iria sem tirar plano. Se
+ela quiser ainda mais tricoscopia, o caminho é **tirar um plano**, não encurtar
+mais os outros — abaixo de 1,80 s os cortes com ela começam a passar rápido
+demais para se ver o que acontece.
