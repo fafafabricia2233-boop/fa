@@ -84,6 +84,10 @@ import {
   PLANO_COURO_CACHOS,
   DURACAO_COURO_CACHOS,
 } from "./compositions/planoCourroCachos";
+import {
+  PLANO_TRICOSCOPIA,
+  DURACAO_TRICOSCOPIA,
+} from "./compositions/planoTricoscopia";
 import { PLANO_KIT, CUES_KIT } from "./kit-referencia/adaptar";
 import { PLANO_TESTE, CUES_TESTE } from "./compositions/testeFabricia";
 import { PLANO_AGILIDADE, CUES_AGILIDADE } from "./compositions/planoAgilidade";
@@ -1050,6 +1054,15 @@ export const RemotionRoot: React.FC = () => {
         <Folder name="FabriciaSatza">
           {/* Reel de TEXTO FIXO — formato "rotina com texto fixo".
               Marca Fabrícia Satza; nada da New Hair atravessa pra cá. */}
+          <Composition
+            id="FabriciaTricoscopia"
+            component={ReelTextoFixo}
+            width={1080}
+            height={1920}
+            fps={30}
+            durationInFrames={DURACAO_TRICOSCOPIA}
+            defaultProps={{ plano: PLANO_TRICOSCOPIA }}
+          />
           <Composition
             id="FabriciaCouroCachos"
             component={ReelTextoFixo}

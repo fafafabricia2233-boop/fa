@@ -6,6 +6,54 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_tricoscopia (17/09/2026) — o padrão de legenda pagou na primeira peça nova
+
+"Meu cabelo está bonito. Mesmo assim, eu quero olhar o couro cabeludo..."
+Segunda peça de texto fixo. Relatório em `entregas/FS_tricoscopia_v1.md`.
+
+**A ferramenta de quebra funcionou de primeira e melhor que a referência.**
+`quebrar-legenda.py` devolveu três linhas de 548,6 · 540,0 · 580,8 px —
+variação de **7%**, contra os 9% da referência da dona. E aqui as duas coisas
+coincidiram: o bloco ficou equilibrado E cada linha caiu numa unidade de
+sentido inteira. Não é regra — foi sorte da frase ter três orações de tamanho
+parecido. Quando não coincidir, **o equilíbrio ganha** (é o que a referência
+faz).
+
+**A posição da legenda é do PLANO, não do padrão.** O `bottom` da
+FS_couro_cachos (522) não serviu aqui: o corte com o rosto dela grande no meio
+do quadro punha a legenda **em cima da boca**. Duas coisas mudaram juntas —
+legenda pra 405 e o recorte daquele plano refeito (882×1568 em vez de
+792×1408) pra levantar o rosto. **Legenda e enquadramento se resolvem juntos;
+mexer só num dos dois empurra o problema de lado.**
+
+**Filmagem de TELA é o único caso em que se amplia.** A fita do tricoscópio é a
+tela filmada de lado: inclinada, com moldura preta, ícones à esquerda e um
+botão ciano à direita. Entrar dentro da imagem custa **1,40× de ampliação** —
+os outros três planos descem de 4K com pixel de sobra. Vale porque o conteúdo é
+textura macro (a maciez lê como pouca profundidade de campo) e porque não
+existe enquadramento maior sem pegar moldura ou botão. **Três recortes foram
+descartados por deixarem entrar a moldura numa ponta ou noutra** — a tela é
+inclinada, então o topo entra de um lado e o fundo do outro. Conferir em vários
+instantes do trecho, não em um.
+
+**Janela de fita longa se escolhe medindo.** A fita da tela tem 143 s e a maior
+parte está fora de foco ou com o aparelho correndo rápido demais. Medidos
+nitidez (gradiente médio) e movimento quadro a quadro em janelas do tamanho do
+corte; o trecho escolhido tem nitidez alta COM movimento contínuo — as duas
+coisas, porque apoio parado já passou batido aqui antes.
+
+**Descartado de propósito o couro sujo com seborreia.** É a fita mais chamativa
+do lote, mas a frase diz que o cabelo está bonito: abrir a imagem num couro
+descamando **contradiz o texto**. Guardada — dá uma peça sozinha, com outra
+frase.
+
+**Trilha alternada**, como manda a regra: harmony (SHA conferido), recorte em
+tempo forte de compasso a 88,112 s, master a −16,00 LUFS.
+
+**QA:** 384 frames como no plano, 12,800 s, faixa limitada bt709, decodificação
+limpa, nenhum frame preto, nenhum corte com frame parado, pior contraste da
+legenda 5,2:1, emendas 101,4→109,1 · 110,2→112,1 · 109,1→117,1.
+
 ## PADRÃO DE LEGENDA ALINHADA salvo (17/09/2026)
 
 *"Salve esse padrão de legenda bonita e alinhada."* Salvo em três lugares, e os
