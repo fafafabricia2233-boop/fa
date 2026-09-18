@@ -3,8 +3,8 @@
 Peça: Reel de **texto fixo** da marca **Fabrícia Satza**. Montada em
 17/09/2026. **Não aprovada** — falta a dona avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v4.mp4`
-As anteriores ficam em `..._v1` a `..._v3` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v5.mp4`
+As anteriores ficam em `..._v1` a `..._v4` para comparação.
 
 ---
 
@@ -304,3 +304,80 @@ Legenda, fonte, negrito, grade e fecho não mudaram. Trilha reajustada para os
 ela quiser ainda mais tricoscopia, o caminho é **tirar um plano**, não encurtar
 mais os outros — abaixo de 1,80 s os cortes com ela começam a passar rápido
 demais para se ver o que acontece.
+
+---
+
+# v5 (18/09/2026) — gancho em duas camadas, e o final que demora
+
+Três ordens dela, e a primeira muda a gramática da peça.
+
+## 1. O gancho passou a ter FAIXA MASCARADA
+
+*"Vamos fazer o gancho primeira imagem assim eu mostrando o cabelo finalizado e
+uma imagem mascarada em cima mostrando a imagem da tricoscopia de pelos
+grossos, pode ser a mesma que vai aparecer no final."*
+
+Feito — e com a técnica que a casa já tinha, não com uma tarja improvisada. A
+faixa **dissolve na borda que encosta no cabelo** (180 px de cauda), então a
+imagem do tricoscópio **nasce de dentro do cabelo dela** em vez de tapá-lo. É a
+mesma regra que vale nas peças faladas desde 14/09/2026 (*"quero que continue
+mascarando a imagem junto com minha fala"*), e o motor de texto fixo não a
+tinha: agora tem, como `Corte.faixa`.
+
+Faixa: do topo até 620 px, com 180 px de dissolvência na borda de baixo. A
+imagem é a **mesma** que fecha a peça (63,50 s da fita da tela), como ela pediu.
+
+**Numa imagem só, o vídeo inteiro:** o cabelo bonito por fora, o couro por
+dentro.
+
+## 2. Saiu a tricoscopia de fio ralo
+
+*"Troca a primeira tricoscopia que mostra pelos finos e deixa só a última que é
+pelo grosso."*
+
+- O macro do couro com fio ralo (76,6 s) **saiu**.
+- A **tela** passou a mostrar fio grosso também: 85,80 s em vez de 104,00 s.
+
+A peça inteira agora só mostra tricoscopia de fio bom.
+
+## 3. O final demora 9,50 s
+
+*"Pode mostrar a tricoscopia de pelos grossos no final por mais de 9 segundos."*
+
+**A janela de 9,5 s foi varrida, não escolhida no olho.** Medi todas as janelas
+contínuas de 9,5 s da fita exigindo que **nenhum quadro ficasse sem fio**:
+
+| janela | espessura média | conferência na folha |
+|---|---|---|
+| **63,5 s** | **20,4** | limpa do começo ao fim ✔ |
+| 66,5 s | 18,3 | **dois quadros quase pretos por volta de 73 s** — o aparelho perde contato ✘ |
+| 63,5 s (alt.) | 15,9 | menos grossa |
+
+Ficou **63,50 → 73,00 s**. Conferido no corte pronto: 285 frames, **nenhum par
+de quadros idênticos**, luma mínima de 80,3 (nenhum quadro escuro).
+
+## Estrutura e duração
+
+| # | | duração |
+|---|---|---|
+| 1 | **gancho: cabelo + faixa mascarada** | 3,50 s |
+| 2 | exame de perto, a luz na risca | 1,90 s |
+| 3 | ela levando o tricoscópio ao couro | 1,90 s |
+| 4 | a tela, com moldura, em fio grosso | 2,20 s |
+| 5 | **macro dos fios grossos** | **9,50 s** |
+| | cena | 19,00 s |
+| | **total** | **21,10 s** |
+
+Tricoscopia em tela cheia: **11,70 s = 62% da cena** — mais os 3,50 s da faixa
+no gancho. Era 7,70 s (57%) na v4 e 2,90 s (27%) na v2.
+
+## QA da v5
+
+633 frames como no plano · 21,100 s · H.264 High 1080×1920 30 fps constante ·
+faixa limitada bt709 · AAC 48 kHz · decodificação limpa · **nenhum frame
+preto** · pior contraste da legenda **4,8:1** (piso 4,5) · emendas 95,2→111,9 ·
+111,5→108,7 · 109,8→104,7 · 112,1→96,8 · nenhum par de quadros idênticos no
+corte longo.
+
+Legenda, fonte, negrito, grade e fecho não mudaram. Trilha reajustada para os
+21,10 s. Não aprovada.

@@ -53,6 +53,30 @@ import { useFontesFabriciaProntas } from "../lib/fabriciaFontesProntas";
 /* TIPOS DO PLANO — é isto que muda de uma peça pra outra                       */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * FAIXA MASCARADA por cima do plano — a técnica que a casa já usa nas peças
+ * faladas, agora disponível na peça de texto fixo.
+ *
+ * Não é tarja colada: a faixa DISSOLVE na borda que encosta na imagem, de
+ * modo que o apoio nasce dentro do plano em vez de tapá-lo. Ordem da dona,
+ * 14/09/2026: *"quero que continue mascarando a imagem junto com minha fala"*
+ * — trocar máscara por corte seco de tela cheia foi reprovado na época.
+ *
+ * A borda que encosta na moldura do quadro não leva cauda (não há o que
+ * dissolver ali); a que encosta na imagem leva.
+ */
+export type Faixa = {
+  /** caminho dentro de public/ — o mesmo formato dos cortes */
+  src: string;
+  /** y onde a faixa começa, no espaço 1080×1920 */
+  topo: number;
+  altura: number;
+  /** px de dissolvência nas bordas internas */
+  cauda: number;
+  /** correção discreta, igual à dos cortes */
+  cor?: { brilho?: number; saturacao?: number; contraste?: number };
+};
+
 export type Corte = {
   /** caminho dentro de public/, já cortado em 1080x1920 30fps H264 */
   src: string;
@@ -64,6 +88,8 @@ export type Corte = {
   escala?: number;
   /** correção discreta de exposição/temperatura. 1 = sem mexer. */
   cor?: { brilho?: number; saturacao?: number; contraste?: number };
+  /** faixa mascarada por cima deste plano; ausente = plano limpo */
+  faixa?: Faixa;
 };
 
 /** Um pedaço de linha. `enfase` = face Medium (peso 500 real) no champagne. */
@@ -155,13 +181,54 @@ export type PlanoTextoFixo = {
 /* CORTE — um plano da montagem                                                */
 /* -------------------------------------------------------------------------- */
 
+const montarFiltros = (cor?: Corte["cor"]) => {
+  const f: string[] = [];
+  if (cor?.brilho !== undefined) f.push(`brightness(${cor.brilho})`);
+  if (cor?.saturacao !== undefined) f.push(`saturate(${cor.saturacao})`);
+  if (cor?.contraste !== undefined) f.push(`contrast(${cor.contraste})`);
+  return f.length ? f.join(" ") : undefined;
+};
+
+/** A faixa mascarada. Ver o comentário do tipo `Faixa`. */
+const FaixaMascarada: React.FC<{ f: Faixa }> = ({ f }) => {
+  const encostaNoTopo = f.topo <= 0;
+  const encostaNaBase = f.topo + f.altura >= 1920;
+  const p = (f.cauda / f.altura) * 100;
+  /* opaca no meio; dissolve só nas bordas que encostam na IMAGEM */
+  const mascara = `linear-gradient(to bottom,
+      ${encostaNoTopo ? "black 0%" : `transparent 0%, black ${p.toFixed(2)}%`},
+      black ${(100 - (encostaNaBase ? 0 : p)).toFixed(2)}%,
+      ${encostaNaBase ? "black 100%" : "transparent 100%"})`;
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        top: f.topo,
+        width: 1080,
+        height: f.altura,
+        overflow: "hidden",
+        WebkitMaskImage: mascara,
+        maskImage: mascara,
+      }}
+    >
+      <OffthreadVideo
+        src={staticFile(f.src)}
+        muted
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          filter: montarFiltros(f.cor),
+        }}
+      />
+    </div>
+  );
+};
+
 const Plano: React.FC<{ c: Corte }> = ({ c }) => {
-  const filtros: string[] = [];
-  if (c.cor?.brilho !== undefined) filtros.push(`brightness(${c.cor.brilho})`);
-  if (c.cor?.saturacao !== undefined)
-    filtros.push(`saturate(${c.cor.saturacao})`);
-  if (c.cor?.contraste !== undefined)
-    filtros.push(`contrast(${c.cor.contraste})`);
+  const filtros = montarFiltros(c.cor);
 
   return (
     <AbsoluteFill style={{ overflow: "hidden", backgroundColor: "#000" }}>
@@ -173,9 +240,10 @@ const Plano: React.FC<{ c: Corte }> = ({ c }) => {
           height: "100%",
           objectFit: "cover",
           transform: c.escala && c.escala !== 1 ? `scale(${c.escala})` : undefined,
-          filter: filtros.length ? filtros.join(" ") : undefined,
+          filter: filtros,
         }}
       />
+      {c.faixa && <FaixaMascarada f={c.faixa} />}
     </AbsoluteFill>
   );
 };

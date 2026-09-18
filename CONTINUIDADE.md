@@ -6,6 +6,39 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_tricoscopia v5 (18/09/2026) — a faixa mascarada chega na peça de texto fixo
+
+Três ordens dela, e a primeira abre uma capacidade nova no motor.
+
+**GANCHO EM DUAS CAMADAS.** *"Eu mostrando o cabelo finalizado e uma imagem
+mascarada em cima mostrando a tricoscopia de pelos grossos."* O
+`ReelTextoFixo` ganhou `Corte.faixa` — a mesma técnica das peças faladas, que
+faltava aqui. **Não é tarja:** a faixa dissolve na borda que encosta na imagem
+(180 px de cauda), então o apoio nasce DENTRO do plano. É a ordem de
+14/09/2026 (*"quero que continue mascarando a imagem junto com minha fala"*),
+e trocar máscara por corte seco já foi reprovado uma vez.
+
+Detalhe de implementação que vale registrar: **a borda que encosta na moldura
+do quadro não leva cauda** — não há o que dissolver ali. Só a que encosta na
+imagem. O componente decide isso sozinho pelo `topo` e pela `altura`.
+
+**Uma imagem só contando a peça inteira:** o cabelo bonito por fora, o couro
+por dentro. Vale como ideia de gancho para peça de texto fixo.
+
+**JANELA LONGA SE VARRE COM A EXIGÊNCIA CERTA.** Para os 9,5 s do final, o
+critério não foi "maior espessura média" e sim **"nenhum quadro sem fio"**. Foi
+isso que separou 63,5 s (limpa) de 66,5 s (pontuação parecida, mas com dois
+quadros quase pretos por volta de 73 s, onde o aparelho perde contato com o
+couro). **Em corte longo, o pior quadro decide, não a média.** Conferido no
+corte pronto: 285 frames, nenhum par idêntico, luma mínima 80,3.
+
+**Peça longa é decisão da dona, não limite técnico.** 21,10 s, com autorização
+explícita ("pode ser um vídeo longo não tem problema"). A tricoscopia em tela
+cheia ficou com 62% da cena.
+
+**QA:** 633 frames como no plano, 21,100 s, decodificação limpa, nenhum frame
+preto, pior contraste da legenda 4,8:1.
+
 ## FS_tricoscopia v4 (18/09/2026) — "ver a tela" não era só tempo, era LEGIBILIDADE
 
 *"Tá pouco tempo mostrando a tricoscopia, as pessoas têm que ver um pouco da
