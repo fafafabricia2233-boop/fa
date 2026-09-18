@@ -100,6 +100,21 @@ export type PlanoTextoFixo = {
      */
     familia?: string;
     /**
+     * Família da ÊNFASE, quando a família do texto não tem peso de ênfase.
+     *
+     * A "Fabrícia" (Futura PT) que a dona mandou em 16/09/2026 veio com UM
+     * peso só. Pedir 500 nela faria o navegador engordar a forma — negrito
+     * sintético, proibido no manual dela. Apontando aqui para a "Fabricia
+     * Satza" (a Jost do kit de 13/09), a palavra sai no peso 500 DE VERDADE,
+     * numa face que é prima da Futura: mesmo esqueleto geométrico, mesmo "a"
+     * de um andar. A diferença medida é de altura de x — 24,8 px contra 23,4
+     * a 54 px — e a 54 px o olho lê como PESO, não como outra fonte.
+     *
+     * Some no dia em que chegar a Medium/Bold da própria Futura.
+     */
+    familiaEnfase?: string;
+
+    /**
      * Cor da ênfase. "texto" = a mesma cor do resto (o peso 500 sozinho marca
      * a palavra) — é o que a referência que a dona mandou faz. "destaque" =
      * champagne da marca, que exige véu mais pesado pra passar de 3,0:1.
@@ -357,6 +372,7 @@ export const ReelTextoFixo: React.FC<{ plano: PlanoTextoFixo }> = ({ plano }) =>
                         <span
                           key={si}
                           style={{
+                            fontFamily: t.familiaEnfase ?? fonteCorpo,
                             fontWeight: 500, // face Medium REAL, nunca sintética
                             color:
                               t.enfaseCor === "destaque"

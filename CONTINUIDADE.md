@@ -6,6 +6,41 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_tricoscopia v3 (18/09/2026) — gancho sem contexto, e o negrito emprestado
+
+**Gancho: o exame de perto, não o cabelo bonito.** Ordem nova a pedido dela, e
+a razão é de estrutura: o exame abre **sem contexto** — vê-se um exame
+acontecendo antes de saber de quem é o cabelo e por quê. Quem dá o contexto é a
+FRASE, na leitura, não a imagem. O cabelo bonito, que abria antes, agora chega
+como resposta à primeira linha em vez de adiantá-la. **Vale como regra para
+peça de texto fixo: o gancho pode ser a imagem que gera pergunta, e o texto
+responde — não os dois dizendo a mesma coisa ao mesmo tempo.**
+
+Reordenar não custou duração: 417 frames, 13,90 s, trilha intacta.
+
+**NEGRITO com família de UM PESO SÓ: empresta-se a face, não se sintetiza.**
+A "Fabrícia" (Futura PT) que ela mandou tem só o Light. Pedir 500 faria negrito
+sintético, proibido no manual dela. A palavra sai na **Medium da "Fabricia
+Satza"** — a Jost do kit de 13/09, prima da Futura: mesmo esqueleto geométrico,
+mesmo "a" de um andar. Diferença medida: altura de x 24,8 contra 23,4 px a
+54 px. **Conferido em tamanho real, lado a lado, ANTES de decidir** — o olho lê
+como peso, não como outra fonte.
+
+Vai como **remendo declarado**, não como solução: o §01 do pedido proíbe
+substituir por fonte visualmente semelhante, e aqui foi feito numa palavra,
+sabendo, e avisado. A correção exata é um arquivo (a Medium/Bold da própria
+Futura). O motor ganhou `texto.familiaEnfase` pra isso, com a nota de quando
+some.
+
+**Negrito mexe no equilíbrio do bloco:** a linha passou de 580,8 pra 600,2 px e
+a variação foi de 7% pra 10% — ainda dentro do padrão (a referência tem 9%).
+**Remedir a variação depois de marcar palavra** é passo.
+
+**QA:** 417 frames como no plano, 13,900 s, decodificação limpa, nenhum frame
+preto, pior contraste da legenda 5,1:1, nenhum corte congelado. Tinta da linha
+com negrito: 594 px contra 600,2 previstos pela soma das duas faces — as duas
+saíram no arquivo.
+
 ## FS_tricoscopia v2 (18/09/2026) — achar "fio grosso e bonito" por medida
 
 *"Mais imagens da tricoscopia por mais tempo, e uma tricoscopia de fios

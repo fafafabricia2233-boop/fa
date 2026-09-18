@@ -3,8 +3,8 @@
 Peça: Reel de **texto fixo** da marca **Fabrícia Satza**. Montada em
 17/09/2026. **Não aprovada** — falta a dona avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v2.mp4`
-A v1 fica em `..._v1.mp4` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v3.mp4`
+As anteriores ficam em `..._v1.mp4` e `..._v2.mp4` para comparação.
 
 ---
 
@@ -175,3 +175,70 @@ preto** · pior contraste da legenda **5,1:1** · emendas 94,2→108,6 ·
 quadros mais lentos (diferença de 0,14 a 0,83 por pixel) são o aparelho
 pairando, não repetição — **nenhum par de quadros idênticos**. Legenda, fonte,
 grade e fecho não mudaram. Trilha reajustada para os 13,90 s. Não aprovada.
+
+---
+
+# v3 (18/09/2026) — o exame vira gancho, e a palavra em negrito
+
+## 1. A ordem mudou: abre no exame de perto
+
+*"E se o gancho a primeira parte do vídeo for mostrando o exame de perto a luz
+na risca aberta."*
+
+| | v2 | v3 |
+|---|---|---|
+| 1 | cabelo finalizado 2,70 s | **exame de perto 2,10 s** |
+| 2 | tricoscopia (rosto) 2,30 s | cabelo finalizado 2,60 s |
+| 3 | exame de perto 1,90 s | tricoscopia (rosto) 2,20 s |
+| 4 | imagem: o couro 2,40 s | imagem: o couro 2,40 s |
+| 5 | imagem: os fios 2,50 s | imagem: os fios 2,50 s |
+
+**Funciona melhor, e a razão é de estrutura:** o exame abre **sem contexto** —
+vê-se um exame acontecendo antes de saber de quem é o cabelo e por quê. Quem
+dá o contexto é a frase, na leitura, não a imagem. O cabelo bonito, que antes
+abria, agora chega como resposta à primeira linha em vez de adiantá-la.
+
+O corte do gancho ganhou 0,20 s (1,90 → 2,10) e o do cabelo perdeu 0,10; o
+tempo de tela do tricoscópio ficou intacto em **4,90 s**. Duração total igual:
+417 frames, 13,90 s — a trilha não precisou ser refeita.
+
+## 2. A palavra em negrito — e a ressalva
+
+*"Deixe uma palavra de destaque da legenda em negrito igual a referência do
+vídeo que te enviei."*
+
+**"couro cabeludo" saiu em negrito.** Como a referência faz: só o peso, na
+mesma cor, sem mudar tamanho.
+
+**A ressalva, porque ela é de fonte:** a "Fabrícia" que ela mandou em 16/09 (a
+Futura PT) tem **um peso só**. Pedir 500 nela faria o navegador engordar a
+forma — negrito sintético, que o manual dela proíbe. Então a palavra sai na
+face **Medium da "Fabricia Satza"**, a do kit de 13/09, que é uma **Jost** —
+prima da Futura: mesmo esqueleto geométrico, mesmo "a" de um andar.
+
+A diferença medida entre as duas: **altura de x de 24,8 px contra 23,4** a
+54 px. Conferido em tamanho real, lado a lado, antes de decidir: **o olho lê
+como PESO, não como outra fonte.** Mesmo assim vai como ressalva, não como
+solução — o §01 do pedido dela proíbe substituir por fonte visualmente
+semelhante, e aqui foi feito numa palavra, sabendo.
+
+**A correção exata é um arquivo:** a Medium (ou Bold) da própria Futura. No dia
+em que chegar, é uma linha no plano e um render, e o remendo some.
+
+O motor ganhou o campo `texto.familiaEnfase` pra isso, com a nota de quando
+some.
+
+**A linha 3 passou de 580,8 para 600,2 px** com o negrito, e o bloco ficou
+548,6 · 540,0 · 600,2 — variação de **10%**, ainda dentro do padrão alinhado
+(a referência dela tem 9%).
+
+## 3. QA da v3
+
+417 frames como no plano · 13,900 s · faixa limitada bt709 · decodificação
+limpa · **nenhum frame preto** · pior contraste da legenda **5,1:1** · emendas
+111,2→104,6 · 101,2→108,7 · 109,7→116,4 · 111,7→102,0 · nenhum corte com frame
+congelado.
+
+Fonte reconferida no arquivo entregue: a tinta da linha com o negrito mede
+**594 px** contra **600,2** de avanço previsto pela soma das duas faces — bate,
+então as duas saíram no arquivo. Não aprovada.

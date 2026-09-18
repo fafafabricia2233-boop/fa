@@ -55,9 +55,9 @@ import type { PlanoTextoFixo } from "./ReelTextoFixo";
 import { LEGENDA_ALINHADA, veuDaLegenda } from "../lib/legendaFabricia";
 
 /* frames MEDIDOS nos arquivos cortados com ffprobe -count_frames */
-const C1 = 81; // 2,70 s
-const C2 = 69; // 2,30 s
-const C3 = 57; // 1,90 s
+const C1 = 63; // 2,10 s — GANCHO: o exame de perto, a luz na risca
+const C2 = 78; // 2,60 s — o cabelo finalizado
+const C3 = 66; // 2,20 s — ela levando o tricoscópio ao couro
 const C4 = 72; // 2,40 s — imagem do tricoscópio: o couro
 const C5 = 75; // 2,50 s — imagem do tricoscópio: os fios grossos
 
@@ -76,29 +76,32 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
 
   cortes: [
     {
-      src: "fabricia/cortes-tricoscopia/c1_cabelo.mp4",
+      src: "fabricia/cortes-tricoscopia/c1_exame.mp4",
       duracao: C1,
+      /* GANCHO (18/09): a luz do aparelho na risca aberta. Abre sem contexto —
+         o espectador vê um exame acontecendo antes de saber de quem é o cabelo
+         e por quê. A frase na tela dá o contexto na leitura, não na imagem. */
+      origem:
+        "Drive · Tricoscopia · 'Tricoscopia cabelo limpo' " +
+        "(1VF0yXVTLDt2X_tOgknjDqu8iDlDrYRGe) · 42,00→44,10 s · " +
+        "recorte 576×1024 em (272, 260) · brilho −0,02",
+    },
+    {
+      src: "fabricia/cortes-tricoscopia/c2_cabelo.mp4",
+      duracao: C2,
       origem:
         "Drive · Mostrando o cabelo · " +
         "'Mostrando cabelo bonito finalizado repartindo ao meio o couro cabeludo' " +
-        "(1f3khS0vJfGb4O4nw10Z1zh_XJGyOq-T6) · 17,00→19,80 s · " +
+        "(1f3khS0vJfGb4O4nw10Z1zh_XJGyOq-T6) · 17,00→19,60 s · " +
         "recorte 810×1440 em (0, 480) · brilho +0,023",
     },
     {
-      src: "fabricia/cortes-tricoscopia/c2_tricoscopia.mp4",
-      duracao: C2,
-      origem:
-        "Drive · Tricoscopia · 'Tricoscopia cabelo limpo' " +
-        "(1VF0yXVTLDt2X_tOgknjDqu8iDlDrYRGe) · 4,00→6,70 s · " +
-        "recorte 882×1568 em (59, 285) · brilho −0,058",
-    },
-    {
-      src: "fabricia/cortes-tricoscopia/c3_exame.mp4",
+      src: "fabricia/cortes-tricoscopia/c3_tricoscopia.mp4",
       duracao: C3,
       origem:
         "Drive · Tricoscopia · 'Tricoscopia cabelo limpo' " +
-        "(1VF0yXVTLDt2X_tOgknjDqu8iDlDrYRGe) · 42,00→44,30 s · " +
-        "recorte 576×1024 em (272, 260) · brilho −0,02",
+        "(1VF0yXVTLDt2X_tOgknjDqu8iDlDrYRGe) · 4,00→6,20 s · " +
+        "recorte 882×1568 em (59, 285) · brilho −0,058",
     },
     {
       src: "fabricia/cortes-tricoscopia/c4_couro.mp4",
@@ -118,12 +121,12 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
          cima; conferidas em folha de contato, a de 67,8 s é a única em que os
          fios ficam grossos, separados, com brilho e sobre couro limpo do
          começo ao fim do corte. As de 36,4 e 85,8 s têm quadros moles no meio;
-         a de 75,0 s tem espessura alta porque está fora de foco — sinal
-         sozinho engana, a folha de contato é que decide. */
+         a de 75,0 s tem espessura alta porque está FORA DE FOCO — borrão
+         engorda o traço. Sinal sozinho engana; a folha de contato decide. */
       origem:
         "Drive · Tricoscopia · 'Tricoscopia do couro cabeludo limpo' " +
         "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 67,80→70,30 s · " +
-        "recorte 387×688 em (458, 755) — DENTRO da tela · brilho −0,062",
+        "recorte 387×688 em (458, 755) — DENTRO da tela · brilho −0,062 −0,09",
     },
   ],
 
@@ -147,7 +150,17 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
       linhas: [
         { partes: [{ texto: "Meu cabelo está bonito." }] },
         { partes: [{ texto: "Mesmo assim, eu quero" }] },
-        { partes: [{ texto: "olhar o couro cabeludo..." }] },
+        {
+          partes: [
+            { texto: "olhar o " },
+            /* A PALAVRA EM NEGRITO, pedido dela em 18/09 ("igual à referência
+               do vídeo"). Sai na face Medium de VERDADE — ver `familiaEnfase`
+               abaixo. Com ela a linha passa de 580,8 para 600,2 px, e o bloco
+               fica 548,6 · 540,0 · 600,2: variação de 10%, ainda dentro do
+               padrão alinhado (a referência tem 9%). */
+            { texto: "couro cabeludo...", enfase: true },
+          ],
+        },
       ],
     },
   ],
@@ -157,7 +170,17 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
      no meio do quadro — a 1150 a legenda caía em cima da boca. O enquadramento
      do corte 2 foi refeito junto (882×1568) pra levantar o rosto e liberar a
      faixa. Sobram 45 px até os últimos 360 px do Reels. */
-  texto: { ...LEGENDA_ALINHADA, bottom: 405 },
+  texto: {
+    ...LEGENDA_ALINHADA,
+    bottom: 405,
+    /* A "Fabrícia" (Futura PT) que ela mandou tem UM peso só, então a ênfase
+       vem da face Medium da "Fabricia Satza" — a Jost do kit de 13/09, prima
+       da Futura: mesmo esqueleto geométrico, mesmo "a" de um andar. Medida a
+       diferença: altura de x de 24,8 px contra 23,4 a 54 px. Conferido em
+       tamanho real que o olho lê como PESO, não como outra fonte.
+       Isto SOME no dia em que chegar a Medium/Bold da própria Futura. */
+    familiaEnfase: "Fabricia Satza",
+  },
   /* 0,44 em vez dos 0,40 do padrão: medido, o corte dos fios grossos tem couro
      branco em macro e derrubava o branco da legenda para 4,4:1, abaixo do piso
      de 4,5. Escurecer o plano estragaria a prova — quem sobe é o véu. */
