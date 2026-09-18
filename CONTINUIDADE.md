@@ -6,6 +6,40 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## FS_tricoscopia v2 (18/09/2026) — achar "fio grosso e bonito" por medida
+
+*"Mais imagens da tricoscopia por mais tempo, e uma tricoscopia de fios
+grossos e bonitos."* A tela passou de um corte de 2,90 s para dois somando
+4,90 s — de 27% para 42% do tempo de cena. Os planos dela encurtaram um pouco
+e a peça ganhou 1,10 s, em vez de espremer tudo na duração antiga.
+
+**"Fio grosso" tem medida em pixel: o comprimento médio das corridas escuras ao
+longo das linhas.** Somado a cobertura de fio e nitidez, isso varre 143 s de
+fita em segundos e devolve as dez melhores janelas.
+
+**E o sinal sozinho engana — a folha de contato é que decide.** A janela com a
+MAIOR espessura medida de todas estava **fora de foco**: borrão engorda o
+traço. Das dez candidatas, só uma (67,8 s) mantém fio grosso, separado, com
+brilho e sobre couro limpo do começo ao fim do corte; duas outras têm quadros
+moles no meio. Medir serve pra ter o que conferir, não pra dispensar a
+conferência.
+
+**Plano muito claro derruba a legenda, e quem cede é o VÉU.** O corte dos fios
+é couro branco em macro e levou o contraste a 4,4:1, abaixo do piso de 4,5.
+Escurecer o plano estragaria a prova — o assunto é justamente o couro limpo e
+claro. Véu de 0,40 para 0,44 (mais −0,09 de brilho no plano, que de quebra
+nivelou a luma) devolveu **5,1:1**. O `veuDaLegenda()` do padrão ganhou
+parâmetro de alfa para isso, com a nota de quando usar.
+
+**Corte de aparelho pairando não é corte congelado.** O sinal de "frames
+parados" acusou três no corte dos fios. Conferido quadro a quadro: diferença de
+0,14 a 0,83 por pixel e **nenhum par idêntico** — é o tricoscópio pairando. O
+limiar de 0,3 serve pra apoio de vídeo; imagem de aparelho em macro pede
+conferir se há repetição de verdade antes de reprovar.
+
+**QA:** 417 frames como no plano, 13,900 s, decodificação limpa, nenhum frame
+preto, pior contraste da legenda 5,1:1.
+
 ## FS_tricoscopia (17/09/2026) — o padrão de legenda pagou na primeira peça nova
 
 "Meu cabelo está bonito. Mesmo assim, eu quero olhar o couro cabeludo..."

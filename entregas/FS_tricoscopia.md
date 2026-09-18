@@ -1,9 +1,10 @@
-# FS_tricoscopia v1 — relatório de entrega
+# FS_tricoscopia — relatório de entrega
 
 Peça: Reel de **texto fixo** da marca **Fabrícia Satza**. Montada em
 17/09/2026. **Não aprovada** — falta a dona avaliar. Não publicada.
 
-Arquivo: `projeto-remotion/out/fabricia/FS_tricoscopia_v1.mp4`
+Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v2.mp4`
+A v1 fica em `..._v1.mp4` para comparação.
 
 ---
 
@@ -110,3 +111,67 @@ nenhum corte com frame parado.
 Não há escuta perceptual aqui: a trilha foi escolhida e posicionada por medida.
 E a leitura clínica das imagens do tricoscópio não foi feita nem afirmada — a
 peça não diz nada sobre o que aquelas imagens mostram, de propósito.
+
+---
+
+# v2 (18/09/2026) — mais tricoscopia, e os fios grossos
+
+*"Quarto que mostre mais imagens da tricoscopia por mais tempo, e uma
+tricoscopia de fios grossos e bonitos."*
+
+**A tela do tricoscópio passou de UM corte de 2,90 s para DOIS somando
+4,90 s** — de 27% para **42%** do tempo de cena.
+
+| | v1 | v2 |
+|---|---|---|
+| 1 cabelo finalizado | 2,80 s | 2,70 s |
+| 2 tricoscopia (rosto) | 2,70 s | 2,30 s |
+| 3 exame de perto | 2,30 s | 1,90 s |
+| 4 imagem: o couro | 2,90 s | 2,40 s |
+| **5 imagem: os fios grossos** | — | **2,50 s** |
+| cena | 10,70 s | **11,80 s** |
+| total | 12,80 s | **13,90 s** |
+
+Os três planos dela encurtaram um pouco e a peça ganhou 1,10 s no total — em
+vez de espremer tudo pra caber na duração antiga.
+
+## Como os "fios grossos e bonitos" foram achados
+
+A fita da tela tem 143 s. A janela **não foi pescada no olho**: medi a fita
+inteira em janelas do tamanho do corte, com três sinais por quadro:
+
+- **cobertura de fio** — fração de pixels bem mais escuros que o couro;
+- **espessura média** — comprimento médio das corridas escuras ao longo das
+  linhas, que é o que "fio grosso" significa em pixel;
+- **nitidez** — gradiente médio.
+
+Dez candidatas saíram por cima. Conferidas em folha de contato, **a de 67,8 s
+é a única em que os fios ficam grossos, separados, com brilho e sobre couro
+limpo do começo ao fim do corte.** As de 36,4 s e 85,8 s têm quadros moles no
+meio. E a de 75,0 s tinha a MAIOR espessura medida de todas — porque está
+**fora de foco**: borrão engorda o traço. **Sinal sozinho engana; a folha de
+contato é que decide.**
+
+## Um ajuste que a imagem nova obrigou
+
+O corte dos fios grossos é couro branco em macro, e derrubou o contraste da
+legenda para **4,4:1** — abaixo do piso de 4,5. Duas correções, nesta ordem:
+
+1. **O véu subiu de 0,40 para 0,44** nesta peça. Escurecer o plano estragaria a
+   prova, que é justamente o couro limpo e claro — quem cede é o véu.
+2. Brilho do plano em −0,09, que de quebra aproximou a luma dele dos outros.
+
+Resultado: **5,1:1**. O `veuDaLegenda()` do padrão ganhou o parâmetro de alfa
+para isso, com a nota de quando usá-lo.
+
+## QA da v2
+
+417 frames como no plano · 13,900 s · H.264 High 1080×1920 30 fps constante ·
+faixa limitada bt709 · AAC 48 kHz · decodificação limpa · **nenhum frame
+preto** · pior contraste da legenda **5,1:1** · emendas 94,2→108,6 ·
+109,5→111,7 · 111,3→116,3 · 111,6→101,8.
+
+**Nenhum corte com frame congelado**: conferido no corte dos fios que os
+quadros mais lentos (diferença de 0,14 a 0,83 por pixel) são o aparelho
+pairando, não repetição — **nenhum par de quadros idênticos**. Legenda, fonte,
+grade e fecho não mudaram. Trilha reajustada para os 13,90 s. Não aprovada.

@@ -101,7 +101,15 @@ export const alturaDoBloco = (linhas: number) =>
  */
 export const veuDaLegenda = (
   bottom: number,
-  linhas = 4
+  linhas = 4,
+  /**
+   * 0,40 é o padrão e o mínimo medido para o branco passar de 4,5:1 sobre a
+   * camiseta verde-clara. Plano MUITO claro pede mais: a imagem do
+   * tricoscópio (couro branco em macro) derrubou o contraste para 4,4:1 com
+   * 0,40. Subir aqui é a correção certa — escurecer o plano estragaria a
+   * prova, que é justamente o couro limpo.
+   */
+  alfa = 0.4
 ): PlanoTextoFixo["veu"] => {
   const base = 1920 - bottom;
   const topo = base - alturaDoBloco(linhas);
@@ -109,6 +117,6 @@ export const veuDaLegenda = (
     topo: Math.round(topo - 34),
     base: Math.round(base + 22),
     cauda: 190,
-    alfa: 0.4,
+    alfa,
   };
 };

@@ -20,8 +20,11 @@
    3. "Tricoscopia cabelo limpo" (P) 42,00→44,30
       O exame de perto — a luz do aparelho na risca aberta, a mão segurando o
       cabelo. Enquadrado SEM o rosto: aqui o assunto é o couro, não ela.
-   4. "Tricoscopia do couro cabeludo limpo" (O) 76,60→79,50
-      O que o aparelho mostra. Fecha a frase com a imagem que ela foi buscar.
+   4. "Tricoscopia do couro cabeludo limpo" (O) 76,60→79,00
+      O que o aparelho mostra: o couro entre os fios, limpo.
+   5. "Tricoscopia do couro cabeludo limpo" (O) 67,80→70,30
+      Os fios grossos, separados e com brilho. Fecha a peça na prova de que o
+      "está bonito" da primeira linha continua verdadeiro de perto.
 
    O QUE FICOU DE FORA, DE PROPÓSITO
 
@@ -52,14 +55,21 @@ import type { PlanoTextoFixo } from "./ReelTextoFixo";
 import { LEGENDA_ALINHADA, veuDaLegenda } from "../lib/legendaFabricia";
 
 /* frames MEDIDOS nos arquivos cortados com ffprobe -count_frames */
-const C1 = 84; // 2,80 s
-const C2 = 81; // 2,70 s
-const C3 = 69; // 2,30 s
-const C4 = 87; // 2,90 s
+const C1 = 81; // 2,70 s
+const C2 = 69; // 2,30 s
+const C3 = 57; // 1,90 s
+const C4 = 72; // 2,40 s — imagem do tricoscópio: o couro
+const C5 = 75; // 2,50 s — imagem do tricoscópio: os fios grossos
 
-const CENAS = C1 + C2 + C3 + C4; // 321 frames = 10,70 s
+const CENAS = C1 + C2 + C3 + C4 + C5; // 354 frames = 11,80 s
 const FECHO = 63; // 2,10 s de lockup parado
-const TOTAL = CENAS + FECHO; // 384 frames = 12,80 s
+const TOTAL = CENAS + FECHO; // 417 frames = 13,90 s
+
+/* v2 (18/09): "que mostre mais imagens da tricoscopia por mais tempo, e uma
+   tricoscopia de fios grossos e bonitos". A tela passou de UM corte de 2,90 s
+   para DOIS somando 4,90 s — de 27% para 42% do tempo de cena. Os três planos
+   dela encurtaram um pouco (2,80→2,70 · 2,70→2,30 · 2,30→1,90) e a peça ganhou
+   1,10 s no total, em vez de espremer tudo. */
 
 export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
   marca: "fabricia",
@@ -91,11 +101,28 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
         "recorte 576×1024 em (272, 260) · brilho −0,02",
     },
     {
-      src: "fabricia/cortes-tricoscopia/c4_imagem.mp4",
+      src: "fabricia/cortes-tricoscopia/c4_couro.mp4",
       duracao: C4,
       origem:
         "Drive · Tricoscopia · 'Tricoscopia do couro cabeludo limpo' " +
-        "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 76,60→79,50 s · " +
+        "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 76,60→79,00 s · " +
+        "recorte 387×688 em (458, 755) — DENTRO da tela · brilho −0,062",
+    },
+    {
+      src: "fabricia/cortes-tricoscopia/c5_fios.mp4",
+      duracao: C5,
+      /* OS FIOS GROSSOS E BONITOS, pedido dela em 18/09. A janela não foi
+         pescada no olho: medi a fita inteira em janelas do tamanho do corte,
+         com três sinais — cobertura de fio, ESPESSURA MÉDIA (comprimento médio
+         das corridas escuras nas linhas) e nitidez. Dez candidatas saíram por
+         cima; conferidas em folha de contato, a de 67,8 s é a única em que os
+         fios ficam grossos, separados, com brilho e sobre couro limpo do
+         começo ao fim do corte. As de 36,4 e 85,8 s têm quadros moles no meio;
+         a de 75,0 s tem espessura alta porque está fora de foco — sinal
+         sozinho engana, a folha de contato é que decide. */
+      origem:
+        "Drive · Tricoscopia · 'Tricoscopia do couro cabeludo limpo' " +
+        "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 67,80→70,30 s · " +
         "recorte 387×688 em (458, 755) — DENTRO da tela · brilho −0,062",
     },
   ],
@@ -131,7 +158,10 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
      do corte 2 foi refeito junto (882×1568) pra levantar o rosto e liberar a
      faixa. Sobram 45 px até os últimos 360 px do Reels. */
   texto: { ...LEGENDA_ALINHADA, bottom: 405 },
-  veu: veuDaLegenda(405, 3),
+  /* 0,44 em vez dos 0,40 do padrão: medido, o corte dos fios grossos tem couro
+     branco em macro e derrubava o branco da legenda para 4,4:1, abaixo do piso
+     de 4,5. Escurecer o plano estragaria a prova — quem sobe é o véu. */
+  veu: veuDaLegenda(405, 3, 0.44),
 
   cabecalho: false,
 
@@ -146,7 +176,7 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
   audio: {
     src: "fabricia/musica/harmony.mp3",
     inicio: 88.112,
-    volume: 0.531, // −5,5 dB, o mesmo ganho do master
+    volume: 0.531, // −5,5 dB, o mesmo ganho do master (13,90 s)
     fadeIn: 24,
     fadeOut: 36,
   },
