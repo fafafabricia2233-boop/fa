@@ -14,4 +14,7 @@ tags: [formatos, indice]
 **Ritmo sugerido:** carrossel ensina, post de frase fixa uma ideia. Alternados,
 mantêm o perfil vivo entre as peças maiores.
 
-As fotos de todas as peças saem do [[Banco de imagens]].
+As fotos de todas as peças saem do [[Banco de imagens]], e quem monta tudo
+é [[A skill]].
+
+De vídeo ainda não fizemos nenhum — o que já está preparado está em [[Vídeo]].

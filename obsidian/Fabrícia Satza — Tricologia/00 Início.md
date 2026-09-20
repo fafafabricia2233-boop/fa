@@ -34,3 +34,7 @@ Tudo sobre a marca em um lugar. Cada link abre uma nota.
 
 Todas as peças, com o texto inteiro de cada uma, estão em
 [[Índice de conteúdos]].
+
+## Como as peças são feitas
+
+[[A skill]] — o pacote que produz tudo isto, e por que ele existe além do cofre.
