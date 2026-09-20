@@ -6,6 +6,53 @@ ajuste que vale só para uma peça fica na linha daquela peça.
 
 Última atualização: 16/09/2026.
 
+## A GRAMÁTICA DA NEW HAIR NA PEÇA SEM FALA (20/09/2026)
+
+*"Vamos usar a edição remotion da New Hair para editar os vídeos da Fabrícia
+Satza, leia."* Lidas a skill `editor-new-hair` e o `GUIA-INTEGRAL.md` §02–09 e
+§11–12. Aplicado na FS_tricoscopia v6.
+
+**O motor da New Hair já era multimarca — o que faltava era a peça SEM FALA
+poder usar a gramática.** O `ReelFalado` já roda com `marca: "fabricia"`, mas
+exige fita falada. O `ReelTextoFixo` ganhou agora: **filme na virada**, **zoom
+do padrão** (1,02→1,12 em 15 frames, easing u²(3−2u)) e os campos `hookEnd` e
+`zoom` no plano. O componente do filme foi **copiado sem alterar**, porque o
+§06 proíbe substituir por transição genérica.
+
+**A VIRADA numa peça sem fala é a troca de assunto da MONTAGEM.** Não há gancho
+falado; o `hookEnd` passa a ser o frame em que a peça muda de assunto. Aqui,
+105: fim do plano de abertura e entrada do assunto. `hookEnd: null` para peça
+que não tem virada marcada — o §05 proíbe inventar estrutura.
+
+**A ESCOLHA DA FAIXA MUDA quando entra beat na virada.** O
+`padroes-audio.json` diz que a faixa se escolhe pela FORÇA DA ENTRADA e que
+abaixo de ~+13 dB ela não marca a virada. A `harmony` que eu tinha usado tem
+**+10,2** — servia como cama, **não serve** para esta gramática. Trocada por
+`lostmemories` (+26,7), SHA conferido, ataque 22,855 s, recorte em
+(22,855 − 3,50) = 19,355 s. Degrau medido no master: **+36,9 dB**.
+
+**OS GANHOS DE SFX DO PADRÃO SÃO DE MIX COM VOZ — sem voz eles somem.** Medido:
+com os ganhos do `padroes-audio.json`, o filme ficava 8,2 dB ABAIXO da música, o
+zoom 9,9 dB abaixo e o click **25,3 dB abaixo** — inaudível, que é justamente o
+que o §09 proíbe. Sem voz a música é a cama e fica no topo do mix. Zoom subiu de
+0,38 para 0,60 e click de 0,30 para 1,00; o filme ficou no 0,36 do padrão porque
+a cama está quieta ali. **O número do padrão continua certo para peça falada** —
+o que muda é o contexto.
+
+**O filme lava texto fixo.** Na New Hair o título SAI antes do filme (§06, entre
+H−14 e H−7). Com texto fixo ele atravessa o clarão: 3,3:1 por 0,23 s nos 3
+frames brancos. Medido e declarado; a correção, se incomodar, é o texto sumir
+nos 7 frames — e aí ele deixa de ser fixo.
+
+**O zoom derruba contraste de legenda.** Empurrar 1,02→1,12 num plano claro põe
+mais área clara sob o texto: caiu pra 4,3:1. Véu de 0,44 pra 0,50 devolveu 5,0.
+**Quem liga zoom remede o contraste.**
+
+**`-shortest` trunca o vídeo pelo áudio, e custou um frame.** `amix` + limitador
+devolveram 21,099979 s contra 21,100000 do vídeo — 21 µs — e a entrega saiu com
+632 frames em vez de 633. Conserto: `apad` + `-t` no master antes do mux.
+**Contar frame da entrega é passo, e foi ele que pegou.**
+
 ## FS_tricoscopia v5 (18/09/2026) — a faixa mascarada chega na peça de texto fixo
 
 Três ordens dela, e a primeira abre uma capacidade nova no motor.

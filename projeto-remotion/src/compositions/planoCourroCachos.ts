@@ -179,6 +179,12 @@ export const PLANO_COURO_CACHOS: PlanoTextoFixo = {
      e a imagem ocupa a tela toda, que é a ordem permanente da dona (14/09). */
   cabecalho: false,
 
+  /* Peça entregue antes de 20/09/2026, quando a gramática da New Hair (filme
+     na virada, beat, zoom) chegou na peça de texto fixo. Fica sem virada
+     marcada pra não alterar o que já foi entregue. */
+  hookEnd: null,
+  zoom: null,
+
   /* Véu localizado, não placa: gradiente com cauda dos DOIS lados (170 px),
      porque véu que acaba seco em cima de parede lisa vira linha horizontal —
      defeito já medido nesta casa em 14 e 15/09/2026. */

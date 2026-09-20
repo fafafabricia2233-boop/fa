@@ -3,8 +3,8 @@
 Peça: Reel de **texto fixo** da marca **Fabrícia Satza**. Montada em
 17/09/2026. **Não aprovada** — falta a dona avaliar. Não publicada.
 
-Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v5.mp4`
-As anteriores ficam em `..._v1` a `..._v4` para comparação.
+Arquivo atual: `projeto-remotion/out/fabricia/FS_tricoscopia_v6.mp4`
+As anteriores ficam em `..._v1` a `..._v5` para comparação.
 
 ---
 
@@ -381,3 +381,102 @@ corte longo.
 
 Legenda, fonte, negrito, grade e fecho não mudaram. Trilha reajustada para os
 21,10 s. Não aprovada.
+
+---
+
+# v6 (20/09/2026) — a gramática da New Hair entra na peça
+
+*"Vamos usar a edição remotion da New Hair para editar os vídeos da Fabrícia
+Satza, leia."* Lida a skill `editor-new-hair` inteira e o
+`kit-new-hair/GUIA-INTEGRAL.md` (§02–09, §11–12).
+
+**Decisão dela, perguntada antes de mexer:** o texto **continua no padrão
+alinhado** e entra só o resto da gramática. Ou seja: **não** entram o título
+digitado nem a legenda de rodapé, que exigiriam partir a frase em duas.
+
+## O que entrou
+
+| elemento | onde | de onde vem o número |
+|---|---|---|
+| **filme** — 7 frames de clarão quente, branco, escuro, preto | frames 98→104 | componente copiado sem alterar do `ReelFalado`, que o copiou do exemplo aprovado (§06: *"não substituir por transição genérica de slideshow"*) |
+| **beat na virada** | frame 105 (3,50 s) | §05: recorte da música em (ataque − virada) = 22,855 − 3,50 = **19,355 s** |
+| **zoom** 1,02→1,12 em 15 frames, easing u²(3−2u) | plano da tela, frames 259→274 | §04 |
+| **SFX filme** | 3,267 s (7 frames antes da virada) | `padroes-audio.json`, ganho 0,36 |
+| **SFX zoom** | 8,633 s, no início do empurrão | ganho ajustado — ver abaixo |
+| **SFX click** | 9,50 s, entrada do macro | ganho ajustado — ver abaixo |
+
+**A VIRADA é o frame 105.** Numa peça falada a virada é o fim do gancho; aqui,
+sem fala, é a troca de assunto da montagem — fim do plano de abertura (cabelo
+com a faixa mascarada) e entrada do assunto, ela indo olhar.
+
+**Trilha nova, escolhida pelo critério certo.** O `padroes-audio.json` é
+explícito: a faixa se escolhe pela **força da entrada**, e abaixo de ~+13 dB
+ela não marca a virada. A `harmony` da v5 tem +10,2 — **não serve para esta
+gramática**. Entrou **lostmemories** (+26,7 dB), SHA-256 `a7f613c0…` conferido
+contra a curadoria, ataque 22,855 s confirmado pelo `conferir-musica.py`.
+
+Resultado medido no master: música a **−32,2 dBFS** debaixo do gancho e
+**−16,7** depois da virada; degrau do beat na virada, na banda grave (<200 Hz):
+**+36,9 dB**. O padrão da casa é +13 a +18 — aqui é mais forte porque a música
+está praticamente inaudível antes da virada, que é exatamente a forma que o §05
+descreve.
+
+**SEM TENSÃO, e é decisão.** O §05 põe o grave na última palavra do PROBLEMA, e
+esta peça não tem problema delimitado — a frase é afirmativa do começo ao fim.
+Forçar tensão sem problema é inventar estrutura; mesmo caso da NH_velocidade.
+
+## Dois ganhos de SFX tiveram que sair do padrão, e o motivo é medido
+
+Os ganhos do `padroes-audio.json` (filme 0,36 · zoom 0,38 · click 0,30) foram
+calibrados num mix **em que a voz é o elemento mais alto** e a música fica 3 dB
+abaixo dela. Aqui **não há voz**: a música É a cama, e nos ganhos do padrão os
+SFX ficavam ABAIXO dela —
+
+| SFX | folga contra a música, no ganho do padrão |
+|---|---|
+| filme | −8,2 dB |
+| zoom | −9,9 dB |
+| click | **−25,3 dB** (inaudível) |
+
+O próprio manual proíbe isso: *"SFX que não se ouve mas continua somando no mix
+é pior que SFX nenhum"* (§09). Então:
+
+- **filme: 0,36, o do padrão** — o pico fica 14,6 dB acima da cama, e a cama
+  está quieta ali. Não precisou mexer.
+- **zoom: 0,38 → 0,60** — pico ~7 dB acima da cama.
+- **click: 0,30 → 1,00** — pico ~5 dB acima da cama. Discreto de propósito: o
+  pedido dela para estas peças diz *"evite efeitos sonoros chamativos"*.
+
+Registrado aqui porque **o número do padrão continua certo para peça falada** —
+o que muda é o contexto, não o arquivo.
+
+## Duas coisas que o filme obrigou a medir
+
+**1. O clarão lava a legenda por 0,23 s.** Na gramática da New Hair o título
+**sai** antes do filme (§06: sai entre H−14 e H−7). Aqui o texto é fixo por
+escolha dela, então ele atravessa o clarão: nos 3 frames brancos o contraste cai
+para **3,3:1**. São 100 ms no meio de uma transição — ninguém lê ali — mas fica
+medido e dito. Se incomodar, a correção é o texto sumir nos 7 frames do filme,
+e aí ele deixa de ser "fixo do começo ao fim".
+
+**2. O zoom derrubou o contraste fora do filme.** Empurrando de 1,02 a 1,12 no
+plano da tela, o couro branco em macro passa a ocupar mais quadro sob a legenda:
+o contraste caiu para **4,3:1**, abaixo do piso de 4,5. Véu desta peça subiu de
+0,44 para **0,50** e voltou a **5,0:1**.
+
+## Uma armadilha de mux que custou um frame
+
+O `-shortest` trunca o vídeo pelo áudio. O `amix` + limitador devolveu um master
+de **21,099979 s** contra os 21,100000 s do vídeo — 21 microssegundos a menos —
+e a entrega saiu com **632 frames em vez de 633**. Conserto: `apad` + `-t` no
+master antes do mux. **Contar frame da entrega é passo, e foi ele que pegou.**
+
+## QA da v6
+
+**633 frames** como no plano · 21,100 s · H.264 High 1080×1920 30 fps constante
+· faixa limitada bt709 · AAC 48 kHz · decodificação limpa · nenhum frame preto ·
+pior contraste da legenda **5,0:1 fora do filme** (3,3:1 nos 0,23 s do clarão) ·
+áudio da entrega contra o master: correlação **0,9999**, deslocamento
+**0,00 ms** · master a **−16,00 LUFS**, pico real **−1,94 dBTP**, LRA 3,20.
+
+Enquadramentos, cortes, grade, fonte e fecho não mudaram. Não aprovada.

@@ -162,6 +162,25 @@ export type PlanoTextoFixo = {
 
   /** véu localizado atrás do texto; null = sem véu */
   veu: { topo: number; base: number; cauda: number; alfa: number } | null;
+  /**
+   * A VIRADA. Frame em que a peça muda de assunto — o filme ocupa
+   * hookEnd−7 até hookEnd−1 e o beat da música cai exatamente em hookEnd.
+   *
+   * É a gramática da New Hair (§04 e §05 do manual) trazida para a peça sem
+   * fala, por ordem da dona em 20/09/2026. Numa peça falada a virada é o fim
+   * do gancho; aqui, sem fala, é a troca de assunto da MONTAGEM. null = peça
+   * sem virada marcada (não force: o §05 proíbe inventar estrutura).
+   */
+  hookEnd: number | null;
+
+  /**
+   * Zoom discreto: 1,02 → 1,12 em 15 frames com easing u²(3−2u), no corte de
+   * índice `corte`, a partir do frame local `frame`. O §04 pede poucas
+   * alternâncias e só com movimento perceptível — e o §05 lembra que o SFX de
+   * zoom só existe se acompanhar movimento de verdade.
+   */
+  zoom: { corte: number; frame: number } | null;
+
   /** frame em que o fecho com a logo entra */
   endCard: number;
   duracao: number;
@@ -227,8 +246,83 @@ const FaixaMascarada: React.FC<{ f: Faixa }> = ({ f }) => {
   );
 };
 
-const Plano: React.FC<{ c: Corte }> = ({ c }) => {
+/* =============================================================================
+   FILME — a transição da virada, copiada sem alterar do ReelFalado, que por
+   sua vez a copiou do exemplo aprovado. Sete frames: clarão quente, branco,
+   escuro, preto. O §06 é explícito: "não substituir por transição genérica de
+   slideshow".
+   ============================================================================= */
+const Filme: React.FC<{ hookEnd: number }> = ({ hookEnd }) => {
+  const f = useCurrentFrame();
+  const q = f - (hookEnd - 7);
+  if (q < 0 || q > 6) return null;
+  const cores = [
+    "rgba(255,181,127,0.18)",
+    "rgba(255,205,152,0.75)",
+    "#fffbd6",
+    "#ffffdf",
+    "#321923",
+    "#020203",
+    "#000",
+  ];
+  return (
+    <AbsoluteFill style={{ background: cores[q], overflow: "hidden" }}>
+      {q < 5 && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(90deg,rgba(217,72,54,.7),transparent 35%,rgba(255,246,176,.5) 75%,rgba(255,255,235,.8))",
+              opacity: q === 0 ? 0.2 : 0.8,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              left: 24,
+              top: -300 + q * 95,
+              width: 115,
+              height: 2500,
+              filter: "blur(4px)",
+              opacity: q === 4 ? 0.8 : 0.3,
+            }}
+          >
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  height: 108,
+                  width: 94,
+                  background: q === 4 ? "#120007" : "#ba774f",
+                  marginBottom: 78,
+                  borderRadius: 12,
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </AbsoluteFill>
+  );
+};
+
+const Plano: React.FC<{ c: Corte; zoomFrame: number | null }> = ({
+  c,
+  zoomFrame,
+}) => {
   const filtros = montarFiltros(c.cor);
+  const local = useCurrentFrame();
+
+  /* Zoom do padrão: 1,02 → 1,12 em 15 frames, easing u²(3−2u). Os números são
+     do exemplo aprovado (§04); não são enfeite — é o movimento que o SFX de
+     zoom acompanha. */
+  let escala = c.escala ?? 1;
+  if (zoomFrame !== null) {
+    const u = Math.max(0, Math.min(1, (local - zoomFrame) / 15));
+    escala = escala * (1.02 + (1.12 - 1.02) * (u * u * (3 - 2 * u)));
+  }
 
   return (
     <AbsoluteFill style={{ overflow: "hidden", backgroundColor: "#000" }}>
@@ -239,7 +333,7 @@ const Plano: React.FC<{ c: Corte }> = ({ c }) => {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          transform: c.escala && c.escala !== 1 ? `scale(${c.escala})` : undefined,
+          transform: escala !== 1 ? `scale(${escala})` : undefined,
           filter: filtros,
         }}
       />
@@ -310,9 +404,16 @@ export const ReelTextoFixo: React.FC<{ plano: PlanoTextoFixo }> = ({ plano }) =>
       {/* --------------------------------------------------------------- */}
       {posicoes.map(({ c, inicio }, i) => (
         <Sequence key={i} from={inicio} durationInFrames={c.duracao}>
-          <Plano c={c} />
+          <Plano
+            c={c}
+            zoomFrame={plano.zoom && plano.zoom.corte === i ? plano.zoom.frame : null}
+          />
         </Sequence>
       ))}
+
+      {/* O FILME na virada: 7 frames de clarão quente, escuro e preto, do
+          exemplo aprovado. Vem por cima dos planos e por baixo do texto. */}
+      {plano.hookEnd !== null && <Filme hookEnd={plano.hookEnd} />}
 
       {/* --------------------------------------------------------------- */}
       {/* 2. FECHO — lockup parado sobre café profundo.                     */}

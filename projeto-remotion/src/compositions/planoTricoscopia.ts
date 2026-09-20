@@ -210,9 +210,35 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
   /* 0,44 em vez dos 0,40 do padrão: medido, o corte dos fios grossos tem couro
      branco em macro e derrubava o branco da legenda para 4,4:1, abaixo do piso
      de 4,5. Escurecer o plano estragaria a prova — quem sobe é o véu. */
-  veu: veuDaLegenda(405, 3, 0.44),
+  /* 0,50 nesta peça. Subiu de 0,44 quando o ZOOM entrou: empurrando de 1,02 a
+     1,12 no plano da tela, o couro branco em macro passa a ocupar mais quadro
+     sob a legenda e o contraste caiu pra 4,3:1, abaixo do piso de 4,5.
+     Medido, não estimado. */
+  veu: veuDaLegenda(405, 3, 0.5),
 
   cabecalho: false,
+
+  /* A GRAMÁTICA DA NEW HAIR, trazida em 20/09/2026 por ordem da dona
+     ("vamos usar a edição remotion da new hair para editar os vídeos da
+     Fabrícia Satza"). Ela escolheu manter o texto no padrão alinhado, então
+     entram o filme, o beat, o zoom e os SFX — e NÃO entram o título digitado
+     nem a legenda de rodapé, que exigiriam partir a frase.
+
+     A VIRADA é o frame 105: fim do plano de abertura (o cabelo com a faixa
+     mascarada) e entrada do assunto — ela indo olhar. Numa peça falada a
+     virada é o fim do gancho; aqui, sem fala, é a troca de assunto da
+     montagem. É nela que o filme cai (98→104) e onde o beat da música entra.
+
+     O ZOOM fica no plano da TELA, empurrando de 1,02 a 1,12 nos 15 frames
+     antes do corte para o macro — é o movimento que motiva a entrada na
+     imagem, e o único da peça. O §04 pede poucas alternâncias.
+
+     SEM TENSÃO, e é decisão, não esquecimento: o §05 põe o grave na última
+     palavra do PROBLEMA, e esta peça não tem problema delimitado — a frase é
+     afirmativa do começo ao fim. Forçar tensão sem problema é inventar
+     estrutura, o mesmo caso da NH_velocidade (14/09/2026). */
+  hookEnd: 105,
+  zoom: { corte: 3, frame: 40 },
 
   endCard: CENAS,
   duracao: TOTAL,
