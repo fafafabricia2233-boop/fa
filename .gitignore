@@ -1,5 +1,6 @@
 fabricia-satza-tricologia.skill
-obsidian/
 Fabricia-Satza-Obsidian.zip
 Fabricia-Satza-Fonte.zip
 Fabricia-Satza-Identidade-Visual.zip
+# copia do cofre dentro da skill: espelho, nao fonte
+.claude/skills/fabricia-satza-tricologia/obsidian/
