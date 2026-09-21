@@ -28,9 +28,10 @@ cada escolha sai de uma regra escrita no manual dela:
 | Véu / fundo | café profundo `#28201F` | o manual dá a ele o papel de "fundo escuro neutro"; o vinho ameixa é o escuro de virada, forte demais pra ficar a peça inteira no ar |
 | Destaque | champagne `#C9B39B` | **a regra que ela mais insiste**: taupe e champagne se invertem conforme o fundo. Sobre escuro, champagne dá 7,9:1; marrom terracota cai pra 2,8:1 e terracota suave pra 4,0:1, que só passa de 45px pra cima |
 | Texto | branco suave `#FCFAF7` | 15,3:1 sobre café |
-| Título | face **Alt** (o `a` de um andar), 52 e 88px | a Alt é a face de display dela |
-| Legenda | face Light, 45 e 52px | o piso dela é 37px em texto corrido — a legenda da New Hair (34/42) fica **abaixo** desse piso e não serve aqui |
-| Ênfase | peso 500 real (face Medium) | negrito sintético destrói o desenho da letra; é proibido no manual dela |
+| Fonte do vídeo | **"Fabricia"** — a Futura PT que ela mandou em 16/09/2026 | *"use para o vídeo"*, e em 20/09 de novo: *"nossa fonte"*. **Não é** a família do ZIP de 13/09 (derivada da Jost*): aquela tem altura de x de 0,4600 em, esta 0,4330. Não se troca por semelhança |
+| Título | 55 e 93px, na "Fabricia" | 52 e 88 eram da família do ZIP; ×1,0624 pela altura de x — ver abaixo |
+| Legenda | 48 e 55px | 45 e 52 eram da do ZIP; mesmo fator. O piso dela, 37, vira 39 |
+| Ênfase | face **Medium da "Fabricia Satza"**, peso 500 real, tamanho ×0,9413 | a Futura que chegou tem UM peso. Negrito sintético destrói o desenho da letra e é proibido no manual dela, então a ênfase sai numa família que TEM a Medium desenhada — prima geométrica, mesmo "a" de um andar. Some quando chegar a Medium da própria Futura |
 | Margem | 80px | a grade dela |
 | Cabeçalho | `FABRÍCIA SATZA TRICOLOGIA` + eixo do tema, 22px, tracking .30em | "todo slide, sem exceção" — é o que mantém a peça identificada quando é printada e recompartilhada sem o perfil |
 | Fecho | lockup marfim sobre café, 90 frames | ela não tem animação de logo, tem lockup parado |
@@ -38,6 +39,69 @@ cada escolha sai de uma regra escrita no manual dela:
 
 O campo `cabecalho.direita` muda por peça: `Queda capilar`, `Alopecia`,
 `Tricoscopia`, `Saúde capilar`.
+
+## TROCAR DE FAMÍLIA OBRIGA A RECALCULAR TAMANHO (21/09/2026)
+
+A escala tipográfica do manual dela (37 de piso, 45 "texto", 52 "subtítulo",
+88 "título") foi escrita para a família do ZIP. **Tamanho em px não é tamanho
+visual:** quem decide o quanto a letra parece grande é a altura de x.
+
+Medido com fontTools nos arquivos reais:
+
+| família | altura de x | altura de maiúscula |
+|---|---|---|
+| `Fabricia` (a Futura que ela mandou) | **0,4330 em** | 0,7150 em |
+| `Fabricia Satza` (a do ZIP, derivada da Jost*) | **0,4600 em** | 0,7000 em |
+
+Então **×1,0624** em tudo que é caixa alta e baixa. **Cabeçalho e selo não
+mudam**: são caixa alta, e ali governa a maiúscula — 2% de diferença, dentro do
+arredondamento de 22px.
+
+E o contrário, quando a ênfase é emprestada: os tamanhos do perfil estão na
+métrica do CORPO, então a família de ênfase entra **×0,9413** (`enfaseEscala`).
+Sem isso a ênfase vira degrau de TAMANHO, não de peso — que é outro jeito de
+errar a mesma coisa que o negrito sintético.
+
+## O PORTÃO DE FONTE VALE PARA O MOTOR FALADO TAMBÉM (21/09/2026)
+
+`src/lib/fontesProntas.ts` segura o frame 0 com `delayRender` até as faces que o
+PERFIL declara (`Marca.faces`) carregarem de verdade. Até aqui só as peças de
+texto fixo tinham portão; o motor falado pintava o frame 0 torcendo para o woff2
+já estar pronto — e quando não está, o Chromium mede o texto com a fonte de
+fallback e a peça sai com a tipografia errada **sem erro nenhum**.
+
+Na lista só entram faces que existem em arquivo. Pedir um peso que a família não
+tem é o que faz o navegador sintetizar.
+
+## CONFERIR A FONTE É MEDIR TINTA, não olhar o print (21/09/2026)
+
+Stills do `TesteMarcaFabricia` (que **não é peça** — é a prancha de tokens), e a
+largura da tinta medida contra as métricas do arquivo da fonte:
+
+| o que | medido | previsto |
+|---|---|---|
+| linha de título, "Fabricia" 55px | 462 px | 469,9 px |
+| remate, "Fabricia Satza" Medium 88px | 787 px | 800,0 px |
+| filete dourado | 64 px | 64 px (§04) |
+
+Dentro de 1,7% — a diferença é o letter-spacing final e o side bearing, que não
+pintam tinta. **E a banda de medida se acha pelo perfil de tinta, não no olho:**
+na primeira tentativa eu cortei a faixa em y 150..240 e peguei o topo das
+maiúsculas da linha DE BAIXO, o que deu 539 px e me fez desconfiar da fonte
+certa.
+
+## A FITA FALADA NÃO EXISTE AINDA (21/09/2026)
+
+Transcritas as doze fitas de `public/fabricia/bruto/` com o faster-whisper
+medium. Oito não têm fala nenhuma; as outras quatro têm "Obrigado.", conversa de
+bastidor sobre unha e banho, e "Acabei de entrar, nem sei se a gente vai lavar o
+fio." **Nenhuma palavra sobre tricologia, nenhuma frase dirigida à câmera.** As
+sete pastas do Drive são todas de procedimento.
+
+O fluxo A precisa de fita falada. Enquanto ela não chegar, a peça falada dela
+não existe — e **inventar texto para pôr na boca dela está proibido pelo pedido
+dela mesma**. O que dá pra adiantar sem a fita é exatamente o que está acima: a
+identidade dentro do motor, conferida na prancha de tokens.
 
 ## O tom de voz manda no texto da tela
 

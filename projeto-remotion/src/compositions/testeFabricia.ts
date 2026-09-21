@@ -24,8 +24,11 @@ export const CUES_TESTE: Cue[] = [
     start: 4.9,
     end: 8.0,
     lines: [
-      { text: "Ele foi afinando —", size: 45 },
-      { text: "E ISSO MUDA O TRATAMENTO.", size: 52, gold: true },
+      /* 48/55, não 45/52: a escala do manual dela foi escrita para a família
+         do ZIP (altura de x 0,4600 em) e o vídeo usa a Futura que ela mandou
+         (0,4330). Ver a nota em marcas.ts. */
+      { text: "Ele foi afinando —", size: 48 },
+      { text: "E ISSO MUDA O TRATAMENTO.", size: 55, gold: true },
     ],
   },
 ];

@@ -15,7 +15,7 @@
    ============================================================================= */
 
 import { loadCormorantNH, loadMontserratNH } from "./newhairFonts";
-import { loadFabriciaDisplay, loadFabriciaTexto } from "./fabriciaFonts";
+import { loadFabriciaFutura, loadFabriciaTexto } from "./fabriciaFonts";
 
 export type Marca = {
   id: string;
@@ -36,7 +36,45 @@ export type Marca = {
     display?: () => { fontFamily: string };
     /** usada em frase de impacto pontual; opcional */
     serif?: () => { fontFamily: string };
+    /**
+     * Família de ÊNFASE, para quando a face do corpo não tem peso 500 de
+     * verdade. Sem ela, a ênfase é o peso 500 da própria família do corpo.
+     *
+     * Existe por causa da Fabrícia: a "Fabricia" (a Futura PT que ela mandou
+     * em 16/09/2026) tem UM peso só. Pedir 500 dela faria o navegador engordar
+     * a forma — negrito sintético, que o manual dela proíbe em letra maiúscula.
+     * Então a ênfase sai numa família que TEM a face Medium desenhada.
+     */
+    enfase?: () => { fontFamily: string };
   };
+
+  /**
+   * Peso da ênfase. 500 quando a marca tem a face Medium desenhada (é o caso
+   * da New Hair, com Montserrat, e da família de ênfase da Fabrícia). Quem não
+   * tiver face de ênfase nenhuma põe 300 aqui e distingue por COR e tamanho —
+   * nunca deixando o navegador sintetizar.
+   */
+  pesoEnfase: number;
+
+  /**
+   * Fator de tamanho quando a ÊNFASE sai numa família emprestada. Os tamanhos
+   * do perfil estão na métrica da face do CORPO; se a família de ênfase tem
+   * outra altura de x, o mesmo px desenha uma letra maior ou menor e a ênfase
+   * vira um degrau de tamanho, não de peso. Sem valor, 1.
+   *
+   * Medido com fontTools nos arquivos reais: "Fabricia" (Futura) tem x de
+   * 0,4330 em e "Fabricia Satza" (Jost) 0,4600 em — então 0,4330/0,4600.
+   */
+  enfaseEscala?: number;
+
+  /**
+   * As especificações de fonte que o render tem de ESPERAR antes de pintar o
+   * primeiro frame (`peso px "família"`). Lidas por `useFontesProntas`.
+   *
+   * Só entram faces que existem em arquivo. Pedir um peso que a família não
+   * tem faz o navegador sintetizar a forma, e é isso que a lista evita.
+   */
+  faces: string[];
 
   titulo: {
     /** distância do topo, em px. null = centralizado no meio exato do quadro */
@@ -116,6 +154,12 @@ export const NEW_HAIR: Marca = {
     corpo: loadMontserratNH,
     serif: loadCormorantNH,
   },
+  pesoEnfase: 500, // Montserrat 500 existe de verdade no kit
+  faces: [
+    '300 34px "Montserrat"',
+    '500 42px "Montserrat"',
+    '500 48px "Cormorant Garamond"',
+  ],
   cabecalho: null,
   titulo: {
     top: 270,
@@ -200,10 +244,39 @@ export const FABRICIA: Marca = {
     destaque: "#C9B39B", // champagne — o acento sobre escuro
     texto: "#FCFAF7", // branco suave
   },
+  /* A FONTE DO VÍDEO É A QUE ELA MANDOU EM 16/09/2026 — o arquivo
+     "Fabricia-Light_idêntica_a_futura_PT.otf", que aqui vira a família
+     "Fabricia". Ela disse "use para o vídeo", e em 20/09 repetiu a ordem para
+     as peças faladas: "vamos adaptar a Fabrícia Satza, com nossa logo, nossa
+     fonte, nossa identidade".
+
+     Não é a mesma coisa que a "Fabricia Satza" do ZIP de 13/09: aquela é
+     derivada da Jost* e tem altura de x de 0,460 em; esta tem 0,433, que é a
+     proporção clássica da Futura. É por isso que ela não se troca por
+     semelhança — o §01 do pedido dela proíbe exatamente isso.
+
+     CORPO E DISPLAY NA MESMA FAMÍLIA, de propósito: as peças de texto fixo já
+     entregues saíram assim, e o título de uma peça falada ao lado delas no
+     perfil tem que ler como a mesma letra. A "Fabricia Satza Alt" (o "a" de um
+     andar do kit) fica disponível, mas fora do vídeo.
+
+     ÊNFASE: a Futura que chegou tem UM peso. Enquanto a Medium/Bold dela não
+     chegar, a ênfase sai na face Medium da "Fabricia Satza" — prima geométrica,
+     mesmo esqueleto, mesmo "a" de um andar. Medida a diferença: altura de x de
+     24,8 px contra 23,4 a 54 px. O olho lê como PESO, não como outra fonte.
+     No dia em que a Medium da Futura chegar, some uma linha daqui. */
   fontes: {
-    corpo: loadFabriciaTexto,
-    display: loadFabriciaDisplay,
+    corpo: loadFabriciaFutura,
+    display: loadFabriciaFutura,
+    enfase: loadFabriciaTexto,
   },
+  pesoEnfase: 500, // a face Medium da "Fabricia Satza" existe de verdade
+  enfaseEscala: 0.4330 / 0.4600, // a Jost desenha 6% maior no mesmo px
+  faces: [
+    '300 48px "Fabricia"', // corpo e display — a Futura que ela mandou
+    '300 93px "Fabricia"',
+    '500 55px "Fabricia Satza"', // a ênfase, face Medium de verdade
+  ],
   cabecalho: {
     esquerda: "FABRÍCIA SATZA TRICOLOGIA",
     direita: "SAÚDE CAPILAR",
@@ -212,17 +285,31 @@ export const FABRICIA: Marca = {
     top: 64, // grade dela: cabeçalho a 64px do topo
     opacidade: 0.75,
   },
+  /* TAMANHOS RECALCULADOS PELA ALTURA DE X, porque a família mudou.
+
+     A escala tipográfica do manual dela (37 de piso, 45 "texto", 52
+     "subtítulo", 88 "título") foi escrita para a família do ZIP, cuja altura
+     de x é 0,4600 em. A Futura que ela mandou tem 0,4330 — a MESMA medida em
+     px desenha uma letra 6% menor. Manter os números seria rebaixar a escala
+     dela sem ninguém pedir, e o 45 cairia para o equivalente a 42.
+
+     Medido com fontTools nos arquivos: 0,460/0,433 = 1,0624. Tudo o que é
+     texto de caixa alta e baixa foi multiplicado por isso e arredondado.
+
+     O CABEÇALHO E O SELO NÃO MUDAM: são caixa alta, e quem governa ali é a
+     altura de maiúscula — 0,7150 em na Futura contra 0,7000 na do ZIP, 2% de
+     diferença, dentro do arredondamento de 22 px. */
   titulo: {
     top: 170, // grade dela: conteúdo começa a 170px do topo
-    tamanhoLinha: 52, // subtítulo
-    tamanhoRemate: 88, // título
+    tamanhoLinha: 55, // subtítulo 52 × 1,0624
+    tamanhoRemate: 93, // título 88 × 1,0624
     letterSpacing: 1.5,
     paddingLateral: 80, // margem lateral da grade dela
   },
   legenda: {
     bottom: 430,
-    corpo: 45, // "texto" — e o piso dela é 37
-    destaque: 52, // "subtítulo"
+    corpo: 48, // "texto" 45 × 1,0624 — e o piso dela, 37, vira 39
+    destaque: 55, // "subtítulo" 52 × 1,0624
     paddingLateral: 80,
   },
   selo: {

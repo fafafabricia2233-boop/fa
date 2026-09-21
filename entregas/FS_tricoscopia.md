@@ -480,3 +480,99 @@ pior contraste da legenda **5,0:1 fora do filme** (3,3:1 nos 0,23 s do clarão) 
 **0,00 ms** · master a **−16,00 LUFS**, pico real **−1,94 dBTP**, LRA 3,20.
 
 Enquadramentos, cortes, grade, fonte e fecho não mudaram. Não aprovada.
+
+---
+
+# v7 (21/09/2026) — o exame abre sozinho, e a identidade entra no motor falado
+
+Ordem dela: *"vamos trocar a primeira imagem por a cena onde estou passando o
+tricoscópio de perto, vai entrar sozinha, sem mascarar, por 3 segundos; em
+seguida entra a imagem da tricoscopia do couro cabeludo."*
+
+## O que mudou na montagem
+
+| | v6 | v7 |
+|---|---|---|
+| 1 | cabelo finalizado de costas **+ faixa mascarada** da tricoscopia (3,50 s) | **o exame de perto, sozinho, sem máscara (3,00 s)** |
+| 2 | o exame de perto (1,90 s) | **a tela do tricoscópio (2,20 s)** |
+| 3 | ela levando o tricoscópio ao couro (1,90 s) | — |
+| 4 | a tela do tricoscópio (2,20 s) | — |
+| 5 | macro dos fios grossos (9,50 s) | macro dos fios grossos (9,50 s) |
+| | 19,00 s de cena + 2,10 de fecho = **21,10 s** | 14,70 s de cena + 2,10 = **16,80 s** |
+
+**Duas imagens saíram, e ela não pediu isso — é consequência da ordem.** Com a
+posição 2 ocupada pela imagem da tricoscopia, não sobrou lugar para o cabelo
+finalizado nem para o plano em que ela leva o aparelho ao couro. A primeira
+linha da legenda ("Meu cabelo está bonito") passa a ser **lida, não mostrada**.
+Voltar qualquer um dos dois é uma linha no `planoTricoscopia.ts`.
+
+**O que a peça não perdeu:** ela continua no quadro. O plano do exame é fechado,
+mas a sobrancelha e os olhos dela aparecem na borda de baixo.
+
+## A janela do gancho saiu de medida
+
+Varridos 40→48 s da fita P com nitidez (variância do laplaciano) e movimento
+quadro a quadro:
+
+- **42,9→45,9** — nitidez de 906 a 1078, subindo; movimento calmo, com um
+  reenquadramento suave em 44,1;
+- depois de **46,0** o aparelho sai do couro e o movimento salta de 2 para 23 —
+  qualquer janela que atravesse esse ponto quebra;
+- antes de 42,0 a nitidez é 15% menor.
+
+Escolhida **42,90→45,90**. O último quadro dela é o mais calmo do trecho
+(movimento 0,87), e isso importa: é exatamente ali que o filme entra.
+
+## A virada andou junto, e a música com ela
+
+A própria ordem dela desenhou a virada: *"por 3 segundos; em seguida entra a
+imagem"*. `hookEnd` passou de 105 para **90** (3,00 s). Filme em 83→89, beat em
+90, e o recorte da música em (ataque − virada) = 22,855 − 3,00 = **19,855 s**.
+
+Medido no master: música a **−32,3 dBFS** debaixo do gancho e **−15,2** depois;
+degrau do beat na virada, na banda grave (<200 Hz): **+22,8 dB** (o padrão da
+casa é +13 a +18; aqui é mais forte porque a cama está quase inaudível antes).
+
+O zoom continua no plano da tela — que agora é o corte 1, não o 3.
+
+## Uma correção que vale para a v6 também
+
+O contraste da legenda foi remedido de um jeito mais honesto: em vez de estimar
+o brilho da faixa inteira, **rendeirizei a peça duas vezes — uma com legenda e
+outra sem** — subtraí as duas para saber exatamente quais pixels são letra
+(**9,5% da caixa, 15 876 px**) e medi o fundo **só debaixo deles**.
+
+Por esse critério, o véu de 0,50 da v6 dá **4,12:1** no frame do zoom sobre a
+tela — abaixo do piso de 4,5. **Isso corrige para baixo o "5,0:1" declarado na
+v6**: o corte da tela e o zoom são os mesmos, então aquele número estava
+otimista. O véu desta peça subiu para **0,56**, que devolve **4,81:1**.
+
+| trecho | pior contraste (v7, véu 0,56) |
+|---|---|
+| gancho / exame | 5,64:1 |
+| tela (com o zoom) | **4,81:1** |
+| macro dos fios | 5,69:1 |
+| durante o clarão do filme (0,23 s) | 3,74:1 |
+
+## A mixagem virou script
+
+`scripts/mix-texto-fixo.sh` — irmão do `mix-falado.sh`, para peça **sem voz**.
+Lê os ganhos do `padroes-audio.json` e aplica o fator de peça sem voz declarado
+no cabeçalho (filme 1,00× · zoom 1,58× · click 3,33×), porque sem voz a música
+é a cama e nos ganhos do padrão os SFX ficavam abaixo dela. Até a v6 isso era
+filtergraph montado à mão; agora é reproduzível.
+
+Picos medidos no master: filme −1,5 · zoom −2,6 · click −2,1 dBFS.
+
+## QA da v7
+
+**504 frames** como no plano · **16,800 s** · H.264 High 1080×1920 30 fps
+constante · faixa limitada bt709 · AAC LC 48 kHz estéreo · decodificação limpa ·
+nenhum frame preto · áudio da entrega contra o master: correlação **0,9999**,
+deslocamento **0,00 ms** · master a **−15,5 LUFS**, pico real **−1,5 dBTP**,
+LRA 3,9.
+
+O alvo de loudness é −16; o limitador de pico real segurou em −15,5. Diferença
+de meio LU, dentro do que a plataforma renormaliza.
+
+Não aprovada. Não publicada.

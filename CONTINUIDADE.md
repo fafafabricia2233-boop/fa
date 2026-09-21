@@ -4,7 +4,113 @@ Arquivo exigido pelo manual (§09). Anexar numa conversa nova junto com
 `kit-new-hair/GUIA-INTEGRAL.md`. Regra geral fica na seção "Regras gerais";
 ajuste que vale só para uma peça fica na linha daquela peça.
 
-Última atualização: 16/09/2026.
+Última atualização: 21/09/2026.
+
+## A IDENTIDADE DELA ENTRA NO MOTOR FALADO — E FALTA A FITA (21/09/2026)
+
+*"Ainda não fazemos vídeo falado da Fabrícia Satza, mas vamos fazer, então
+aprenda. Vamos adaptar a Fabrícia Satza, com nossa logo, nossa fonte, nossa
+identidade."*
+
+**NÃO EXISTE FITA COM ELA FALANDO.** Isto é o primeiro achado, e é o que trava
+a peça falada. Transcritas as **doze fitas** de `public/fabricia/bruto/` com o
+faster-whisper medium, uma a uma:
+
+| o que apareceu | onde |
+|---|---|
+| nada | B, C, F, L, N, O, P, R (oito fitas) |
+| "Obrigado." | D, 1,1 s |
+| conversa de bastidor sobre unha e banho | H, 91→121 s |
+| "Acabei de entrar, nem sei se a gente vai lavar o fio." | M, 0→6 s |
+
+Nenhuma palavra sobre tricologia, nenhuma frase dirigida à câmera. As sete
+pastas do Drive (`Cabelo sujo`, `lavando o cabelo`, `passando produto`,
+`finalizando o cabelo`, `Mostrando o cabelo`, `Tricoscopia`, `usando secador`)
+são todas de procedimento. **O fluxo A precisa de fita falada e ela não existe
+no material que está aqui.** O §02 é explícito sobre o que o fluxo A faz —
+escolher a última tentativa completa de cada fala — e não há fala para escolher.
+Inventar texto e pôr na boca dela está proibido pelo pedido dela mesma.
+
+**O QUE DEU PRA FAZER SEM A FITA:** a identidade. O `ReelFalado` já era
+multimarca; o que faltava era a marca dela estar certa dentro dele.
+
+**A FONTE DO VÍDEO É A QUE ELA MANDOU EM 16/09, e agora vale também no falado.**
+O perfil dela usava a família do ZIP de 13/09 (derivada da Jost*); passou a usar
+a "Fabricia" (a Futura PT do arquivo `Fabricia-Light_idêntica_a_futura_PT.otf`)
+no corpo E no display. Motivo: as peças de texto fixo já entregues saíram assim,
+e um título falado ao lado delas no perfil tem que ler como a mesma letra.
+
+**TROCAR DE FAMÍLIA OBRIGA A RECALCULAR TAMANHO — pela ALTURA DE X.** Medido com
+fontTools nos arquivos reais: a "Fabricia" tem x de **0,4330 em** e a "Fabricia
+Satza" **0,4600 em**. O mesmo px desenha letra 6% menor. Manter os números da
+escala dela seria rebaixar a escala sem ninguém pedir. Então ×1,0624:
+
+| | antes (Jost) | agora (Futura) |
+|---|---|---|
+| título, linha | 52 | **55** |
+| título, remate | 88 | **93** |
+| legenda, corpo | 45 | **48** |
+| legenda, destaque | 52 | **55** |
+| cabeçalho e selo | 22 | **22** |
+
+O cabeçalho e o selo NÃO mudam: são caixa alta, e quem governa ali é a altura de
+maiúscula — 0,7150 em na Futura contra 0,7000 na do ZIP, 2% de diferença, dentro
+do arredondamento.
+
+**NEGRITO SINTÉTICO CONTINUA PROIBIDO, e agora o motor não consegue cometê-lo.**
+A Futura que chegou tem UM peso (300). O perfil ganhou `fontes.enfase`,
+`pesoEnfase` e `enfaseEscala`: onde a gramática pede peso 500, o motor usa uma
+família que TEM a face Medium desenhada — a "Fabricia Satza" — e corrige o
+tamanho por 0,4330/0,4600, senão a ênfase vira degrau de TAMANHO em vez de peso.
+Some no dia em que a Medium/Bold da própria Futura chegar.
+
+**PORTÃO DE FONTE, AGORA POR MARCA.** `src/lib/fontesProntas.ts` segura o frame
+0 (`delayRender`) até as faces que o PERFIL declara (`Marca.faces`) carregarem
+de verdade. O §07 pede isso; até aqui só as peças de texto fixo tinham portão, e
+o motor falado pintava o frame 0 torcendo para o woff2 já estar pronto.
+
+**Conferido na tela, não no código:** stills do `TesteMarcaFabricia` (que não é
+peça — é a prancha de tokens). Largura de tinta medida contra as métricas do
+arquivo da fonte: linha de título **462 px** contra 469,9 previstos na Futura a
+55 px; remate **787 px** contra 800,0 previstos na Medium a 88 px; filete
+dourado **64 px**, o do manual. As duas dentro de 1,7% — a diferença é o
+letter-spacing final e o side bearing, que não pintam tinta.
+
+**E a peça já entregue não se mexeu:** re-renderizada a FS_couro_cachos com o
+perfil novo, a diferença para o arquivo de 17/09 tem média **0,00** e desvio
+**1,53** de 255 — ruído de recodificação, não mudança. Duas renderizações feitas
+agora são bit a bit idênticas entre si.
+
+## FS_tricoscopia v7 (21/09/2026) — o exame abre sozinho
+
+*"Vamos trocar a primeira imagem por a cena onde estou passando o tricoscópio de
+perto, vai entrar sozinha, sem mascarar, por 3 segundos; em seguida entra a
+imagem da tricoscopia do couro cabeludo."*
+
+**A ordem desfaz o gancho em duas camadas da v5/v6.** As duas imagens que
+estavam EMPILHADAS (cabelo finalizado + faixa mascarada da tricoscopia) passam a
+ser SEQUENCIAIS. A peça foi de 21,10 s para **16,80 s**.
+
+**Ordem que tira lugar tira imagem, e isso se declara.** Com a posição 2 ocupada
+pela tricoscopia, saíram da peça o cabelo finalizado de costas e o plano em que
+ela leva o aparelho ao couro — ela não pediu, é efeito. A primeira linha da
+legenda passa a ser lida, não mostrada. Registrado no plano e dito na entrega.
+
+**A ORDEM DELA TAMBÉM MOVE A VIRADA.** "Por 3 segundos; em seguida entra" é a
+definição de `hookEnd`: 105 → **90**. Filme em 83→89, beat em 90, recorte da
+música em 22,855 − 3,00 = **19,855 s**. Degrau do beat na virada: **+22,8 dB**.
+
+**CONTRASTE DE LEGENDA SE MEDE DEBAIXO DO GLIFO, não na faixa inteira.** Método
+novo: renderizar a peça DUAS vezes, com legenda e sem, subtrair as duas para
+saber quais pixels são letra (9,5% da caixa) e medir o fundo só ali. Por esse
+critério o véu de 0,50 da v6 dá **4,12:1**, abaixo do piso — e não os 5,0:1 que
+a v6 declarou. **O número da v6 estava otimista; fica corrigido.** Véu para
+**0,56**, que devolve 4,81:1.
+
+**MIXAGEM DE PEÇA SEM VOZ VIROU SCRIPT.** `scripts/mix-texto-fixo.sh`, irmão do
+`mix-falado.sh`. Lê os ganhos do `padroes-audio.json` e aplica o fator de peça
+sem voz (filme 1,00× · zoom 1,58× · click 3,33×) declarado no cabeçalho. Até a
+v6 era filtergraph à mão, e o §07 manda o contrário.
 
 ## A GRAMÁTICA DA NEW HAIR NA PEÇA SEM FALA (20/09/2026)
 

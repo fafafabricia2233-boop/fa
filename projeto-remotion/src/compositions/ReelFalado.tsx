@@ -37,6 +37,7 @@ import {
   staticFile,
   useCurrentFrame,
 } from "remotion";
+import { useFontesProntas } from "../lib/fontesProntas";
 import { pegarMarca } from "../lib/marcas";
 
 /* ----------------------------------------------------------------------------
@@ -369,6 +370,8 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
   const m = pegarMarca(marca);
   const frame = useCurrentFrame();
   const t = frame / plano.fps;
+  /* segura o frame 0 até as faces da marca existirem de verdade (§07) */
+  useFontesProntas(m);
 
   if (m.pendencias.length > 0) {
     return <FaltaIdentidade nome={m.nome} pendencias={m.pendencias} />;
@@ -378,6 +381,16 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
   const serif = m.fontes.serif ? m.fontes.serif() : corpo;
   /* face de display pro título; quem não tem, usa a do corpo */
   const display = m.fontes.display ? m.fontes.display() : corpo;
+  /* ÊNFASE. Onde a gramática pede peso 500, a face tem que EXISTIR: pedir 500
+     de uma família que só tem 300 faz o navegador engordar a forma, e o manual
+     da Fabrícia proíbe negrito sintético. Marca sem família própria de ênfase
+     usa o peso 500 da própria família do corpo (é o caso da New Hair, com
+     Montserrat). Quando a família de ênfase é emprestada, o tamanho se corrige
+     pela altura de x — senão a ênfase vira degrau de TAMANHO, não de peso. */
+  const enfase = m.fontes.enfase ? m.fontes.enfase() : null;
+  const familiaEnfase = (enfase ?? display).fontFamily;
+  const familiaEnfaseCorpo = (enfase ?? corpo).fontFamily;
+  const escalaEnfase = enfase ? (m.enfaseEscala ?? 1) : 1;
 
   const tituloOpacity = lerp(frame, [plano.hookEnd - 14, plano.hookEnd - 7], [1, 0]);
   const ativo = frame < plano.endCard;
@@ -583,10 +596,10 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
                 texto={plano.title[1]}
                 inicio={0.88}
                 fim={1.4}
-                size={m.titulo.tamanhoRemate}
+                size={Math.round(m.titulo.tamanhoRemate * escalaEnfase)}
                 cor={m.cores.destaque}
-                peso={500}
-                familia={display.fontFamily}
+                peso={m.pesoEnfase}
+                familia={familiaEnfase}
                 letterSpacing={m.titulo.letterSpacing}
                 corCursor={m.cores.destaque}
                 sombra={rgbFundo(0.9)}
@@ -627,9 +640,13 @@ export const ReelFalado: React.FC<ReelFaladoProps> = ({ marca, plano, cues }) =>
                 <div
                   key={i}
                   style={{
-                    fontFamily: l.serif ? serif.fontFamily : corpo.fontFamily,
-                    fontWeight: l.gold ? 500 : 300,
-                    fontSize: l.size,
+                    fontFamily: l.serif
+                      ? serif.fontFamily
+                      : l.gold
+                        ? familiaEnfaseCorpo
+                        : corpo.fontFamily,
+                    fontWeight: l.gold ? m.pesoEnfase : 300,
+                    fontSize: l.gold ? Math.round(l.size * escalaEnfase) : l.size,
                     letterSpacing: l.serif ? 1 : 2.2,
                     color: l.gold ? m.cores.destaque : m.cores.texto,
                     textAlign: "center",

@@ -6,138 +6,118 @@
    mesmo padrão de legenda da FS_couro_cachos.
 
    ---------------------------------------------------------------------------
-   A ESTRUTURA É A DA FRASE, EM TRÊS BATIDAS
+   v7 (20/09/2026) — O EXAME ABRE SOZINHO
 
-   A frase tem uma concessão no meio ("Mesmo assim"), e a montagem segue:
-   o que ela tem → o que ela faz apesar disso → o que ela vê.
+   Ordem dela: *"vamos trocar a primeira imagem por a cena onde estou passando
+   o tricoscópio de perto, vai entrar sozinha, sem mascarar, por 3 segundos;
+   em seguida entra a imagem da tricoscopia do couro cabeludo."*
 
-   1. "Mostrando cabelo bonito finalizado" (L) 17,00→19,80
-      DE COSTAS, o cabelo inteiro na tela, cheio, com movimento. É o "meu
-      cabelo está bonito" — a peça abre pelo resultado, como a anterior.
-   2. "Tricoscopia cabelo limpo" (P) 4,00→6,70
-      Ela encosta o tricoscópio no couro e olha pra lente. É o "mesmo assim":
-      o gesto de ir olhar mesmo com o cabelo bonito.
-   3. "Tricoscopia cabelo limpo" (P) 42,00→44,30
-      O exame de perto — a luz do aparelho na risca aberta, a mão segurando o
-      cabelo. Enquadrado SEM o rosto: aqui o assunto é o couro, não ela.
-   4. "Tricoscopia do couro cabeludo limpo" (O) 104,00→106,20
-      A TELA, com moldura à vista. Diz o que os dois planos seguintes são.
-   5. idem, 76,60→79,20 — dentro da imagem: o couro entre os fios, limpo.
-   6. idem, 67,80→70,70 — os fios grossos, separados e com brilho. Fecha a peça
-      na prova de que o "está bonito" da primeira linha continua verdadeiro
-      de perto.
+   O que isso desfaz: o gancho em duas camadas da v5/v6 (cabelo finalizado com
+   a faixa mascarada da tricoscopia por cima). As duas imagens que estavam
+   EMPILHADAS passam a ser SEQUENCIAIS — primeiro o exame, depois a imagem.
+
+   Consequência que precisa ficar escrita, porque ela não pediu e é efeito da
+   ordem: com a posição 2 ocupada pela imagem da tricoscopia, **saíram da peça
+   o cabelo finalizado de costas e o plano em que ela leva o tricoscópio ao
+   couro**. A primeira linha da legenda ("Meu cabelo está bonito") passa a não
+   ter imagem própria — ela é lida, não mostrada. Voltar qualquer um dos dois
+   é uma linha neste arquivo.
+
+   O que a peça não perdeu: ela continua no quadro. O plano do exame é fechado,
+   mas a sobrancelha e os olhos dela aparecem na borda de baixo — não é um
+   plano de mão anônima.
+
+   ---------------------------------------------------------------------------
+   A ESTRUTURA, EM TRÊS BATIDAS
+
+   1. "Tricoscopia cabelo limpo" (P) 42,90→45,90 — O EXAME DE PERTO
+      3,00 s, sozinho, sem máscara. A luz do aparelho na risca aberta, a mão
+      segurando o cabelo, os olhos dela na borda de baixo. É o gancho: a peça
+      abre no gesto, não no resultado.
+   2. "Tricoscopia do couro cabeludo limpo" (O) 85,80→88,00 — A TELA
+      2,20 s. A imagem da tricoscopia com a moldura à vista: é isto que diz ao
+      espectador que o que vem a seguir é uma TELA, não uma foto qualquer.
+   3. idem, 63,50→73,00 — DENTRO DA IMAGEM
+      9,50 s de fio grosso em macro. O final demorado que ela autorizou
+      ("pode mostrar a tricoscopia de pelos grossos no final por mais de 9
+      segundos").
 
    O QUE FICOU DE FORA, DE PROPÓSITO
 
-   · "Fazendo tricoscopia no cabelo limpo" (N): mesmo gesto do corte 2, mas
-     gravada CONTRA O ESPELHO — o "CHICAGO" da camiseta sai invertido. A P faz
-     a mesma coisa com câmera direta.
-   · "Tricoscopia couro cabeludo sujo descamando seborreia" (Q): é couro sujo
-     com descamação. A frase diz que o cabelo está bonito; abrir a imagem num
-     couro descamando contradiz o texto e vira outro assunto.
-   · O resto da fita O: são 143 s de tela, e a maior parte está fora de foco
-     ou com o aparelho correndo rápido demais. A janela escolhida foi medida
-     (nitidez alta com movimento contínuo), não pescada no olho.
+   · "Mostrando cabelo bonito finalizado" (L) 17,00→19,80: era o gancho da v6.
+     Saiu pela ordem acima — a posição 1 é o exame e a 2 é a tricoscopia.
+   · "Tricoscopia cabelo limpo" (P) 4,00→5,90 — ela levando o aparelho ao
+     couro, com o rosto no quadro. Mesmo motivo; e, com o exame de perto
+     abrindo, este plano repetia o gesto num enquadramento mais frouxo.
+   · "Fazendo tricoscopia no cabelo limpo" (N): mesmo gesto, mas gravada CONTRA
+     O ESPELHO — o "CHICAGO" da camiseta sai invertido.
+   · "Tricoscopia couro cabeludo sujo descamando seborreia" (Q): couro sujo com
+     descamação. A frase diz que o cabelo está bonito; abrir a imagem num couro
+     descamando contradiz o texto.
+   · O resto da fita O: 143 s de tela, a maior parte fora de foco ou com o
+     aparelho correndo rápido demais. As duas janelas foram medidas.
 
    ---------------------------------------------------------------------------
-   O CORTE 4 É FILMAGEM DE TELA, E ISSO TEM CONSEQUÊNCIA
+   O CORTE 3 É FILMAGEM DE TELA, E ISSO TEM CONSEQUÊNCIA
 
    A fita O é a tela do tricoscópio filmada de lado: a tela está inclinada,
    tem moldura preta em volta, ícones da interface à esquerda e um botão ciano
-   de câmera à direita. O recorte entra DENTRO da imagem — 387×688 no espaço
-   da entrega, que é 774×1376 px na fita — e por isso amplia 1,40×. É o único
-   plano da peça que amplia; os outros três desceriam de 4K com pixel de
-   sobra. Vale porque o conteúdo é textura macro, onde a maciez lê como pouca
-   profundidade de campo, e porque não existe enquadramento maior dentro da
-   tela sem pegar moldura ou botão.
+   de câmera à direita. O recorte do macro entra DENTRO da imagem — 387×688 no
+   espaço da entrega, que é 774×1376 px na fita — e por isso amplia 1,40×. Vale
+   porque o conteúdo é textura macro, onde a maciez lê como pouca profundidade
+   de campo, e porque não existe enquadramento maior dentro da tela sem pegar
+   moldura ou botão.
    ============================================================================= */
 
 import type { PlanoTextoFixo } from "./ReelTextoFixo";
 import { LEGENDA_ALINHADA, veuDaLegenda } from "../lib/legendaFabricia";
 
 /* frames MEDIDOS nos arquivos cortados com ffprobe -count_frames */
-const C1 = 105; // 3,50 s — GANCHO: cabelo finalizado + faixa mascarada
-const C2 = 57; //  1,90 s — o exame de perto, a luz na risca
-const C3 = 57; //  1,90 s — ela levando o tricoscópio ao couro
-const C4 = 66; //  2,20 s — A TELA do tricoscópio, com a moldura à vista
-const C5 = 285; // 9,50 s — dentro da imagem: os fios grossos, demorado
+const C1 = 90; //  3,00 s — GANCHO: o exame de perto, sozinho, sem máscara
+const C2 = 66; //  2,20 s — A TELA do tricoscópio, com a moldura à vista
+const C3 = 285; // 9,50 s — dentro da imagem: os fios grossos, demorado
 
-const CENAS = C1 + C2 + C3 + C4 + C5; // 570 frames = 19,00 s
+const CENAS = C1 + C2 + C3; // 441 frames = 14,70 s
 const FECHO = 63; // 2,10 s de lockup parado
-const TOTAL = CENAS + FECHO; // 633 frames = 21,10 s
+const TOTAL = CENAS + FECHO; // 504 frames = 16,80 s
 
-/* v5 (18/09/2026). Três ordens dela, e a primeira muda a gramática da peça:
+/* A JANELA DO GANCHO SAIU DE MEDIDA, não de palpite. Varridos 40→48 s da fita
+   P com nitidez (variância do laplaciano) e movimento quadro a quadro:
 
-   · GANCHO EM DUAS CAMADAS. "Eu mostrando o cabelo finalizado e uma imagem
-     mascarada em cima mostrando a tricoscopia de pelos grossos." O primeiro
-     plano passa a ter FAIXA MASCARADA — a técnica que a casa já usava nas
-     peças faladas e que o motor de texto fixo não tinha. Não é tarja: a faixa
-     dissolve na borda que encosta no cabelo, então a imagem do tricoscópio
-     nasce de dentro do cabelo dela. É o vídeo inteiro numa imagem só: o cabelo
-     bonito por fora, o couro por dentro.
+     · 42,9→45,9 — nitidez de 906 a 1078, subindo; movimento calmo, com um
+       reenquadramento suave em 44,1 (o aparelho sobe no quadro);
+     · depois de 46,0 o aparelho SAI do couro e o movimento salta de 2 para 23 —
+       qualquer janela que atravesse esse ponto quebra;
+     · antes de 42,0 a nitidez é 15% menor.
 
-   · SAI A TRICOSCOPIA DOS FIOS FINOS. Os dois planos de tela que mostravam
-     couro com fio ralo saíram; sobrou só o dos fios grossos, e a TELA passou a
-     mostrar fio grosso também (85,8 s em vez de 104,0 s). A peça inteira agora
-     só mostra tricoscopia de fio bom.
-
-   · O FINAL DEMORA. 9,50 s no macro dos fios, contra 2,90 s antes. A janela
-     saiu de medida: varridas todas as janelas contínuas de 9,5 s da fita
-     exigindo que NENHUM quadro ficasse sem fio, 63,5 s ganhou (espessura média
-     20,4 e nenhum quadro escuro). A concorrente de 66,5 s pontuava parecido e
-     foi descartada na folha de contato: tem dois quadros quase pretos por
-     volta de 73 s, onde o aparelho perde contato com o couro.
-
-   A peça foi de 15,70 s para 21,10 s. Ela autorizou: "pode ser um vídeo longo
-   não tem problema". */
+   Escolhida 42,90→45,90. O fim dela é o quadro mais calmo do trecho
+   (movimento 0,87), e isso importa: é exatamente ali que o filme entra. */
 
 export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
   marca: "fabricia",
 
   cortes: [
     {
-      src: "fabricia/cortes-tricoscopia/c1_gancho.mp4",
+      src: "fabricia/cortes-tricoscopia/c1_exame_3s.mp4",
       duracao: C1,
-      /* GANCHO EM DUAS CAMADAS: o cabelo finalizado de costas, e por cima a
-         faixa mascarada com a tricoscopia dos fios grossos — a MESMA imagem
-         que fecha a peça, como ela pediu. A faixa ocupa o alto e dissolve
-         para dentro do cabelo. */
-      faixa: {
-        src: "fabricia/cortes-tricoscopia/faixa_fios.mp4",
-        topo: 0,
-        altura: 620,
-        cauda: 180,
-        cor: { brilho: 0.96 },
-      },
-      origem:
-        "Drive · Mostrando o cabelo · " +
-        "'Mostrando cabelo bonito finalizado repartindo ao meio o couro cabeludo' " +
-        "(1f3khS0vJfGb4O4nw10Z1zh_XJGyOq-T6) · 17,00→20,50 s · " +
-        "recorte 810×1440 em (0, 480) · brilho +0,023 · " +
-        "faixa: 'Tricoscopia do couro cabeludo limpo' 63,50→67,00 s",
-    },
-    {
-      src: "fabricia/cortes-tricoscopia/c1_exame.mp4",
-      duracao: C2,
+      /* O GANCHO DA v7: o exame de perto, SOZINHO e SEM MÁSCARA, 3,00 s —
+         ordem dela em 20/09/2026. É o mesmo enquadramento que era o corte 2 da
+         v6 (576×1024 em (272,260), o único recorte da peça que quase não
+         reduz: 1152 px de fita para 1080 de entrega), mas agora numa janela
+         mais longa e mais nítida. */
       origem:
         "Drive · Tricoscopia · 'Tricoscopia cabelo limpo' " +
-        "(1VF0yXVTLDt2X_tOgknjDqu8iDlDrYRGe) · 42,00→43,90 s · " +
+        "(1VF0yXVTLDt2X_tOgknjDqu8iDlDrYRGe) · 42,90→45,90 s · " +
         "recorte 576×1024 em (272, 260) · brilho −0,02",
     },
     {
-      src: "fabricia/cortes-tricoscopia/c3_tricoscopia.mp4",
-      duracao: C3,
-      origem:
-        "Drive · Tricoscopia · 'Tricoscopia cabelo limpo' " +
-        "(1VF0yXVTLDt2X_tOgknjDqu8iDlDrYRGe) · 4,00→5,90 s · " +
-        "recorte 882×1568 em (59, 285) · brilho −0,058",
-    },
-    {
       src: "fabricia/cortes-tricoscopia/c4_tela.mp4",
-      duracao: C4,
-      /* A TELA COMO TELA: moldura em cima e embaixo, pedaço do suporte. Agora
-         num instante de FIO GROSSO (85,8 s), não mais no de fio ralo. Recorte
-         562×1000 = 1124 px na fita: é o único corte de tela que não amplia. */
+      duracao: C2,
+      /* "EM SEGUIDA ENTRA A IMAGEM DA TRICOSCOPIA DO COURO CABELUDO."
+         A TELA COMO TELA: moldura em cima e embaixo, pedaço do suporte —
+         é o que diz que aquilo é uma tela, e foi ordem dela em 18/09 ("as
+         pessoas têm que ver um pouco da tela"). Num instante de FIO GROSSO
+         (85,8 s). Recorte 562×1000 = 1124 px na fita: não amplia. */
       origem:
         "Drive · Tricoscopia · 'Tricoscopia do couro cabeludo limpo' " +
         "(1sMIzGI1f7w1rt2Hkkbp55xGZm4dem9tu) · 85,80→88,00 s · " +
@@ -145,7 +125,7 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
     },
     {
       src: "fabricia/cortes-tricoscopia/c5_fios_longo.mp4",
-      duracao: C5,
+      duracao: C3,
       /* O FINAL DEMORADO: 9,50 s de fio grosso em macro. Janela escolhida
          varrendo TODAS as janelas contínuas de 9,5 s da fita com a exigência
          de que nenhum quadro ficasse sem fio. */
@@ -191,11 +171,10 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
     },
   ],
 
-  /* bottom 405: o bloco de 3 linhas (197,6 px) ocupa 1317 → 1515 px. Mais
-     baixo que na FS_couro_cachos porque aqui o corte 2 tem o rosto dela grande
-     no meio do quadro — a 1150 a legenda caía em cima da boca. O enquadramento
-     do corte 2 foi refeito junto (882×1568) pra levantar o rosto e liberar a
-     faixa. Sobram 45 px até os últimos 360 px do Reels. */
+  /* bottom 405: o bloco de 3 linhas (197,6 px) ocupa 1317 → 1515 px. Sobram
+     45 px até os últimos 360 px do Reels. Continua valendo na v7: no gancho
+     novo a legenda cai sobre o cabelo escuro, acima da sobrancelha dela —
+     medido no corte pronto, não herdado. */
   texto: {
     ...LEGENDA_ALINHADA,
     bottom: 405,
@@ -207,14 +186,23 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
        Isto SOME no dia em que chegar a Medium/Bold da própria Futura. */
     familiaEnfase: "Fabricia Satza",
   },
-  /* 0,44 em vez dos 0,40 do padrão: medido, o corte dos fios grossos tem couro
-     branco em macro e derrubava o branco da legenda para 4,4:1, abaixo do piso
-     de 4,5. Escurecer o plano estragaria a prova — quem sobe é o véu. */
-  /* 0,50 nesta peça. Subiu de 0,44 quando o ZOOM entrou: empurrando de 1,02 a
-     1,12 no plano da tela, o couro branco em macro passa a ocupar mais quadro
-     sob a legenda e o contraste caiu pra 4,3:1, abaixo do piso de 4,5.
-     Medido, não estimado. */
-  veu: veuDaLegenda(405, 3, 0.5),
+  /* 0,56 nesta peça, e o número vem de uma MEDIDA REFEITA.
+
+     Histórico: 0,40 é o padrão; virou 0,44 quando o macro dos fios entrou
+     (couro branco em macro sob a legenda) e 0,50 quando o zoom entrou na v6.
+
+     Na v7 a conta foi refeita de um jeito mais honesto do que o da v6: em vez
+     de estimar o brilho da faixa inteira, eu rendeirizei a peça DUAS vezes —
+     uma com a legenda e outra sem — subtraí as duas para saber exatamente
+     quais pixels são letra (9,5% da caixa, 15 832 px) e medi o fundo só
+     DEBAIXO DELES. Por esse critério o 0,50 dá 4,12:1 no frame 140, no meio
+     do zoom sobre a tela: abaixo do piso de 4,5.
+
+     Isso corrige para baixo o "5,0:1" declarado na v6 — o corte da tela e o
+     zoom são os mesmos, então o número da v6 estava otimista. 0,56 devolve
+     4,79:1 e é o valor entregue aqui. Escurecer o plano continua fora de
+     questão: a prova é justamente o couro limpo. */
+  veu: veuDaLegenda(405, 3, 0.56),
 
   cabecalho: false,
 
@@ -224,34 +212,40 @@ export const PLANO_TRICOSCOPIA: PlanoTextoFixo = {
      entram o filme, o beat, o zoom e os SFX — e NÃO entram o título digitado
      nem a legenda de rodapé, que exigiriam partir a frase.
 
-     A VIRADA é o frame 105: fim do plano de abertura (o cabelo com a faixa
-     mascarada) e entrada do assunto — ela indo olhar. Numa peça falada a
-     virada é o fim do gancho; aqui, sem fala, é a troca de assunto da
-     montagem. É nela que o filme cai (98→104) e onde o beat da música entra.
+     A VIRADA passou de 105 para o frame 90, porque a própria ordem dela a
+     desenhou: *"vai entrar sozinha, sem mascarar, POR 3 SEGUNDOS; em seguida
+     entra a imagem da tricoscopia"*. Fim do exame, entrada da imagem — 3,00 s
+     = 90 frames. Numa peça falada a virada é o fim do gancho; aqui, sem fala,
+     é a troca de assunto da montagem. O filme cai em 83→89 e o beat entra em
+     90. O recorte da música anda junto: (ataque − virada) = 22,855 − 3,00.
 
-     O ZOOM fica no plano da TELA, empurrando de 1,02 a 1,12 nos 15 frames
-     antes do corte para o macro — é o movimento que motiva a entrada na
-     imagem, e o único da peça. O §04 pede poucas alternâncias.
+     O ZOOM continua no plano da TELA — que agora é o corte 1, não o 3 —
+     empurrando de 1,02 a 1,12 nos 15 frames antes do corte para o macro. É o
+     movimento que motiva a entrada na imagem, e o único da peça. O §04 pede
+     poucas alternâncias.
 
      SEM TENSÃO, e é decisão, não esquecimento: o §05 põe o grave na última
      palavra do PROBLEMA, e esta peça não tem problema delimitado — a frase é
      afirmativa do começo ao fim. Forçar tensão sem problema é inventar
      estrutura, o mesmo caso da NH_velocidade (14/09/2026). */
-  hookEnd: 105,
-  zoom: { corte: 3, frame: 40 },
+  hookEnd: 90,
+  zoom: { corte: 1, frame: 40 },
 
   endCard: CENAS,
   duracao: TOTAL,
 
-  /* Faixa DIFERENTE da peça anterior, como manda a rotação. "harmony - lofi
-     type beat (FREE FOR PROFIT USE) - Prod. Riddiman"; SHA-256 1f9feee1…
-     confere com a curadoria. Recorte a partir de 88,112 s, que é tempo forte
-     de compasso (compasso de 3,04 s, ~79 BPM). O master mixado por fora sai a
-     −16,00 LUFS e pico real −5,93 dBTP. */
+  /* O ÁUDIO DA ENTREGA NÃO SAI DAQUI. A casa renderiza a imagem em silêncio
+     (`--muted`), mistura os stems por fora e faz o mux — é o que o §07 manda e
+     o que evita a defasagem do motor. Este bloco só serve para a pré-escuta no
+     Studio; os números de verdade estão no relatório da peça.
+
+     Faixa: "lostmemories". A `harmony` da v5 tem entrada de +10,2 dB e não
+     marca virada (o piso do padrão é ~+13); a lostmemories tem +26,7. Recorte
+     em (ataque − virada) = 22,855 − 3,00 = 19,855 s. */
   audio: {
-    src: "fabricia/musica/harmony.mp3",
-    inicio: 88.112,
-    volume: 0.531, // −5,5 dB, o mesmo ganho do master (13,90 s)
+    src: "fabricia/musica/lostmemories.mp3",
+    inicio: 19.855,
+    volume: 0.531,
     fadeIn: 24,
     fadeOut: 36,
   },
