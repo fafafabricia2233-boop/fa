@@ -12,9 +12,11 @@
 | Local | Atendimento em **sala alugada dentro de uma clínica** |
 | 2.1 | CNPJ enquadrado como **estética e beleza** |
 | 2.2 | Por enquanto o recebimento será **no meu nome** (ver opções na seção 2) |
+| 3.4 | Técnico em estética: **opção para avaliar depois** (ver seção 3) |
 | 4 | Títulos usados: **Tricologista** e **Terapeuta Capilar** |
+| 5 | Nome oficial da primeira sessão/avaliação: **Mapeamento Capilar** |
 | 3 | Achados fora do escopo → **anotar tudo e encaminhar ao médico parceiro** |
-| Posicionamento | Atividade **de interesse da saúde** (a estratégia completa vem depois) |
+| Posicionamento | Atividade **de interesse da saúde** (estratégia na seção 9) |
 | Jornada | **Pacotes montados para cada cliente**. Referência inicial: **pacote de 6 sessões**. Duração e intervalo entre sessões serão definidos depois |
 
 ---
@@ -66,7 +68,7 @@
 - CNAE mais comum: **9602-5/02 — Atividades de estética e outros serviços de cuidados com a beleza**.
 - Essa atividade **pode ser MEI** (ocupação "Esteticista independente"). Confirme com o contador se a ocupação exata está liberada no ano da abertura.
 - Se o faturamento passar do limite do MEI ou você quiser contratar mais de um funcionário, o caminho é **ME no Simples Nacional**.
-- 9602-5/02 é uma atividade **sujeita à vigilância sanitária**. Isso combina com o posicionamento de **interesse da saúde**, que será detalhado depois.
+- 9602-5/02 é uma atividade **sujeita à vigilância sanitária**. Isso combina com o posicionamento de **interesse da saúde** (ver seção 9).
 
 ### 2.2 "Vou receber no meu nome": o que fazer
 Enquanto o CNPJ não sai, há três formas de receber:
@@ -81,27 +83,27 @@ Enquanto o CNPJ não sai, há três formas de receber:
 
 ---
 
-## 3. Técnico em estética aproveitando o técnico de enfermagem
+## 3. Técnico em estética — ⏸️ OPÇÃO PARA AVALIAR DEPOIS
 
-### 3.1 O que a pesquisa encontrou
-1. **O técnico de enfermagem, sozinho, não habilita para estética.** O COFEN só reconhece a Enfermagem Estética para **enfermeiros de nível superior** com pós-graduação específica (Res. COFEN 529/2016, alterada pelas 626/2020 e 715/2023). O técnico de enfermagem **não tem respaldo do COREN** para fazer procedimentos estéticos, e cursos livres não suprem isso.
-2. **Não existe "pós-técnico de enfermagem em estética"** que o COFEN reconheça como habilitação estética.
-3. **A lei que regulamenta a estética é a Lei 13.643/2018.** Técnico em Estética é quem tem **curso técnico em estética** reconhecido. A regra de transição da lei protegia quem já **exercia a profissão havia 3 anos** quando ela entrou em vigor (abril de 2018). Essa porta já passou para quem começou depois.
-4. **Não se usa o COREN para trabalhar com estética.** Na sala de estética você atua como **técnica em estética / terapeuta capilar**, não como técnica de enfermagem. Não use carimbo nem número do COREN nesse contexto. O conhecimento de enfermagem entra como **diferencial de biossegurança e de triagem**, não como habilitação.
+> Decisão: não é prioridade agora. Fica registrado para retomar no futuro.
 
-### 3.2 As melhores opções, da menos para a mais burocrática
+**Pontos já esclarecidos**
+- O **técnico de enfermagem não habilita para estética**. O COFEN só reconhece Enfermagem Estética para **enfermeiros de nível superior** com pós na área (Res. COFEN 529/2016, alterada pelas 626/2020 e 715/2023).
+- **Não existe "pós-técnico de enfermagem em estética"** reconhecido.
+- Na estética, **não usar o COREN** (nem carimbo, nem número, nem jaleco com identificação da enfermagem). A formação em enfermagem entra como diferencial de biossegurança e triagem.
+- O **treinamento com os médicos** não dá habilitação por si só, mas serve como **prova de experiência** se um dia você for buscar a certificação.
 
-| Ranking | Caminho | Requisitos típicos | Tempo | Burocracia |
-|---|---|---|---|---|
-| 🥇 **1** | **Técnico em Estética por certificação de competências** (LDB, art. 41) | 18 anos ou mais, ensino médio completo, **cerca de 2 anos de experiência comprovada** em estética (ou formação relacionada), entrevista e prova | Semanas a poucos meses | **Baixa**. Exemplo pesquisado: cerca de R$ 1.780 à vista |
-| 🥈 **2** | **Técnico em Estética com aproveitamento de estudos do técnico de enfermagem** | Diploma de técnico de enfermagem. A escola aproveita as disciplinas em comum do eixo *Ambiente e Saúde* (anatomia, fisiologia, biossegurança, primeiros socorros) | Menos que o curso completo. Varia por escola, algo como 6 a 12 meses | **Média**. Precisa pedir análise de aproveitamento na escola |
-| 🥉 **3** | Curso técnico em estética completo | Ensino médio | Cerca de 1,5 a 2 anos | Média/alta |
-| 4 | Graduação em Enfermagem + pós em Enfermagem Estética | Longo prazo | 5 anos ou mais | Alta. Só vale se quiser fazer injetáveis e procedimentos invasivos no futuro |
+**Opções, para quando for avaliar** (o curso técnico em estética tem no mínimo 1.200 h, pelo Catálogo Nacional de Cursos Técnicos do MEC)
 
-**Como aplicar isso:**
-- **Se você já tem cerca de 2 anos de experiência comprovável** com terapia capilar ou estética (notas, contratos, declarações de salões, certificados de cursos livres, portfólio), vá na **opção 1**. É a mais rápida.
-- **Se não tem**, vá na **opção 2**. Ligue para 3 escolas técnicas (SENAC, escolas estaduais ou particulares credenciadas) e pergunte: *"Vocês fazem aproveitamento de estudos do técnico de enfermagem no técnico em estética? Quantas horas sobram e quanto custa?"*
-- **Confira sempre** se a escola está credenciada no **SISTEC/MEC** e no Conselho Estadual de Educação. Diploma de escola fora desse cadastro não vale.
+| Ordem | Caminho | Resumo |
+|---|---|---|
+| 1 | **Certificação por competência** (LDB, art. 41) | 18 anos ou mais, ensino médio e **1 a 2 anos de experiência comprovada**. Análise de documentos + prova. Cerca de R$ 1.500 a 2.000, de semanas a poucos meses |
+| 2 | **Aproveitamento de estudos do técnico de enfermagem** | A escola aproveita anatomia, fisiologia, biossegurança, ética e primeiros socorros. Cada escola decide o quanto aproveita (estimativa: 6 a 12 meses) |
+| 3 | Curso técnico completo | 1.200 h ou mais, cerca de 18 meses |
+
+**Para já ir guardando:** peça à clínica uma **declaração de experiência** em papel timbrado, com CNPJ, contendo as funções (avaliação capilar, tricoscopia, protocolos de terapia capilar, orientação de cuidados), o período e a assinatura do médico responsável. Guarde também os certificados dos cursos.
+
+**Checklist anti-golpe (certificação online):** confirmar a escola no **SISTEC/MEC**, confirmar que o diploma sai com **código SISTEC** e pedir o **ato do Conselho Estadual de Educação** que autoriza a escola a certificar por competência nesse curso.
 
 ---
 
@@ -113,7 +115,7 @@ Enquanto o CNPJ não sai, há três formas de receber:
 1. **Não se apresente como "médica tricologista"** e não use "Dra." sem doutorado. Evite "clínica médica" e "consultório médico".
 2. **Não diagnostique.** Não diga, não escreva e não publique "você tem alopecia androgenética", "é eflúvio telógeno", "é dermatite seborreica", "é alopecia areata".
 3. **Não prescreva medicamentos**: minoxidil (oral ou tópico), finasterida, dutasterida, espironolactona, antifúngicos com indicação terapêutica, corticoides, vitaminas em dose terapêutica, manipulados com ativos farmacológicos.
-4. **Não peça nem interprete exames laboratoriais** como diagnóstico (ferritina, TSH, hormônios). Pode apenas **registrar** exames que o cliente trouxe e **encaminhar ao médico**.
+4. **Exames laboratoriais: não peça e não interprete como diagnóstico.** Não dê nome de doença a partir do exame ("você tem anemia" ou "hipotireoidismo"), não diga que o exame "explica" a queda e não indique suplemento ou remédio com base nele. *(O que é permitido está na lista ✅ abaixo.)*
 5. **Não faça procedimentos invasivos**: injetáveis, intradermoterapia, MMP com ativos medicamentosos, PRP, microagulhamento profundo (ver o limite com seu curso técnico e a VISA local).
 6. **Não prometa cura nem resultado** ("acabe com a calvície", "100% de recrescimento", "garantido") e **não use antes e depois de forma enganosa**. Siga o CDC e o CONAR.
 7. **Não use jaleco, carimbo ou número do COREN** no atendimento de estética. Não misture as habilitações.
@@ -127,24 +129,19 @@ Enquanto o CNPJ não sai, há três formas de receber:
 - Terapias estéticas: higienização, esfoliação, argiloterapia, óleos, LED/laser de baixa potência (conforme seu curso e o equipamento regularizado na ANVISA), alta frequência, massagem, cosméticos (produtos notificados na ANVISA como cosméticos).
 - Orientação de cuidados em casa com cosméticos.
 - **Encaminhar ao médico** e **seguir a orientação escrita do médico** (a Lei 13.643 prevê isso de forma expressa).
+- **Exames trazidos pelo cliente:** o cliente pode trazer exames. Posso **olhar** e **registrar na ficha**. Se houver valores marcados **fora da faixa de referência do próprio laboratório**, ou se o exame tiver relação com a queixa capilar, posso **sugerir o encaminhamento ao médico**.
+  > 💬 *"Vi que alguns valores estão fora da referência do laboratório. Isso merece ser avaliado pelo médico. Vou te encaminhar com um resumo do que observei."*
 
 ### Frase-padrão de escopo (use no site, na ficha e no Instagram)
 > *"A terapia capilar é um cuidado estético complementar. Não substitui avaliação, diagnóstico ou tratamento médico. Sempre que identifico sinais que precisam de investigação, encaminho ao médico."*
 
 ---
 
-## 5. Outro nome para "observação do couro cabeludo"
+## 5. Nome oficial: **Mapeamento Capilar** ✅
 
-Evite "diagnóstico", "consulta" e "exame". Sugestões, da mais indicada para a menos:
-
-1. **Avaliação Capilar Estética** ⭐ (clara e segura)
-2. **Mapeamento Capilar** ⭐ (soa técnico e premium, ótimo para marketing)
-3. **Análise Tricoscópica Estética**
-4. **Leitura do Couro Cabeludo**
-5. **Check-up Capilar** (bom para vender, mas "check-up" lembra consulta médica, então use com cuidado)
-6. **Raio-X Capilar** (chamativo para redes sociais; evitar em documentos)
-
-**Sugestão:** usar **"Mapeamento Capilar"** como nome comercial da primeira sessão e **"Avaliação Capilar Estética"** na ficha e nos documentos.
+- **Nome oficial** (vendas, redes, ficha, documentos e carta de encaminhamento): **Mapeamento Capilar**
+- Evite "diagnóstico", "consulta" e "exame" para descrever essa sessão.
+- Na ficha, o título é *"Ficha de Mapeamento Capilar"* e o registro das imagens é *"Registro tricoscópico"*.
 
 ---
 
@@ -242,12 +239,13 @@ para avaliação médica.
 Queixa principal: _________________________________________________
 Tempo de evolução: _______________________________________________
 
-Achados observados na avaliação capilar estética (descrição, sem diagnóstico):
+Achados observados no Mapeamento Capilar (descrição, sem diagnóstico):
 - _________________________________________________________________
 - _________________________________________________________________
 
-Histórico relatado: medicações ______, alterações recentes ______,
-exames trazidos pelo cliente ______.
+Histórico relatado: medicações ______, alterações recentes ______.
+Exames trazidos pelo cliente: ______ (data: __/__/____)
+Valores fora da referência do laboratório: ______
 
 Registros tricoscópicos anexos (com autorização do cliente): [ ] sim [ ] não
 
@@ -297,8 +295,38 @@ Contato: __________
 - [ ] Definir duração e intervalo de cada protocolo
 - [ ] Precificar o pacote de 6 sessões (custos + aluguel da sala por turno + margem)
 - [ ] Criar um termo de consentimento e uma ficha de anamnese no padrão "descrição, não diagnóstico"
-- [ ] Definir a estratégia de "atividade de interesse da saúde" (licença sanitária, CNAE, comunicação)
+- [ ] Checar com a VISA do município o enquadramento de risco e a licença (seção 9.1)
 - [ ] Fechar a parceria com o médico (dermatologista) e alinhar a contrarreferência
+
+---
+
+## 9. Estratégia: atividade de interesse da saúde
+
+**O que significa:** os códigos sanitários estaduais e municipais tratam estética e beleza como **estabelecimento de interesse da saúde**. É uma atividade que não é serviço de saúde, mas **é fiscalizada pela vigilância sanitária (VISA)**. Ser classificada assim é bom: dá seriedade e diferencia de salão comum.
+
+### 9.1 Parte legal: o que ter em mãos
+- [ ] **CNPJ** com o CNAE 9602-5/02 (estética)
+- [ ] **Licença sanitária** (ou dispensa, conforme o risco que o município atribui à atividade), no **meu CNPJ** ou incluída na da clínica. Confirmar com a VISA local.
+- [ ] **Alvará de funcionamento** municipal
+- [ ] **Manual de Boas Práticas e POPs** de higienização das mãos, limpeza de superfícies, desinfecção de equipamentos, descarte e atendimento *(base: POP Manual Operacional — New Hair)*
+- [ ] **Plano de resíduos (PGRSS)**, meu ou integrado ao da clínica
+- [ ] **Equipamentos regularizados na ANVISA** (LED, laser de baixa potência, alta frequência, microcâmera): guardar o número de registro ou notificação e as notas fiscais
+- [ ] **Cosméticos notificados na ANVISA**, dentro da validade e com rótulo
+- [ ] **Prontuário/Ficha de Mapeamento Capilar** de cada cliente, guardada com sigilo, **termo de consentimento** e **autorização de uso de imagem** (LGPD)
+- [ ] **Registro de manutenção** dos equipamentos
+
+### 9.2 Parte prática: o atendimento com padrão de saúde
+- Lavagem das mãos e EPI (luvas e jaleco próprio de estética, **sem identificação do COREN**)
+- Material descartável ou esterilizado, e desinfecção da ponteira da microcâmera entre clientes
+- **Mapeamento Capilar** com ficha padrão, triagem 🔴🟡🟢 e fotos padronizadas (mesma luz, ângulo e distância)
+- Reavaliação com fotos na 3ª e na 6ª sessão
+- Encaminhamento ao médico parceiro e retorno da orientação dele por escrito
+
+### 9.3 Comunicação: como falar disso sem passar do limite
+- ✅ Pode dizer: *"cuidado capilar com padrão de saúde"*, *"biossegurança"*, *"trabalho integrado com médico"*, *"ambiente clínico"*, *"protocolos"*, *"Mapeamento Capilar"*
+- ❌ Evite: *"clínica médica"*, *"tratamento da calvície"*, *"diagnóstico"*, *"consulta"*, *"cura"*
+- Destaque o **diferencial de formação em enfermagem** como *"formação em saúde e biossegurança"*, sem usar o título ou o número do COREN
+- Fixe na sala a frase de escopo: *"cuidado estético complementar, não substitui avaliação médica"*
 
 ---
 
@@ -308,4 +336,6 @@ Contato: __________
 - [Parecer COFEN nº 37/2026](https://www.cofen.gov.br/parecer-no-37-2026-camaras-tecnicas-de-enfermagem/)
 - [Técnico de enfermagem na estética — enfermagemestetica.com.br](https://enfermagemestetica.com.br/tecnico-em-enfermagem-estetica/)
 - [Técnico em Estética por competência — CPET (exemplo)](https://competencia.cpet.com.br/estetica)
+- [Catálogo Nacional de Cursos Técnicos — Técnico em Estética (MEC)](https://cnct.mec.gov.br/cursos/curso?id=8)
+- [Certificação por competência — exemplo IBQP](https://certificadoporcompetencia.com.br/tecnico-em-estetica.php)
 - [COREN-RO — procedimentos autorizados na Enfermagem Estética](https://www.coren-ro.org.br/enfermagem-estetica-cofen-detalha-procedimentos-autorizados-e-restricoes-legais/)
