@@ -3,7 +3,7 @@ tags: [conteúdo]
 ---
 # Posts de nota
 
-O formato está em [[Post de nota]]: cartão branco de cantos arredondados sobre
+O formato está em [[Formato de nota]]: cartão branco de cantos arredondados sobre
 uma foto sua, com o cursor âmbar no fim da frase.
 
 ## 1
@@ -16,6 +16,6 @@ Foto: você de blazer terracota, estúdio. Uma palavra marcada — "30 dias", qu
 
 Essa foi a peça em que a gente fechou o formato. O que escrever aqui é sempre
 um **fato que corrige** o que a pessoa achava que sabia. Quando o que você
-quer é uma fala sua, o formato é o outro: [[Post de frase]].
+quer é uma fala sua, o formato é o outro: [[Formato de feed]].
 
-Ver também: [[Índice de conteúdos]] · [[Post de nota]]
+Ver também: [[Índice de conteúdos]] · [[Formato de nota]]

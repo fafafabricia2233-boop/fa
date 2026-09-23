@@ -14,7 +14,7 @@ Tudo sobre a marca em um lugar. Cada link abre uma nota.
 - [[A fonte]] · [[Paleta e contraste]] · [[Tipografia e escala]] · [[Formato das peças]]
 
 ## Formatos
-- [[Carrossel]] · [[Post de frase]] · [[Antes e depois]] · [[Tricoscopia na prática]]
+- [[Carrossel]] · [[Formato de feed]] · [[Antes e depois]] · [[Tricoscopia na prática]]
 
 ## Técnica
 - [[Tricoscopia — achados]] — o que se vê e como se chama

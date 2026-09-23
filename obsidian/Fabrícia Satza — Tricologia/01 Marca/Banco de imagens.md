@@ -60,4 +60,4 @@ mais próximo no banco foi uma tricoscopia de unidades espaçadas — funciona,
 mas o certo seria a linha frontal mesmo. Se você fotografar essa região, o
 banco fica completo para esse tipo de conteúdo.
 
-Ver também: [[Identidade visual]] · [[Carrossel]] · [[Post de nota]]
+Ver também: [[Identidade visual]] · [[Carrossel]] · [[Formato de nota]]

@@ -1,6 +1,6 @@
 ---
 name: fabricia-satza-tricologia
-description: Cria carrosséis de Instagram, peças de antes/depois, quadros explicativos e vídeos para a marca pessoal da Fabrícia Satza (tricologia e queda capilar, @fabriciasatza). Use SEMPRE que o pedido envolver conteúdo para a Fabrícia Satza — carrossel, POST DE FRASE, POST DE NOTA, post, slide, story, reel, legenda, arte, "faz um conteúdo sobre X", ou quando ela mandar fotos de resultado de paciente (antes e depois) para montar a peça. Use também quando o assunto for explicar algo de tricologia visualmente — alopecia, eflúvio, ciclo do fio, miniaturização, tricoscopia, protocolo, queda capilar. NÃO use para a New Hair, que é outra marca com outra identidade visual.
+description: Cria carrosséis de Instagram, peças de antes/depois, quadros explicativos e vídeos para a marca pessoal da Fabrícia Satza (tricologia e queda capilar, @fabriciasatza). Use SEMPRE que o pedido envolver conteúdo para a Fabrícia Satza — carrossel, FORMATO DE FEED (post de frase), FORMATO DE NOTA (post de nota), post, slide, story, reel, legenda, arte, "faz um conteúdo sobre X", ou quando ela mandar fotos de resultado de paciente (antes e depois) para montar a peça. Use também quando o assunto for explicar algo de tricologia visualmente — alopecia, eflúvio, ciclo do fio, miniaturização, tricoscopia, protocolo, queda capilar. NÃO use para a New Hair, que é outra marca com outra identidade visual.
 ---
 
 # Fabrícia Satza — Tricologia e queda capilar
@@ -147,9 +147,10 @@ sobre a imagem.
 | **Virada** | O único slide de cor. **Uma por carrossel** — vinho, terracota ou café. |
 | **Chamada** | Sempre o último. |
 
-## Post de nota
+## Formato de nota
 
-Quando ela pedir um **"post de nota"**, é o cartão branco de cantos
+Ela chama de **"formato de nota"** ou **"post de nota"** — os dois valem, e o
+nome de arquivo do cofre dela é *Formato de nota*. É o cartão branco de cantos
 arredondados sobre uma foto dela, com o cursor piscando no fim da frase. Um
 comando entrega tudo:
 
@@ -165,7 +166,14 @@ O padrão fechado:
 | Cursor | **âmbar do iPhone** `#F5A623`, no fim da frase |
 | Ênfase | **uma** palavra em `<b>`, no máximo |
 | Cabeçalho e rodapé | ficam, iguais aos do carrossel |
-| Rodapé | só o arroba, sem seta |
+| Rodapé | só o arroba — a seta volta se for carrossel |
+| Posição do cartão | topo em 58%, igual em todos os slides |
+
+**Serve para carrossel inteiro, não só peça avulsa.** O "Coisas que parecem
+normais" são sete slides todos nesse formato: a capa anuncia a lista e cada
+slide traz uma fala de paciente entre aspas. Ali o cursor lê como ela anotando
+o que escuta. Num carrossel o cartão fica sempre na mesma altura — quando a
+pessoa arrasta rápido, o topo não se mexe e só o texto e a foto trocam.
 
 Três coisas que decidem se a peça funciona:
 
@@ -224,9 +232,12 @@ Regras próprias da série:
   Escrever um achado que a imagem não mostra é o erro mais fácil de cometer e o
   mais caro na credibilidade.
 
-## Post de frase
+## Formato de feed
 
-Quando ela pedir um **"post de frase"**, é este formato — e o padrão está
+Ela chama de **"formato de feed"** ou **"post de frase"** — os dois valem. No
+cofre da New Hair o equivalente se chama *formato de Tweet*; aqui é **feed**,
+de propósito, porque a peça pega a ideia de um post de rede social sem imitar a
+interface de uma empresa. É este formato — e o padrão está
 fechado, não se rediscute a cada peça. Um comando entrega tudo:
 
 ```bash

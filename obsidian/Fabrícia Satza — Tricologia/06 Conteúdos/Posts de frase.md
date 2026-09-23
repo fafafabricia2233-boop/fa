@@ -3,11 +3,11 @@ tags: [conteúdo]
 ---
 # Posts de frase
 
-Cinco falas prontas, todas no formato fechado: seu nome com o selo de
+Cinco falas prontas, no [[Formato de feed]]: seu nome com o selo de
 verificado, texto em peso único, rodapé só com o arroba. Nenhuma publicada
 ainda.
 
-O formato está em [[Post de frase]].
+O formato está em [[Formato de feed]].
 
 ## 1
 
@@ -39,4 +39,4 @@ A que sustenta sua autoridade sem precisar reivindicar nada.
 
 **A que mais te separa do nicho.** Continua sendo a que eu publicaria primeiro.
 
-Ver também: [[Índice de conteúdos]] · [[Post de frase]] · [[Banco de ideias]]
+Ver também: [[Índice de conteúdos]] · [[Formato de feed]] · [[Banco de ideias]]
