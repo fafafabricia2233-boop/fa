@@ -20,7 +20,7 @@ sem imitar a interface de uma empresa específica.
 | Avatar | foto sua recortada em círculo |
 | Texto | peso único, **sem negrito nenhum** |
 | Limite | até **5 linhas** |
-| Rodapé | só o arroba, **sem seta** |
+| Rodapé | arroba à esquerda, **monograma** à direita, sem seta |
 | Fundo | branco suave, sem foto |
 | Formato | 3:4, 1080 × 1440 |
 
@@ -33,6 +33,10 @@ faz funcionar. O CSS anula qualquer negrito que escape para dentro do bloco.
 **Sem seta.** Num post avulso não há para onde arrastar, e a seta promete um
 slide seguinte que não existe. Se a fala for usada **dentro** de um carrossel,
 aí a seta volta.
+
+**Com o monograma.** Ele fica no canto direito do rodapé, igual ao
+[[Formato de nota]] e a todas as outras peças. É a assinatura discreta que faz
+o print voltar para você quando ele circular sem o perfil junto.
 
 **Sem imitar a interface.** Nada de balão, botão de curtir, contador. Copiar a
 interface de outra empresa entrega o post visualmente a ela. Foto, nome, arroba

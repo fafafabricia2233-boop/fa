@@ -253,7 +253,7 @@ O padrão fechado:
 |---|---|
 | Nome | Fabrícia Satza \| Tricologia Capilar, com o selo de verificado |
 | Texto | peso único, **sem negrito** |
-| Rodapé | só o arroba, **sem seta** |
+| Rodapé | arroba à esquerda, **monograma** à direita, sem seta |
 | Limite | até 5 linhas |
 
 O avatar e o selo vivem em `assets/avatar.png` e `assets/selo.svg`, então a
